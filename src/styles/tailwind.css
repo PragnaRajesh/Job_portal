@@ -1,0 +1,9 @@
+/* TailwindCSS Base File */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.input {
+  @apply w-full border border-blue-400 px-4 py-3 rounded-md placeholder-gray-400 focus:outline-none;
+  
+}
