@@ -111,12 +111,11 @@ const Home = () => {
             <button
               key={idx}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 rounded-full border text-sm whitespace-nowrap shadow-sm transition
-                ${
-                  selectedCategory === cat
-                    ? "bg-blue-700 text-white"
-                    : "bg-white text-gray-800 border-gray-300"
-                }`}
+              className={`px-4 py-2 rounded-full border text-sm whitespace-nowrap shadow-sm transition ${
+                selectedCategory === cat
+                  ? "bg-blue-700 text-white"
+                  : "bg-white text-gray-800 border-gray-300"
+              }`}
             >
               {cat}
             </button>
@@ -244,7 +243,11 @@ const Home = () => {
           <PlusCircle size={32} className="text-blue-500" />
         </div>
         <Briefcase size={22} className="text-gray-600" />
-        <User2 size={22} className="text-gray-600" />
+        <User2
+          size={22}
+          className="text-gray-600 cursor-pointer"
+          onClick={() => navigate("/profile-setup-1")}
+        />
       </div>
     </div>
   );
