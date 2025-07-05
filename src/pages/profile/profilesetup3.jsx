@@ -9,7 +9,7 @@ const ProfileSetup3 = () => {
     if (!pursuing) return alert("Please select an option");
 
     localStorage.setItem("isPursuing", pursuing);
-    navigate("/education-details");
+    navigate("/educationdetails");
   };
 
   return (

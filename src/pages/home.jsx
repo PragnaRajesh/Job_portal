@@ -246,7 +246,7 @@ const Home = () => {
         <User2
           size={22}
           className="text-gray-600 cursor-pointer"
-          onClick={() => navigate("/profile-setup-1")}
+          onClick={() => navigate("/createprofile")}
         />
       </div>
     </div>

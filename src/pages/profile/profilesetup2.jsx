@@ -25,17 +25,22 @@ const ProfileSetup2 = () => {
     localStorage.setItem("gender", gender);
     localStorage.setItem("email", email);
 
-    navigate("/profile-setup-3");
+    navigate("/profilesetup3");
   };
 
   return (
     <div className="min-h-screen bg-white flex flex-col justify-between p-4">
       <div>
-        <h2 className="text-base font-semibold mb-4">Basic Details</h2>
+        <h2 className="text-base font-semibold text-center mb-4">
+          Basic Details
+        </h2>
+
+        {/* Progress Bar */}
         <div className="w-full h-2 bg-gray-200 rounded-full mb-6">
           <div className="h-2 bg-blue-700 rounded-full w-2/5"></div>
         </div>
 
+        {/* Full Name */}
         <label className="text-sm font-semibold block mb-1">Full Name</label>
         <input
           type="text"
@@ -44,6 +49,7 @@ const ProfileSetup2 = () => {
           className="w-full bg-gray-100 border border-gray-300 rounded-lg p-2 text-sm mb-4"
         />
 
+        {/* Date of Birth */}
         <label className="text-sm font-semibold block mb-1">Date of Birth</label>
         <input
           type="date"
@@ -52,18 +58,32 @@ const ProfileSetup2 = () => {
           className="w-full border border-gray-300 rounded-lg p-2 text-sm mb-4"
         />
 
-        <label className="text-sm font-semibold block mb-1">Gender</label>
-        <select
-          value={gender}
-          onChange={(e) => setGender(e.target.value)}
-          className="w-full border border-gray-300 rounded-lg p-2 text-sm mb-4"
-        >
-          <option value="">Select</option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Other">Other</option>
-        </select>
+        {/* Gender (Toggle Style) */}
+        <label className="text-sm font-semibold block mb-2">Gender</label>
+        <div className="w-full bg-blue-100 p-1 rounded-lg flex items-center justify-between mb-4">
+          <button
+            onClick={() => setGender("Male")}
+            className={`flex-1 py-2 rounded-full text-sm font-medium transition ${
+              gender === "Male"
+                ? "bg-white text-black shadow-sm"
+                : "text-blue-700"
+            }`}
+          >
+            Male
+          </button>
+          <button
+            onClick={() => setGender("Female")}
+            className={`flex-1 py-2 rounded-full text-sm font-medium transition ${
+              gender === "Female"
+                ? "bg-white text-black shadow-sm"
+                : "text-blue-700"
+            }`}
+          >
+            Female
+          </button>
+        </div>
 
+        {/* Email */}
         <label className="text-sm font-semibold block mb-1">Email</label>
         <input
           type="email"
@@ -74,6 +94,7 @@ const ProfileSetup2 = () => {
         />
       </div>
 
+      {/* Continue Button */}
       <button
         onClick={handleContinue}
         className="w-full bg-blue-700 text-white py-3 mt-6 rounded-full text-sm font-medium"

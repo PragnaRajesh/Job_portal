@@ -8,43 +8,57 @@ const CreateProfile = () => {
 
   const languages = [
     "English",
-    "Hindi - हिंदी",
     "Kannada - ಕನ್ನಡ",
-    "Bengali - বাংলা",
+    "Hindi - हिंदी",
     "Telugu - తెలుగు",
     "Tamil - தமிழ்",
-    "Gujarati - ગુજરાતી",
   ];
 
   const handleSubmit = () => {
-    // Save to localStorage or context if needed
-    navigate("/profile-setup-1");
+    navigate("/profilesetup1"); // ✅ corrected
   };
 
   return (
     <div className="min-h-screen bg-white p-4 flex flex-col justify-between">
       <div>
+        <h1 className="text-xl font-bold text-center mb-4">Create Profile</h1>
+
         <img
-          src="/illustration.png"
-          alt="illustration"
-          className="w-full h-48 object-contain mb-4"
+          src="src/assets/Create profile.jpeg"
+          alt="Create Profile"
+          className="w-full h-[250px] object-contain mb-6"
         />
 
-        <div className="mb-4">
-          <h2 className="font-semibold text-md mb-2">Find relevant jobs for your profile</h2>
-          <p className="text-sm text-gray-500">Discover opportunities that match your skills and experience.</p>
-        </div>
-        <div className="mb-4">
-          <h2 className="font-semibold text-md mb-2">Get noticed by HRs/ recruiters</h2>
-          <p className="text-sm text-gray-500">Increase your visibility to potential employers.</p>
+        <div className="mb-4 flex items-start justify-between">
+          <div>
+            <h2 className="font-semibold text-md mb-1">Find relevant jobs for your profile</h2>
+            <p className="text-sm text-gray-500">
+              Discover opportunities that match your skills and experience.
+            </p>
+          </div>
+          <div className="bg-gray-100 p-2 rounded-xl shadow-sm">
+            <b className="text-xl">🎯</b>
+          </div>
         </div>
 
-        <h3 className="font-semibold text-sm mb-2 mt-4">Choose your app language</h3>
+        <div className="mb-6 flex items-start justify-between">
+          <div>
+            <h2 className="font-semibold text-md mb-1">Get noticed by HRs/ recruiters</h2>
+            <p className="text-sm text-gray-500">
+              Increase your visibility to potential employers.
+            </p>
+          </div>
+          <div className="bg-gray-100 p-2 rounded-xl shadow-sm">
+            <b className="text-xl">👀</b>
+          </div>
+        </div>
+
+        <h3 className="font-bold text-md mb-3">Choose your app language</h3>
         <div className="space-y-3 mb-4">
           {languages.map((lang, idx) => (
             <label
               key={idx}
-              className="flex items-center justify-between border p-2 rounded-lg cursor-pointer"
+              className="flex items-center justify-between border p-3 rounded-lg cursor-pointer"
             >
               <span className="text-sm">{lang}</span>
               <input
@@ -57,7 +71,7 @@ const CreateProfile = () => {
           ))}
         </div>
 
-        <label className="text-xs flex items-center gap-2 mt-3">
+        <label className="text-sm flex items-center gap-2 mt-3">
           <input
             type="checkbox"
             checked={whatsappUpdates}

@@ -11,11 +11,12 @@ import Login from './pages/login';
 import Loginverify from './pages/loginverify';
 import SuccessScreen from './pages/successscreen';
 import Home from './pages/home';
-import CreateProfile from './pages/profile/createprofile';
+import CreateProfile from './pages/profile/createprofile'
 import ProfileSetup1 from './pages/profile/profilesetup1';
 import ProfileSetup2 from './pages/profile/profilesetup2';
 import ProfileSetup3 from './pages/profile/profilesetup3';
 import EducationDetails from './pages/profile/educationdetails';
+import EducationDetails2 from './pages/profile/educationdetails2';
 import ExperienceDecision from './pages/profile/experiencedecision';
 import Experience1 from './pages/profile/experience1';
 import Experience2 from './pages/profile/experience2'; 
@@ -43,12 +44,13 @@ const App = () => {
         <Route path="/login/verify" element={<Loginverify />} />
         <Route path="/registration-complete" element={<SuccessScreenWrapper />} />
         <Route path="/home" element={<Home />} />
-         <Route path="/createprofile" element={<CreateProfile />} />
-        <Route path="/profile-setup-1" element={<ProfileSetup1 />} />
-        <Route path="/profile-setup-2" element={<ProfileSetup2 />} />
-        <Route path="/profile-setup-3" element={<ProfileSetup3 />} />
-        <Route path="/education-details" element={<EducationDetails />} />
-        <Route path="/experience-decision" element={<ExperienceDecision />} />
+        <Route path="/createprofile" element={<CreateProfile />} />
+        <Route path="/profilesetup1" element={<ProfileSetup1 />} />
+        <Route path="/profilesetup2" element={<ProfileSetup2 />} />
+        <Route path="/profilesetup3" element={<ProfileSetup3 />} />
+        <Route path="/educationdetails" element={<EducationDetails />} />
+        <Route path="/educationdetails2" element={<EducationDetails2 />} />
+        <Route path="/experiencedecision" element={<ExperienceDecision />} />
         <Route path="/experience1" element={<Experience1 />} />
         <Route path="/experience2" element={<Experience2 />} />
         <Route path="/experience3" element={<Experience3 />} />

@@ -7,7 +7,7 @@ const ExperienceDecision = () => {
 
   const handleNext = () => {
     if (hasExperience === 'yes') {
-      navigate('/experience-1');
+      navigate('/experience1');
     } else if (hasExperience === 'no') {
       navigate('/location');
     }
