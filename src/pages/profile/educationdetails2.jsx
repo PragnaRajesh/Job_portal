@@ -11,19 +11,32 @@ const degreeOptions = {
 };
 
 const specializationOptions = {
-  BE: ["Computer Science", "Electronics", "Mechanical", "Civil"],
-  BTech: ["IT", "Electronics", "AI/ML", "Data Science"],
-  BA: ["English", "Political Science", "History"],
-  BSc: ["Maths", "Physics", "Biology"],
+  "B.E": ["Computer Science", "Electronics", "Mechanical", "Civil"],
+  "B.Tech": ["IT", "Electronics", "AI/ML", "Data Science"],
+  "BA": ["English", "Political Science", "History"],
+  "BSc": ["Maths", "Physics", "Biology"],
+  "B.Com": ["Accounting", "Finance"],
+  "BBA": ["Marketing", "HR"],
+  "M.E": ["Embedded Systems", "Power Electronics", "VLSI"],
   "M.Tech": ["Embedded Systems", "Power Electronics", "VLSI"],
-  MBA: ["Marketing", "HR", "Finance"],
-  Diploma: ["Computer Applications", "Electrical Engineering"],
-  ITI: ["Electrician", "Mechanic", "Fitter"],
-  SSLC: ["General"],
-  CBSE: ["General"],
-  Science: ["Physics", "Biology", "Maths"],
-  Commerce: ["Accountancy", "Business Studies"],
-  Arts: ["History", "Political Science"],
+  "MA": ["English", "Sociology"],
+  "MSc": ["Physics", "Biochemistry"],
+  "M.Com": ["Accounting", "Finance"],
+  "MBA": ["Marketing", "HR", "Finance"],
+  "Diploma in Computer": ["Computer Applications"],
+  "Diploma in Electrical": ["Circuit Theory"],
+  "Diploma in Mechanical": ["Thermodynamics"],
+  "Electrician": ["Electrical Maintenance"],
+  "Fitter": ["Machine Tools"],
+  "Welder": ["Arc Welding"],
+  "Mechanic": ["Automobile"],
+  "SSLC": ["General"],
+  "CBSE": ["General"],
+  "ICSE": ["General"],
+  "Other": ["General"],
+  "Science": ["Physics", "Biology", "Maths"],
+  "Commerce": ["Accountancy", "Business Studies"],
+  "Arts": ["History", "Political Science"]
 };
 
 const EducationDetails2 = () => {
@@ -50,7 +63,7 @@ const EducationDetails2 = () => {
     localStorage.setItem("year", year);
     localStorage.setItem("medium", medium);
 
-    navigate("/experiencedecision");
+    navigate("/jobtype");
   };
 
   const currentDegrees = degreeOptions[educationLevel] || [];
@@ -95,7 +108,9 @@ const EducationDetails2 = () => {
           }}
           className="w-full border border-gray-300 rounded-lg p-2 mb-4 text-sm"
         >
+         <select>
           <option value="">Select degree</option>
+          </select> 
           {currentDegrees.map((deg) => (
             <option key={deg} value={deg}>
               {deg}

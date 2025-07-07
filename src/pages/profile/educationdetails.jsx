@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import graduationImg from "../../assets/education.jpeg"; // Ensure this path is correct
+import graduationImg from "../../assets/education.jpeg"; 
 
 const EducationDetails = () => {
   const navigate = useNavigate();

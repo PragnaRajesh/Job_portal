@@ -1,123 +1,120 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const ExperienceDetails3 = () => {
-  const [companyName, setCompanyName] = useState("");
-  const [selectedSkills, setSelectedSkills] = useState([]);
+const ExperienceDetails4 = () => {
+  const navigate = useNavigate();
+  const [isCurrentCompany, setIsCurrentCompany] = useState(null);
+  const [noticePeriod, setNoticePeriod] = useState("");
+  const [startMonth, setStartMonth] = useState("");
+  const [startYear, setStartYear] = useState("");
 
-  const suggestedSkills = [
-    "Programming",
-    "Design",
-    "Marketing",
-    "Sales",
-    "Data Analysis",
-    "Teamwork"
+  const noticeOptions = [
+    "Immediate",
+    "Less than 15 days",
+    "1 month",
+    "2 months",
+    "3 months",
+    "3 or more months",
   ];
 
-  const toggleSkill = (skill) => {
-    setSelectedSkills((prevSkills) =>
-      prevSkills.includes(skill)
-        ? prevSkills.filter((s) => s !== skill)
-        : [...prevSkills, skill]
-    );
-  };
+  const months = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December",
+  ];
+
+  const years = Array.from({ length: 30 }, (_, i) => `${new Date().getFullYear() - i}`);
 
   const handleNext = () => {
-    if (!companyName) {
-      alert("Please enter a company name");
+    if (isCurrentCompany === null || !noticePeriod || !startMonth || !startYear) {
+      alert("Please fill in all fields");
       return;
     }
-    // Proceed with navigation or saving data
-    console.log({ companyName, selectedSkills });
+    navigate("/location");
   };
 
   return (
-    <div className="min-h-screen p-4 bg-white flex flex-col justify-between">
+    <div className="min-h-screen bg-white p-4 flex flex-col justify-between">
       <div>
-        <h2 className="text-center text-lg font-semibold mb-4">Experience Details</h2>
+        <h2 className="text-center text-base font-semibold mb-3">Experience Details</h2>
 
-        <div className="w-full h-2 bg-gray-200 rounded-full mb-6">
-          <div className="h-2 bg-blue-700 rounded-full w-3/5"></div>
+        {/* Progress Bar */}
+        <div className="w-full h-1 bg-gray-200 rounded-full mb-6">
+          <div className="h-1 bg-blue-700 rounded-full w-[85%]"></div>
         </div>
 
-        <label className="font-semibold mb-1 block">Company information</label>
-        <p className="text-sm text-gray-600 mb-2">Add your company details</p>
-        <select
-          className="w-full border border-gray-300 rounded-lg p-3 mb-4"
-          value={companyName}
-          onChange={(e) => setCompanyName(e.target.value)}
-        >
-          <option value="">Company name</option>
-          <option value="Google">Google</option>
-          <option value="Microsoft">Microsoft</option>
-          <option value="Amazon">Amazon</option>
-        </select>
+        <h3 className="font-semibold mb-2 text-sm">
+          Are you currently working in this company?
+        </h3>
 
-        <label className="font-semibold mb-1 block">Skills</label>
-        <p className="text-sm text-gray-600 mb-2">Add your skills</p>
-        <select className="w-full border border-gray-300 rounded-lg p-3 mb-4">
-          <option value="">Search for skills</option>
-          <select className="w-full border border-gray-300 rounded-lg p-2 mb-4 text-sm">
-          <option value="">Select a skill</option>
-          <option value="Adobe XD">Adobe XD</option>
-          <option value="Agile">Agile</option>
-          <option value="C#">C#</option>
-          <option value="C++">C++</option>
-          <option value="CRM">CRM</option>
-          <option value="Collaboration">Collaboration</option>
-          <option value="Content Marketing">Content Marketing</option>
-          <option value="Email Marketing">Email Marketing</option>
-          <option value="Excel">Excel</option>
-          <option value="Figma">Figma</option>
-          <option value="Go">Go</option>
-          <option value="Google Ads">Google Ads</option>
-          <option value="Graphic Design">Graphic Design</option>
-          <option value="Java">Java</option>
-          <option value="JavaScript">JavaScript</option>
-          <option value="Lead Generation">Lead Generation</option>
-          <option value="Negotiation">Negotiation</option>
-          <option value="Power BI">Power BI</option>
-          <option value="Project Management">Project Management</option>
-          <option value="Python">Python</option>
-          <option value="Python (Pandas)">Python (Pandas)</option>
-          <option value="Ruby">Ruby</option>
-          <option value="SEO">SEO</option>
-          <option value="SQL">SQL</option>
-          <option value="Salesforce">Salesforce</option>
-          <option value="Scrum">Scrum</option>
-          <option value="Sketch">Sketch</option>
-          <option value="Tableau">Tableau</option>
-          <option value="UI/UX Design">UI/UX Design</option>
-        </select>
+        <div className="flex mb-4 rounded-xl overflow-hidden border">
+          <button
+            className={`flex-1 py-2 text-sm font-medium ${
+              isCurrentCompany === true
+                ? "bg-blue-700 text-white"
+                : "bg-white text-blue-700"
+            }`}
+            onClick={() => setIsCurrentCompany(true)}
+          >
+            Yes
+          </button>
+          <button
+            className={`flex-1 py-2 text-sm font-medium ${
+              isCurrentCompany === false
+                ? "bg-blue-700 text-white"
+                : "bg-white text-blue-700"
+            }`}
+            onClick={() => setIsCurrentCompany(false)}
+          >
+            No
+          </button>
+        </div>
 
-        </select>
-
-        <p className="font-semibold mb-2">Suggested Skills</p>
-        <div className="grid grid-cols-2 gap-2">
-          {suggestedSkills.map((skill) => (
+        {/* Notice Period */}
+        <h3 className="font-semibold mb-2 text-sm">Notice Period</h3>
+        <div className="grid grid-cols-2 gap-2 mb-4">
+          {noticeOptions.map((option) => (
             <button
-              key={skill}
-              className={`border rounded-lg py-2 px-4 flex items-center gap-2 text-sm font-medium justify-center ${
-                selectedSkills.includes(skill)
-                  ? "bg-blue-100 text-black border-blue-500"
-                  : "bg-white text-black border-gray-300"
+              key={option}
+              className={`border rounded-lg px-3 py-2 text-sm font-semibold ${
+                noticePeriod === option ? "bg-blue-100 border-blue-700 text-black" : "bg-white"
               }`}
-              onClick={() => toggleSkill(skill)}
+              onClick={() => setNoticePeriod(option)}
             >
-              {skill === "Programming" && <span>\u003c/\u003e</span>}
-              {skill === "Design" && <span>✏️</span>}
-              {skill === "Marketing" && <span>📣</span>}
-              {skill === "Sales" && <span>📊</span>}
-              {skill === "Data Analysis" && <span>📈</span>}
-              {skill === "Teamwork" && <span>👥</span>}
-              {skill}
+              {option}
             </button>
           ))}
+        </div>
+
+        {/* Start Date */}
+        <h3 className="font-semibold mb-2 text-sm">Start Date</h3>
+        <div className="flex gap-4 mb-6">
+          <select
+            value={startMonth}
+            onChange={(e) => setStartMonth(e.target.value)}
+            className="w-1/2 border border-gray-300 rounded-lg p-2 text-sm"
+          >
+            <option value="">Month</option>
+            {months.map((month) => (
+              <option key={month} value={month}>{month}</option>
+            ))}
+          </select>
+
+          <select
+            value={startYear}
+            onChange={(e) => setStartYear(e.target.value)}
+            className="w-1/2 border border-gray-300 rounded-lg p-2 text-sm"
+          >
+            <option value="">Year</option>
+            {years.map((year) => (
+              <option key={year} value={year}>{year}</option>
+            ))}
+          </select>
         </div>
       </div>
 
       <button
         onClick={handleNext}
-        className="w-full bg-blue-700 text-white py-3 mt-6 rounded-full text-sm font-medium"
+        className="bg-blue-700 text-white py-3 rounded-full text-sm font-semibold"
       >
         Next
       </button>
@@ -125,4 +122,4 @@ const ExperienceDetails3 = () => {
   );
 };
 
-export default ExperienceDetails3;
+export default ExperienceDetails4;

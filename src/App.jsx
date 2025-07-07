@@ -16,11 +16,11 @@ import ProfileSetup1 from './pages/profile/profilesetup1';
 import ProfileSetup2 from './pages/profile/profilesetup2';
 import EducationDetails from './pages/profile/educationdetails';
 import EducationDetails2 from './pages/profile/educationdetails2';
+import JobType from './pages/profile/jobtype';
 import ExperienceDecision from './pages/profile/experiencedecision';
 import ExperienceDetails1 from './pages/profile/experiencedetails1';
 import ExperienceDetails2 from './pages/profile/experiencedetails2'; 
 import ExperienceDetails3 from './pages/profile/experiencedetails3';
-import ExperienceDetails4 from './pages/profile/experiencedetails4';
 import Location from './pages/profile/location'; 
 import SetupComplete from './pages/profile/setupcomplete';
 // ✅ Wrapper to pass state to SuccessScreen
@@ -48,11 +48,11 @@ const App = () => {
         <Route path="/profilesetup2" element={<ProfileSetup2 />} />
         <Route path="/educationdetails" element={<EducationDetails />} />
         <Route path="/educationdetails2" element={<EducationDetails2 />} />
+        <Route path="/JobType" element={<JobType />} />
         <Route path="/experiencedecision" element={<ExperienceDecision />} />
         <Route path="/experiencedetails1" element={<ExperienceDetails1 />} />
-        <Route path="/experience2details" element={<ExperienceDetails2 />} />
+        <Route path="/experiencedetails2" element={<ExperienceDetails2 />} />
         <Route path="/experiencedetails3" element={<ExperienceDetails3 />} />
-        <Route path="/experiencedetails4" element={<ExperienceDetails4 />} />
         <Route path="/location" element={<Location />} />
         <Route path="/setupcomplete" element={<SetupComplete />} />
       </Routes>

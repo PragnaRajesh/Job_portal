@@ -1,6 +1,7 @@
-// src/pages/profile/experiencedecision.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import experienceImg from "../../assets/experience.jpeg";
+
 
 const ExperienceDecision = () => {
   const navigate = useNavigate();
@@ -13,7 +14,8 @@ const ExperienceDecision = () => {
     }
 
     localStorage.setItem("hasWorkExperience", hasExperience);
-    navigate(hasExperience ? "/companydetails" : "/jobrole");
+    navigate(hasExperience ? "/experiencedetails1" : "/location");
+
   };
 
   return (
@@ -31,7 +33,7 @@ const ExperienceDecision = () => {
 
         {/* Illustration */}
         <img
-          src="/assets/experience.jpeg" // place this image in public/assets/
+          src={experienceImg}
           alt="Experience"
           className="w-full h-[200px] object-contain mb-6"
         />

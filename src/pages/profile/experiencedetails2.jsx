@@ -1,121 +1,119 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const PreferredJobType = () => {
+const ExperienceDetails2 = () => {
+  const [companyName, setCompanyName] = useState("");
+  const [selectedSkills, setSelectedSkills] = useState([]);
   const navigate = useNavigate();
 
-  const [preferredShifts, setPreferredShifts] = useState([]);
-  const [preferredWorkplace, setPreferredWorkplace] = useState([]);
-  const [employmentType, setEmploymentType] = useState([]);
+  const suggestedSkills = [
+    "Programming",
+    "Design",
+    "Marketing",
+    "Sales",
+    "Data Analysis",
+    "Teamwork"
+  ];
 
-  const toggleSelection = (item, categorySetter, currentState) => {
-    if (currentState.includes(item)) {
-      categorySetter(currentState.filter((i) => i !== item));
-    } else {
-      categorySetter([...currentState, item]);
-    }
+  const toggleSkill = (skill) => {
+    setSelectedSkills((prevSkills) =>
+      prevSkills.includes(skill)
+        ? prevSkills.filter((s) => s !== skill)
+        : [...prevSkills, skill]
+    );
   };
 
   const handleNext = () => {
-    if (
-      preferredShifts.length === 0 &&
-      preferredWorkplace.length === 0 &&
-      employmentType.length === 0
-    ) {
-      alert("Please select at least one option.");
+    if (!companyName) {
+      alert("Please enter a company name");
       return;
     }
 
-    localStorage.setItem("preferredShifts", JSON.stringify(preferredShifts));
-    localStorage.setItem(
-      "preferredWorkplace",
-      JSON.stringify(preferredWorkplace)
-    );
-    localStorage.setItem("employmentType", JSON.stringify(employmentType));
-
-    navigate("/experience3");
+    console.log({ companyName, selectedSkills });
+    navigate("/experiencedetails3");
   };
 
   return (
-    <div className="min-h-screen bg-[#f7fdfb] p-4 flex flex-col justify-between">
+    <div className="min-h-screen p-4 bg-white flex flex-col justify-between">
       <div>
-        {/* 🔹 Header */}
-        <h2 className="text-center text-lg font-semibold mb-3">
-          Preferred Job Type
-        </h2>
+        <h2 className="text-center text-lg font-semibold mb-4">Experience Details</h2>
 
-        {/* 🔹 Progress Bar */}
-        <div className="w-full h-1 bg-gray-200 rounded-full mb-6">
-          <div className="h-1 bg-blue-700 rounded-full w-3/5"></div>
+        <div className="w-full h-2 bg-gray-200 rounded-full mb-6">
+          <div className="h-2 bg-blue-700 rounded-full w-3/5"></div>
         </div>
 
-        {/* 🔹 Preferred Shifts */}
-        <div className="mb-6">
-          <h3 className="text-md font-semibold mb-2">Preferred Shifts</h3>
-          <div className="space-y-2">
-            {["Night Shift", "Day Shift"].map((shift) => (
-              <label key={shift} className="flex items-center justify-between">
-                <span>{shift}</span>
-                <input
-                  type="checkbox"
-                  checked={preferredShifts.includes(shift)}
-                  onChange={() =>
-                    toggleSelection(shift, setPreferredShifts, preferredShifts)
-                  }
-                  className="form-checkbox h-4 w-4 text-blue-600"
-                />
-              </label>
-            ))}
-          </div>
-        </div>
+        {/* Company Dropdown */}
+        <label className="font-semibold mb-1 block">Company information</label>
+        <p className="text-sm text-gray-600 mb-2">Add your company details</p>
+        <select
+          className="w-full border border-gray-300 rounded-lg p-3 mb-4"
+          value={companyName}
+          onChange={(e) => setCompanyName(e.target.value)}
+        >
+          <option value="">Company name</option>
+          <option value="Google">Google</option>
+          <option value="Microsoft">Microsoft</option>
+          <option value="Amazon">Amazon</option>
+        </select>
 
-        {/* 🔹 Preferred Workplace */}
-        <div className="mb-6">
-          <h3 className="text-md font-semibold mb-2">Preferred Workplace</h3>
-          <div className="space-y-2">
-            {["Work from Home", "Work from Office", "Field Job"].map((place) => (
-              <label key={place} className="flex items-center justify-between">
-                <span>{place}</span>
-                <input
-                  type="checkbox"
-                  checked={preferredWorkplace.includes(place)}
-                  onChange={() =>
-                    toggleSelection(place, setPreferredWorkplace, preferredWorkplace)
-                  }
-                  className="form-checkbox h-4 w-4 text-blue-600"
-                />
-              </label>
-            ))}
-          </div>
-        </div>
+        {/* Skills */}
+        <label className="font-semibold mb-1 block">Skills</label>
+        <p className="text-sm text-gray-600 mb-2">Add your skills</p>
 
-        {/* 🔹 Preferred Employment Type */}
-        <div className="mb-6">
-          <h3 className="text-md font-semibold mb-2">
-            Preferred Employment Type
-          </h3>
-          <div className="space-y-2">
-            {["Full Time", "Part Time"].map((type) => (
-              <label key={type} className="flex items-center justify-between">
-                <span>{type}</span>
-                <input
-                  type="checkbox"
-                  checked={employmentType.includes(type)}
-                  onChange={() =>
-                    toggleSelection(type, setEmploymentType, employmentType)
-                  }
-                  className="form-checkbox h-4 w-4 text-blue-600"
-                />
-              </label>
-            ))}
-          </div>
+        <select className="w-full border border-gray-300 rounded-lg p-3 mb-4">
+          <option value="">Search for skills</option>
+          <option value="Adobe XD">Adobe XD</option>
+          <option value="Agile">Agile</option>
+          <option value="C#">C#</option>
+          <option value="C++">C++</option>
+          <option value="CRM">CRM</option>
+          <option value="Collaboration">Collaboration</option>
+          <option value="Content Marketing">Content Marketing</option>
+          <option value="Email Marketing">Email Marketing</option>
+          <option value="Excel">Excel</option>
+          <option value="Figma">Figma</option>
+          <option value="Go">Go</option>
+          <option value="Google Ads">Google Ads</option>
+          <option value="Graphic Design">Graphic Design</option>
+          <option value="Java">Java</option>
+          <option value="JavaScript">JavaScript</option>
+          <option value="Lead Generation">Lead Generation</option>
+          <option value="Negotiation">Negotiation</option>
+          <option value="Power BI">Power BI</option>
+          <option value="Project Management">Project Management</option>
+          <option value="Python">Python</option>
+          <option value="Python (Pandas)">Python (Pandas)</option>
+          <option value="Ruby">Ruby</option>
+          <option value="SEO">SEO</option>
+          <option value="SQL">SQL</option>
+          <option value="Salesforce">Salesforce</option>
+          <option value="Scrum">Scrum</option>
+          <option value="Sketch">Sketch</option>
+          <option value="Tableau">Tableau</option>
+          <option value="UI/UX Design">UI/UX Design</option>
+        </select>
+
+        <p className="font-semibold mb-2">Suggested Skills</p>
+        <div className="grid grid-cols-2 gap-2">
+          {suggestedSkills.map((skill) => (
+            <button
+              key={skill}
+              className={`border rounded-lg py-2 px-4 text-sm font-medium justify-center ${
+                selectedSkills.includes(skill)
+                  ? "bg-blue-100 text-black border-blue-500"
+                  : "bg-white text-black border-gray-300"
+              }`}
+              onClick={() => toggleSkill(skill)}
+            >
+              {skill}
+            </button>
+          ))}
         </div>
       </div>
 
-      {/* 🔹 Next Button */}
       <button
         onClick={handleNext}
-        className="w-full bg-blue-700 text-white py-3 rounded-full text-sm font-semibold"
+        className="w-full bg-blue-700 text-white py-3 mt-6 rounded-full text-sm font-medium"
       >
         Next
       </button>
@@ -123,4 +121,4 @@ const PreferredJobType = () => {
   );
 };
 
-export default PreferredJobType;
+export default ExperienceDetails2;

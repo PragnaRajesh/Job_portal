@@ -15,7 +15,7 @@ const CreateProfile = () => {
   ];
 
   const handleSubmit = () => {
-    navigate("/profilesetup1"); // ✅ corrected
+    navigate("/profilesetup1"); 
   };
 
   return (
