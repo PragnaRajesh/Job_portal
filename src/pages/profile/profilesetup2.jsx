@@ -25,7 +25,7 @@ const ProfileSetup2 = () => {
     localStorage.setItem("gender", gender);
     localStorage.setItem("email", email);
 
-    navigate("/profilesetup3");
+    navigate("/educationdetails");
   };
 
   return (

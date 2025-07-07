@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import graduationImg from "../../assets/education.jpeg"; // Ensure this path is correct
 
 const EducationDetails = () => {
   const navigate = useNavigate();
@@ -30,22 +31,22 @@ const EducationDetails = () => {
 
         {/* 🔹 Illustration */}
         <img
-          src="src/assets/education.jpeg"
+          src={graduationImg}
           alt="Graduation"
           className="w-full h-[200px] object-contain mb-6"
         />
 
         {/* 🔹 Question */}
-        <h3 className="font-semibold text-sm mb-2">
+        <h3 className="font-semibold text-sm mb-3">
           Are you currently pursuing your education?
         </h3>
 
         {/* 🔹 Toggle Buttons */}
         <div className="flex space-x-4 mb-6">
           <button
-            className={`flex-1 py-2 rounded-lg text-sm font-medium border ${
+            className={`flex-1 py-2 rounded-lg text-sm font-medium border transition-all duration-200 ${
               isPursuing === true
-                ? "bg-blue-700 text-white"
+                ? "bg-blue-700 text-white border-blue-700"
                 : "bg-white text-blue-700 border-blue-700"
             }`}
             onClick={() => setIsPursuing(true)}
@@ -53,9 +54,9 @@ const EducationDetails = () => {
             Yes
           </button>
           <button
-            className={`flex-1 py-2 rounded-lg text-sm font-medium border ${
+            className={`flex-1 py-2 rounded-lg text-sm font-medium border transition-all duration-200 ${
               isPursuing === false
-                ? "bg-blue-700 text-white"
+                ? "bg-blue-700 text-white border-blue-700"
                 : "bg-white text-blue-700 border-blue-700"
             }`}
             onClick={() => setIsPursuing(false)}
