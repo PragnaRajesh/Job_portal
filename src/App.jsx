@@ -22,7 +22,10 @@ import ExperienceDetails1 from './pages/profile/experiencedetails1';
 import ExperienceDetails2 from './pages/profile/experiencedetails2'; 
 import ExperienceDetails3 from './pages/profile/experiencedetails3';
 import Location from './pages/profile/location'; 
+import UploadResume from "./pages/profile/uploadresume";
 import SetupComplete from './pages/profile/setupcomplete';
+import "leaflet/dist/leaflet.css";
+
 // ✅ Wrapper to pass state to SuccessScreen
 const SuccessScreenWrapper = () => {
   const { state } = useLocation();
@@ -54,6 +57,7 @@ const App = () => {
         <Route path="/experiencedetails2" element={<ExperienceDetails2 />} />
         <Route path="/experiencedetails3" element={<ExperienceDetails3 />} />
         <Route path="/location" element={<Location />} />
+        <Route path="/uploadresume" element={<UploadResume />} />
         <Route path="/setupcomplete" element={<SetupComplete />} />
       </Routes>
     </BrowserRouter>
