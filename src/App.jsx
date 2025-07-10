@@ -22,6 +22,10 @@ import ExperienceDetails2 from './pages/profile/experiencedetails2';
 import ExperienceDetails3 from './pages/profile/experiencedetails3';
 import Location from './pages/profile/location';
 import UploadResume from './pages/profile/uploadresume';
+// import Applications from './pages/applications/applications';
+// import ApplicationDetails from './pages/applications/applicationdetails';
+// import MapComponent from '../components/mapcomponent';
+// import NavigationApps from '../components/navigationapps';
 
 // ✅ Wrapper to pass state to SuccessScreen
 const SuccessScreenWrapper = () => {
@@ -57,8 +61,13 @@ const App = () => {
 
         {/* Login Flow */}
         <Route path="/login" element={<Login />} />
-        <Route path="/login/verify" element={<Loginverify />} />
+        <Route path="/loginverify" element={<Loginverify />} />
         <Route path="/home" element={<Home />} />
+
+        { /* Application Pages */}
+        {/* <Route path="/applications" element={<Applications />} />
+        <Route path="/applicationdetails/:id" element={<ApplicationDetails />} /> */}
+        
       </Routes>
     </BrowserRouter>
   );

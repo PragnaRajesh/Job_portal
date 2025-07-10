@@ -242,7 +242,11 @@ const Home = () => {
         <div className="-mt-5 bg-white rounded-full shadow-md p-1">
           <PlusCircle size={32} className="text-blue-500" />
         </div>
-        <Briefcase size={22} className="text-gray-600" />
+        <Briefcase 
+          size={22} 
+          className="text-gray-600 cursor-pointer hover:text-blue-600 transition-colors" 
+          //onClick={() => navigate('/applications')}
+        />
         <User2
           size={22}
           className="text-gray-600 cursor-pointer"

@@ -15,7 +15,7 @@ const Login = () => {
       };
       localStorage.setItem("user", JSON.stringify(user));
 
-      navigate("/home");
+      navigate("/loginverify");
     } else {
       alert("Please enter a valid 10-digit number");
     }
