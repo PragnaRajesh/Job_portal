@@ -33,7 +33,7 @@ const JobType = () => {
     );
     localStorage.setItem("employmentType", JSON.stringify(employmentType));
 
-    navigate("/experiencedecision");
+    navigate("/profile/location");
   };
 
   return (

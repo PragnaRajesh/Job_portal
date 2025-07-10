@@ -9,7 +9,7 @@ const SignupVerify = () => {
 
   const handleSubmit = () => {
     if (otp.length === 6) {
-      navigate("/signup/info");
+      navigate('../profile/createprofile');
     } else {
       alert("Please enter the full 6-digit OTP.");
     }

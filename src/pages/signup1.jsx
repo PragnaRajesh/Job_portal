@@ -9,7 +9,7 @@ const Signup1 = () => {
 
   const handleNext = () => {
     if (!agreed || mobile.length !== 10) return;
-    navigate('/signup/verify');
+    navigate('/signupverify');
   };
 
   return (

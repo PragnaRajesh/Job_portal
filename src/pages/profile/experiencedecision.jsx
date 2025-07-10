@@ -14,7 +14,7 @@ const ExperienceDecision = () => {
     }
 
     localStorage.setItem("hasWorkExperience", hasExperience);
-    navigate(hasExperience ? "/experiencedetails1" : "/location");
+    navigate(hasExperience ? "/profile/experiencedetails1" : "/profile/location");
 
   };
 

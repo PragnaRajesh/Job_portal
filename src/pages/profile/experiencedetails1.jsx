@@ -126,7 +126,7 @@ const ExperienceDetails1 = () => {
           className="w-full bg-blue-700 text-white py-3 mt-6 rounded-full text-sm font-medium"
           onClick={() => {
             localStorage.setItem("jobRoles", JSON.stringify(selectedRoles));
-            navigate("/experiencedetails2");
+            navigate("/profile/experiencedetails2");
           }}
         >
           Next

@@ -15,7 +15,7 @@ const Signup2 = () => {
 
   const handleSubmit = () => {
     if (otp.every(d => d !== '')) {
-      navigate('/signup/details');
+      navigate('./pages/profile/createprofile');
     }
   };
 

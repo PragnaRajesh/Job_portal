@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const ExperienceDetails4 = () => {
+const ExperienceDetails3 = () => {
   const navigate = useNavigate();
   const [isCurrentCompany, setIsCurrentCompany] = useState(null);
   const [noticePeriod, setNoticePeriod] = useState("");
@@ -29,7 +29,7 @@ const ExperienceDetails4 = () => {
       alert("Please fill in all fields");
       return;
     }
-    navigate("/location");
+    navigate("/profile/location");
   };
 
   return (
@@ -122,4 +122,4 @@ const ExperienceDetails4 = () => {
   );
 };
 
-export default ExperienceDetails4;
+export default ExperienceDetails3;

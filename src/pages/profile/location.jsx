@@ -38,7 +38,7 @@ const LocationScreen = () => {
 
       {/* Next Button */}
       <button
-        onClick={() => navigate("/uploadresume")}
+        onClick={() => navigate("/profile/uploadresume")}
         className="w-full bg-blue-700 text-white py-3 mt-6 rounded-full text-sm font-medium"
       >
         Next

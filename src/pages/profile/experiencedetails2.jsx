@@ -30,7 +30,7 @@ const ExperienceDetails2 = () => {
     }
 
     console.log({ companyName, selectedSkills });
-    navigate("/experiencedetails3");
+    navigate("/profile/experiencedetails3");
   };
 
   return (

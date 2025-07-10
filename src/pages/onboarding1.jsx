@@ -35,7 +35,7 @@ const Onboarding1 = () => {
 
         {/* Buttons */}
         <button
-          onClick={() => navigate('/signup')}
+          onClick={() => navigate('/signup1')}
           className="w-full bg-blue-700 text-white font-semibold py-3 rounded-full mb-4"
         >
           Sign up

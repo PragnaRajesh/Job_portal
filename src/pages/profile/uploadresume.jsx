@@ -92,7 +92,7 @@ const UploadResume = () => {
       <button
         onClick={() => {
           if (!resume) return alert("Please upload your resume before continuing.");
-          navigate("/setupcomplete");
+          navigate("/profile/successscreen");
         }}
         className="w-full bg-blue-700 text-white py-3 mt-6 rounded-full text-sm font-medium"
       >

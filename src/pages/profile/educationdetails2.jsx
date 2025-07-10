@@ -63,7 +63,7 @@ const EducationDetails2 = () => {
     localStorage.setItem("year", year);
     localStorage.setItem("medium", medium);
 
-    navigate("/jobtype");
+    navigate("/profile/jobtype");
   };
 
   const currentDegrees = degreeOptions[educationLevel] || [];

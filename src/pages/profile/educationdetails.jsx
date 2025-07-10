@@ -13,7 +13,7 @@ const EducationDetails = () => {
     }
 
     localStorage.setItem("isPursuingEducation", isPursuing);
-    navigate("/educationdetails2");
+    navigate("/profile/educationdetails2");
   };
 
   return (

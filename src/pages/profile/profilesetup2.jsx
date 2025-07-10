@@ -20,12 +20,12 @@ const ProfileSetup2 = () => {
       return;
     }
 
-    // Save to localStorage
+    // Save details to localStorage
     localStorage.setItem("dob", dob);
     localStorage.setItem("gender", gender);
     localStorage.setItem("email", email);
-
-    navigate("/educationdetails");
+    localStorage.setItem("userName", fullName);
+    navigate("/profile/educationdetails");
   };
 
   return (
@@ -58,15 +58,13 @@ const ProfileSetup2 = () => {
           className="w-full border border-gray-300 rounded-lg p-2 text-sm mb-4"
         />
 
-        {/* Gender (Toggle Style) */}
+        {/* Gender */}
         <label className="text-sm font-semibold block mb-2">Gender</label>
         <div className="w-full bg-blue-100 p-1 rounded-lg flex items-center justify-between mb-4">
           <button
             onClick={() => setGender("Male")}
             className={`flex-1 py-2 rounded-full text-sm font-medium transition ${
-              gender === "Male"
-                ? "bg-white text-black shadow-sm"
-                : "text-blue-700"
+              gender === "Male" ? "bg-white text-black shadow-sm" : "text-blue-700"
             }`}
           >
             Male
@@ -74,9 +72,7 @@ const ProfileSetup2 = () => {
           <button
             onClick={() => setGender("Female")}
             className={`flex-1 py-2 rounded-full text-sm font-medium transition ${
-              gender === "Female"
-                ? "bg-white text-black shadow-sm"
-                : "text-blue-700"
+              gender === "Female" ? "bg-white text-black shadow-sm" : "text-blue-700"
             }`}
           >
             Female

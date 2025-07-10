@@ -11,7 +11,7 @@ const LoginVerify = () => {
     if (otp.length === 6) {
       alert("Login successful!");
       // Navigate to home/dashboard after successful login
-      // navigate("/home");
+      navigate("/home");
     } else {
       alert("Please enter the full 6-digit OTP.");
     }

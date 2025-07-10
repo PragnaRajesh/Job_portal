@@ -8,7 +8,7 @@ const ProfileSetup1 = () => {
   const handleContinue = () => {
     if (!fullName.trim()) return alert("Please enter your name");
     localStorage.setItem("fullName", fullName);
-    navigate("/profilesetup2");
+    navigate("/profile/profilesetup2");
   };
 
   return (
