@@ -26,6 +26,11 @@ import UploadResume from './pages/profile/uploadresume';
 // import ApplicationDetails from './pages/applications/applicationdetails';
 // import MapComponent from '../components/mapcomponent';
 // import NavigationApps from '../components/navigationapps';
+import MyProfile from './pages/myprofilesection/myprofile';
+import WorkExperience from './pages/myprofilesection/workexperience';
+import SkillsPage from './pages/myprofilesection/skills';
+import Documents from './pages/myprofilesection/documents';
+import BasicDetails from './pages/myprofilesection/basicdetails';
 
 // ✅ Wrapper to pass state to SuccessScreen
 const SuccessScreenWrapper = () => {
@@ -64,10 +69,18 @@ const App = () => {
         <Route path="/loginverify" element={<Loginverify />} />
         <Route path="/home" element={<Home />} />
 
+        {/* Profile Screen */}
+        <Route path="/myprofilesection/myprofile" element={<MyProfile />} />
+        <Route path="/myprofilesection/workexperience" element={<WorkExperience />} />
+        <Route path="/myprofilesection/skills" element={<SkillsPage />} />
+        <Route path="/myprofilesection/documents" element={<Documents />} />
+        <Route path="/myprofilesection/basicdetails" element={<BasicDetails />} />
+
+
         { /* Application Pages */}
         {/* <Route path="/applications" element={<Applications />} />
         <Route path="/applicationdetails/:id" element={<ApplicationDetails />} /> */}
-        
+    
       </Routes>
     </BrowserRouter>
   );

@@ -238,7 +238,7 @@ const Home = () => {
       {/* Bottom Navigation */}
       <div className="fixed bottom-0 left-0 w-full bg-white border-t flex justify-around items-center py-2 z-50">
         <HomeIcon size={22} className="text-blue-600" />
-        <Bookmark size={22} className="text-gray-600" />
+        <Briefcase size={22} className="text-gray-600" />
         <div className="-mt-5 bg-white rounded-full shadow-md p-1">
           <PlusCircle size={32} className="text-blue-500" />
         </div>
@@ -250,7 +250,7 @@ const Home = () => {
         <User2
           size={22}
           className="text-gray-600 cursor-pointer"
-         // onClick={() => navigate("/createprofile")}
+          onClick={() => navigate("/myprofilesection/myprofile")}
         />
       </div>
     </div>

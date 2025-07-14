@@ -6,28 +6,51 @@ import confetti from 'canvas-confetti';
 const SuccessScreen = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const name = location.state?.name || {name};
+    const name = location.state?.name || localStorage.getItem("userName") || "User";
 
   useEffect(() => {
     partyPopper();
   }, []);
 
   const partyPopper = () => {
-    confetti({
-      particleCount: 200,
-      spread: 100,
-      origin: { y: 0.6 }, 
-      colors: ['#bb0000', '#ffffff', '#0077ff', '#00ffcc'],
-    });
+  // // 🎉 First burst
+  // confetti({
+  //   particleCount: 200,
+  //   spread: 100,
+  //   origin: { y: 0.6 },
+  //   colors: ['#bb0000', '#ffffff', '#0077ff', '#00ffcc'],
+  // });
 
-    confetti({
-      particleCount: 200,
-      spread: 120,
-      startVelocity: 45,
-      angle: 90,
-      origin: { x: 0.5, y: 1 },
-    });
-  };
+  // // 🎉 Second burst
+  // confetti({
+  //   particleCount: 200,
+  //   spread: 120,
+  //   startVelocity: 45,
+  //   angle: 90,
+  //   origin: { x: 0.5, y: 1 },
+  // });
+
+  // 🎊 Bigger Burst Left
+  confetti({
+    particleCount: 300,
+    spread: 160,
+    startVelocity: 60,
+    angle: 60,
+    origin: { x: 0.2, y: 0.7 },
+    scalar: 1.4, // Makes confetti larger
+  });
+
+  // 🎊 Bigger Burst Right
+  confetti({
+    particleCount: 300,
+    spread: 160,
+    startVelocity: 60,
+    angle: 120,
+    origin: { x: 0.8, y: 0.7 },
+    scalar: 1.4, // Makes confetti larger
+  });
+};
+
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-white px-4 relative overflow-hidden">
