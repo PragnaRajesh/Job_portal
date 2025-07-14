@@ -6,7 +6,7 @@ import confetti from 'canvas-confetti';
 const SuccessScreen = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const name = location.state?.name || "User";
+  const name = location.state?.name || {name};
 
   useEffect(() => {
     partyPopper();
@@ -32,7 +32,11 @@ const SuccessScreen = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-white px-4 relative overflow-hidden">
       <div className="bg-blue-100 rounded-full p-6 mb-6">
-        <CheckCircle className="text-blue-600 w-16 h-16" />
+        <img
+          src = "./assets/success screen.jpeg"
+          alt = "Success Screen"
+          className="text-blue-600 w-16 h-16" 
+        />
       </div>
       <h2 className="text-xl font-semibold text-gray-800">Hi {name}</h2>
       <p className="text-gray-600 mb-10">Your Registration Is Successful!!</p>

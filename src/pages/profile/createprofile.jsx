@@ -24,7 +24,7 @@ const CreateProfile = () => {
         <h1 className="text-xl font-bold text-center mb-4">Create Profile</h1>
 
         <img
-          src="src/assets/Create profile.jpeg"
+          src="./assets/Create Profile.jpeg"
           alt="Create Profile"
           className="w-full h-[250px] object-contain mb-6"
         />
