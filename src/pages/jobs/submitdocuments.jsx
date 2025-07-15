@@ -8,6 +8,8 @@ import {
 } from "lucide-react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import attachIllustration from "../../assets/attach documents.png";
+
 
 const SubmitDocuments = () => {
   const navigate = useNavigate();
@@ -112,11 +114,11 @@ const SubmitDocuments = () => {
       <hr className="border-gray-300 mb-5" />
 
       {/* Upload Illustration */}
-      <div className="flex justify-center mb-6">
+      <div className="flex justify-center mt-6">
         <img
-          src="/doc-upload.png"
-          alt="Upload Illustration"
-          className="w-[260px] h-auto"
+        src={attachIllustration}
+        alt="Attach Documents"
+        className="w-[200px] h-auto"
         />
       </div>
 

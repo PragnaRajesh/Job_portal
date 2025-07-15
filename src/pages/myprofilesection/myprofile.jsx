@@ -17,7 +17,10 @@ import {
   Home,
   FileBarChart,
   UserCircle,
-  Bookmark
+  Bookmark,
+  HomeIcon,
+  PlusCircle,
+  User2
 } from 'lucide-react';
 
 const MyProfile = () => {
@@ -185,23 +188,27 @@ const MyProfile = () => {
       </div>
 
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-2">
-        <div className="flex justify-between items-center max-w-sm mx-auto">
-          <button onClick={() => navigate('/home')} className="p-3 rounded-xl hover:bg-gray-100 transition-colors">
-            <Home size={22} className="text-gray-400" />
-          </button>
-          <button className="p-3 rounded-xl hover:bg-gray-100 transition-colors">
-            <Briefcase size={22} className="text-gray-400" />
-          </button>
-          <button className="p-3 bg-blue-600 rounded-xl hover:bg-blue-700 transition-colors">
-            <Plus size={22} className="text-white" />
-          </button>
-          <button className="p-3 rounded-xl hover:bg-gray-100 transition-colors">
-            <FileBarChart size={22} className="text-gray-400" />
-          </button>
-          <button className="p-3 rounded-xl hover:bg-gray-100 transition-colors">
-            <UserCircle size={22} className="text-blue-600" />
-          </button>
+         {/* Bottom Nav */}
+      <div className="fixed bottom-0 left-0 w-full bg-white border-t flex justify-around items-center py-2 z-50">
+        <HomeIcon size={22} className="text-gray-600" />
+        <Briefcase
+          size={22}
+          className="text-gray-600"
+          onClick={() => navigate("/jobs/joblist")}
+        />
+        <div className="-mt-5 bg-white rounded-full shadow-md p-1">
+          <PlusCircle size={32} className="text-blue-500" />
         </div>
+        <FileBarChart
+          size={22}
+          className="text-gray-600 cursor-pointer hover:text-blue-600 transition-colors"
+        />
+        <User2
+          size={22}
+          className="text-blue-600 cursor-pointer"
+          onClick={() => navigate("/myprofilesection/myprofile")}
+        />
+      </div>
       </div>
     </div>
   );
