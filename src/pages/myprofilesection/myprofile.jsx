@@ -190,7 +190,7 @@ const MyProfile = () => {
             <Home size={22} className="text-gray-400" />
           </button>
           <button className="p-3 rounded-xl hover:bg-gray-100 transition-colors">
-            <Bookmark size={22} className="text-gray-400" />
+            <Briefcase size={22} className="text-gray-400" />
           </button>
           <button className="p-3 bg-blue-600 rounded-xl hover:bg-blue-700 transition-colors">
             <Plus size={22} className="text-white" />

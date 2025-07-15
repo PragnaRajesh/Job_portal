@@ -31,6 +31,10 @@ import WorkExperience from './pages/myprofilesection/workexperience';
 import SkillsPage from './pages/myprofilesection/skills';
 import Documents from './pages/myprofilesection/documents';
 import BasicDetails from './pages/myprofilesection/basicdetails';
+import JobList from './pages/jobs/joblist';
+import JobDetails from './pages/jobs/jobdetails';
+import SubmitDocuments from './pages/jobs/submitdocuments';
+import Verified from './pages/jobs/verified';
 
 // ✅ Wrapper to pass state to SuccessScreen
 const SuccessScreenWrapper = () => {
@@ -75,6 +79,12 @@ const App = () => {
         <Route path="/myprofilesection/skills" element={<SkillsPage />} />
         <Route path="/myprofilesection/documents" element={<Documents />} />
         <Route path="/myprofilesection/basicdetails" element={<BasicDetails />} />
+
+        {/* Jobs Screen */}
+        <Route path="/jobs/joblist" element={<JobList />} />
+        <Route path="/jobs/jobdetails" element={<JobDetails />} />
+        <Route path="/jobs/submitdocuments" element={<SubmitDocuments />} />
+        <Route path="/jobs/verified" element={<Verified />} />
 
 
         { /* Application Pages */}
