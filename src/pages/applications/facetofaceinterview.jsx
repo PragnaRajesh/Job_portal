@@ -1,14 +1,25 @@
+import { Geolocation } from '@capacitor/geolocation';
 import React, { useState } from "react";
-import { ChevronLeft, Bell } from "lucide-react";
+import { ChevronLeft, Bell, Phone } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
+import placeholderImage from "../../assets/company-placeholder.png";
 
 const FaceToFaceInterview = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const job = location.state?.job || {};
+  const job = location.state?.job || {
+    title: "Tech Innovations Inc.",
+    role: "Customer Support",
+    location: "Mahatma Gandhi Rd, Bengaluru",
+    time: "12:00pm to 12:30pm",
+  };
 
   const [showReasonDropdown, setShowReasonDropdown] = useState(false);
   const [selectedReason, setSelectedReason] = useState("");
+  const [showMapSection, setShowMapSection] = useState(false);
+  const [currentLocation, setCurrentLocation] = useState(null);
+  const [distance, setDistance] = useState("");
+  const [duration, setDuration] = useState("");
 
   const rescheduleReasons = [
     "Medical Emergency",
@@ -16,21 +27,56 @@ const FaceToFaceInterview = () => {
     "Personal Emergency",
     "Change of Mind",
     "Lack of Preparation",
-    "Dependent on Relatives",
   ];
 
   const handleNavigationClick = (app) => {
-    const destination = encodeURIComponent("67, Ar road, Nagpur");
-    const currentLocation = encodeURIComponent("123, any street, Nagpur");
+    const destination = encodeURIComponent(job.location);
+    const origin = currentLocation ? encodeURIComponent(currentLocation) : "";
 
     if (app === "google") {
-      window.open(`https://www.google.com/maps/dir/?api=1&origin=${currentLocation}&destination=${destination}`);
+      window.open(
+        `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}`
+      );
     } else if (app === "uber") {
       window.open("https://m.uber.com/ul/");
     } else if (app === "rapido") {
       window.open("https://www.rapido.bike/");
+    } else if (app === "share") {
+      const shareText = `I'm heading to an interview at ${job.location}. Track me: https://maps.google.com/?q=${destination}`;
+      navigator.share
+        ? navigator.share({ title: "Track Me", text: shareText })
+        : alert("Sharing not supported");
     }
   };
+
+  const handleComingForInterview = async () => {
+  try {
+    await Geolocation.requestPermissions(); // Ask for location permissions
+    const position = await Geolocation.getCurrentPosition(); // Get current location
+
+    const { latitude, longitude } = position.coords;
+    const origin = `${latitude},${longitude}`;
+    setCurrentLocation(origin);
+    setShowMapSection(true);
+
+    const apiKey = "AIzaSyB2NP7lSemQeJ0fPfFnfyCxs_X0kg137F4";
+    const destination = encodeURIComponent(job.location);
+
+    const res = await fetch(
+      `https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${destination}&key=${apiKey}`
+    );
+    const data = await res.json();
+    if (data.routes?.[0]) {
+      const leg = data.routes[0].legs[0];
+      setDistance(leg.distance.text);
+      setDuration(leg.duration.text);
+    }
+  } catch (err) {
+    console.error("Geolocation error", err);
+    alert("Unable to access location. Please enable permissions from your phone settings.");
+  }
+};
+
 
   return (
     <div className="min-h-screen bg-white px-4 pt-6 pb-32 font-sans">
@@ -44,7 +90,7 @@ const FaceToFaceInterview = () => {
       </div>
 
       {/* Job Card */}
-      <div className="bg-white rounded-2xl p-5 mb-4 shadow-[0_8px_20px_rgba(0,123,255,0.15)] border">
+      <div className="bg-white rounded-2xl p-5 mb-4 shadow border">
         <div className="flex justify-between items-start">
           <div>
             <h2 className="text-lg font-bold text-gray-900">{job.title}</h2>
@@ -62,23 +108,32 @@ const FaceToFaceInterview = () => {
               )}
             </div>
           </div>
-          <div className="w-16 h-16 rounded-xl bg-gray-100 flex items-center justify-center">🏢</div>
+          <img
+            src={placeholderImage}
+            alt="Company"
+            className="w-16 h-16 rounded-xl bg-gray-100 object-contain"
+          />
         </div>
 
         <div className="text-xs text-gray-500 mt-2">Time: {job.time}</div>
-
-        <div className="flex gap-2 mt-4 flex-wrap">
-          <button className="bg-blue-500 text-white px-4 py-1.5 rounded-full text-sm">
-            Coming for Interview
+        <div className="flex items-center gap-2 mt-4 flex-wrap">
+          <button
+            className="bg-blue-500 text-white text-[11px] px-2.5 py-1 rounded-[5px]"
+            onClick={handleComingForInterview}
+          >
+            Coming for interview
           </button>
-          <button className="bg-yellow-400 text-black px-4 py-1.5 rounded-full text-sm">
+          <button
+            className="bg-yellow-400 text-white text-[11px] px-2.5 py-1 rounded-[5px]"
+            onClick={() => handleNavigationClick("google")}
+          >
             Route
           </button>
           <button
-            className="bg-sky-400 text-white px-4 py-1.5 rounded-full text-sm"
             onClick={() => setShowReasonDropdown(!showReasonDropdown)}
+            className="bg-sky-400 text-white text-[11px] px-2.5 py-1 rounded-[5px]"
           >
-            {job.attended ? "Reached" : "Reschedule"}
+            Reschedule
           </button>
         </div>
 
@@ -105,55 +160,67 @@ const FaceToFaceInterview = () => {
                 </span>
               </div>
             ))}
+            {selectedReason && (
+              <button
+                onClick={() => setShowReasonDropdown(false)}
+                className="mt-3 bg-blue-500 text-white px-4 py-2 rounded-md text-sm"
+              >
+                Submit
+              </button>
+            )}
           </div>
         )}
       </div>
 
-      {/* Face to Face Interview Card */}
-      <div className="mb-6">
-        <h2 className="font-semibold text-lg mb-3">Face to Face Interview</h2>
+      {/* Map Section */}
+      {showMapSection && currentLocation && (
+        <div className="mb-6">
+          <h2 className="font-semibold text-lg mb-3">Face to Face Interview</h2>
+          <div className="rounded-xl border shadow p-4">
+            <div className="flex justify-between items-center mb-3 text-sm font-medium">
+              <button className="text-blue-600 border-b-2 border-blue-600 px-2 pb-1">Track Application</button>
+              <a
+                href="tel:+919901057170"
+                className="bg-white border px-3 py-1 rounded-full text-sm flex items-center gap-1"
+              >
+                Call HR <Phone size={14} color="#229C36" />
+              </a>
+            </div>
 
-        <div className="rounded-xl border shadow p-4">
-          {/* Tabs + Call HR */}
-          <div className="flex justify-between items-center mb-3 text-sm font-medium">
-            <button className="text-blue-600 border-b-2 border-blue-600 px-2 pb-1">
-              Track Application
-            </button>
-            <a
-              href="tel:+919876543210"
-              className="bg-white border px-3 py-1 rounded-full text-sm text-green-600"
-            >
-              Call HR
-            </a>
-          </div>
+            <iframe
+              title="Map"
+              className="w-full h-64 rounded-lg mb-2"
+              frameBorder="0"
+              src={`https://www.google.com/maps/embed/v1/directions?key=AIzaSyB2NP7lSemQeJ0fPfFnfyCxs_X0kg137F4&origin=${currentLocation}&destination=${encodeURIComponent(
+                job.location
+              )}&mode=driving`}
+              allowFullScreen
+            ></iframe>
 
-          {/* Google Map Embed */}
-          <iframe
-            title="Map"
-            className="w-full h-64 rounded-lg mb-4"
-            frameBorder="0"
-            src="https://www.google.com/maps/embed/v1/directions?key=YOUR_GOOGLE_API_KEY&origin=123,any street,Nagpur&destination=67,Ar road,Nagpur"
-            allowFullScreen
-          ></iframe>
+            {distance && duration && (
+              <p className="text-sm text-gray-700 mt-1 mb-3">
+                Estimated time: <strong>{duration}</strong> • Distance: <strong>{distance}</strong>
+              </p>
+            )}
 
-          {/* Choose Navigation App */}
-          <h3 className="font-semibold text-base mb-2">Choose a Navigation App</h3>
-          <div className="space-y-2">
-            <button onClick={() => handleNavigationClick("google")} className="flex items-center gap-3 w-full border px-4 py-2 rounded-lg text-left">
-              <span className="text-blue-500">📍</span> Google Maps
-            </button>
-            <button onClick={() => handleNavigationClick("rapido")} className="flex items-center gap-3 w-full border px-4 py-2 rounded-lg text-left">
-              <span className="text-blue-500">🛵</span> Rapido
-            </button>
-            <button onClick={() => handleNavigationClick("uber")} className="flex items-center gap-3 w-full border px-4 py-2 rounded-lg text-left">
-              <span className="text-blue-500">🚗</span> Uber
-            </button>
-            <button className="flex items-center gap-3 w-full border px-4 py-2 rounded-lg text-left">
-              <span className="text-blue-500">📤</span> Share to Family & Friends
-            </button>
+            <h3 className="font-semibold text-base mb-2">Choose a Navigation App</h3>
+            <div className="space-y-2">
+              <button onClick={() => handleNavigationClick("google")} className="flex items-center gap-3 w-full border px-4 py-2 rounded-lg text-left">
+                📍 Google Maps
+              </button>
+              <button onClick={() => handleNavigationClick("rapido")} className="flex items-center gap-3 w-full border px-4 py-2 rounded-lg text-left">
+                🛵 Rapido
+              </button>
+              <button onClick={() => handleNavigationClick("uber")} className="flex items-center gap-3 w-full border px-4 py-2 rounded-lg text-left">
+                🚗 Uber
+              </button>
+              <button onClick={() => handleNavigationClick("share")} className="flex items-center gap-3 w-full border px-4 py-2 rounded-lg text-left">
+                📤 Share to Family & Friends
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

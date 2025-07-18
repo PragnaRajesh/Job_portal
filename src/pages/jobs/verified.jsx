@@ -17,7 +17,7 @@ const Verified = () => {
       </p>
 
       <button
-        onClick={() => navigate("/applications")}
+        onClick={() => navigate("/applications/application")}
         className="w-full bg-blue-600 text-white py-3 rounded-full font-semibold text-sm"
       >
         VIEW APPLICATION

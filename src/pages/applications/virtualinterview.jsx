@@ -1,16 +1,23 @@
 import React, { useState } from "react";
 import { ChevronLeft, Bell } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
+import placeholderImage from "../../assets/company-placeholder.png"; 
 
 const VirtualInterview = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const job = location.state?.job || {};
+  const job = location.state?.job || {
+    title: "Tech Innovations Inc.",
+    role: "Customer Support",
+    location: "Richmond Rd, Bengaluru",
+    time: "12:00pm to 12:30pm",
+  };
+
   const [activeTab, setActiveTab] = useState("track");
   const [showReasonDropdown, setShowReasonDropdown] = useState(false);
   const [selectedReason, setSelectedReason] = useState("");
 
-  const rescheduled = [
+  const rescheduleReasons = [
     "Medical Emergency",
     "Work Commitments",
     "Personal Emergency",
@@ -54,14 +61,13 @@ const VirtualInterview = () => {
       </div>
 
       {/* Job Card */}
-      <div className="bg-white rounded-2xl p-5 mb-4 shadow-[0_8px_20px_rgba(0,123,255,0.15)] border">
+      <div className="bg-white rounded-2xl p-5 mb-4 shadow border">
         <div className="flex justify-between items-start">
           <div>
             <h2 className="text-lg font-bold text-gray-900">{job.title}</h2>
             <p className="text-sm text-gray-600">{job.role}</p>
             <p className="text-sm text-gray-500 mt-1">Applied 2 days ago</p>
             <div className="text-sm text-gray-600 mt-1">📍 {job.location}</div>
-
             <div className="mt-2 flex items-center gap-2 flex-wrap">
               <span className="inline-block px-3 py-1 text-green-600 border border-green-600 rounded-full text-xs">
                 Pending
@@ -73,30 +79,36 @@ const VirtualInterview = () => {
               )}
             </div>
           </div>
-
           <div className="w-16 h-16 rounded-xl bg-gray-100 flex items-center justify-center">
-            🏢
+            <img
+              src={placeholderImage}
+              alt="company logo"
+              className="w-16 h-16 rounded-xl"
+            />
           </div>
         </div>
 
         <div className="text-xs text-gray-500 mt-2">Time: {job.time}</div>
 
-        <div className="flex gap-2 mt-4 flex-wrap">
-          <button className="bg-blue-500 text-white px-4 py-1.5 rounded-full text-sm">Ready to Join</button>
-          <button className="bg-yellow-400 text-black px-4 py-1.5 rounded-full text-sm">Link to Join</button>
+        <div className="flex items-center gap-2 mt-4 ml-[-6px]">
+          <button className="bg-blue-500 text-white text-[11px] px-2.5 py-1 rounded-[5px]">
+            Ready to join
+          </button>
+          <button className="bg-yellow-400 text-white text-[11px] px-2.5 py-1 rounded-[5px]">
+            Link to join
+          </button>
           <button
-            className="bg-sky-400 text-white px-4 py-1.5 rounded-full text-sm"
             onClick={() => setShowReasonDropdown(!showReasonDropdown)}
+            className="bg-sky-400 text-white text-[11px] px-2.5 py-1 rounded-[5px]"
           >
-            {job.attended ? "Attended" : "Reschedule"}
+            Reschedule
           </button>
         </div>
 
-        {/* Reschedule Dropdown */}
         {showReasonDropdown && (
           <div className="mt-4 bg-white border rounded-xl p-4 shadow-sm">
             <h4 className="text-base font-semibold mb-3">Why are you rescheduling?</h4>
-            {rescheduled.map((reason, idx) => (
+            {rescheduleReasons.map((reason, idx) => (
               <div
                 key={idx}
                 className={`border rounded-xl px-4 py-2 flex items-center justify-between mb-2 cursor-pointer ${
@@ -116,6 +128,14 @@ const VirtualInterview = () => {
                 </span>
               </div>
             ))}
+            {selectedReason && (
+              <button
+                onClick={() => setShowReasonDropdown(false)}
+                className="mt-3 bg-blue-500 text-white px-4 py-2 rounded-md text-sm"
+              >
+                Submit
+              </button>
+            )}
           </div>
         )}
       </div>
@@ -129,9 +149,7 @@ const VirtualInterview = () => {
             <button
               onClick={() => setActiveTab("track")}
               className={`border-b-2 px-2 pb-1 ${
-                activeTab === "track"
-                  ? "text-blue-600 border-blue-600"
-                  : "text-gray-400 border-transparent"
+                activeTab === "track" ? "text-blue-600 border-blue-600" : "text-gray-400 border-transparent"
               }`}
             >
               Track Application
@@ -139,9 +157,7 @@ const VirtualInterview = () => {
             <button
               onClick={() => setActiveTab("notes")}
               className={`border-b-2 px-2 pb-1 ${
-                activeTab === "notes"
-                  ? "text-blue-600 border-blue-600"
-                  : "text-gray-400 border-transparent"
+                activeTab === "notes" ? "text-blue-600 border-blue-600" : "text-gray-400 border-transparent"
               }`}
             >
               Notes
@@ -155,9 +171,7 @@ const VirtualInterview = () => {
                   <div className="flex flex-col items-center">
                     <div
                       className={`w-10 h-10 rounded-full border-4 flex items-center justify-center ${
-                        idx === 0
-                          ? "bg-green-600 border-green-500"
-                          : "border-green-500"
+                        idx === 0 ? "bg-green-600 border-green-500" : "border-green-500"
                       }`}
                     >
                       {idx > 0 && (

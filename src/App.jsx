@@ -35,7 +35,7 @@ import JobList from './pages/jobs/joblist';
 import JobDetails from './pages/jobs/jobdetails';
 import SubmitDocuments from './pages/jobs/submitdocuments';
 import Verified from './pages/jobs/verified';
-import Application from './pages/applications/application';
+import Application from "./pages/applications/application";
 import VirtualInterview from "./pages/applications/virtualinterview";
 import FaceToFaceInterview from "./pages/applications/facetofaceinterview";
 
@@ -90,7 +90,7 @@ const App = () => {
         <Route path="/jobs/verified" element={<Verified />} />
 
         {/* Application Screen */}
-        <Route path="/applications" element={<Application />} />
+        <Route path="/applications/application" element={<Application />} />
         <Route path="/virtualinterview" element={<VirtualInterview />} />
         <Route path="/facetofaceinterview" element={<FaceToFaceInterview />} />
 

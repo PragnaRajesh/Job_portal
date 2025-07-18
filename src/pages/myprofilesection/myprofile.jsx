@@ -190,7 +190,8 @@ const MyProfile = () => {
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-2">
          {/* Bottom Nav */}
       <div className="fixed bottom-0 left-0 w-full bg-white border-t flex justify-around items-center py-2 z-50">
-        <HomeIcon size={22} className="text-gray-600" />
+        <HomeIcon size={22} className="text-gray-600" 
+        onClick={() => navigate("/home")}/>
         <Briefcase
           size={22}
           className="text-gray-600"
@@ -202,6 +203,7 @@ const MyProfile = () => {
         <FileBarChart
           size={22}
           className="text-gray-600 cursor-pointer hover:text-blue-600 transition-colors"
+          onClick={() => navigate("/applications/application")}
         />
         <User2
           size={22}
