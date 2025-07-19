@@ -1,8 +1,13 @@
-import { Geolocation } from '@capacitor/geolocation';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ChevronLeft, Bell, Phone } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { Geolocation } from '@capacitor/geolocation';
 import placeholderImage from "../../assets/company-placeholder.png";
+import googleIcon from "../../assets/google.png";
+import uberIcon from "../../assets/uber.png";
+import rapidoIcon from "../../assets/rapido.png";
+import shareIcon from "../../assets/share.png";
+
 
 const FaceToFaceInterview = () => {
   const navigate = useNavigate();
@@ -29,54 +34,85 @@ const FaceToFaceInterview = () => {
     "Lack of Preparation",
   ];
 
-  const handleNavigationClick = (app) => {
-    const destination = encodeURIComponent(job.location);
-    const origin = currentLocation ? encodeURIComponent(currentLocation) : "";
+  const isWeb = () => typeof window !== "undefined" && window.navigator;
 
-    if (app === "google") {
-      window.open(
-        `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}`
-      );
-    } else if (app === "uber") {
-      window.open("https://m.uber.com/ul/");
-    } else if (app === "rapido") {
-      window.open("https://www.rapido.bike/");
-    } else if (app === "share") {
-      const shareText = `I'm heading to an interview at ${job.location}. Track me: https://maps.google.com/?q=${destination}`;
-      navigator.share
-        ? navigator.share({ title: "Track Me", text: shareText })
-        : alert("Sharing not supported");
+  const handleComingForInterview = async () => {
+    try {
+      let latitude, longitude;
+
+      if (isWeb()) {
+        navigator.geolocation.getCurrentPosition(
+          async (position) => {
+            latitude = position.coords.latitude;
+            longitude = position.coords.longitude;
+            await fetchRouteAndShowMap(latitude, longitude);
+          },
+          (error) => {
+            console.error("Geolocation error (Web)", error);
+            alert("Please enable location access from your browser settings.");
+          }
+        );
+      } else {
+        await Geolocation.requestPermissions();
+        const position = await Geolocation.getCurrentPosition();
+        latitude = position.coords.latitude;
+        longitude = position.coords.longitude;
+        await fetchRouteAndShowMap(latitude, longitude);
+      }
+    } catch (err) {
+      console.error("Geolocation error", err);
+      alert("Unable to access location. Please enable permissions from your phone settings.");
     }
   };
 
-  const handleComingForInterview = async () => {
-  try {
-    await Geolocation.requestPermissions(); // Ask for location permissions
-    const position = await Geolocation.getCurrentPosition(); // Get current location
-
-    const { latitude, longitude } = position.coords;
+  const fetchRouteAndShowMap = async (latitude, longitude) => {
     const origin = `${latitude},${longitude}`;
     setCurrentLocation(origin);
     setShowMapSection(true);
 
-    const apiKey = "AIzaSyB2NP7lSemQeJ0fPfFnfyCxs_X0kg137F4";
     const destination = encodeURIComponent(job.location);
+    const apiKey = "AIzaSyB2NP7lSemQeJ0fPfFnfyCxs_X0kg137F4";
 
-    const res = await fetch(
-      `https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${destination}&key=${apiKey}`
-    );
-    const data = await res.json();
-    if (data.routes?.[0]) {
-      const leg = data.routes[0].legs[0];
-      setDistance(leg.distance.text);
-      setDuration(leg.duration.text);
+    try {
+      const res = await fetch(
+        `https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${destination}&key=${apiKey}`
+      );
+      const data = await res.json();
+      if (data.routes?.[0]) {
+        const leg = data.routes[0].legs[0];
+        setDistance(leg.distance.text);
+        setDuration(leg.duration.text);
+      }
+    } catch (error) {
+      console.error("Failed to fetch directions", error);
     }
-  } catch (err) {
-    console.error("Geolocation error", err);
-    alert("Unable to access location. Please enable permissions from your phone settings.");
-  }
-};
+  };
 
+  const handleNavigationClick = (app) => {
+    const destination = encodeURIComponent(job.location);
+    const origin = currentLocation ? encodeURIComponent(currentLocation) : "";
+
+    const urls = {
+      google: `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}`,
+      uber: "https://m.uber.com/ul/",
+      rapido: "https://www.rapido.bike/",
+      share: `https://maps.google.com/?q=${destination}`,
+    };
+
+    if (app === "share") {
+      const text = `I'm heading to an interview at ${job.location}. Track me: ${urls.share}`;
+      navigator.share
+        ? navigator.share({ title: "Track Me", text })
+        : alert("Sharing not supported");
+    } else {
+      window.open(urls[app], "_blank");
+    }
+  };
+
+  // ✅ Auto-call location logic on mount
+  useEffect(() => {
+    handleComingForInterview();
+  }, []);
 
   return (
     <div className="min-h-screen bg-white px-4 pt-6 pb-32 font-sans">
@@ -117,22 +153,13 @@ const FaceToFaceInterview = () => {
 
         <div className="text-xs text-gray-500 mt-2">Time: {job.time}</div>
         <div className="flex items-center gap-2 mt-4 flex-wrap">
-          <button
-            className="bg-blue-500 text-white text-[11px] px-2.5 py-1 rounded-[5px]"
-            onClick={handleComingForInterview}
-          >
+          <button className="bg-blue-500 text-white text-[11px] px-2.5 py-1 rounded-[5px]" onClick={handleComingForInterview}>
             Coming for interview
           </button>
-          <button
-            className="bg-yellow-400 text-white text-[11px] px-2.5 py-1 rounded-[5px]"
-            onClick={() => handleNavigationClick("google")}
-          >
+          <button className="bg-yellow-400 text-white text-[11px] px-2.5 py-1 rounded-[5px]" onClick={() => handleNavigationClick("google")}>
             Route
           </button>
-          <button
-            onClick={() => setShowReasonDropdown(!showReasonDropdown)}
-            className="bg-sky-400 text-white text-[11px] px-2.5 py-1 rounded-[5px]"
-          >
+          <button className="bg-sky-400 text-white text-[11px] px-2.5 py-1 rounded-[5px]" onClick={() => setShowReasonDropdown(!showReasonDropdown)}>
             Reschedule
           </button>
         </div>
@@ -179,10 +206,7 @@ const FaceToFaceInterview = () => {
           <div className="rounded-xl border shadow p-4">
             <div className="flex justify-between items-center mb-3 text-sm font-medium">
               <button className="text-blue-600 border-b-2 border-blue-600 px-2 pb-1">Track Application</button>
-              <a
-                href="tel:+919901057170"
-                className="bg-white border px-3 py-1 rounded-full text-sm flex items-center gap-1"
-              >
+              <a href="tel:+919901057170" className="bg-white border px-3 py-1 rounded-full text-sm flex items-center gap-1">
                 Call HR <Phone size={14} color="#229C36" />
               </a>
             </div>
@@ -204,20 +228,37 @@ const FaceToFaceInterview = () => {
             )}
 
             <h3 className="font-semibold text-base mb-2">Choose a Navigation App</h3>
-            <div className="space-y-2">
-              <button onClick={() => handleNavigationClick("google")} className="flex items-center gap-3 w-full border px-4 py-2 rounded-lg text-left">
-                📍 Google Maps
-              </button>
-              <button onClick={() => handleNavigationClick("rapido")} className="flex items-center gap-3 w-full border px-4 py-2 rounded-lg text-left">
-                🛵 Rapido
-              </button>
-              <button onClick={() => handleNavigationClick("uber")} className="flex items-center gap-3 w-full border px-4 py-2 rounded-lg text-left">
-                🚗 Uber
-              </button>
-              <button onClick={() => handleNavigationClick("share")} className="flex items-center gap-3 w-full border px-4 py-2 rounded-lg text-left">
-                📤 Share to Family & Friends
-              </button>
-            </div>
+<div className="space-y-2">
+  <button
+    onClick={() => handleNavigationClick("google")}
+    className="flex items-center gap-3 w-full border px-4 py-2 rounded-lg text-left"
+  >
+    <img src={googleIcon} alt="Google Maps" className="w-6 h-6" />
+    Google Maps
+  </button>
+  <button
+    onClick={() => handleNavigationClick("rapido")}
+    className="flex items-center gap-3 w-full border px-4 py-2 rounded-lg text-left"
+  >
+    <img src={rapidoIcon} alt="Rapido" className="w-6 h-6" />
+    Rapido
+  </button>
+  <button
+    onClick={() => handleNavigationClick("uber")}
+    className="flex items-center gap-3 w-full border px-4 py-2 rounded-lg text-left"
+  >
+    <img src={uberIcon} alt="Uber" className="w-6 h-6" />
+    Uber
+  </button>
+  <button
+    onClick={() => handleNavigationClick("share")}
+    className="flex items-center gap-3 w-full border px-4 py-2 rounded-lg text-left"
+  >
+    <img src={shareIcon} alt="Share" className="w-6 h-6" />
+    Share to Family & Friends
+  </button>
+</div>
+
           </div>
         </div>
       )}

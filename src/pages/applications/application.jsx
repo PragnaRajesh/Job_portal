@@ -25,7 +25,7 @@ const Application = () => {
       title: "Tech Innovators Inc.",
       role: "Customer Support",
       location: "Richmond Rd, Bengaluru",
-      time: "12:00pm to 12:30pm",
+      time: "12:00pm to 1230pm",
       type: "Virtual Interview",
     },
     {
@@ -101,7 +101,7 @@ const Application = () => {
             {job.type === "Virtual Interview" ? (
               <>
                 <button className="bg-blue-500 text-white text-[11px] px-2.5 py-1 rounded-[5px]">Ready to join</button>
-                <button className="bg-yellow-400 text-white text-[11px] px-2.5 py-1 rounded-[5px]">Route</button>
+                <button className="bg-yellow-400 text-white text-[11px] px-2.5 py-1 rounded-[5px]">Link to join</button>
                 <button className="bg-sky-400 text-white text-[11px] px-2.5 py-1 rounded-[5px]">Reschedule</button>
               </>
             ) : (
