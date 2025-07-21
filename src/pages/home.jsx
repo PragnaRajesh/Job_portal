@@ -5,7 +5,7 @@ import {
   Search,
   MapPin,
   Bookmark,
-  Home as HomeIcon,
+  HomeIcon,
   Plus,
   User,
   Briefcase,
@@ -239,7 +239,7 @@ const Home = () => {
       {/* Bottom Navigation */}
        {/* Bottom Navigation */}
       <div className="flex items-center justify-around py-4 border-t border-gray-100 bg-white">
-        <Home className="w-6 h-6 text-blue-400" onClick={() => navigate('/pages/home')}/>
+        <HomeIcon className="w-6 h-6 text-blue-400" onClick={() => navigate('/pages/home')}/>
         <Briefcase className="w-6 h-6 text-gray-400"  onClick={() => navigate("/jobs/joblist")}/>
         <div className="w-12 h-12 bg-gray-400 rounded-full flex items-center justify-center">
           <Plus className="w-6 h-6 text-white" onClick={() => navigate("/chats/messages")} />
