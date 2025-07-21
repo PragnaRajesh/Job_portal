@@ -22,10 +22,6 @@ import ExperienceDetails2 from './pages/profile/experiencedetails2';
 import ExperienceDetails3 from './pages/profile/experiencedetails3';
 import Location from './pages/profile/location';
 import UploadResume from './pages/profile/uploadresume';
-// import Applications from './pages/applications/applications';
-// import ApplicationDetails from './pages/applications/applicationdetails';
-// import MapComponent from '../components/mapcomponent';
-// import NavigationApps from '../components/navigationapps';
 import MyProfile from './pages/myprofilesection/myprofile';
 import WorkExperience from './pages/myprofilesection/workexperience';
 import SkillsPage from './pages/myprofilesection/skills';
@@ -38,8 +34,12 @@ import Verified from './pages/jobs/verified';
 import Application from "./pages/applications/application";
 import VirtualInterview from "./pages/applications/virtualinterview";
 import FaceToFaceInterview from "./pages/applications/facetofaceinterview";
+import Chat from "./pages/chats/chat";
+import Messages from "./pages/chats/messages";
+import NoMessage from "./pages/chats/nomessage";
+import { ConversationProvider } from "./pages/chats/conversationcontext";
 
-// ✅ Wrapper to pass state to SuccessScreen
+// Wrapper to pass state to SuccessScreen
 const SuccessScreenWrapper = () => {
   const { state } = useLocation();
   const name = state?.name || 'User';
@@ -49,58 +49,59 @@ const SuccessScreenWrapper = () => {
 const App = () => {
   return (
     <BrowserRouter>
-      <Routes>
-        {/* Onboarding and Auth */}
-        <Route path="/" element={<Onboarding1 />} />
+      <ConversationProvider>
+        <Routes>
+          {/* Onboarding and Auth */}
+          <Route path="/" element={<Onboarding1 />} />
 
-        {/* Sign Up Flow */}
-        <Route path="/signup1" element={<Signup1 />} />
-        <Route path="/signup2" element={<Signup2 />} />
-        <Route path="/signupverify" element={<SignupVerify />} />
-        <Route path="/profile/createprofile" element={<CreateProfile />} />
-        <Route path="/profile/profilesetup1" element={<ProfileSetup1 />} />
-        <Route path="/profile/profilesetup2" element={<ProfileSetup2 />} />
-        <Route path="/profile/educationdetails" element={<EducationDetails />} />
-        <Route path="/profile/educationdetails2" element={<EducationDetails2 />} />
-        <Route path="/profile/jobtype" element={<JobType />} />
-        <Route path="/profile/experiencedecision" element={<ExperienceDecision />} />
-        <Route path="/profile/experiencedetails1" element={<ExperienceDetails1 />} />
-        <Route path="/profile/experiencedetails2" element={<ExperienceDetails2 />} />
-        <Route path="/profile/experiencedetails3" element={<ExperienceDetails3 />} />
-        <Route path="/profile/location" element={<Location />} />
-        <Route path="/profile/uploadresume" element={<UploadResume />} />
-        <Route path="/profile/successscreen" element={<SuccessScreenWrapper />} />
+          {/* Sign Up Flow */}
+          <Route path="/signup1" element={<Signup1 />} />
+          <Route path="/signup2" element={<Signup2 />} />
+          <Route path="/signupverify" element={<SignupVerify />} />
+          <Route path="/profile/createprofile" element={<CreateProfile />} />
+          <Route path="/profile/profilesetup1" element={<ProfileSetup1 />} />
+          <Route path="/profile/profilesetup2" element={<ProfileSetup2 />} />
+          <Route path="/profile/educationdetails" element={<EducationDetails />} />
+          <Route path="/profile/educationdetails2" element={<EducationDetails2 />} />
+          <Route path="/profile/jobtype" element={<JobType />} />
+          <Route path="/profile/experiencedecision" element={<ExperienceDecision />} />
+          <Route path="/profile/experiencedetails1" element={<ExperienceDetails1 />} />
+          <Route path="/profile/experiencedetails2" element={<ExperienceDetails2 />} />
+          <Route path="/profile/experiencedetails3" element={<ExperienceDetails3 />} />
+          <Route path="/profile/location" element={<Location />} />
+          <Route path="/profile/uploadresume" element={<UploadResume />} />
+          <Route path="/profile/successscreen" element={<SuccessScreenWrapper />} />
 
-        {/* Login Flow */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/loginverify" element={<Loginverify />} />
-        <Route path="/home" element={<Home />} />
+          {/* Login Flow */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/loginverify" element={<Loginverify />} />
+          <Route path="/home" element={<Home />} />
 
-        {/* Profile Screen */}
-        <Route path="/myprofilesection/myprofile" element={<MyProfile />} />
-        <Route path="/myprofilesection/workexperience" element={<WorkExperience />} />
-        <Route path="/myprofilesection/skills" element={<SkillsPage />} />
-        <Route path="/myprofilesection/documents" element={<Documents />} />
-        <Route path="/myprofilesection/basicdetails" element={<BasicDetails />} />
+          {/* Profile Screen */}
+          <Route path="/myprofilesection/myprofile" element={<MyProfile />} />
+          <Route path="/myprofilesection/workexperience" element={<WorkExperience />} />
+          <Route path="/myprofilesection/skills" element={<SkillsPage />} />
+          <Route path="/myprofilesection/documents" element={<Documents />} />
+          <Route path="/myprofilesection/basicdetails" element={<BasicDetails />} />
 
-        {/* Jobs Screen */}
-        <Route path="/jobs/joblist" element={<JobList />} />
-        <Route path="/jobs/jobdetails" element={<JobDetails />} />
-        <Route path="/jobs/submitdocuments" element={<SubmitDocuments />} />
-        <Route path="/jobs/verified" element={<Verified />} />
+          {/* Jobs Screen */}
+          <Route path="/jobs/joblist" element={<JobList />} />
+          <Route path="/jobs/jobdetails" element={<JobDetails />} />
+          <Route path="/jobs/submitdocuments" element={<SubmitDocuments />} />
+          <Route path="/jobs/verified" element={<Verified />} />
 
-        {/* Application Screen */}
-        <Route path="/applications/application" element={<Application />} />
-        <Route path="/virtualinterview" element={<VirtualInterview />} />
-        <Route path="/facetofaceinterview" element={<FaceToFaceInterview />} />
+          {/* Application Screen */}
+          <Route path="/applications/application" element={<Application />} />
+          <Route path="/virtualinterview" element={<VirtualInterview />} />
+          <Route path="/facetofaceinterview" element={<FaceToFaceInterview />} />
 
-        { /* Application Pages */}
-        {/* <Route path="/applications" element={<Applications />} />
-        <Route path="/applicationdetails/:id" element={<ApplicationDetails />} /> */}
-    
-      </Routes>
+          {/* Chats Routes */}
+          <Route path="/messages" element={<Messages />} />
+          <Route path="/chat/:userId" element={<Chat />} />
+          <Route path="/no-message" element={<NoMessage />} />
+        </Routes>
+      </ConversationProvider>
     </BrowserRouter>
   );
 };
-
 export default App;

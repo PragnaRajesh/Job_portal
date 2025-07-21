@@ -1,38 +1,60 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { HomeIcon, Briefcase, PlusCircle, FileBarChart, User2 } from "lucide-react";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { ArrowLeft, MoreHorizontal, Home, MessageSquare, Plus, FileText, User } from 'lucide-react';
 
-const NoMessages = () => {
+const NoMessage = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-white flex flex-col items-center justify-center text-center px-6 pb-24">
-      <img
-        src="https://cdn-icons-png.flaticon.com/512/5611/5611049.png"
-        alt="no message"
-        className="w-32 h-32 mb-6"
-      />
-      <h2 className="font-bold text-lg">No Message</h2>
-      <p className="text-sm text-gray-600 mb-6">You currently have no incoming messages</p>
-      <button
-        onClick={() => navigate("/messages")}
-        className="bg-blue-600 text-white px-5 py-2 rounded-full text-sm font-medium"
-      >
-        CREATE A MESSAGE
-      </button>
-
-      {/* Bottom Nav */}
-      <div className="fixed bottom-0 left-0 w-full bg-white border-t flex justify-around items-center py-2">
-        <HomeIcon size={22} className="text-gray-600 cursor-pointer" onClick={() => navigate("/")} />
-        <Briefcase size={22} className="text-gray-600 cursor-pointer" onClick={() => navigate("/jobs/joblist")} />
-        <div className="-mt-5 bg-white rounded-full shadow-md p-1">
-          <PlusCircle size={32} className="text-blue-500" />
-        </div>
-        <FileBarChart size={22} className="text-gray-600 cursor-pointer" onClick={() => navigate("/applications")} />
-        <User2 size={22} className="text-gray-600 cursor-pointer" onClick={() => navigate("/myprofilesection/myprofile")} />
+    <div className="bg-white min-h-screen flex flex-col w-full">
+      {/* Header */}
+      <div className="flex items-center justify-between p-4 border-b border-gray-100">
+        <ArrowLeft 
+          className="w-6 h-6 text-gray-600 cursor-pointer" 
+          onClick={() => navigate('/messages')}
+        />
+        <h1 className="text-lg font-semibold text-gray-900">No Message</h1>
+        <MoreHorizontal className="w-6 h-6 text-gray-600" />
       </div>
+
+      {/* Empty State Content */}
+      <div className="flex-1 flex flex-col items-center justify-center p-8">
+        {/* Illustration */}
+        <div className="relative mb-8">
+          <div className="w-32 h-20 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl transform rotate-12 shadow-lg"></div>
+          <div className="absolute -top-4 -right-4 w-6 h-6 bg-orange-400 rounded-full"></div>
+          <div className="absolute -bottom-2 -left-2 w-4 h-4 bg-pink-400 rounded-full"></div>
+          <div className="absolute top-2 -left-6 w-3 h-3 bg-yellow-400 rounded-full"></div>
+          <div className="absolute -top-2 right-8 w-2 h-2 bg-green-400 rounded-full"></div>
+          <div className="absolute bottom-4 right-2 w-5 h-5 bg-purple-400 rounded-full"></div>
+          <div className="absolute top-8 left-2 w-2 h-8 bg-pink-300 rounded-full transform rotate-45"></div>
+        </div>
+
+        {/* Text Content */}
+        <h2 className="text-xl font-semibold text-gray-900 mb-3">No Message</h2>
+        <p className="text-gray-500 text-center text-sm mb-8 max-w-xs leading-relaxed">
+          You currently have no incoming messages thank you
+        </p>
+
+        {/* Create Message Button */}
+        <button className="bg-blue-600 text-white px-8 py-3 rounded-xl font-medium text-sm hover:bg-blue-700 transition-colors">
+          CREATE A MESSAGE
+        </button>
+      </div>
+
+      {/* Bottom Navigation */}
+      <div className="flex items-center justify-around py-4 border-t border-gray-100 bg-white">
+        <Home className="w-6 h-6 text-gray-400" />
+        <MessageSquare className="w-6 h-6 text-gray-400" />
+        <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
+          <Plus className="w-6 h-6 text-white" />
+        </div>
+        <FileText className="w-6 h-6 text-gray-400" />
+        <User className="w-6 h-6 text-gray-400" />
+      </div>
+
     </div>
   );
 };
 
-export default NoMessages;
+export default NoMessage;

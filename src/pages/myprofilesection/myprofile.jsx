@@ -12,15 +12,10 @@ import {
   Briefcase, 
   Snowflake, 
   Shield, 
-  User, 
   Plus,
   Home,
-  FileBarChart,
   UserCircle,
-  Bookmark,
-  HomeIcon,
-  PlusCircle,
-  User2
+  User
 } from 'lucide-react';
 
 const MyProfile = () => {
@@ -188,29 +183,18 @@ const MyProfile = () => {
       </div>
 
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-2">
+         
          {/* Bottom Nav */}
-      <div className="fixed bottom-0 left-0 w-full bg-white border-t flex justify-around items-center py-2 z-50">
-        <HomeIcon size={22} className="text-gray-600" 
-        onClick={() => navigate("/home")}/>
-        <Briefcase
-          size={22}
-          className="text-gray-600"
-          onClick={() => navigate("/jobs/joblist")}
-        />
-        <div className="-mt-5 bg-white rounded-full shadow-md p-1">
-          <PlusCircle size={32} className="text-blue-500" />
-        </div>
-        <FileBarChart
-          size={22}
-          className="text-gray-600 cursor-pointer hover:text-blue-600 transition-colors"
-          onClick={() => navigate("/applications/application")}
-        />
-        <User2
-          size={22}
-          className="text-blue-600 cursor-pointer"
-          onClick={() => navigate("/myprofilesection/myprofile")}
-        />
-      </div>
+               <div className="flex items-center justify-around py-4 border-t border-gray-100 bg-white">
+                 <Home className="w-6 h-6 text-gray-400" onClick={() => navigate('/pages/home')}/>
+                 <Briefcase className="w-6 h-6 text-gray-400"  onClick={() => navigate("/jobs/joblist")}/>
+                 <div className="w-12 h-12 bg-gray-400 rounded-full flex items-center justify-center">
+                   <Plus className="w-6 h-6 text-white" onClick={() => navigate("/chats/messages")} />
+                 </div>
+                 <FileText className="w-6 h-6 text-gray-400" onClick={() => navigate('/applications/application')} />
+                 <User className="w-6 h-6 text-blue-400" 
+                  onClick={() => navigate("/myprofilesection/myprofile")}/>
+               </div>
       </div>
     </div>
   );
