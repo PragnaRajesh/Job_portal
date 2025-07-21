@@ -194,7 +194,7 @@ function ResumeBuilder() {
         </div>
       )}
       {/* Bottom Navigation */}
-            <div className="fixed bottom-0 left-0 w-full bg-white border-t flex justify-around items-center py-2 z-50">
+      <div className="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around py-4 border-t border-gray-100 bg-white">
         <HomeIcon size={22} className="text-gray-600" 
         onClick={() => navigate("/home")}/>
         <Briefcase
@@ -203,7 +203,7 @@ function ResumeBuilder() {
           onClick={() => navigate("/jobs/joblist")}
         />
         <div className="-mt-5 bg-white rounded-full shadow-md p-1">
-          <PlusCircle size={32} className="text-blue-500" onClick={() =>  navigate("/chats/messages")} />
+          <Plus size={32} className="text-blue-600" onClick={() =>  navigate("/chats/messages")} />
         </div>
         <FileBarChart
           size={22}
