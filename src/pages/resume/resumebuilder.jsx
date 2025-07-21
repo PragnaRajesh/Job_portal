@@ -1,11 +1,14 @@
 import React from 'react';
-import { ArrowLeft, ArrowRight, FileText, Users, User, X } from 'lucide-react';
+import { ArrowLeft, ArrowRight, FileText, Users, User, X, HomeIcon, Briefcase, Plus } from 'lucide-react';
+import resume1 from "../../assets/resume1.png";
+import resume2 from "../../assets/resume2.png";
+
 
 function ResumeBuilder() {
   const [showTemplates, setShowTemplates] = React.useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-[100dvh] bg-gray-100 pb-28">
       {/* Full Width Container */}
       <div className="bg-gray-50 min-h-screen">
         {/* Header */}
@@ -156,10 +159,11 @@ function ResumeBuilder() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-gray-50 rounded-xl p-4 hover:shadow-lg transition-shadow cursor-pointer group">
                   <img 
-                    src="../../assets/resume1.png" 
-                    alt="Professional Resume Template 1" 
+                    src={resume1}
+                    alt="Professional Resume Template 1"
                     className="w-full h-auto rounded-lg shadow-md group-hover:scale-105 transition-transform duration-300"
                   />
+
                   <div className="mt-4">
                     <h3 className="font-semibold text-gray-800 mb-2">Modern Professional</h3>
                     <p className="text-sm text-gray-600">Clean and modern design perfect for corporate roles</p>
@@ -168,10 +172,11 @@ function ResumeBuilder() {
                 
                 <div className="bg-gray-50 rounded-xl p-4 hover:shadow-lg transition-shadow cursor-pointer group">
                   <img 
-                    src="../../assets/resume2.png" 
-                    alt="Professional Resume Template 2" 
+                    src={resume2}
+                    alt="Professional Resume Template 2"
                     className="w-full h-auto rounded-lg shadow-md group-hover:scale-105 transition-transform duration-300"
                   />
+
                   <div className="mt-4">
                     <h3 className="font-semibold text-gray-800 mb-2">Creative Professional</h3>
                     <p className="text-sm text-gray-600">Eye-catching design for creative industries</p>
@@ -202,17 +207,17 @@ function ResumeBuilder() {
           className="text-gray-600"
           onClick={() => navigate("/jobs/joblist")}
         />
-        <div className="-mt-5 bg-white rounded-full shadow-md p-1">
-          <Plus size={32} className="text-blue-600" onClick={() =>  navigate("/chats/messages")} />
-        </div>
-        <FileBarChart
+         <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
+                  <Plus className="w-6 h-6 text-white" onClick={() => navigate("/chats/messages")} />
+                </div>
+        <FileText
           size={22}
           className="text-gray-600"
           onClick={() => navigate("/applications/application")}
         />
-        <User2
+        <User
           size={22}
-          className="text-blue-600 cursor-pointer"
+          className="text-gray-600 cursor-pointer"
           onClick={() => navigate("/myprofilesection/myprofile")}
         />
       </div>

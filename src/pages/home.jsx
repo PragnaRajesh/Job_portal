@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Bell,
@@ -27,7 +27,8 @@ const Home = () => {
     role: "Job Seeker",
     location: "Koramangala",
   });
-
+  const popupRef = useRef(); 
+  const [showPopup, setShowPopup] = useState(false);
   const jobCategories = ["Chef", "Marketing", "Technology", "Finance", "Design"];
   const [selectedCategory, setSelectedCategory] = useState("Chef");
 
@@ -91,6 +92,9 @@ const Home = () => {
           />
         </div>
         <div className="flex justify-between text-xs text-gray-500 mb-4 px-1">
+
+        {/* Find Your Job */}
+        <h3 className="font-bold text-lg mb-3">Find Your Job</h3>
           <span>Most Relevant</span>
           <span className="flex items-center gap-1">
             <MapPin size={14} /> {user.location}
@@ -237,17 +241,100 @@ const Home = () => {
       </div>
 
       {/* Bottom Navigation */}
-       {/* Bottom Navigation */}
-       <div className="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around py-4 border-t border-gray-100 bg-white">
-        <HomeIcon className="w-6 h-6 text-blue-400" onClick={() => navigate('/home')}/>
-        <Briefcase className="w-6 h-6 text-gray-400"  onClick={() => navigate("/jobs/joblist")}/>
-        <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
-          <Plus className="w-6 h-6 text-white" onClick={() => navigate("/chats/messages")} />
+      <div className="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around py-4 border-t border-gray-100 bg-white">
+        <HomeIcon
+          className="w-6 h-6 text-blue-400"
+          onClick={() => navigate('/home')}
+        />
+
+        <Briefcase
+          className="w-6 h-6 text-gray-400"
+          onClick={() => navigate('/jobs/joblist')}
+        />
+
+        {/* Plus Icon with Popup */}
+        <div className="relative w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
+          <button
+            onClick={() => setShowPopup(!showPopup)}
+            className="p-2 relative z-20"
+          >
+            <Plus className="w-7 h-7 text-white" />
+          </button>
+          {showPopup && (
+            <>
+              <div className="fixed inset-0 bg-black bg-opacity-5 backdrop-blur-sm z-40" />
+              <div className="fixed inset-0 flex justify-center items-center z-50">
+                <div
+                  ref={popupRef}
+                  className="bg-white w-full max-w-xs mx-4 rounded-2xl border border-gray-200 shadow-xl p-5 animate-slideUp"
+                >
+                  <h3 className="text-lg font-semibold mb-4 text-center text-gray-800">
+                    Quick Actions
+                  </h3>
+                  <div className="flex flex-col gap-3">
+                    <button
+                      onClick={() => {
+                        setShowPopup(false);
+                        navigate("/messages");
+                      }}
+                      className="w-full bg-blue-100 text-blue-800 py-2 rounded-lg font-medium hover:bg-blue-200"
+                    >
+                      📩 Messages
+                    </button>
+                    <button
+                      onClick={() => {
+                        setShowPopup(false);
+                        navigate("/resume/resumebuilder");
+                      }}
+                      className="w-full bg-green-100 text-green-800 py-2 rounded-lg font-medium hover:bg-green-200"
+                    >
+                      📝 Resume Builder
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
+
+
+          {showPopup && (
+            <div
+              className="hidden"
+              style={{ transformOrigin: 'bottom right' }}
+            >
+              <button
+                onClick={() => {
+                  setShowPopup(false);
+                  navigate('/messages');
+                }}
+                className="block w-full px-4 py-2 text-left text-gray-800 hover:bg-gray-100 rounded-t-xl"
+              >
+                📩 Messages
+              </button>
+              <button
+                onClick={() => {
+                  setShowPopup(false);
+                  navigate('/resume-builder');
+                }}
+                className="block w-full px-4 py-2 text-left text-gray-800 hover:bg-gray-100 rounded-b-xl"
+              >
+                📝 Resume Builder
+              </button>
+            </div>
+          )}
         </div>
-        <FileText className="w-6 h-6 text-gray-400" onClick={() => navigate("/applications/application")} />
-        <User className="w-6 h-6 text-gray-400" 
-         onClick={() => navigate("/myprofilesection/myprofile")}/>
+
+        <FileText
+          className="w-6 h-6 text-gray-400"
+          onClick={() => navigate('/applications/application')}
+        />
+
+        <User
+          className="w-6 h-6 text-gray-400"
+          onClick={() => navigate('/myprofilesection/myprofile')}
+        />
       </div>
+
     </div>
   );
 };

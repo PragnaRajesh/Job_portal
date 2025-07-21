@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, MoreHorizontal, Search, Home, MessageSquare, Plus, FileText, User } from 'lucide-react';
+import { ArrowLeft, MoreHorizontal, Search, HomeIcon, Briefcase, MessageSquare, Plus, FileText, User } from 'lucide-react';
 import { useConversation } from './conversationcontext';
 import NewChatModal from './newchatmodal';
 
@@ -76,15 +76,15 @@ const Messages = () => {
           className="text-gray-600"
           onClick={() => navigate("/jobs/joblist")}
         />
-        <div className="-mt-5 bg-white rounded-full shadow-md p-1">
-          <PlusCircle size={32} className="text-blue-500" onClick={() =>  navigate("/chats/messages")} />
-        </div>
-        <FileBarChart
+        <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
+                 <Plus className="w-6 h-6 text-white" onClick={() => navigate("/chats/messages")} />
+               </div>
+        <FileText
           size={22}
           className="text-gray-600"
           onClick={() => navigate("/applications/application")}
         />
-        <User2
+        <User
           size={22}
           className="text-blue-600 cursor-pointer"
           onClick={() => navigate("/myprofilesection/myprofile")}
