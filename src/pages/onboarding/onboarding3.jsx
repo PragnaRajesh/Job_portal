@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import resumeImg from '../../assets/onboarding3.png';
 
 const OnboardingScreen3 = () => {
   const navigate = useNavigate();
@@ -13,56 +14,109 @@ const OnboardingScreen3 = () => {
   };
 
   return (
-    <div className="h-screen bg-gradient-to-br from-blue-400 to-blue-600 flex flex-col">
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col justify-between px-4 sm:px-6 py-6 sm:py-8">
-        <div className="flex-1 flex flex-col justify-center">
-          {/* Title */}
-          <div className="mb-6 sm:mb-8">
-            <h1 className="text-black text-xl sm:text-2xl lg:text-3xl font-bold leading-tight mb-6 sm:mb-8">
-              Build a graphic-rich animated resume to make your profile stand out.
-            </h1>
-          </div>
-
-          {/* Resume Illustration */}
-          <div className="flex justify-center mb-4 sm:mb-6">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F066a49ebd63d4888b50b2ed95c4b0a2d%2Fbf61b8556401478faddea8bc967b1244?format=webp&width=800"
-              alt="Resume builder illustration"
-              className="w-full max-w-xs sm:max-w-sm h-48 sm:h-60 md:h-72 object-contain"
-            />
-          </div>
-        </div>
-
-        {/* Bottom Navigation */}
-        <div className="mt-auto">
-          <div className="flex justify-between items-center px-2 sm:px-4">
-            {/* Page Indicators */}
-            <div className="flex space-x-1 sm:space-x-2">
-              <div className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-white/50 rounded-full"></div>
-              <div className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-white/50 rounded-full"></div>
-              <div className="w-6 sm:w-8 h-1.5 sm:h-2 bg-white rounded-full"></div>
-              <div className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-white/50 rounded-full"></div>
-            </div>
-
-            {/* Skip Button */}
-            <button
-              onClick={handleSkip}
-              className="text-white font-medium text-sm sm:text-base"
-            >
-              Skip
-            </button>
-
-            {/* Get Started Button */}
-            <button
-              onClick={handleGetStarted}
-              className="bg-white text-blue-600 font-semibold py-1.5 px-4 sm:py-2 sm:px-6 rounded-full text-sm sm:text-base"
-            >
-              Get Started
-            </button>
-          </div>
-        </div>
+    <div className="min-h-screen w-full bg-white relative overflow-hidden">
+      {/* Top Rectangle with Text */}
+      <div
+        className="absolute z-10 flex items-center justify-start text-left px-6"
+        style={{
+          top: '48px',
+          left: '30px',
+          width: '365px',
+          height: '298px',
+          backgroundColor: '#799EFF',
+          border: '1px solid #CB9D73',
+          borderRadius: '16px',
+          fontFamily: 'Montserrat, sans-serif',
+          fontWeight: 500,
+          fontSize: '38px',
+          lineHeight: '56px',
+          color: '#111111',
+        }}
+      >
+        <p>
+          Build a graphic-<br />
+          rich animated<br />
+          resume to make<br />
+          your profile stand<br />
+          out.
+        </p>
       </div>
+
+      {/* Full-Width Image Container (overlaps till Get Started button) */}
+      <div
+        className="absolute z-20 w-full flex justify-center"
+        style={{
+          top: '228px',
+        }}
+      >
+        <img
+          src={resumeImg}
+          alt="Resume Illustration"
+          style={{
+            width: '100%',
+            maxWidth: '600px',
+            height: 'auto',
+            maxHeight: '620px',
+          }}
+        />
+      </div>
+
+      {/* Bottom Rectangle */}
+      <div
+        className="absolute z-10"
+        style={{
+          top: '714px',
+          left: '13px',
+          width: '389px',
+          height: '144px',
+          backgroundColor: '#799EFF',
+          borderRadius: '32px',
+          border: '1px solid #CB9D73',
+        }}
+      />
+
+      {/* Dots */}
+      <div
+        className="absolute z-30 flex gap-2"
+        style={{
+          top: '762px',
+          left: '37px',
+          width: '72px',
+          height: '8px',
+        }}
+      >
+        <div className="w-6 h-2 bg-white rounded-full" />
+        <div className="w-2 h-2 bg-white/50 rounded-full" />
+        <div className="w-2 h-2 bg-white/50 rounded-full" />
+        <div className="w-2 h-2 bg-white/50 rounded-full" />
+      </div>
+
+      {/* Skip Button */}
+      <button
+        onClick={handleSkip}
+        className="absolute z-30 text-white text-[18px] font-semibold font-poppins"
+        style={{
+          top: '780px',
+          left: '37px',
+        }}
+      >
+        Skip
+      </button>
+
+      {/* Get Started Button */}
+      <button
+        onClick={handleGetStarted}
+        className="absolute z-30 bg-white text-[#2563EB] border border-[#CB9D73] text-[18px] font-semibold font-poppins shadow-md"
+        style={{
+          top: '758px',
+          left: '220px',
+          width: '141px',
+          height: '41px',
+          borderRadius: '5px',
+        }}
+      >
+        Get Started
+      </button>
     </div>
   );
 };
