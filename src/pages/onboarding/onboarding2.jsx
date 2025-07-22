@@ -116,9 +116,9 @@ const OnboardingScreen2 = () => {
           height: '8px',
         }}
       >
-        <div className="w-6 h-2 bg-white rounded-full" />
+        <div className="w-6 h-2 bg-white/50 rounded-full" />
         <div className="w-2 h-2 bg-white/50 rounded-full" />
-        <div className="w-2 h-2 bg-white/50 rounded-full" />
+        <div className="w-2 h-2 bg-white rounded-full" />
         <div className="w-2 h-2 bg-white/50 rounded-full" />
       </div>
 
