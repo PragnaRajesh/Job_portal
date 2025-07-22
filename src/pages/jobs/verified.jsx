@@ -24,7 +24,7 @@ const Verified = () => {
       </button>
 
       <button
-        onClick={() => navigate("../pages/home")}
+        onClick={() => navigate("/home")}
         className="mt-3 text-sm text-blue-600 font-medium"
       >
         Go to home

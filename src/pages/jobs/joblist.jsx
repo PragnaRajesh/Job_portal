@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   Bell,
   ChevronLeft,
   MapPin,
   Search,
   Sliders,
-  HomeIcon as Home,
+  Home as HomeIcon,
   Briefcase,
   FileText,
   Plus,
@@ -19,6 +19,18 @@ import videoIcon from "../../assets/job prep.jpeg";
 const JobList = () => {
   const navigate = useNavigate();
   const [activeVideoIndex, setActiveVideoIndex] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
+  const popupRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (popupRef.current && !popupRef.current.contains(e.target)) {
+        setShowPopup(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const jobData = [
     {
@@ -93,7 +105,6 @@ const JobList = () => {
             className="bg-white rounded-2xl p-4 shadow border border-blue-100 transition relative"
           >
             <div className="relative z-10">
-              {/* Top Section */}
               <div className="flex justify-between items-start">
                 <div className="flex gap-3">
                   <img
@@ -128,7 +139,6 @@ const JobList = () => {
                 {job.location}
               </p>
 
-              {/* Tags + Job Prep */}
               <div className="flex justify-between items-start mt-3 flex-wrap gap-y-2">
                 <div className="flex flex-wrap gap-2">
                   {job.tags.map((tag, tagIndex) => {
@@ -211,125 +221,63 @@ const JobList = () => {
           ))}
         </div>
       </div>
-            {/* Job Cards */}
-      <div className="px-4 space-y-6">
-        {jobData.map((job, i) => (
-          <div
-            key={i}
-            className="bg-white rounded-2xl p-4 shadow border border-blue-100 transition relative"
+
+      {/* ✅ Fixed Bottom Navigation */}
+      <div className="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around py-3 border-t border-gray-200 bg-white/95 backdrop-blur-sm">
+        <button onClick={() => navigate("/home")}>
+          <HomeIcon className="w-6 h-6 text-blue-600" />
+        </button>
+        <button onClick={() => navigate("/jobs/joblist")}>
+          <Briefcase className="w-6 h-6 text-gray-400 hover:text-gray-600 transition-colors" />
+        </button>
+
+        {/* Plus Icon with Popup */}
+        <div className="relative">
+          <button
+            onClick={() => setShowPopup(!showPopup)}
+            className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 transition-all duration-300 hover:scale-105"
           >
-            <div className="relative z-10">
-              {/* Top Section */}
-              <div className="flex justify-between items-start">
-                <div className="flex gap-3">
-                  <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
-                    alt="logo"
-                    className="w-8 h-8"
-                  />
-                  <div>
-                    <div className="flex items-center gap-1">
-                      <h2
-                        className="text-[15px] font-semibold cursor-pointer"
-                        onClick={() => navigate("/jobs/jobdetails")}
-                      >
-                        {job.title}
-                      </h2>
-                      <img src={verifiedIcon} alt="verified" className="w-4 h-4" />
-                    </div>
-                    <p className="text-[14px] font-bold text-green-600">{job.salary}</p>
-                  </div>
-                </div>
-                <div className="flex flex-col items-end gap-1">
-                  <div className="text-[10px] font-semibold text-orange-600 bg-orange-100 px-2 py-1 rounded-full">
-                    URGENT HIRING
-                  </div>
-                  <Bookmark className="text-blue-600 w-4 h-4" />
-                </div>
-              </div>
+            <Plus className="w-6 h-6 text-white" />
+          </button>
 
-              <p className="text-sm mt-2 text-gray-700">{job.company}</p>
-              <p className="text-sm text-gray-500 flex items-center gap-1">
-                <MapPin className="w-3 h-3" />
-                {job.location}
-              </p>
-
-              {/* Tags + Job Prep */}
-              <div className="flex justify-between items-start mt-3 flex-wrap gap-y-2">
-                <div className="flex flex-wrap gap-2">
-                  {job.tags.map((tag, tagIndex) => {
-                    const isInterview = tag.includes("Interview");
-                    const isHighDemand = tag.includes("High Demand");
-                    const isNewJob = tag.includes("New Job");
-                    const isVacancy = tag.includes("Vacancy");
-                    let bg = "bg-gray-100 text-gray-700";
-                    let icon = null;
-                    if (isInterview) {
-                      bg = "bg-orange-200 text-black font-semibold";
-                    } else if (isHighDemand) {
-                      bg = "bg-yellow-100 text-blue-800 font-medium";
-                      icon = <span className="text-yellow-500">⚡</span>;
-                    } else if (isNewJob || isVacancy) {
-                      bg = "bg-gray-100 text-blue-700 font-medium";
-                    }
-                    return (
-                      <span
-                        key={tagIndex}
-                        className={`text-xs px-3 py-1 rounded-xl flex items-center gap-1 ${bg}`}
-                      >
-                        {icon}
-                        {tag}
-                      </span>
-                    );
-                  })}
-                </div>
-
-                <div
-                  className="flex flex-col items-center text-[10px] text-blue-600 ml-auto cursor-pointer"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setActiveVideoIndex(activeVideoIndex === i ? null : i);
+          {showPopup && (
+            <div
+              className="absolute bottom-16 left-1/2 transform -translate-x-1/2 bg-white w-64 rounded-2xl border border-gray-200 shadow-xl p-5 z-50"
+              ref={popupRef}
+            >
+              <h3 className="text-lg font-semibold mb-4 text-center text-gray-800">
+                Quick Actions
+              </h3>
+              <div className="flex flex-col gap-3">
+                <button
+                  onClick={() => {
+                    setShowPopup(false);
+                    navigate("/messages");
                   }}
+                  className="w-full bg-blue-100 text-blue-800 py-2 rounded-lg font-medium hover:bg-blue-200"
                 >
-                  <img src={videoIcon} alt="prep" className="w-6 h-6" />
-                  <span>Job Prep.</span>
-                </div>
-              </div>
-
-              {activeVideoIndex === i && (
-                <div className="mt-3">
-                  <video controls className="w-full rounded-lg">
-                    <source
-                      src="https://www.w3schools.com/html/mov_bbb.mp4"
-                      type="video/mp4"
-                    />
-                    Your browser does not support the video tag.
-                  </video>
-                  <p className="text-xs text-gray-500 mt-1">
-                    Quick tips on how to ace your job interview
-                  </p>
-                </div>
-              )}
-
-              <div className="flex justify-between items-center mt-4 pt-2 border-t text-xs text-gray-600">
-                <span className="text-green-600">{job.benefit}</span>
-                <span>{job.time}</span>
+                  📩 Messages
+                </button>
+                <button
+                  onClick={() => {
+                    setShowPopup(false);
+                    navigate("/resume/resumebuilder");
+                  }}
+                  className="w-full bg-green-100 text-green-800 py-2 rounded-lg font-medium hover:bg-green-200"
+                >
+                  📝 Resume Builder
+                </button>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Bottom Navigation */}
-      <div className="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around py-4 border-t border-gray-100 bg-white">
-        <Home className="w-6 h-6 text-gray-400" onClick={() => navigate('/home')}/>
-        <Briefcase className="w-6 h-6 text-blue-400"  onClick={() => navigate("/jobs/joblist")}/>
-        <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
-          <Plus className="w-6 h-6 text-white" onClick={() => navigate("/chats/messages")} />
+          )}
         </div>
-        <FileText className="w-6 h-6 text-gray-400" onClick={() => navigate('/applications/application')} />
-        <User className="w-6 h-6 text-gray-400" 
-         onClick={() => navigate("/myprofilesection/myprofile")}/>
+
+        <button onClick={() => navigate("/applications/application")}>
+          <FileText className="w-6 h-6 text-gray-400 hover:text-gray-600 transition-colors" />
+        </button>
+        <button onClick={() => navigate("/myprofilesection/myprofile")}>
+          <User className="w-6 h-6 text-gray-400 hover:text-gray-600 transition-colors" />
+        </button>
       </div>
     </div>
   );

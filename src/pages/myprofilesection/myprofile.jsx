@@ -1,25 +1,36 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { 
-  MapPin, 
-  Phone, 
-  Edit3, 
-  Send, 
-  Settings, 
-  FileText, 
-  Folder, 
-  PieChart, 
-  Briefcase, 
-  Snowflake, 
-  Shield, 
+import {
+  MapPin,
+  Phone,
+  Edit3,
+  Send,
+  Settings,
+  FileText,
+  Folder,
+  PieChart,
+  Briefcase,
+  Snowflake,
+  Shield,
   Plus,
   Home,
-  UserCircle,
   User
 } from 'lucide-react';
 
 const MyProfile = () => {
   const navigate = useNavigate();
+  const [showPopup, setShowPopup] = useState(false);
+  const popupRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (popupRef.current && !popupRef.current.contains(e.target)) {
+        setShowPopup(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const sections = [
     { path: 'workexperience', icon: Briefcase, title: 'Work experience' },
@@ -29,7 +40,7 @@ const MyProfile = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-100 pb-24">
       {/* Profile Card */}
       <div className="relative bg-gradient-to-br from-purple-600 via-purple-700 to-blue-800 rounded-b-2xl p-5 text-white overflow-hidden mb-4">
         <div className="absolute inset-0 rounded-b-2xl">
@@ -49,8 +60,8 @@ const MyProfile = () => {
 
         <div className="relative flex items-start gap-4">
           <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0">
-            <img 
-              src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200" 
+            <img
+              src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200"
               alt="Profile"
               className="w-full h-full object-cover"
             />
@@ -76,7 +87,9 @@ const MyProfile = () => {
             </div>
 
             <div className="flex items-start gap-2">
-              <p className="text-sm opacity-90 flex-1 leading-relaxed">Looking for jobs in UI/UX Designer/ Web Designer</p>
+              <p className="text-sm opacity-90 flex-1 leading-relaxed">
+                Looking for jobs in UI/UX Designer/ Web Designer
+              </p>
               <button className="p-1 rounded-full bg-white/15 backdrop-blur-sm hover:bg-white/25 transition-colors flex-shrink-0 mt-0.5">
                 <Edit3 size={12} />
               </button>
@@ -125,7 +138,10 @@ const MyProfile = () => {
           <button className="flex-1 py-2.5 px-4 bg-gray-200 text-gray-700 rounded-xl text-sm font-medium hover:bg-gray-300 transition-colors">
             View Resume
           </button>
-          <button className="flex-1 py-2.5 px-4 bg-blue-600 text-white rounded-xl text-sm font-medium hover:bg-blue-700 transition-colors">
+          <button
+            onClick={() => navigate("/resume/resumebuilder")}
+            className="flex-1 py-2.5 px-4 bg-blue-600 text-white rounded-xl text-sm font-medium hover:bg-blue-700 transition-colors"
+          >
             Build Resume
           </button>
         </div>
@@ -162,8 +178,8 @@ const MyProfile = () => {
         </div>
       </div>
 
-      {/* Profile Tabs as Navigation */}
-      <div className="px-4 mb-20">
+      {/* Profile Tabs */}
+      <div className="px-4 mb-24">
         {sections.map(({ path, icon: Icon, title }) => (
           <div key={path} className="bg-white rounded-xl mb-3 shadow-sm">
             <button
@@ -182,19 +198,62 @@ const MyProfile = () => {
         ))}
       </div>
 
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-2">
-         
-         {/* Bottom Nav */}
-         <div className="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around py-4 border-t border-gray-100 bg-white">
-            <Home className="w-6 h-6 text-gray-400" onClick={() => navigate('/home')}/>
-            <Briefcase className="w-6 h-6 text-gray-400"  onClick={() => navigate("/jobs/joblist")}/>
-            <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
-              <Plus className="w-6 h-6 text-white" onClick={() => navigate("/chats/messages")} />
+      {/* Bottom Navigation with Popup */}
+      <div className="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around py-3 border-t border-gray-200 bg-white/95 backdrop-blur-sm">
+        <button onClick={() => navigate('/home')}>
+          <Home className="w-6 h-6 text-blue-600" />
+        </button>
+        <button onClick={() => navigate('/jobs/joblist')}>
+          <Briefcase className="w-6 h-6 text-gray-400 hover:text-gray-600 transition-colors" />
+        </button>
+
+        {/* Plus Icon with Popup */}
+        <div className="relative">
+          <button
+            onClick={() => setShowPopup(!showPopup)}
+            className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 transition-all duration-300 hover:scale-105"
+          >
+            <Plus className="w-6 h-6 text-white" />
+          </button>
+
+          {showPopup && (
+            <div
+              className="absolute bottom-16 left-1/2 transform -translate-x-1/2 bg-white w-64 rounded-2xl border border-gray-200 shadow-xl p-5 z-50"
+              ref={popupRef}
+            >
+              <h3 className="text-lg font-semibold mb-4 text-center text-gray-800">
+                Quick Actions
+              </h3>
+              <div className="flex flex-col gap-3">
+                <button
+                  onClick={() => {
+                    setShowPopup(false);
+                    navigate("/messages");
+                  }}
+                  className="w-full bg-blue-100 text-blue-800 py-2 rounded-lg font-medium hover:bg-blue-200"
+                >
+                  📩 Messages
+                </button>
+                <button
+                  onClick={() => {
+                    setShowPopup(false);
+                    navigate("/resume/resumebuilder");
+                  }}
+                  className="w-full bg-green-100 text-green-800 py-2 rounded-lg font-medium hover:bg-green-200"
+                >
+                  📝 Resume Builder
+                </button>
+              </div>
             </div>
-            <FileText className="w-6 h-6 text-gray-400" onClick={() => navigate('/applications/application')} />
-                 <User className="w-6 h-6 text-blue-400" 
-                  onClick={() => navigate("/myprofilesection/myprofile")}/>
-               </div>
+          )}
+        </div>
+
+        <button onClick={() => navigate('/applications/application')}>
+          <FileText className="w-6 h-6 text-gray-400 hover:text-gray-600 transition-colors" />
+        </button>
+        <button onClick={() => navigate('/myprofilesection/myprofile')}>
+          <User className="w-6 h-6 text-gray-400 hover:text-gray-600 transition-colors" />
+        </button>
       </div>
     </div>
   );

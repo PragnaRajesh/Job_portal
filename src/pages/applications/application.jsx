@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   MapPin,
   Bell,
   ChevronLeft,
-  Home,
+  Home as HomeIcon,
   Briefcase,
   Plus,
   FileText,
@@ -19,6 +19,8 @@ const Application = () => {
   const navigate = useNavigate();
   const [rating, setRating] = useState(3.5);
   const [hovered, setHovered] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
+  const popupRef = useRef(null);
 
   const appliedJobs = [
     {
@@ -44,6 +46,16 @@ const Application = () => {
       navigate("/facetofaceinterview", { state: { job } });
     }
   };
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (popupRef.current && !popupRef.current.contains(e.target)) {
+        setShowPopup(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <div className="min-h-screen bg-white px-4 pt-6 pb-32 font-sans text-[15px]">
@@ -87,11 +99,7 @@ const Application = () => {
               </div>
             </div>
             <div className="w-16 h-16 rounded-xl bg-gray-100 flex items-center justify-center">
-              <img
-              src={placeholderImage}
-              alt= "company logo"
-              className="w-16 h-16 rounded-xl"
-              />
+              <img src={placeholderImage} alt="company logo" className="w-16 h-16 rounded-xl" />
             </div>
           </div>
 
@@ -179,16 +187,61 @@ const Application = () => {
         </div>
       </div>
 
-       {/* Bottom Navigation */}
-      <div className="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around py-4 border-t border-gray-100 bg-white">
-        <Home className="w-6 h-6 text-gray-400" onClick={() => navigate('/home')}/>
-        <Briefcase className="w-6 h-6 text-gray-400"  onClick={() => navigate("/jobs/joblist")}/>
-        <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
-          <Plus className="w-6 h-6 text-white" onClick={() => navigate("/chats/messages")} />
+      {/* ⬇ Bottom Navigation with Popup Actions */}
+      <div className="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around py-3 border-t border-gray-200 bg-white/95 backdrop-blur-sm">
+        <button onClick={() => navigate("/home")}>
+          <HomeIcon className="w-6 h-6 text-blue-600" />
+        </button>
+        <button onClick={() => navigate("/jobs/joblist")}>
+          <Briefcase className="w-6 h-6 text-gray-400 hover:text-gray-600 transition-colors" />
+        </button>
+
+        <div className="relative">
+          <button
+            onClick={() => setShowPopup(!showPopup)}
+            className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 transition-all duration-300 hover:scale-105"
+          >
+            <Plus className="w-6 h-6 text-white" />
+          </button>
+
+          {showPopup && (
+            <div
+              ref={popupRef}
+              className="absolute bottom-16 left-1/2 transform -translate-x-1/2 bg-white w-64 rounded-2xl border border-gray-200 shadow-xl p-5 z-50"
+            >
+              <h3 className="text-lg font-semibold mb-4 text-center text-gray-800">
+                Quick Actions
+              </h3>
+              <div className="flex flex-col gap-3">
+                <button
+                  onClick={() => {
+                    setShowPopup(false);
+                    navigate("/messages");
+                  }}
+                  className="w-full bg-blue-100 text-blue-800 py-2 rounded-lg font-medium hover:bg-blue-200"
+                >
+                  📩 Messages
+                </button>
+                <button
+                  onClick={() => {
+                    setShowPopup(false);
+                    navigate("/resume/resumebuilder");
+                  }}
+                  className="w-full bg-green-100 text-green-800 py-2 rounded-lg font-medium hover:bg-green-200"
+                >
+                  📝 Resume Builder
+                </button>
+              </div>
+            </div>
+          )}
         </div>
-        <FileText className="w-6 h-6 text-blue-400" onClick={() => navigate('/applications/application')} />
-        <User className="w-6 h-6 text-gray-400" 
-         onClick={() => navigate("/myprofilesection/myprofile")}/>
+
+        <button onClick={() => navigate("/applications/application")}>
+          <FileText className="w-6 h-6 text-gray-400 hover:text-gray-600 transition-colors" />
+        </button>
+        <button onClick={() => navigate("/myprofilesection/myprofile")}>
+          <User className="w-6 h-6 text-gray-400 hover:text-gray-600 transition-colors" />
+        </button>
       </div>
     </div>
   );
