@@ -2,7 +2,11 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 
 // 🔹 Pages
-import Onboarding1 from './pages/onboarding1';
+import OnboardingScreen1 from './pages/onboarding/onboarding1';
+import OnboardingScreen2 from './pages/onboarding/onboarding2';
+import OnboardingScreen3 from './pages/onboarding/onboarding3';
+import OnboardingScreen4 from './pages/onboarding/onboarding4';
+import OnboardingFlow from './pages/onboarding/onboardingflow';
 import Signup1 from './pages/signup1';
 import Signup2 from './pages/signup2';
 import SignupVerify from './pages/signupverify';
@@ -53,7 +57,12 @@ const App = () => {
       <ConversationProvider>
         <Routes>
           {/* Onboarding and Auth */}
-          <Route path="/" element={<Onboarding1 />} />
+          <Route path="/" element={<OnboardingFlow />} />
+          <Route path="/onboarding1" element={<OnboardingScreen1 />} />
+          <Route path="/onboarding2" element={<OnboardingScreen2 />} />
+          <Route path="/onboarding3" element={<OnboardingScreen3 />} />
+          <Route path="/onboarding4" element={<OnboardingScreen4 />} />
+
 
           {/* Sign Up Flow */}
           <Route path="/signup1" element={<Signup1 />} />
