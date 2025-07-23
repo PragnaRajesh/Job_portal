@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { ChevronLeft, Bell } from "lucide-react";
+import { ChevronLeft, Bell, Check } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
-import placeholderImage from "../../assets/company-placeholder.png"; 
+
+import placeholderImage from "../../assets/company-placeholder.png";
 
 const VirtualInterview = () => {
   const navigate = useNavigate();
@@ -25,9 +26,15 @@ const VirtualInterview = () => {
     "Lack of Preparation",
   ];
 
+  const interviewStages = [
+    "Interview Started",
+    "1st Round",
+    "2nd Round",
+    "3rd Round",
+  ];
+
   return (
     <div className="min-h-screen bg-white px-4 pt-6 pb-32 font-sans">
-      {/* Top Bar */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <ChevronLeft onClick={() => navigate(-1)} className="cursor-pointer" />
@@ -36,7 +43,6 @@ const VirtualInterview = () => {
         <Bell size={22} className="text-blue-600" />
       </div>
 
-      {/* Search Bar */}
       <div className="mb-6">
         <div className="relative">
           <input
@@ -60,7 +66,6 @@ const VirtualInterview = () => {
         </div>
       </div>
 
-      {/* Job Card */}
       <div className="bg-white rounded-2xl p-5 mb-4 shadow border">
         <div className="flex justify-between items-start">
           <div>
@@ -140,59 +145,71 @@ const VirtualInterview = () => {
         )}
       </div>
 
-      {/* Virtual Interview Card */}
-      <div className="mb-4">
-        <h2 className="font-semibold text-lg mb-3">Virtual Interview</h2>
-        <div className="rounded-xl border shadow p-4">
-          {/* Tabs */}
-          <div className="flex justify-between mb-3 text-sm font-medium">
-            <button
-              onClick={() => setActiveTab("track")}
-              className={`border-b-2 px-2 pb-1 ${
-                activeTab === "track" ? "text-blue-600 border-blue-600" : "text-gray-400 border-transparent"
-              }`}
-            >
-              Track Application
-            </button>
-            <button
-              onClick={() => setActiveTab("notes")}
-              className={`border-b-2 px-2 pb-1 ${
-                activeTab === "notes" ? "text-blue-600 border-blue-600" : "text-gray-400 border-transparent"
-              }`}
-            >
-              Notes
-            </button>
-          </div>
+      {/* Tabs */}
+      <div className="flex justify-between items-center border-b border-gray-300 mb-2 text-sm">
+        <button
+          onClick={() => setActiveTab("track")}
+          className={`px-4 py-2 font-semibold focus:outline-none ${
+            activeTab === "track" ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-600"
+          }`}
+        >
+          Track Application
+        </button>
+        <button
+          onClick={() => setActiveTab("notes")}
+          className={`px-4 py-2 font-semibold focus:outline-none ${
+            activeTab === "notes" ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-600"
+          }`}
+        >
+          Notes
+        </button>
+      </div>
 
-          {activeTab === "track" ? (
-            <div className="space-y-6">
-              {["Interview Started", "1st Round", "2nd Round", "3rd Round"].map((stage, idx) => (
-                <div key={idx} className="flex items-start gap-4">
-                  <div className="flex flex-col items-center">
-                    <div
-                      className={`w-10 h-10 rounded-full border-4 flex items-center justify-center ${
-                        idx === 0 ? "bg-green-600 border-green-500" : "border-green-500"
-                      }`}
-                    >
-                      {idx > 0 && (
-                        <svg className="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
+      {/* Tab Content */}
+      <div className="bg-white border rounded-xl p-4 shadow-md">
+        {activeTab === "track" && (
+          <>
+            <div className="flex flex-col items-start gap-0 mt-2">
+              {interviewStages.map((stage, index) => (
+                <React.Fragment key={index}>
+                  <div className="relative flex flex-row items-start gap-4 w-full">
+                    <div className="flex flex-col items-center">
+                      <div className="w-12 h-12 rounded-full border-4 border-green-500 bg-white flex items-center justify-center z-10">
+                        {index === 0 ? (
+                          <div className="w-6 h-6 bg-green-500 rounded-full"></div>
+                        ) : (
+                          <div className="w-7 h-7 rounded-full bg-green-500 flex items-center justify-center">
+                            <Check className="text-white w-4 h-4" />
+                          </div>
+                        )}
+                      </div>
+                      {index !== interviewStages.length - 1 && (
+                        <div className="h-20 w-px bg-green-500 border-l-2 border-dashed -mt-0.5"></div>
                       )}
                     </div>
-                    {idx < 3 && <div className="w-px h-8 bg-green-500 mt-1" />}
+                    <div className="text-sm font-semibold text-gray-800 pt-3">
+                      {stage}
+                    </div>
                   </div>
-                  <p className="pt-1 text-sm font-medium">{stage}</p>
-                </div>
+                </React.Fragment>
               ))}
-              <p className="text-sm text-gray-600 pt-2">
-                Interview will be completed in approx 30–45 mins based on client.
-              </p>
             </div>
-          ) : (
-            <p className="text-sm text-gray-500 italic">No notes available.</p>
-          )}
-        </div>
+            <p className="mt-6 text-sm text-gray-600 text-center px-4">
+              Interview will be completed in approx 30–45 mins based on client.
+            </p>
+          </>
+        )}
+
+        {activeTab === "notes" && (
+          <div className="text-sm text-gray-700">
+            <p className="mb-2">🧾 Interview Mode: Virtual (Google Meet)</p>
+            <p className="mb-2">🕐 Duration: 30 minutes | Date: 25th July 2025</p>
+            <p className="mb-2">👥 Panel: 2 members including the Hiring Manager</p>
+            <p className="mb-2">📄 Candidate submitted resume and cover letter successfully</p>
+            <p className="mb-2">✅ Status: Confirmed and pending final review</p>
+            <p className="mb-2">📌 No red flags noted during screening process</p>
+          </div>
+        )}
       </div>
     </div>
   );
