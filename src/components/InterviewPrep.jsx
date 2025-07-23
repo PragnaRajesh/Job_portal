@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Play, Share, Volume2 } from 'lucide-react';
+import { ArrowLeft, Play, Share, Bell } from 'lucide-react';
 import AIJobPrep from './AIJobPrep';
 
 const InterviewPrep = ({ onClose }) => {
@@ -8,7 +8,7 @@ const InterviewPrep = ({ onClose }) => {
   const practiceInterviews = [
     {
       id: 1,
-      title: "Sales Lead",
+      title: "Video Editor",
       company: "Spotify",
       color: "from-cyan-400 to-blue-500",
       borderColor: "border-cyan-400"
@@ -22,8 +22,8 @@ const InterviewPrep = ({ onClose }) => {
     },
     {
       id: 3,
-      title: "Graduate",
-      company: "Self Awareness",
+       title: "Video Editor",
+      company: "Spotify",
       color: "from-orange-400 to-yellow-500",
       borderColor: "border-orange-400"
     }
@@ -40,7 +40,7 @@ const InterviewPrep = ({ onClose }) => {
         </div>
         <div className="flex items-center gap-4">
           <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center relative">
-            <Volume2 className="w-6 h-6 text-white" />
+            <Bell className="w-6 h-6 text-white" />
             <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></div>
           </div>
           <div className="w-12 h-12 rounded-full overflow-hidden">
@@ -119,11 +119,11 @@ const InterviewPrep = ({ onClose }) => {
 
         {/* Action Buttons */}
         <div className="flex gap-4">
-          <button className="flex-1 bg-gray-800 text-white py-4 rounded-2xl font-semibold flex items-center justify-center gap-2 border-2 border-orange-400">
+          <button className="flex-1 bg-black-800 text-white py-4 rounded-2xl font-semibold flex items-center justify-center gap-6 border-2 border-orange-400">
             <Play className="w-5 h-5" />
             WATCH DEMO
           </button>
-          <button className="flex-1 bg-green-400 text-black py-4 rounded-2xl font-semibold flex items-center justify-center gap-2">
+          <button className="flex-1 bg-black-800 text-white py-4 rounded-2xl font-semibold flex items-center justify-center gap-2 border-2 border-green-400">
             <Share className="w-5 h-5" />
             SHARE
           </button>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Play, Volume2 } from 'lucide-react';
+import { ArrowLeft, Play, Bell } from 'lucide-react';
 
 const AIJobPrep = ({ onClose }) => {
   const [activeCategory, setActiveCategory] = useState('behavioral');
@@ -53,7 +53,7 @@ const AIJobPrep = ({ onClose }) => {
         </div>
         <div className="flex items-center gap-4">
           <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center relative">
-            <Volume2 className="w-6 h-6 text-white" />
+            <Bell className="w-6 h-6 text-white" />
             <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></div>
           </div>
           <div className="w-12 h-12 rounded-full overflow-hidden">
