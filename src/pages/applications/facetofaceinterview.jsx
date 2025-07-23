@@ -152,17 +152,12 @@ const FaceToFaceInterview = () => {
         </div>
 
         <div className="text-xs text-gray-500 mt-2">Time: {job.time}</div>
-        <div className="flex items-center gap-2 mt-4 flex-wrap">
-          <button className="bg-blue-500 text-white text-[11px] px-2.5 py-1 rounded-[5px]" onClick={handleComingForInterview}>
-            Coming for interview
-          </button>
-          <button className="bg-yellow-400 text-white text-[11px] px-2.5 py-1 rounded-[5px]" onClick={() => handleNavigationClick("google")}>
-            Route
-          </button>
-          <button className="bg-sky-400 text-white text-[11px] px-2.5 py-1 rounded-[5px]" onClick={() => setShowReasonDropdown(!showReasonDropdown)}>
-            Reschedule
-          </button>
-        </div>
+        <div className="grid grid-cols-3 gap-2 mt-4">
+  <button className="w-full bg-blue-500 text-white text-[13px] py-2 rounded-[5px]">Attend Interview</button>
+  <button className="w-full bg-yellow-400 text-white text-[13px] py-2 rounded-[5px]">Route</button>
+  <button className="w-full bg-sky-400 text-white text-[13px] py-2 rounded-[5px]">Reschedule</button>
+</div>
+
 
         {showReasonDropdown && (
           <div className="mt-4 bg-white border rounded-xl p-4 shadow-sm">

@@ -105,18 +105,19 @@ const Application = () => {
 
           <div className="text-xs text-gray-500 mt-2">Time: {job.time}</div>
 
-          <div className="flex gap-2 mt-4 flex-wrap">
+          {/* Updated Buttons - Full Width in Single Row */}
+          <div className="grid grid-cols-3 gap-2 mt-4">
             {job.type === "Virtual Interview" ? (
               <>
-                <button className="bg-blue-500 text-white text-[11px] px-2.5 py-1 rounded-[5px]">Ready to join</button>
-                <button className="bg-yellow-400 text-white text-[11px] px-2.5 py-1 rounded-[5px]">Link to join</button>
-                <button className="bg-sky-400 text-white text-[11px] px-2.5 py-1 rounded-[5px]">Reschedule</button>
+                <button className="w-full bg-blue-500 text-white text-[13px] py-2 rounded-[5px]">Ready to join</button>
+                <button className="w-full bg-yellow-400 text-white text-[13px] py-2 rounded-[5px]">Link to join</button>
+                <button className="w-full bg-sky-400 text-white text-[13px] py-2 rounded-[5px]">Reschedule</button>
               </>
             ) : (
               <>
-                <button className="bg-blue-500 text-white text-[11px] px-2.5 py-1 rounded-[5px]">Coming for interview</button>
-                <button className="bg-yellow-400 text-white text-[11px] px-2.5 py-1 rounded-[5px]">Route</button>
-                <button className="bg-sky-400 text-white text-[11px] px-2.5 py-1 rounded-[5px]">Reschedule</button>
+                <button className="w-full bg-blue-500 text-white text-[13px] py-2 rounded-[5px]">Attend Interview</button>
+                <button className="w-full bg-yellow-400 text-white text-[13px] py-2 rounded-[5px]">Route</button>
+                <button className="w-full bg-sky-400 text-white text-[13px] py-2 rounded-[5px]">Reschedule</button>
               </>
             )}
           </div>
@@ -187,7 +188,7 @@ const Application = () => {
         </div>
       </div>
 
-      {/* ⬇ Bottom Navigation with Popup Actions */}
+      {/* Bottom Navigation */}
       <div className="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around py-3 border-t border-gray-200 bg-white/95 backdrop-blur-sm">
         <button onClick={() => navigate("/home")}>
           <HomeIcon className="w-6 h-6 text-blue-600" />
@@ -195,7 +196,6 @@ const Application = () => {
         <button onClick={() => navigate("/jobs/joblist")}>
           <Briefcase className="w-6 h-6 text-gray-400 hover:text-gray-600 transition-colors" />
         </button>
-
         <div className="relative">
           <button
             onClick={() => setShowPopup(!showPopup)}
@@ -203,7 +203,6 @@ const Application = () => {
           >
             <Plus className="w-6 h-6 text-white" />
           </button>
-
           {showPopup && (
             <div
               ref={popupRef}
@@ -235,7 +234,6 @@ const Application = () => {
             </div>
           )}
         </div>
-
         <button onClick={() => navigate("/applications/application")}>
           <FileText className="w-6 h-6 text-gray-400 hover:text-gray-600 transition-colors" />
         </button>

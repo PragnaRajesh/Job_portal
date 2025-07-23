@@ -95,20 +95,21 @@ const VirtualInterview = () => {
 
         <div className="text-xs text-gray-500 mt-2">Time: {job.time}</div>
 
-        <div className="flex items-center gap-2 mt-4 ml-[-6px]">
-          <button className="bg-blue-500 text-white text-[11px] px-2.5 py-1 rounded-[5px]">
-            Ready to join
-          </button>
-          <button className="bg-yellow-400 text-white text-[11px] px-2.5 py-1 rounded-[5px]">
-            Link to join
-          </button>
-          <button
-            onClick={() => setShowReasonDropdown(!showReasonDropdown)}
-            className="bg-sky-400 text-white text-[11px] px-2.5 py-1 rounded-[5px]"
-          >
-            Reschedule
-          </button>
-        </div>
+        <div className="grid grid-cols-3 gap-2 mt-4">
+  <button className="w-full bg-blue-500 text-white text-[13px] py-2 rounded-[5px]">
+    Ready to join
+  </button>
+  <button className="w-full bg-yellow-400 text-white text-[13px] py-2 rounded-[5px]">
+    Link to join
+  </button>
+  <button
+    onClick={() => setShowReasonDropdown(!showReasonDropdown)}
+    className="w-full bg-sky-400 text-white text-[13px] py-2 rounded-[5px]"
+  >
+    Reschedule
+  </button>
+</div>
+
 
         {showReasonDropdown && (
           <div className="mt-4 bg-white border rounded-xl p-4 shadow-sm">
