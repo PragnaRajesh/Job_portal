@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import stepIcon from "../../assets/step4.png";
 import experienceImg from "../../assets/experience.jpeg";
-
 
 const ExperienceDecision = () => {
   const navigate = useNavigate();
@@ -15,30 +15,30 @@ const ExperienceDecision = () => {
 
     localStorage.setItem("hasWorkExperience", hasExperience);
     navigate(hasExperience ? "/profile/experiencedetails1" : "/profile/location");
-
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col justify-between p-4">
-      <div>
-        {/* Heading */}
-        <h2 className="text-center text-base font-semibold mb-3">
-          Experience Details
-        </h2>
+    <div className="h-screen bg-white px-4 pt-6 pb-24 flex flex-col justify-between overflow-hidden">
+      
+      {/* Step Image */}
+      <div className="w-full flex justify-center -mt-2 mb-3">
+        <img
+          src={stepIcon}
+          alt="Progress Step 4"
+          className="object-contain"
+        />
+      </div>
 
-        {/* Progress Bar */}
-        <div className="w-full h-1 bg-gray-200 rounded-full mb-4">
-          <div className="h-1 bg-blue-700 rounded-full w-[75%]"></div>
-        </div>
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col justify-start">
+        <h2 className="text-xl font-bold text-center mb-4">Experience Details</h2>
 
-        {/* Illustration */}
         <img
           src={experienceImg}
           alt="Experience"
-          className="w-full h-[200px] object-contain mb-6"
+          className="w-full h-[180px] object-contain mb-4"
         />
 
-        {/* Question */}
         <h3 className="text-sm font-semibold mb-1">
           Do you have work experience?
         </h3>
@@ -46,8 +46,7 @@ const ExperienceDecision = () => {
           Share your professional background to help us find the best opportunities for you.
         </p>
 
-        {/* Toggle Buttons */}
-        <div className="flex space-x-4 mb-6">
+        <div className="flex space-x-4 mb-4">
           <button
             className={`flex-1 py-2 rounded-lg text-sm font-medium border ${
               hasExperience === true
@@ -71,13 +70,15 @@ const ExperienceDecision = () => {
         </div>
       </div>
 
-      {/* Next Button */}
-      <button
-        onClick={handleNext}
-        className="w-full bg-blue-700 text-white py-3 mt-6 rounded-full text-sm font-medium"
-      >
-        Next
-      </button>
+      {/* CTA Button */}
+      <div className="mt-4">
+        <button
+          onClick={handleNext}
+          className="w-full bg-blue-700 text-white py-3 rounded-full text-sm font-medium"
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };

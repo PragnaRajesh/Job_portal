@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import graduationImg from "../../assets/education.jpeg"; 
+import stepIcon from "../../assets/step2.png";
+import graduationImg from "../../assets/education.jpeg";
 
 const EducationDetails = () => {
   const navigate = useNavigate();
@@ -17,32 +18,32 @@ const EducationDetails = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col justify-between p-4">
-      <div>
-        {/* 🔹 Top Heading */}
-        <h2 className="text-center text-base font-semibold mb-3">
-          Education Details
-        </h2>
+    <div className="h-screen bg-white px-4 pt-6 pb-24 flex flex-col justify-between overflow-hidden">
+      
+      {/* Step Image */}
+      <div className="w-full flex justify-center -mt-2 mb-3">
+        <img
+          src={stepIcon}
+          alt="Progress Step 2"
+          className="object-contain"
+        />
+      </div>
 
-        {/* 🔹 Progress Bar */}
-        <div className="w-full h-1 bg-gray-200 rounded-full mb-4">
-          <div className="h-1 bg-blue-700 rounded-full w-2/5"></div>
-        </div>
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col justify-start">
+        <h2 className="text-xl font-bold text-center mb-4">Education Details</h2>
 
-        {/* 🔹 Illustration */}
         <img
           src={graduationImg}
           alt="Graduation"
-          className="w-full h-[200px] object-contain mb-6"
+          className="w-full h-[180px] object-contain mb-4"
         />
 
-        {/* 🔹 Question */}
-        <h3 className="font-semibold text-sm mb-3">
+        <h3 className="font-semibold text-sm mb-2">
           Are you currently pursuing your education?
         </h3>
 
-        {/* 🔹 Toggle Buttons */}
-        <div className="flex space-x-4 mb-6">
+        <div className="flex space-x-4 mb-4">
           <button
             className={`flex-1 py-2 rounded-lg text-sm font-medium border transition-all duration-200 ${
               isPursuing === true
@@ -66,13 +67,15 @@ const EducationDetails = () => {
         </div>
       </div>
 
-      {/* 🔹 Continue Button */}
-      <button
-        onClick={handleNext}
-        className="w-full bg-blue-700 text-white py-3 mt-6 rounded-full text-sm font-medium"
-      >
-        Next
-      </button>
+      {/* CTA Button */}
+      <div className="mt-4">
+        <button
+          onClick={handleNext}
+          className="w-full bg-blue-700 text-white py-3 rounded-full text-sm font-medium"
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };

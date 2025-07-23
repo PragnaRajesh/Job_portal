@@ -1,74 +1,71 @@
-import React, { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { CheckCircle } from 'lucide-react';
-import confetti from 'canvas-confetti';
+import React, { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import confetti from "canvas-confetti";
+import successIcon from "../../assets/success screen.jpeg";
+import stepIcon from "../../assets/step6.png";
 
 const SuccessScreen = () => {
-  const location = useLocation();
   const navigate = useNavigate();
-    const name = location.state?.name || localStorage.getItem("userName") || "User";
+  const location = useLocation();
+  const name = location.state?.name || localStorage.getItem("userName") || "User";
 
   useEffect(() => {
     partyPopper();
   }, []);
 
   const partyPopper = () => {
-  // // 🎉 First burst
-  // confetti({
-  //   particleCount: 200,
-  //   spread: 100,
-  //   origin: { y: 0.6 },
-  //   colors: ['#bb0000', '#ffffff', '#0077ff', '#00ffcc'],
-  // });
-
-  // // 🎉 Second burst
-  // confetti({
-  //   particleCount: 200,
-  //   spread: 120,
-  //   startVelocity: 45,
-  //   angle: 90,
-  //   origin: { x: 0.5, y: 1 },
-  // });
-
-  // 🎊 Bigger Burst Left
-  confetti({
-    particleCount: 300,
-    spread: 160,
-    startVelocity: 60,
-    angle: 60,
-    origin: { x: 0.2, y: 0.7 },
-    scalar: 1.4, // Makes confetti larger
-  });
-
-  // 🎊 Bigger Burst Right
-  confetti({
-    particleCount: 300,
-    spread: 160,
-    startVelocity: 60,
-    angle: 120,
-    origin: { x: 0.8, y: 0.7 },
-    scalar: 1.4, // Makes confetti larger
-  });
-};
-
+    confetti({
+      particleCount: 300,
+      spread: 160,
+      startVelocity: 60,
+      angle: 60,
+      origin: { x: 0.2, y: 0.7 },
+      scalar: 1.4,
+    });
+    confetti({
+      particleCount: 300,
+      spread: 160,
+      startVelocity: 60,
+      angle: 120,
+      origin: { x: 0.8, y: 0.7 },
+      scalar: 1.4,
+    });
+  };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-white px-4 relative overflow-hidden">
-      <div className="bg-blue-100 rounded-full p-6 mb-6">
+    <div className="h-screen bg-[#F3FCFF] px-4 pt-4 pb-6 flex flex-col justify-between items-center text-center overflow-hidden">
+      
+      {/* Step Progress */}
+      <div className="w-full flex justify-center -mt-2 mb-2">
         <img
-          src = "./assets/success screen.jpeg"
-          alt = "Success Screen"
-          className="text-blue-600 w-16 h-16" 
+          src={stepIcon}
+          alt="Progress Step 6"
+          className="object-contain"
         />
       </div>
-      <h2 className="text-xl font-semibold text-gray-800">Hi {name}</h2>
-      <p className="text-gray-600 mb-10">Your Registration Is Successful!!</p>
-      <button
-        className="bg-blue-700 text-white rounded-full px-8 py-3 font-medium shadow hover:bg-blue-800 transition"
-        onClick={() => navigate("/home")}
-      >
-        Continue
-      </button>
+
+     {/* Main Content */}
+<div className="flex flex-col items-center justify-start w-full mt-2 mb-auto">
+  <img
+    src={successIcon}
+    alt="Success"
+    className="w-[320px] h-[320px] object-contain mb-4"
+  />
+
+  <h2 className="text-2xl font-extrabold text-gray-800 mb-1">Hi {name}</h2>
+  <p className="text-md text-gray-600">Your profile is successfully created</p>
+</div>
+
+
+      {/* Button */}
+      <div className="w-full">
+        <button
+          onClick={() => navigate("/home")}
+          className="w-full bg-blue-700 text-white py-3 rounded-full text-base font-semibold"
+        >
+          Continue
+        </button>
+      </div>
     </div>
   );
 };

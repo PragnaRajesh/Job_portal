@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import stepIcon from "../../assets/step5.png";
 
 const UploadResume = () => {
   const navigate = useNavigate();
@@ -29,21 +30,32 @@ const UploadResume = () => {
     setResume(null);
   };
 
+  const handleNext = () => {
+    if (!resume) {
+      alert("Please upload your resume before continuing.");
+      return;
+    }
+    navigate("/profile/successscreen");
+  };
+
   return (
-    <div className="min-h-screen p-4 bg-white flex flex-col justify-between">
-      <div>
-        {/* Header */}
-        <h2 className="text-center text-lg font-semibold mb-4">Upload Resume</h2>
+    <div className="h-screen p-4 bg-white pt-6 pb-24 flex flex-col justify-between overflow-hidden">
+      
+      {/* Step Image */}
+      <div className="w-full flex justify-center -mt-2 mb-3">
+        <img
+          src={stepIcon}
+          alt="Progress Step 5"
+          className="object-contain"
+        />
+      </div>
 
-        {/* Progress bar */}
-        <div className="w-full h-1 bg-gray-200 rounded-full mb-6">
-          <div className="h-1 bg-blue-700 rounded-full w-3/4"></div>
-        </div>
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col justify-start">
+        <h2 className="text-xl font-bold text-center mb-4">Upload Resume</h2>
 
-        {/* Title */}
         <h3 className="text-md font-semibold mb-3">Add Resume</h3>
 
-        {/* File Upload UI */}
         {!resume ? (
           <label className="flex flex-col items-center justify-center border-2 border-dashed border-blue-400 rounded-xl p-6 text-center cursor-pointer">
             <input
@@ -55,8 +67,7 @@ const UploadResume = () => {
             <span className="text-2xl mb-2">📄</span>
             <span className="text-blue-700 font-medium">Upload CV/Resume</span>
             <p className="text-xs text-gray-400 mt-2">
-              Upload files in PDF format up to 5 MB. Just upload it once and you can use it
-              in your next application.
+              Upload PDF file up to 5 MB. You can reuse this resume later.
             </p>
           </label>
         ) : (
@@ -81,23 +92,20 @@ const UploadResume = () => {
           </div>
         )}
 
-        {/* Bottom hint text */}
         <p className="text-xs text-gray-400 mt-4">
-          Upload files in PDF format up to 5 MB. Just upload it once and you can use it in
-          your next application.
+          Upload files in PDF format up to 5 MB. You can reuse this for future applications.
         </p>
       </div>
 
-      {/* Next Button */}
-      <button
-        onClick={() => {
-          if (!resume) return alert("Please upload your resume before continuing.");
-          navigate("/profile/successscreen");
-        }}
-        className="w-full bg-blue-700 text-white py-3 mt-6 rounded-full text-sm font-medium"
-      >
-        Next
-      </button>
+      {/* CTA Button */}
+      <div className="mt-4">
+        <button
+          onClick={handleNext}
+          className="w-full bg-blue-700 text-white py-3 rounded-full text-sm font-medium"
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };

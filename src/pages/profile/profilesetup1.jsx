@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import stepIcon from "../../assets/step1.png";
 
 const ProfileSetup1 = () => {
   const navigate = useNavigate();
@@ -12,13 +13,20 @@ const ProfileSetup1 = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col justify-between p-4">
-      {/* Header */}
-      <div>
-        <h2 className="text-base font-semibold mb-4">Basic Details</h2>
-        <div className="w-full h-2 bg-gray-200 rounded-full mb-6">
-          <div className="h-2 bg-blue-700 rounded-full w-1/5"></div>
-        </div>
+    <div className="h-screen bg-white px-4 pt-6 pb-24 flex flex-col justify-between overflow-hidden">
+      
+      {/* Step Image */}
+      <div className="w-full flex justify-center -mt-2 mb-3">
+        <img
+          src={stepIcon}
+          alt="Progress Step 1"
+          className="object-contain"
+        />
+      </div>
+
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col justify-start">
+        <h2 className="text-xl font-bold text-center mb-4">Basic Details</h2>
 
         <label className="text-sm font-semibold block mb-2">
           Tell us your full name
@@ -32,13 +40,15 @@ const ProfileSetup1 = () => {
         />
       </div>
 
-      {/* Button */}
-      <button
-        onClick={handleContinue}
-        className="w-full bg-blue-700 text-white py-3 mt-6 rounded-full text-sm font-medium"
-      >
-        Continue
-      </button>
+      {/* CTA Button */}
+      <div className="mt-4">
+        <button
+          onClick={handleContinue}
+          className="w-full bg-blue-700 text-white py-3 rounded-full text-sm font-medium"
+        >
+          Continue
+        </button>
+      </div>
     </div>
   );
 };

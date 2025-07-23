@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import stepIcon from "../../assets/step3.png";
 
 const JobType = () => {
   const navigate = useNavigate();
@@ -27,29 +28,29 @@ const JobType = () => {
     }
 
     localStorage.setItem("preferredShifts", JSON.stringify(preferredShifts));
-    localStorage.setItem(
-      "preferredWorkplace",
-      JSON.stringify(preferredWorkplace)
-    );
+    localStorage.setItem("preferredWorkplace", JSON.stringify(preferredWorkplace));
     localStorage.setItem("employmentType", JSON.stringify(employmentType));
 
-    navigate("/profile/location");
+    navigate("/profile/experiencedecision");
   };
 
   return (
-    <div className="min-h-screen bg-[#f7fdfb] p-4 flex flex-col justify-between">
-      <div>
-        {/* 🔹 Header */}
-        <h2 className="text-center text-lg font-semibold mb-3">
-          Preferred Job Type
-        </h2>
+    <div className="h-screen bg-white px-4 pt-6 pb-24 flex flex-col justify-between overflow-hidden">
+      
+      {/* Step Image */}
+      <div className="w-full flex justify-center -mt-2 mb-3">
+        <img
+          src={stepIcon}
+          alt="Progress Step 3"
+          className="object-contain"
+        />
+      </div>
 
-        {/* 🔹 Progress Bar */}
-        <div className="w-full h-1 bg-gray-200 rounded-full mb-6">
-          <div className="h-1 bg-blue-700 rounded-full w-3/5"></div>
-        </div>
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col justify-start">
+        <h2 className="text-xl font-bold text-center mb-4">Preferred Job Type</h2>
 
-        {/* 🔹 Preferred Shifts */}
+        {/* Preferred Shifts */}
         <div className="mb-6">
           <h3 className="text-md font-semibold mb-2">Preferred Shifts</h3>
           <div className="space-y-2">
@@ -69,7 +70,7 @@ const JobType = () => {
           </div>
         </div>
 
-        {/* 🔹 Preferred Workplace */}
+        {/* Preferred Workplace */}
         <div className="mb-6">
           <h3 className="text-md font-semibold mb-2">Preferred Workplace</h3>
           <div className="space-y-2">
@@ -89,11 +90,9 @@ const JobType = () => {
           </div>
         </div>
 
-        {/* 🔹 Preferred Employment Type */}
+        {/* Preferred Employment Type */}
         <div className="mb-6">
-          <h3 className="text-md font-semibold mb-2">
-            Preferred Employment Type
-          </h3>
+          <h3 className="text-md font-semibold mb-2">Preferred Employment Type</h3>
           <div className="space-y-2">
             {["Full Time", "Part Time"].map((type) => (
               <label key={type} className="flex items-center justify-between">
@@ -112,13 +111,15 @@ const JobType = () => {
         </div>
       </div>
 
-      {/* 🔹 Next Button */}
-      <button
-        onClick={handleNext}
-        className="w-full bg-blue-700 text-white py-3 rounded-full text-sm font-semibold"
-      >
-        Next
-      </button>
+      {/* CTA Button */}
+      <div className="mt-4">
+        <button
+          onClick={handleNext}
+          className="w-full bg-blue-700 text-white py-3 rounded-full text-sm font-semibold"
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };
