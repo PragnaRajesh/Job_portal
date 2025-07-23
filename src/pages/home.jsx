@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Bell,
@@ -27,14 +27,26 @@ const Home = () => {
     role: "Job Seeker",
     location: "Koramangala",
   });
+  const [showPopup, setShowPopup] = useState(false);
+  const popupRef = useRef(null);
+  
+  useEffect(() => {
+      const handleClickOutside = (e) => {
+        if (popupRef.current && !popupRef.current.contains(e.target)) {
+          setShowPopup(false);
+        }
+      };
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
 
   const jobCategories = ["Chef", "Marketing", "Technology", "Finance", "Design"];
   const [selectedCategory, setSelectedCategory] = useState("Chef");
 
   const specializations = [
-    { name: "Finance", icon: financeIcon },
-    { name: "Technology", icon: techIcon },
-    { name: "Marketing", icon: marketingIcon },
+    { name: "Finance", icon: financeIcon, bg: "#FFF8F1" },
+    { name: "Technology", icon: techIcon, bg: "#FAF5FF" },
+    { name: "Marketing", icon: marketingIcon, bg: "#FFF2F2" },
   ];
 
   const recommendedJobs = [
@@ -124,11 +136,11 @@ const Home = () => {
         </div>
 
         {/* Horizontal Job Cards */}
-        <div className="flex overflow-x-auto gap-4 no-scrollbar mb-8 px-1">
+        <div className="flex overflow-x-auto space-x-4 no-scrollbar mb-8 px-1">
           {recommendedJobs.map((job, idx) => (
             <div
               key={idx}
-              className="min-w-[270px] bg-white rounded-2xl shadow-md p-4 relative"
+              className="min-w-[270px] rounded-2xl p-4 relative border border-gray-200 bg-white shadow-xl"
             >
               <Bookmark
                 size={18}
@@ -169,29 +181,22 @@ const Home = () => {
         </div>
 
         {/* Specialization */}
-        <h3 className="font-bold text-lg mb-3">Specialization</h3>
-        <div className="flex gap-4 overflow-x-auto no-scrollbar mb-6 px-1">
+        <h3 className="font-bold text-lg mb-4">Specialization</h3>
+        <div className="flex justify-between items-center gap-4">
           {specializations.map((spec, idx) => (
             <div
               key={idx}
-              className="min-w-[120px] flex flex-col items-center bg-white rounded-2xl shadow-md py-5"
-              style={{
-                backgroundColor:
-                  spec.name === "Finance"
-                    ? "#FFF8F1"
-                    : spec.name === "Technology"
-                    ? "#FAF5FF"
-                    : "#FFF2F2",
-              }}
+              className="w-full flex flex-col items-center py-6 rounded-3xl shadow-md"
+              style={{ backgroundColor: spec.bg }}
             >
-              <img src={spec.icon} alt={spec.name} className="w-6 h-6 mb-2" />
-              <p className="text-sm font-medium text-gray-700">{spec.name}</p>
+              <p className="text-md font-normal text-gray-800 mb-3">{spec.name}</p>
+              <img src={spec.icon} alt={spec.name} className="w-8 h-8" />
             </div>
           ))}
         </div>
 
         {/* Recommendation */}
-        <h3 className="font-semibold text-base mb-2 px-1">Recommendation</h3>
+        <h3 className="font-semibold text-base my-4 px-1">Recommendation</h3>
         <div className="space-y-4 px-1">
           {recommendedJobs.map((job, idx) => (
             <div
@@ -236,20 +241,67 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Bottom Navigation */}
-       {/* Bottom Navigation */}
-       <div className="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around py-4 border-t border-gray-100 bg-white">
-        <HomeIcon className="w-6 h-6 text-blue-400" onClick={() => navigate('/home')}/>
-        <Briefcase className="w-6 h-6 text-gray-400"  onClick={() => navigate("/jobs/joblist")}/>
-        <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
-          <Plus className="w-6 h-6 text-white" onClick={() => navigate("/chats/messages")} />
+      {/* ✅ Fixed Bottom Navigation */}
+      <div className="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around py-3 border-t border-gray-200 bg-white/95 backdrop-blur-sm">
+        <button onClick={() => navigate("/home")}>
+          <HomeIcon className="w-6 h-6 text-blue-600" />
+        </button>
+        <button onClick={() => navigate("/jobs/joblist")}>
+          <Briefcase className="w-6 h-6 text-gray-400 hover:text-gray-600 transition-colors" />
+        </button>
+
+        {/* Plus Icon with Popup */}
+        <div className="relative">
+          <button
+            onClick={() => setShowPopup(!showPopup)}
+            className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 transition-all duration-300 hover:scale-105"
+          >
+            <Plus className="w-6 h-6 text-white" />
+          </button>
+
+          {showPopup && (
+            <div
+              className="absolute bottom-16 left-1/2 transform -translate-x-1/2 bg-white w-64 rounded-2xl border border-gray-200 shadow-xl p-5 z-50"
+              ref={popupRef}
+            >
+              <h3 className="text-lg font-semibold mb-4 text-center text-gray-800">
+                Quick Actions
+              </h3>
+              <div className="flex flex-col gap-3">
+                <button
+                  onClick={() => {
+                    setShowPopup(false);
+                    navigate("/messages");
+                  }}
+                  className="w-full bg-blue-100 text-blue-800 py-2 rounded-lg font-medium hover:bg-blue-200"
+                >
+                  📩 Messages
+                </button>
+                <button
+                  onClick={() => {
+                    setShowPopup(false);
+                    navigate("/resume/resumebuilder");
+                  }}
+                  className="w-full bg-green-100 text-green-800 py-2 rounded-lg font-medium hover:bg-green-200"
+                >
+                  📝 Resume Builder
+                </button>
+              </div>
+            </div>
+          )}
         </div>
-        <FileText className="w-6 h-6 text-gray-400" onClick={() => navigate("/applications/application")} />
-        <User className="w-6 h-6 text-gray-400" 
-         onClick={() => navigate("/myprofilesection/myprofile")}/>
+
+        <button onClick={() => navigate("/applications/application")}>
+          <FileText className="w-6 h-6 text-gray-400 hover:text-gray-600 transition-colors" />
+        </button>
+        <button onClick={() => navigate("/myprofilesection/myprofile")}>
+          <User className="w-6 h-6 text-gray-400 hover:text-gray-600 transition-colors" />
+        </button>
       </div>
+
     </div>
   );
 };
 
 export default Home;
+
