@@ -202,12 +202,12 @@ const VirtualInterview = () => {
 
         {activeTab === "notes" && (
           <div className="text-sm text-gray-700">
-            <p className="mb-2">🧾 Interview Mode: Virtual (Google Meet)</p>
-            <p className="mb-2">🕐 Duration: 30 minutes | Date: 25th July 2025</p>
-            <p className="mb-2">👥 Panel: 2 members including the Hiring Manager</p>
-            <p className="mb-2">📄 Candidate submitted resume and cover letter successfully</p>
-            <p className="mb-2">✅ Status: Confirmed and pending final review</p>
-            <p className="mb-2">📌 No red flags noted during screening process</p>
+            <p className="mb-2">1. Interview Mode: Virtual (Google Meet)</p>
+            <p className="mb-2">2. Duration: 30 minutes | Date: 25th July 2025</p>
+            <p className="mb-2">3. Panel: 2 members including the Hiring Manager</p>
+            <p className="mb-2">4. Candidate submitted resume and cover letter successfully</p>
+            <p className="mb-2">5. Status: Confirmed and pending final review</p>
+            <p className="mb-2">6. No red flags noted during screening process</p>
           </div>
         )}
       </div>
