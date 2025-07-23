@@ -2,15 +2,23 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import rocketImage from '../../assets/onboarding2.png'; // use your local image
 
-const OnboardingScreen2 = () => {
+const OnboardingScreen2 = ({ onNext, onSkip }) => {
   const navigate = useNavigate();
 
   const handleSkip = () => {
-    navigate('/onboarding3');
+    if (onSkip) {
+      onSkip();
+    } else {
+      navigate('/signup1');
+    }
   };
 
   const handleNext = () => {
-    navigate('/onboarding3');
+    if (onNext) {
+      onNext();
+    } else {
+      navigate('/onboarding3');
+    }
   };
 
   return (

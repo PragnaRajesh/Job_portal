@@ -15,10 +15,11 @@ import {
 import { useNavigate } from "react-router-dom";
 import verifiedIcon from "../../assets/verified.jpeg";
 import videoIcon from "../../assets/job prep.jpeg";
+import InterviewPrep from "../../components/InterviewPrep";
 
 const JobList = () => {
   const navigate = useNavigate();
-  const [activeVideoIndex, setActiveVideoIndex] = useState(null);
+  const [showInterviewPrep, setShowInterviewPrep] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const popupRef = useRef(null);
 
@@ -172,7 +173,7 @@ const JobList = () => {
                   className="flex flex-col items-center text-[10px] text-blue-600 ml-auto cursor-pointer"
                   onClick={(e) => {
                     e.stopPropagation();
-                    setActiveVideoIndex(activeVideoIndex === i ? null : i);
+                    setShowInterviewPrep(true);
                   }}
                 >
                   <img src={videoIcon} alt="prep" className="w-6 h-6" />
@@ -180,20 +181,7 @@ const JobList = () => {
                 </div>
               </div>
 
-              {activeVideoIndex === i && (
-                <div className="mt-3">
-                  <video controls className="w-full rounded-lg">
-                    <source
-                      src="https://www.w3schools.com/html/mov_bbb.mp4"
-                      type="video/mp4"
-                    />
-                    Your browser does not support the video tag.
-                  </video>
-                  <p className="text-xs text-gray-500 mt-1">
-                    Quick tips on how to ace your job interview
-                  </p>
-                </div>
-              )}
+
 
               <div className="flex justify-between items-center mt-4 pt-2 border-t text-xs text-gray-600">
                 <span className="text-green-600">{job.benefit}</span>
@@ -296,7 +284,7 @@ const JobList = () => {
                   className="flex flex-col items-center text-[10px] text-blue-600 ml-auto cursor-pointer"
                   onClick={(e) => {
                     e.stopPropagation();
-                    setActiveVideoIndex(activeVideoIndex === i ? null : i);
+                    setShowInterviewPrep(true);
                   }}
                 >
                   <img src={videoIcon} alt="prep" className="w-6 h-6" />
@@ -304,20 +292,7 @@ const JobList = () => {
                 </div>
               </div>
 
-              {activeVideoIndex === i && (
-                <div className="mt-3">
-                  <video controls className="w-full rounded-lg">
-                    <source
-                      src="https://www.w3schools.com/html/mov_bbb.mp4"
-                      type="video/mp4"
-                    />
-                    Your browser does not support the video tag.
-                  </video>
-                  <p className="text-xs text-gray-500 mt-1">
-                    Quick tips on how to ace your job interview
-                  </p>
-                </div>
-              )}
+
 
               <div className="flex justify-between items-center mt-4 pt-2 border-t text-xs text-gray-600">
                 <span className="text-green-600">{job.benefit}</span>
@@ -386,6 +361,11 @@ const JobList = () => {
           <User className="w-6 h-6 text-gray-400 hover:text-gray-600 transition-colors" />
         </button>
       </div>
+
+      {/* Interview Prep Modal */}
+      {showInterviewPrep && (
+        <InterviewPrep onClose={() => setShowInterviewPrep(false)} />
+      )}
     </div>
   );
 };

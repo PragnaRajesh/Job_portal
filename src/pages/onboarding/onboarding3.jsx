@@ -2,15 +2,23 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import resumeImg from '../../assets/onboarding3.png';
 
-const OnboardingScreen3 = () => {
+const OnboardingScreen3 = ({ onNext, onSkip }) => {
   const navigate = useNavigate();
 
   const handleSkip = () => {
-    navigate('/onboarding4');
+    if (onSkip) {
+      onSkip();
+    } else {
+      navigate('/signup1');
+    }
   };
 
   const handleGetStarted = () => {
-    navigate('/onboarding4');
+    if (onNext) {
+      onNext();
+    } else {
+      navigate('/onboarding4');
+    }
   };
 
   return (

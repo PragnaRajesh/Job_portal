@@ -3,15 +3,23 @@ import { useNavigate } from 'react-router-dom';
 import sadBoyImage from '../../assets/onboarding1.png';
 import questionIcon from '../../assets/question-bubble.png';
 
-const OnboardingScreen1 = () => {
+const OnboardingScreen1 = ({ onNext, onSkip }) => {
   const navigate = useNavigate();
 
   const handleSkip = () => {
-    navigate('/onboarding2');
+    if (onSkip) {
+      onSkip();
+    } else {
+      navigate('/signup1');
+    }
   };
 
   const handleNext = () => {
-    navigate('/onboarding2');
+    if (onNext) {
+      onNext();
+    } else {
+      navigate('/onboarding2');
+    }
   };
 
   return (

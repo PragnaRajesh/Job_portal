@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import stepIcon from "../../assets/step0.png";
 
 const CreateProfile = () => {
   const navigate = useNavigate();
@@ -19,7 +20,22 @@ const CreateProfile = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white p-4 flex flex-col justify-between">
+    <div className="min-h-screen bg-white px-4 py-6 flex flex-col justify-between">
+      <div className="min-h-screen bg-white flex flex-col items-center justify-start pt-12 px-4">
+      {/* Progress Bar Section */}
+      <div className="relative w-full max-w-md mb-12">
+        {/* Icon */}
+        <div className="absolute -top-8 left-3 z-10">
+          <img src={stepIcon} alt="Step Icon" className="w-12 h-12 object-contain" />
+        </div>
+
+        {/* Progress Track */}
+        <div className="w-full h-5 rounded-full bg-gradient-to-r from-[#4196E3] to-[#373598] shadow-md relative overflow-hidden">
+          <div className="absolute top-0 left-0 h-full bg-white bg-opacity-20 w-[20%] animate-pulse-pattern" />
+        </div>
+      </div>
+
+      {/* Main Content */}
       <div>
         <h1 className="text-xl font-bold text-center mb-4">Create Profile</h1>
 
@@ -87,6 +103,7 @@ const CreateProfile = () => {
       >
         Create Profile
       </button>
+    </div>
     </div>
   );
 };
