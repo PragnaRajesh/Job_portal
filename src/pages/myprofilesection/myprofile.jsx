@@ -41,60 +41,57 @@ const MyProfile = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 pb-24">
-      {/* Profile Card */}
-      <div className="relative bg-gradient-to-br from-purple-600 via-purple-700 to-blue-800 rounded-b-2xl p-5 text-white overflow-hidden mb-4">
-        <div className="absolute inset-0 rounded-b-2xl">
-          <div className="absolute top-4 right-8 w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
-          <div className="absolute -top-8 -right-4 w-24 h-24 bg-white/15 rounded-full blur-lg"></div>
-          <div className="absolute bottom-8 left-4 w-20 h-20 bg-white/8 rounded-full blur-lg"></div>
-        </div>
-
-        <div className="relative flex justify-end gap-2 mb-4">
-          <button className="p-2 rounded-full bg-white/15 backdrop-blur-sm hover:bg-white/25 transition-colors">
-            <Send size={18} />
+      {/* Profile Header Card */}
+      <div className="relative bg-gradient-to-br from-[#3D3A8E] via-[#5B4AAE] to-[#3E3C8A] rounded-b-3xl p-6 text-white overflow-hidden mb-6">
+        {/* Top Buttons */}
+        <div className="relative flex justify-end gap-3 mb-6">
+          <button className="p-2.5 rounded-full bg-white/15 hover:bg-white/25 transition-colors">
+            <Send size={20} />
           </button>
-          <button className="p-2 rounded-full bg-white/15 backdrop-blur-sm hover:bg-white/25 transition-colors">
-            <Settings size={18} />
+          <button className="p-2.5 rounded-full bg-white/15 hover:bg-white/25 transition-colors">
+            <Settings size={20} />
           </button>
         </div>
 
-        <div className="relative flex items-start gap-4">
-          <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0">
+        {/* Row 1: Profile Picture */}
+        <div className="relative mb-4">
+          <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-white/30">
             <img
               src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200"
               alt="Profile"
               className="w-full h-full object-cover"
             />
           </div>
+        </div>
 
-          <div className="flex-1 min-w-0">
-            <h2 className="text-xl font-semibold mb-3">John D</h2>
+        {/* Row 2: Name */}
+        <div className="relative mb-4">
+          <h2 className="text-xl font-semibold">John D</h2>
+        </div>
 
-            <div className="space-y-2 mb-3">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2 flex-1">
-                  <MapPin size={14} className="opacity-80 flex-shrink-0" />
-                  <span className="text-sm opacity-90">HSR Layout, KA</span>
-                </div>
-                <div className="flex items-center gap-2 flex-1">
-                  <Phone size={14} className="opacity-80 flex-shrink-0" />
-                  <span className="text-sm opacity-90">9136479870</span>
-                </div>
-                <button className="p-1 rounded-full bg-white/15 backdrop-blur-sm hover:bg-white/25 transition-colors flex-shrink-0">
-                  <Edit3 size={12} />
-                </button>
-              </div>
+        {/* Row 3: Location, Phone, and Edit Profile */}
+        <div className="relative flex items-center justify-between mb-4">
+          <div className="flex items-center gap-4 text-white text-sm">
+            <div className="flex items-center gap-2 opacity-90">
+              <MapPin size={16} />
+              <span>HSR,Layout, KA</span>
             </div>
-
-            <div className="flex items-start gap-2">
-              <p className="text-sm opacity-90 flex-1 leading-relaxed">
-                Looking for jobs in UI/UX Designer/ Web Designer
-              </p>
-              <button className="p-1 rounded-full bg-white/15 backdrop-blur-sm hover:bg-white/25 transition-colors flex-shrink-0 mt-0.5">
-                <Edit3 size={12} />
-              </button>
+            <div className="flex items-center gap-2 opacity-90">
+              <Phone size={16} />
+              <span>9136479870</span>
             </div>
           </div>
+          <button className="px-3 py-1.5 text-sm rounded-full border border-white/30 bg-white/10 hover:bg-white/20 text-white transition-colors">
+            Edit profile ✏️
+          </button>
+        </div>
+
+        {/* Row 4: Bio and Edit Icon */}
+        <div className="relative flex items-center justify-between text-sm text-white opacity-90">
+          <p>Looking for jobs in UI/UX Designer/ Web Designer</p>
+          <button className="p-1 rounded-full bg-white/15 hover:bg-white/25 transition-colors">
+            <Edit3 size={14} />
+          </button>
         </div>
       </div>
 
