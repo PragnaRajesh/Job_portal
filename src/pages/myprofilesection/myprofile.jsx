@@ -42,20 +42,20 @@ const MyProfile = () => {
   return (
     <div className="min-h-screen bg-gray-100 pb-24">
       {/* Profile Header Card */}
-      <div className="relative bg-gradient-to-br from-[#3D3A8E] via-[#5B4AAE] to-[#3E3C8A] rounded-b-3xl p-6 text-white overflow-hidden mb-6">
+      <div className="relative bg-gradient-to-br from-[#3D3A8E] via-[#5B4AAE] to-[#3E3C8A] rounded-b-3xl p-4 text-white overflow-hidden mb-4">
         {/* Top Buttons */}
-        <div className="relative flex justify-end gap-3 mb-6">
-          <button className="p-2.5 rounded-full bg-white/15 hover:bg-white/25 transition-colors">
-            <Send size={20} />
+        <div className="relative flex justify-end gap-2 mb-3">
+          <button className="p-2 rounded-full bg-white/15 hover:bg-white/25 transition-colors">
+            <Send size={18} />
           </button>
-          <button className="p-2.5 rounded-full bg-white/15 hover:bg-white/25 transition-colors">
-            <Settings size={20} />
+          <button className="p-2 rounded-full bg-white/15 hover:bg-white/25 transition-colors">
+            <Settings size={18} />
           </button>
         </div>
 
         {/* Row 1: Profile Picture */}
-        <div className="relative mb-4">
-          <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-white/30">
+        <div className="relative mb-2">
+          <div className="w-16 h-16 rounded-full overflow-hidden border-3 border-white/30">
             <img
               src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200"
               alt="Profile"
@@ -65,32 +65,32 @@ const MyProfile = () => {
         </div>
 
         {/* Row 2: Name */}
-        <div className="relative mb-4">
-          <h2 className="text-xl font-semibold">John D</h2>
+        <div className="relative mb-2">
+          <h2 className="text-lg font-semibold">John D</h2>
         </div>
 
         {/* Row 3: Location, Phone, and Edit Profile */}
-        <div className="relative flex items-center justify-between mb-4">
-          <div className="flex items-center gap-4 text-white text-sm">
-            <div className="flex items-center gap-2 opacity-90">
-              <MapPin size={16} />
+        <div className="relative flex items-center justify-between mb-2">
+          <div className="flex items-center gap-3 text-white text-xs">
+            <div className="flex items-center gap-1.5 opacity-90">
+              <MapPin size={14} />
               <span>HSR,Layout, KA</span>
             </div>
-            <div className="flex items-center gap-2 opacity-90">
-              <Phone size={16} />
+            <div className="flex items-center gap-1.5 opacity-90">
+              <Phone size={14} />
               <span>9136479870</span>
             </div>
           </div>
-          <button className="px-3 py-1.5 text-sm rounded-full border border-white/30 bg-white/10 hover:bg-white/20 text-white transition-colors">
+          <button className="px-2.5 py-1 text-xs rounded-full border border-white/30 bg-white/10 hover:bg-white/20 text-white transition-colors">
             Edit profile ✏️
           </button>
         </div>
 
         {/* Row 4: Bio and Edit Icon */}
-        <div className="relative flex items-center justify-between text-sm text-white opacity-90">
+        <div className="relative flex items-center justify-between text-xs text-white opacity-90">
           <p>Looking for jobs in UI/UX Designer/ Web Designer</p>
           <button className="p-1 rounded-full bg-white/15 hover:bg-white/25 transition-colors">
-            <Edit3 size={14} />
+            <Edit3 size={12} />
           </button>
         </div>
       </div>
