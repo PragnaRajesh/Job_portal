@@ -42,7 +42,60 @@ const MyProfile = () => {
   return (
     <div className="min-h-screen bg-gray-100 pb-24 font-sans">
       {/* Profile Header Card */}
-      <div className="relative bg-gradient-to-br from-[#3D3A8E] via-[#5B4AAE] to-[#3E3C8A] rounded-b-3xl p-4 text-white overflow-hidden mb-4">
+      <div className="relative rounded-b-3xl p-4 text-white overflow-hidden mb-4" style={{ background: 'none' }}>
+        {/* Custom SVG Background */}
+        <div className="absolute inset-0 w-full h-full">
+          <svg width="100%" height="100%" viewBox="0 0 375 279" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" className="w-full h-full">
+            <mask id="mask0_2_38" style={{maskType:'alpha'}} maskUnits="userSpaceOnUse" x="7" y="-7" width="375" height="220">
+              <path d="M382 23C382 6.43146 368.569 -7 352 -7H37C20.4314 -7 6.99999 6.43146 6.99999 23V183C6.99999 199.569 20.4314 213 37 213H352C368.569 213 382 199.569 382 183V23Z" fill="url(#paint0_linear_2_38)"/>
+            </mask>
+            <g mask="url(#mask0_2_38)">
+              <g filter="url(#filter0_d_2_38)">
+                <path d="M382 23C382 6.43146 368.569 -7 352 -7H37C20.4314 -7 6.99999 6.43146 6.99999 23V183C6.99999 199.569 20.4314 213 37 213H352C368.569 213 382 199.569 382 183V23Z" fill="url(#paint1_linear_2_38)"/>
+              </g>
+              <path d="M51.7533 -60.583C-73.1761 -94.4231 4.09799 211.389 -61.06 -49.2073L70.4011 -244.312L493.058 -141.891L600.566 11.6884L529.523 222.153L368.378 329.57C398.826 276.568 506.434 78.0266 312.971 99.1921C71.1415 125.649 248.845 -7.1962 51.7533 -60.583Z" fill="url(#paint2_linear_2_38)" fillOpacity="0.12"/>
+              <path d="M-6.19685 35.9152C-135.611 38.0571 23.4599 310.434 -111.428 78.1376L-39.2453 -145.777L395.236 -164.615L541.126 -46.8837L531.252 175.028L430.51 312.799C445.061 253.431 469.09 42.9624 289.089 116.962C64.0891 209.461 197.969 32.5361 -6.19685 35.9152Z" fill="url(#paint3_linear_2_38)" fillOpacity="0.12"/>
+              <path d="M-13.3357 126.541C-138.815 158.28 78.4366 386.959 -106.091 191.753L-87.1386 -42.7443L331.466 -160.64L500.452 -79.4716L541.69 138.798L453.882 311.414C454.443 250.291 450.919 24.4907 292.665 137.767C94.8473 279.363 184.624 76.4677 -13.3357 126.541Z" fill="url(#paint4_linear_2_38)" fillOpacity="0.12"/>
+              <path d="M-9.88668 211.511C-125.872 268.956 134.655 446.771 -86.8343 294.789L-117.675 61.5578L266.726 -141.826L449.013 -98.0533L535.279 106.642L485.781 293.875C473.461 234.005 422.478 14.0071 291.619 158.063C128.046 338.132 173.094 120.883 -9.88668 211.511Z" fill="url(#paint5_linear_2_38)" fillOpacity="0.12"/>
+            </g>
+            <defs>
+              <filter id="filter0_d_2_38" x="-55" y="-65" width="499" height="344" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                <feOffset dy="4"/>
+                <feGaussianBlur stdDeviation="31"/>
+                <feComposite in2="hardAlpha" operator="out"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 0.600625 0 0 0 0 0.670375 0 0 0 0 0.775 0 0 0 0.18 0"/>
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_2_38"/>
+                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_2_38" result="shape"/>
+              </filter>
+              <linearGradient id="paint0_linear_2_38" x1="386" y1="213" x2="7" y2="-6.99998" gradientUnits="userSpaceOnUse">
+                <stop stopColor="#7551FF"/>
+                <stop offset="1" stopColor="#A993FF"/>
+              </linearGradient>
+              <linearGradient id="paint1_linear_2_38" x1="386" y1="213" x2="7" y2="-6.99998" gradientUnits="userSpaceOnUse">
+                <stop stopColor="#130160"/>
+                <stop offset="1" stopColor="#36353C"/>
+              </linearGradient>
+              <linearGradient id="paint2_linear_2_38" x1="2.53717" y1="322.826" x2="415.339" y2="-111.262" gradientUnits="userSpaceOnUse">
+                <stop stopColor="white"/>
+                <stop offset="1" stopColor="white" stopOpacity="0"/>
+              </linearGradient>
+              <linearGradient id="paint3_linear_2_38" x1="52.872" y1="417.93" x2="329.063" y2="-113.629" gradientUnits="userSpaceOnUse">
+                <stop stopColor="white"/>
+                <stop offset="1" stopColor="white" stopOpacity="0"/>
+              </linearGradient>
+              <linearGradient id="paint4_linear_2_38" x1="131.698" y1="484.856" x2="278.736" y2="-95.8479" gradientUnits="userSpaceOnUse">
+                <stop stopColor="white"/>
+                <stop offset="1" stopColor="white" stopOpacity="0"/>
+              </linearGradient>
+              <linearGradient id="paint5_linear_2_38" x1="207.333" y1="531.261" x2="228.819" y2="-67.3842" gradientUnits="userSpaceOnUse">
+                <stop stopColor="white"/>
+                <stop offset="1" stopColor="white" stopOpacity="0"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
         {/* Top Buttons */}
         <div className="relative flex justify-end gap-2 mb-3">
           <button className="p-2 rounded-full bg-white/15 hover:bg-white/25 transition-colors">
