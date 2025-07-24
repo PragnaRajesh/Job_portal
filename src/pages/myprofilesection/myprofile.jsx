@@ -73,11 +73,16 @@ const MyProfile = () => {
         <div className="relative flex items-center justify-between mb-2">
           <div className="flex items-center gap-3 text-white text-xs">
             <div className="flex items-center gap-1.5 opacity-90">
-              <MapPin size={14} />
+              <svg width="12" height="14" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11 5.90909C11 9.72727 6 13 6 13C6 13 1 9.72727 1 5.90909C1 4.60712 1.52678 3.35847 2.46447 2.43784C3.40215 1.51721 4.67392 1 6 1C7.32608 1 8.59785 1.51721 9.53553 2.43784C10.4732 3.35847 11 4.60712 11 5.90909Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M6 8C7.10457 8 8 7.10457 8 6C8 4.89543 7.10457 4 6 4C4.89543 4 4 4.89543 4 6C4 7.10457 4.89543 8 6 8Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
               <span>HSR,Layout, KA</span>
             </div>
             <div className="flex items-center gap-1.5 opacity-90">
-              <Phone size={14} />
+              <svg width="11" height="15" viewBox="0 0 11 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.5 1H2.25C1.55964 1 1 1.55964 1 2.25V12.25C1 12.9404 1.55964 13.5 2.25 13.5H8.5C9.19036 13.5 9.75 12.9404 9.75 12.25V2.25C9.75 1.55964 9.19036 1 8.5 1Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
               <span>9136479870</span>
             </div>
           </div>
@@ -90,7 +95,11 @@ const MyProfile = () => {
         <div className="relative flex items-center justify-between text-xs text-white opacity-90">
           <p>Looking for jobs in UI/UX Designer/ Web Designer</p>
           <button className="p-1 rounded-full bg-white/15 hover:bg-white/25 transition-colors">
-            <Edit3 size={12} />
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.1596 4.32367L5.41565 9.06764C5.08103 9.40218 4.66483 9.64379 4.20859 9.76922L2.90555 10.1276C2.71859 10.179 2.54687 10.0073 2.59827 9.82032L2.95665 8.51728C3.08209 8.06105 3.32369 7.64484 3.65824 7.31023L8.4022 2.56626C8.88749 2.08128 9.67445 2.08179 10.1596 2.56695C10.6445 3.05214 10.6445 3.83848 10.1596 4.32367Z" stroke="white" strokeWidth="1.5"/>
+              <path d="M7.81738 2.97656L9.80612 4.9653" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+              <path d="M1.875 12.5H13.125" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+            </svg>
           </button>
         </div>
       </div>
