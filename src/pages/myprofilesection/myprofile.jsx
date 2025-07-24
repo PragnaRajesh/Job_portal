@@ -42,10 +42,10 @@ const MyProfile = () => {
   return (
     <div className="min-h-screen bg-gray-100 pb-24 font-sans">
       {/* Profile Header Card */}
-      <div className="relative rounded-b-3xl p-4 text-white overflow-hidden mb-4" style={{ background: 'none' }}>
+      <div className="relative rounded-b-3xl p-4 text-white overflow-hidden mb-4" style={{ background: 'none', minHeight: '180px' }}>
         {/* Custom SVG Background */}
         <div className="absolute inset-0 w-full h-full">
-          <svg width="100%" height="100%" viewBox="0 0 375 279" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" className="w-full h-full">
+          <svg width="100%" height="100%" viewBox="0 0 375 180" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" className="w-full h-full">
             <mask id="mask0_2_38" style={{maskType:'alpha'}} maskUnits="userSpaceOnUse" x="7" y="-7" width="375" height="220">
               <path d="M382 23C382 6.43146 368.569 -7 352 -7H37C20.4314 -7 6.99999 6.43146 6.99999 23V183C6.99999 199.569 20.4314 213 37 213H352C368.569 213 382 199.569 382 183V23Z" fill="url(#paint0_linear_2_38)"/>
             </mask>
