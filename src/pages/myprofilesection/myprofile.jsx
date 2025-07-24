@@ -40,7 +40,7 @@ const MyProfile = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-100 pb-24">
+    <div className="min-h-screen bg-gray-100 pb-24 font-sans">
       {/* Profile Header Card */}
       <div className="relative bg-gradient-to-br from-[#3D3A8E] via-[#5B4AAE] to-[#3E3C8A] rounded-b-3xl p-4 text-white overflow-hidden mb-4">
         {/* Top Buttons */}
