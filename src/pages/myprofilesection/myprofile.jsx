@@ -46,7 +46,7 @@ const MyProfile = () => {
         {/* Top Buttons */}
         <div className="relative flex justify-end gap-2 mb-3">
           <button className="p-2 rounded-full bg-white/15 hover:bg-white/25 transition-colors">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <mask id="path-1-inside-1_879_576" fill="white">
                 <path d="M11.5 3.05878C11.5004 2.24599 12.4193 1.77322 13.0811 2.2453L21.8584 8.50702C22.4174 8.9058 22.4174 9.73617 21.8584 10.1349L13.0811 16.3967C12.4191 16.8688 11.5 16.3953 11.5 15.5822V12.3908C8.0693 12.581 5.02708 14.7163 3.69727 17.9162L2 22.0002V16.0002C2.00012 10.6451 6.20952 6.2734 11.5 6.01288V3.05878Z"/>
               </mask>
@@ -54,7 +54,7 @@ const MyProfile = () => {
             </svg>
           </button>
           <button className="p-2 rounded-full bg-white/15 hover:bg-white/25 transition-colors">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <mask id="path-1-inside-1_879_568" fill="white">
                 <path d="M12.0002 2C13.657 2 15.0002 3.34315 15.0002 5V5.67383C15.3409 5.83569 15.6661 6.02472 15.9738 6.2373L16.5627 5.89844C17.9974 5.07032 19.8319 5.56156 20.6603 6.99609C21.4887 8.43089 20.9973 10.2662 19.5627 11.0947L18.9748 11.4326C18.9898 11.6198 19.0002 11.8089 19.0002 12C19.0002 12.1884 18.9904 12.3749 18.9757 12.5596L19.5627 12.8984C20.9972 13.7269 21.4884 15.5614 20.6603 16.9961C19.832 18.4308 17.9975 18.9229 16.5627 18.0947L15.9797 17.7578C15.6702 17.9721 15.343 18.1623 15.0002 18.3252V19C15.0002 20.6569 13.657 22 12.0002 22C10.3433 22 9.00016 20.6569 9.00016 19V18.3252C8.65703 18.1622 8.32932 17.9723 8.01969 17.7578L7.43766 18.0947C6.00282 18.923 4.16839 18.4309 3.34 16.9961C2.51179 15.5613 3.00299 13.7269 4.43766 12.8984L5.0236 12.5586C5.00904 12.3743 5.00016 12.1881 5.00016 12C5.00016 11.8093 5.00961 11.6205 5.02457 11.4336L4.43766 11.0947C3.00287 10.2663 2.5116 8.43094 3.34 6.99609C4.16851 5.56158 6.00294 5.07022 7.43766 5.89844L8.02555 6.2373C8.33345 6.02454 8.6592 5.8358 9.00016 5.67383V5C9.00016 3.34315 10.3433 2 12.0002 2Z"/>
               </mask>
@@ -84,14 +84,14 @@ const MyProfile = () => {
         <div className="relative flex items-center justify-between mb-2">
           <div className="flex items-center gap-3 text-white text-xs">
             <div className="flex items-center gap-1.5 opacity-90">
-              <svg width="12" height="14" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg width="24" height="24" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M11 5.90909C11 9.72727 6 13 6 13C6 13 1 9.72727 1 5.90909C1 4.60712 1.52678 3.35847 2.46447 2.43784C3.40215 1.51721 4.67392 1 6 1C7.32608 1 8.59785 1.51721 9.53553 2.43784C10.4732 3.35847 11 4.60712 11 5.90909Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 <path d="M6 8C7.10457 8 8 7.10457 8 6C8 4.89543 7.10457 4 6 4C4.89543 4 4 4.89543 4 6C4 7.10457 4.89543 8 6 8Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
               <span>HSR,Layout, KA</span>
             </div>
             <div className="flex items-center gap-1.5 opacity-90">
-              <svg width="11" height="15" viewBox="0 0 11 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg width="24" height="24" viewBox="0 0 11 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M8.5 1H2.25C1.55964 1 1 1.55964 1 2.25V12.25C1 12.9404 1.55964 13.5 2.25 13.5H8.5C9.19036 13.5 9.75 12.9404 9.75 12.25V2.25C9.75 1.55964 9.19036 1 8.5 1Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
               <span>9136479870</span>
@@ -99,7 +99,7 @@ const MyProfile = () => {
           </div>
           <button className="px-2.5 py-1 text-xs rounded-lg border border-white/30 bg-white/10 hover:bg-white/20 text-white transition-colors flex items-center gap-1.5">
             Edit profile
-            <svg width="12" height="12" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="24" height="24" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M10.1596 4.32367L5.41565 9.06764C5.08103 9.40218 4.66483 9.64379 4.20859 9.76922L2.90555 10.1276C2.71859 10.179 2.54687 10.0073 2.59827 9.82032L2.95665 8.51728C3.08209 8.06105 3.32369 7.64484 3.65824 7.31023L8.4022 2.56626C8.88749 2.08128 9.67445 2.08179 10.1596 2.56695C10.6445 3.05214 10.6445 3.83848 10.1596 4.32367Z" stroke="white" strokeWidth="1.5"/>
               <path d="M7.81738 2.97656L9.80612 4.9653" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
               <path d="M1.875 12.5H13.125" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
@@ -111,7 +111,7 @@ const MyProfile = () => {
         <div className="relative flex items-center justify-between text-xs text-white opacity-90">
           <p>Looking for jobs in UI/UX Designer/ Web Designer</p>
           <button className="p-1 rounded-full bg-white/15 hover:bg-white/25 transition-colors">
-            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="24" height="24" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M10.1596 4.32367L5.41565 9.06764C5.08103 9.40218 4.66483 9.64379 4.20859 9.76922L2.90555 10.1276C2.71859 10.179 2.54687 10.0073 2.59827 9.82032L2.95665 8.51728C3.08209 8.06105 3.32369 7.64484 3.65824 7.31023L8.4022 2.56626C8.88749 2.08128 9.67445 2.08179 10.1596 2.56695C10.6445 3.05214 10.6445 3.83848 10.1596 4.32367Z" stroke="white" strokeWidth="1.5"/>
               <path d="M7.81738 2.97656L9.80612 4.9653" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
               <path d="M1.875 12.5H13.125" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
