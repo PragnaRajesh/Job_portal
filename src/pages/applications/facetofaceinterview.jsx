@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { ChevronLeft, Bell, Phone } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Geolocation } from '@capacitor/geolocation';
+import { Geolocation } from "@capacitor/geolocation";
 import placeholderImage from "../../assets/company-placeholder.png";
 import googleIcon from "../../assets/google.png";
 import uberIcon from "../../assets/uber.png";
 import rapidoIcon from "../../assets/rapido.png";
 import shareIcon from "../../assets/share.png";
-
+import reachedGrey from "../../assets/reached-grey.png";
+import reachedGreen from "../../assets/reached-green.png";
 
 const FaceToFaceInterview = () => {
   const navigate = useNavigate();
@@ -25,6 +26,11 @@ const FaceToFaceInterview = () => {
   const [currentLocation, setCurrentLocation] = useState(null);
   const [distance, setDistance] = useState("");
   const [duration, setDuration] = useState("");
+  const [hasReached, setHasReached] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const [thumbLeft, setThumbLeft] = useState(0);
+  const [showPopup, setShowPopup] = useState(false);
+  const trackRef = useRef(null);
 
   const rescheduleReasons = [
     "Medical Emergency",
@@ -109,7 +115,17 @@ const FaceToFaceInterview = () => {
     }
   };
 
-  // ✅ Auto-call location logic on mount
+  // Handle mouse/touch release globally
+  useEffect(() => {
+    const stopDrag = () => setIsDragging(false);
+    document.addEventListener("mouseup", stopDrag);
+    document.addEventListener("touchend", stopDrag);
+    return () => {
+      document.removeEventListener("mouseup", stopDrag);
+      document.removeEventListener("touchend", stopDrag);
+    };
+  }, []);
+
   useEffect(() => {
     handleComingForInterview();
   }, []);
@@ -153,11 +169,10 @@ const FaceToFaceInterview = () => {
 
         <div className="text-xs text-gray-500 mt-2">Time: {job.time}</div>
         <div className="grid grid-cols-3 gap-2 mt-4">
-  <button className="w-full bg-blue-500 text-white text-[13px] py-2 rounded-[5px]">Attend Interview</button>
-  <button className="w-full bg-yellow-400 text-white text-[13px] py-2 rounded-[5px]">Route</button>
-  <button className="w-full bg-sky-400 text-white text-[13px] py-2 rounded-[5px]">Reschedule</button>
-</div>
-
+          <button className="w-full bg-blue-500 text-white text-[13px] py-2 rounded-[5px]">Attend Interview</button>
+          <button className="w-full bg-yellow-400 text-white text-[13px] py-2 rounded-[5px]">Route</button>
+          <button className="w-full bg-sky-400 text-white text-[13px] py-2 rounded-[5px]">Reschedule</button>
+        </div>
 
         {showReasonDropdown && (
           <div className="mt-4 bg-white border rounded-xl p-4 shadow-sm">
@@ -210,9 +225,7 @@ const FaceToFaceInterview = () => {
               title="Map"
               className="w-full h-64 rounded-lg mb-2"
               frameBorder="0"
-              src={`https://www.google.com/maps/embed/v1/directions?key=AIzaSyB2NP7lSemQeJ0fPfFnfyCxs_X0kg137F4&origin=${currentLocation}&destination=${encodeURIComponent(
-                job.location
-              )}&mode=driving`}
+              src={`https://www.google.com/maps/embed/v1/directions?key=AIzaSyB2NP7lSemQeJ0fPfFnfyCxs_X0kg137F4&origin=${currentLocation}&destination=${encodeURIComponent(job.location)}&mode=driving`}
               allowFullScreen
             ></iframe>
 
@@ -222,38 +235,98 @@ const FaceToFaceInterview = () => {
               </p>
             )}
 
-            <h3 className="font-semibold text-base mb-2">Choose a Navigation App</h3>
-<div className="space-y-2">
-  <button
-    onClick={() => handleNavigationClick("google")}
-    className="flex items-center gap-3 w-full border px-4 py-2 rounded-lg text-left"
-  >
-    <img src={googleIcon} alt="Google Maps" className="w-6 h-6" />
-    Google Maps
-  </button>
-  <button
-    onClick={() => handleNavigationClick("rapido")}
-    className="flex items-center gap-3 w-full border px-4 py-2 rounded-lg text-left"
-  >
-    <img src={rapidoIcon} alt="Rapido" className="w-6 h-6" />
-    Rapido
-  </button>
-  <button
-    onClick={() => handleNavigationClick("uber")}
-    className="flex items-center gap-3 w-full border px-4 py-2 rounded-lg text-left"
-  >
-    <img src={uberIcon} alt="Uber" className="w-6 h-6" />
-    Uber
-  </button>
-  <button
-    onClick={() => handleNavigationClick("share")}
-    className="flex items-center gap-3 w-full border px-4 py-2 rounded-lg text-left"
-  >
-    <img src={shareIcon} alt="Share" className="w-6 h-6" />
-    Share to Family & Friends
-  </button>
-</div>
+            {/* Sliding Button */}
+            <div className="mt-6 flex items-center justify-center">
+              <div
+                ref={trackRef}
+                className="relative w-full max-w-[320px] h-12 rounded-full overflow-hidden cursor-pointer select-none"
+                style={{
+                  backgroundImage: `url(${hasReached ? reachedGreen : reachedGrey})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+                onMouseMove={(e) => {
+                  if (!isDragging || hasReached) return;
+                  const rect = trackRef.current.getBoundingClientRect();
+                  const x = e.clientX - rect.left;
+                  const max = rect.width - 48;
+                  if (x >= max) {
+                    setThumbLeft(max);
+                    setHasReached(true);
+                    setIsDragging(false);
+                    setShowPopup(true);
+                  } else if (x > 0) {
+                    setThumbLeft(x);
+                  }
+                }}
+                onTouchMove={(e) => {
+                  if (!isDragging || hasReached) return;
+                  const rect = trackRef.current.getBoundingClientRect();
+                  const x = e.touches[0].clientX - rect.left;
+                  const max = rect.width - 48;
+                  if (x >= max) {
+                    setThumbLeft(max);
+                    setHasReached(true);
+                    setIsDragging(false);
+                    setShowPopup(true);
+                  } else if (x > 0) {
+                    setThumbLeft(x);
+                  }
+                }}
+              >
+                {!hasReached && (
+                  <div
+                    onMouseDown={() => setIsDragging(true)}
+                    onTouchStart={() => setIsDragging(true)}
+                    className="absolute top-0 left-0 w-12 h-12 bg-white rounded-full shadow-md z-10 flex items-center justify-center transition-all"
+                    style={{ left: `${thumbLeft}px` }}
+                  >
+                    <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M9 18l6-6-6-6" fill="#1D4ED8" />
+                    </svg>
+                  </div>
+                )}
+              </div>
+            </div>
 
+            {/* Popup */}
+            {showPopup && (
+              <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                <div className="bg-white rounded-xl p-6 text-center shadow-xl max-w-xs w-full">
+                  <h2 className="text-xl font-bold mb-2">You're Here! 🎉</h2>
+                  <p className="text-sm text-gray-600 mb-4">
+                    Good luck with your interview at <strong>{job.title}</strong>.
+                  </p>
+                  <button
+                    onClick={() => setShowPopup(false)}
+                    className="mt-2 bg-blue-500 text-white px-4 py-2 rounded-md"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* Navigation Buttons */}
+            <h3 className="font-semibold text-base mb-2 mt-6">Choose a Navigation App</h3>
+            <div className="space-y-2">
+              <button onClick={() => handleNavigationClick("google")} className="flex items-center gap-3 w-full border px-4 py-2 rounded-lg text-left">
+                <img src={googleIcon} alt="Google Maps" className="w-6 h-6" />
+                Google Maps
+              </button>
+              <button onClick={() => handleNavigationClick("rapido")} className="flex items-center gap-3 w-full border px-4 py-2 rounded-lg text-left">
+                <img src={rapidoIcon} alt="Rapido" className="w-6 h-6" />
+                Rapido
+              </button>
+              <button onClick={() => handleNavigationClick("uber")} className="flex items-center gap-3 w-full border px-4 py-2 rounded-lg text-left">
+                <img src={uberIcon} alt="Uber" className="w-6 h-6" />
+                Uber
+              </button>
+              <button onClick={() => handleNavigationClick("share")} className="flex items-center gap-3 w-full border px-4 py-2 rounded-lg text-left">
+                <img src={shareIcon} alt="Share" className="w-6 h-6" />
+                Share to Family & Friends
+              </button>
+            </div>
           </div>
         </div>
       )}
