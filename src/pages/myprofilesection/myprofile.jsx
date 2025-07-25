@@ -147,7 +147,7 @@ const MyProfile = () => {
               <span className="font-medium">Work experience</span>
             </div>
             <button className="relative w-6 h-6">
-              <div className="w-6 h-6 bg-blue-200 rounded-full"></div>
+              <div className="w-6 h-6 bg-blue-100 rounded-full"></div>
               <span className="absolute inset-0 flex items-center justify-center text-[#074799] text-lg font-bold">+</span>
             </button>
           </div>
@@ -157,7 +157,7 @@ const MyProfile = () => {
               <span className="font-medium">Skills</span>
             </div>
             <button className="relative w-6 h-6">
-              <div className="w-6 h-6 bg-blue-200 rounded-full"></div>
+              <div className="w-6 h-6 bg-blue-100 rounded-full"></div>
               <span className="absolute inset-0 flex items-center justify-center text-[#074799] text-lg font-bold">+</span>
             </button>
           </div>
@@ -167,7 +167,7 @@ const MyProfile = () => {
               <span className="font-medium">Category Details</span>
             </div>
             <button className="relative w-6 h-6">
-              <div className="w-6 h-6 bg-blue-200 rounded-full"></div>
+              <div className="w-6 h-6 bg-blue-100 rounded-full"></div>
               <span className="absolute inset-0 flex items-center justify-center text-[#074799] text-lg font-bold">+</span>
             </button>
           </div>
@@ -177,7 +177,7 @@ const MyProfile = () => {
               <span className="font-medium">Basic Details</span>
             </div>
             <button className="relative w-6 h-6">
-              <div className="w-6 h-6 bg-blue-200 rounded-full"></div>
+              <div className="w-6 h-6 bg-blue-100 rounded-full"></div>
               <span className="absolute inset-0 flex items-center justify-center text-[#074799] text-lg font-bold">+</span>
             </button>
           </div>
