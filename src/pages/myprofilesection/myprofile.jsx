@@ -93,10 +93,41 @@ const MyProfile = () => {
             <div className="flex flex-col items-center">
               <img src={iconChart} alt="HR Score Icon" className="w-10 h-10" />
               <p className="mt-2 font-medium">HR Score</p>
-              <div className="w-full bg-gray-200 h-2 rounded-full mt-2">
-                <div className="bg-blue-600 h-2 rounded-full w-[30%]"></div>
+              <div className="relative mt-3 mb-2">
+                <svg width="78" height="72" viewBox="0 0 78 72" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-16 h-16">
+                  <defs>
+                    <filter id="filter0_d_879_691" x="0.137537" y="0.809086" width="77.2884" height="77.2884" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                      <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+                      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                      <feOffset dy="3.77018"/>
+                      <feGaussianBlur stdDeviation="14.6095"/>
+                      <feComposite in2="hardAlpha" operator="out"/>
+                      <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_879_691"/>
+                      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_879_691" result="shape"/>
+                    </filter>
+                    <filter id="filter1_d_879_691" x="4.85043" y="5.52198" width="67.8636" height="67.8636" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                      <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+                      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                      <feOffset dy="3.77018"/>
+                      <feGaussianBlur stdDeviation="14.6095"/>
+                      <feComposite in2="hardAlpha" operator="out"/>
+                      <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_879_691"/>
+                      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_879_691" result="shape"/>
+                    </filter>
+                  </defs>
+                  <g filter="url(#filter0_d_879_691)">
+                    <circle cx="38.7819" cy="35.6833" r="9.42545" fill="white"/>
+                  </g>
+                  <g filter="url(#filter1_d_879_691)">
+                    <circle cx="38.7821" cy="35.6834" r="4.71273" fill="#074799"/>
+                  </g>
+                </svg>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-xs font-semibold text-white">30%</span>
+                </div>
               </div>
-              <span className="text-sm mt-1">30%</span>
             </div>
           </div>
         </div>
