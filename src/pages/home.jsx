@@ -261,30 +261,39 @@ const Home = () => {
 
           {showPopup && (
             <div
-              className="absolute bottom-16 left-1/2 transform -translate-x-1/2 bg-white w-64 rounded-2xl border border-gray-200 shadow-xl p-5 z-50"
+              className="fixed left-0 bottom-0 w-full h-1/2 bg-gradient-to-t from-blue-100 via-white to-white rounded-t-3xl shadow-2xl z-50 flex flex-col items-center justify-center animate-slideUp"
               ref={popupRef}
+              style={{animation: 'slideUp 0.3s cubic-bezier(0.4,0,0.2,1)'}}
             >
-              <h3 className="text-lg font-semibold mb-4 text-center text-gray-800">
-                Quick Actions
-              </h3>
-              <div className="flex flex-col gap-3">
-                <button
-                  onClick={() => {
-                    setShowPopup(false);
-                    navigate("/messages");
-                  }}
-                  className="w-full bg-blue-100 text-blue-800 py-2 rounded-lg font-medium hover:bg-blue-200"
-                >
-                  📩 Messages
-                </button>
+              <div className="w-16 h-1 bg-blue-300 rounded-full mb-6 mt-2" />
+              <h3 className="text-xl font-bold mb-8 text-blue-900">Quick Actions</h3>
+              <div className="flex flex-col gap-5 w-3/4">
                 <button
                   onClick={() => {
                     setShowPopup(false);
                     navigate("/resume/resumebuilder");
                   }}
-                  className="w-full bg-green-100 text-green-800 py-2 rounded-lg font-medium hover:bg-green-200"
+                  className="w-full bg-blue-500 text-white py-3 rounded-xl font-semibold text-lg shadow-md hover:bg-blue-600 transition"
                 >
                   📝 Resume Builder
+                </button>
+                <button
+                  onClick={() => {
+                    setShowPopup(false);
+                    navigate("/messages");
+                  }}
+                  className="w-full bg-green-500 text-white py-3 rounded-xl font-semibold text-lg shadow-md hover:bg-green-600 transition"
+                >
+                  💬 Chats
+                </button>
+                <button
+                  onClick={() => {
+                    setShowPopup(false);
+                    navigate("/aijobprep");
+                  }}
+                  className="w-full bg-purple-500 text-white py-3 rounded-xl font-semibold text-lg shadow-md hover:bg-purple-600 transition"
+                >
+                  🤖 AI Job Prep
                 </button>
               </div>
             </div>
