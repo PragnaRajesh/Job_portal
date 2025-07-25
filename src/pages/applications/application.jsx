@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import hrScoreIcon from "../../assets/HR Score.png";
+import HRScoreProgress from "../../components/HRScoreProgress";
 import hrReviewIcon from "../../assets/HR review.png";
 import placeholderImage from "../../assets/company-placeholder.png";
 
@@ -126,17 +127,17 @@ const Application = () => {
 
       {/* HR Score Box */}
       <div className="rounded-xl shadow-[0_8px_20px_rgba(0,123,255,0.15)] p-4 mb-4 text-black" style={{ backgroundImage: "linear-gradient(to right, #FF8A8A, #4B99FF)" }}>
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 p-1 rounded-xl" style={{ backgroundImage: "linear-gradient(to right, #407BFFB3, #1C1A1AE6)" }}>
-            <img src={hrScoreIcon} alt="HR Score" className="object-contain w-full h-full rounded-lg" />
+        <div className="flex items-center gap-4">
+          <HRScoreProgress score={781} maxScore={900} className="flex-shrink-0" />
+          <div className="flex-1">
+            <h3 className="text-sm font-semibold text-white mb-2">
+              Your HR Performance Score
+            </h3>
+            <p className="text-xs text-black">
+              Rescheduling 2+ interviews reduces your HR score
+            </p>
           </div>
-          <h3 className="text-sm font-semibold">
-            HR Score: <span className="font-bold ml-1 text-white">781/900</span>
-          </h3>
         </div>
-        <p className="text-xs text-black mt-2">
-          Rescheduling 2+ interviews reduces your HR score
-        </p>
       </div>
 
       {/* HR Review Box */}
