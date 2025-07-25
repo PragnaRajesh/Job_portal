@@ -17,6 +17,7 @@ import iconSkills from '../../assets/3.png';
 import iconWork from '../../assets/4.png';
 import iconFolder from '../../assets/5.png';
 import iconChart from '../../assets/6.png';
+import HRScoreProgress from '../../components/HRScoreProgress';
 
 const MyProfile = () => {
   const navigate = useNavigate();
@@ -91,12 +92,7 @@ const MyProfile = () => {
           </div>
           <div className="flex-1 p-4 rounded-xl shadow-sm border">
             <div className="flex flex-col items-center">
-              <img src={iconChart} alt="HR Score Icon" className="w-10 h-10" />
-              <p className="mt-2 font-medium">HR Score</p>
-              <div className="w-full bg-gray-200 h-2 rounded-full mt-2">
-                <div className="bg-blue-600 h-2 rounded-full w-[30%]"></div>
-              </div>
-              <span className="text-sm mt-1">30%</span>
+              <HRScoreProgress score={270} maxScore={900} />
             </div>
           </div>
         </div>
