@@ -1,14 +1,14 @@
-import React from 'react';
+import {useRef, useEffect, React, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Edit3,
   Share2,
   MapPin,
   Plus,
-  Home,
+  HomeIcon,
   Briefcase,
   FileText,
-  UserCircle
+  User
 } from 'lucide-react';
 
 import iconBasic from '../../assets/1.png';
@@ -20,6 +20,18 @@ import iconChart from '../../assets/6.png';
 
 const MyProfile = () => {
   const navigate = useNavigate();
+  const [showPopup, setShowPopup] = useState(false);
+    const popupRef = useRef(null);
+    
+    useEffect(() => {
+        const handleClickOutside = (e) => {
+          if (popupRef.current && !popupRef.current.contains(e.target)) {
+            setShowPopup(false);
+          }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+      }, []);
 
   return (
      <div className="min-h-screen bg-gray-100 pb-24 font-sans">
@@ -145,16 +157,11 @@ const MyProfile = () => {
         {/* Row 4: Bio and Edit Icon */}
         <div className="relative flex items-center justify-between text-xs text-white opacity-90">
           <p>Looking for jobs in UI/UX Designer/ Web Designer</p>
-          <button className="p-1 rounded-full bg-white/15 hover:bg-white/25 transition-colors">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g clipPath="url(#clip0_879_724)">
-                <path fillRule="evenodd" clipRule="evenodd" d="M23.3103 8.87844L19.1216 4.68875C18.8402 4.40737 18.4587 4.24929 18.0608 4.24929C17.6629 4.24929 17.2813 4.40737 17 4.68875L5.43969 16.25C5.15711 16.5303 4.99873 16.9123 5 17.3103V21.5C5 22.3284 5.67157 23 6.5 23H10.6897C11.0877 23.0013 11.4697 22.8429 11.75 22.5603L23.3103 11C23.5917 10.7187 23.7498 10.3371 23.7498 9.93922C23.7498 9.54133 23.5917 9.15975 23.3103 8.87844ZM10.6897 21.5H6.5V17.3103L14.75 9.06031L18.9397 13.25L10.6897 21.5ZM20 12.1888L15.8103 8L18.0603 5.75L22.25 9.93875L20 12.1888Z" fill="white"/>
-              </g>
-              <defs>
-                <clipPath id="clip0_879_724">
-                  <rect width="24" height="24" fill="white" transform="translate(2 2)"/>
-                </clipPath>
-              </defs>
+          <button className="p-1 rounded-full  hover:bg-white/25 transition-colors">
+                        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.1596 4.32367L5.41565 9.06764C5.08103 9.40218 4.66483 9.64379 4.20859 9.76922L2.90555 10.1276C2.71859 10.179 2.54687 10.0073 2.59827 9.82032L2.95665 8.51728C3.08209 8.06105 3.32369 7.64484 3.65824 7.31023L8.4022 2.56626C8.88749 2.08128 9.67445 2.08179 10.1596 2.56695C10.6445 3.05214 10.6445 3.83848 10.1596 4.32367Z" stroke="white" strokeWidth="1.5"/>
+              <path d="M7.81738 2.97656L9.80612 4.9653" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+              <path d="M1.875 12.5H13.125" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
             </svg>
           </button>
         </div>
@@ -248,46 +255,104 @@ const MyProfile = () => {
 
       {/* Sections */}
       <div className="space-y-4 mt-4 px-4">
-        <div className="flex items-center justify-between bg-[#F6F7FB] p-4 rounded-xl">
-          <div className="flex items-center gap-3">
-            <img src={iconWork} alt="Work Experience" className="w-8 h-8" />
-            <span className="font-medium">Work experience</span>
-          </div>
-          <button className="text-blue-600 text-lg font-bold">+</button>
+  <div className="flex items-center justify-between bg-[#F6F7FB] p-4 rounded-xl">
+    <div className="flex items-center gap-3">
+      <img src={iconWork} alt="Work Experience" className="w-8 h-8" />
+      <span className="font-medium text-[#1A1A2C]">Work experience</span>
+    </div>
+    <button className="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full">
+      <Plus size={20} className="text-[#074799]" />
+    </button>
+  </div>
+
+  <div className="flex items-center justify-between bg-[#F6F7FB] p-4 rounded-xl">
+    <div className="flex items-center gap-3">
+      <img src={iconSkills} alt="Skills" className="w-8 h-8" />
+      <span className="font-medium text-[#1A1A2C]">Skills</span>
+    </div>
+    <button className="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full">
+      <Plus size={20} className="text-[#074799]" />
+    </button>
+  </div>
+
+  <div className="flex items-center justify-between bg-[#F6F7FB] p-4 rounded-xl">
+    <div className="flex items-center gap-3">
+      <img src={iconCategory} alt="Category Details" className="w-8 h-8" />
+      <span className="font-medium text-[#1A1A2C]">Category Details</span>
+    </div>
+    <button className="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full">
+      <Plus size={20} className="text-[#074799]" />
+    </button>
+  </div>
+
+  <div className="flex items-center justify-between bg-[#F6F7FB] p-4 rounded-xl">
+    <div className="flex items-center gap-3">
+      <img src={iconBasic} alt="Basic Details" className="w-8 h-8" />
+      <span className="font-medium text-[#1A1A2C]">Basic Details</span>
+    </div>
+    <button className="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full">
+      <Plus size={20} className="text-[#074799]" />
+    </button>
+  </div>
+</div>
+      {/* ✅ Fixed Bottom Navigation */}
+      <div className="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around py-3 border-t border-gray-200 bg-white/95 backdrop-blur-sm">
+        <button onClick={() => navigate("/home")}>
+          <HomeIcon className="w-6 h-6 text-blue-600" />
+        </button>
+        <button onClick={() => navigate("/jobs/joblist")}>
+          <Briefcase className="w-6 h-6 text-gray-400 hover:text-gray-600 transition-colors" />
+        </button>
+
+        {/* Plus Icon with Popup */}
+        <div className="relative">
+          <button
+            onClick={() => setShowPopup(!showPopup)}
+            className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 transition-all duration-300 hover:scale-105"
+          >
+            <Plus className="w-6 h-6 text-white" />
+          </button>
+
+          {showPopup && (
+            <div
+              className="absolute bottom-16 left-1/2 transform -translate-x-1/2 bg-white w-64 rounded-2xl border border-gray-200 shadow-xl p-5 z-50"
+              ref={popupRef}
+            >
+              <h3 className="text-lg font-semibold mb-4 text-center text-gray-800">
+                Quick Actions
+              </h3>
+              <div className="flex flex-col gap-3">
+                <button
+                  onClick={() => {
+                    setShowPopup(false);
+                    navigate("/messages");
+                  }}
+                  className="w-full bg-blue-100 text-blue-800 py-2 rounded-lg font-medium hover:bg-blue-200"
+                >
+                  📩 Messages
+                </button>
+                <button
+                  onClick={() => {
+                    setShowPopup(false);
+                    navigate("/resume/resumebuilder");
+                  }}
+                  className="w-full bg-green-100 text-green-800 py-2 rounded-lg font-medium hover:bg-green-200"
+                >
+                  📝 Resume Builder
+                </button>
+              </div>
+            </div>
+          )}
         </div>
-        <div className="flex items-center justify-between bg-[#F6F7FB] p-4 rounded-xl">
-          <div className="flex items-center gap-3">
-            <img src={iconSkills} alt="Skills" className="w-8 h-8" />
-            <span className="font-medium">Skills</span>
-          </div>
-          <button className="text-blue-600 text-lg font-bold">+</button>
-        </div>
-        <div className="flex items-center justify-between bg-[#F6F7FB] p-4 rounded-xl">
-          <div className="flex items-center gap-3">
-            <img src={iconCategory} alt="Category Details" className="w-8 h-8" />
-            <span className="font-medium">Category Details</span>
-          </div>
-          <button className="text-blue-600 text-lg font-bold">+</button>
-        </div>
-        <div className="flex items-center justify-between bg-[#F6F7FB] p-4 rounded-xl">
-          <div className="flex items-center gap-3">
-            <img src={iconBasic} alt="Basic Details" className="w-8 h-8" />
-            <span className="font-medium">Basic Details</span>
-          </div>
-          <button className="text-blue-600 text-lg font-bold">+</button>
-        </div>
+
+        <button onClick={() => navigate("/applications/application")}>
+          <FileText className="w-6 h-6 text-gray-400 hover:text-gray-600 transition-colors" />
+        </button>
+        <button onClick={() => navigate("/myprofilesection/myprofile")}>
+          <User className="w-6 h-6 text-gray-400 hover:text-gray-600 transition-colors" />
+        </button>
       </div>
 
-      {/* Bottom Nav */}
-      <div className="fixed bottom-0 w-full bg-white border-t flex justify-around items-center p-3 z-50">
-        <Home />
-        <Briefcase />
-        <div className="bg-blue-700 text-white p-2 rounded-full">
-          <Plus />
-        </div>
-        <FileText />
-        <UserCircle className="text-blue-700" />
-      </div>
     </div>
   );
 };
