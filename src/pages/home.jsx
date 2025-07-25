@@ -6,11 +6,11 @@ import {
   MapPin,
   Bookmark,
   HomeIcon,
-  Plus,
   User,
   Briefcase,
   FileText
 } from "lucide-react";
+import QuickActionsPopup from '../components/QuickActionsPopup';
 
 import telegramLogo from "../assets/telegram.png";
 import netflixLogo from "../assets/netflix.jpeg";
@@ -250,46 +250,7 @@ const Home = () => {
           <Briefcase className="w-6 h-6 text-gray-400 hover:text-gray-600 transition-colors" />
         </button>
 
-        {/* Plus Icon with Popup */}
-        <div className="relative">
-          <button
-            onClick={() => setShowPopup(!showPopup)}
-            className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 transition-all duration-300 hover:scale-105"
-          >
-            <Plus className="w-6 h-6 text-white" />
-          </button>
-
-          {showPopup && (
-            <div
-              className="absolute bottom-16 left-1/2 transform -translate-x-1/2 bg-white w-64 rounded-2xl border border-gray-200 shadow-xl p-5 z-50"
-              ref={popupRef}
-            >
-              <h3 className="text-lg font-semibold mb-4 text-center text-gray-800">
-                Quick Actions
-              </h3>
-              <div className="flex flex-col gap-3">
-                <button
-                  onClick={() => {
-                    setShowPopup(false);
-                    navigate("/messages");
-                  }}
-                  className="w-full bg-blue-100 text-blue-800 py-2 rounded-lg font-medium hover:bg-blue-200"
-                >
-                  📩 Messages
-                </button>
-                <button
-                  onClick={() => {
-                    setShowPopup(false);
-                    navigate("/resume/resumebuilder");
-                  }}
-                  className="w-full bg-green-100 text-green-800 py-2 rounded-lg font-medium hover:bg-green-200"
-                >
-                  📝 Resume Builder
-                </button>
-              </div>
-            </div>
-          )}
-        </div>
+        <QuickActionsPopup showPopup={showPopup} setShowPopup={setShowPopup} />
 
         <button onClick={() => navigate("/applications/application")}>
           <FileText className="w-6 h-6 text-gray-400 hover:text-gray-600 transition-colors" />

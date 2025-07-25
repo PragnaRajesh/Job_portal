@@ -46,6 +46,7 @@ import ResumeBuilder from "./pages/resume/resumebuilder";
 import Settings from "./pages/settings/settings";
 import ChangePassword from "./pages/settings/changepassword";
 import Help from "./pages/settings/help";
+import AIPrep from "./pages/ai-prep/ai-prep";
 
 // Wrapper to pass state to SuccessScreen
 const SuccessScreenWrapper = () => {
@@ -120,6 +121,9 @@ const App = () => {
           <Route path="/settings" element={<Settings />} />
           <Route path="/changepassword" element={<ChangePassword />} />
           <Route path="/help" element={<Help />} />
+
+          {/* AI Prep Routes */}
+          <Route path="/ai-prep" element={<AIPrep />} />
         </Routes>
       </ConversationProvider>
     </BrowserRouter>
