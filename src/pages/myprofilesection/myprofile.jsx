@@ -7,7 +7,6 @@ import {
   Send,
   Settings,
   FileText,
-  Folder,
   PieChart,
   Briefcase,
   Snowflake,
@@ -16,6 +15,7 @@ import {
   Home,
   User
 } from 'lucide-react';
+import HistoryIcon from '../../components/HistoryIcon';
 
 const MyProfile = () => {
   const navigate = useNavigate();
@@ -227,7 +227,7 @@ const MyProfile = () => {
         <div className="grid grid-cols-2 gap-3">
           <div className="bg-white rounded-xl p-4 shadow-sm">
             <div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center mb-3">
-              <Folder size={20} className="text-blue-600" />
+              <HistoryIcon size={20} />
             </div>
             <h4 className="font-medium text-gray-900 mb-3 text-sm">Job History</h4>
             <button className="w-full py-2 px-3 bg-blue-600 text-white rounded-lg text-xs font-medium hover:bg-blue-700 transition-colors">
