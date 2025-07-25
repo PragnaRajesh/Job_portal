@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import {
   MapPin,
   Phone,
-  Edit3,
   Send,
   Settings,
   FileText,
@@ -152,7 +151,7 @@ const MyProfile = () => {
           </div>
           <button className="px-2.5 py-1 text-xs rounded-lg border border-white/30 bg-white/10 hover:bg-white/20 text-white transition-colors flex items-center gap-1.5">
             Edit profile
-            <svg width="24" height="24" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M10.1596 4.32367L5.41565 9.06764C5.08103 9.40218 4.66483 9.64379 4.20859 9.76922L2.90555 10.1276C2.71859 10.179 2.54687 10.0073 2.59827 9.82032L2.95665 8.51728C3.08209 8.06105 3.32369 7.64484 3.65824 7.31023L8.4022 2.56626C8.88749 2.08128 9.67445 2.08179 10.1596 2.56695C10.6445 3.05214 10.6445 3.83848 10.1596 4.32367Z" stroke="white" strokeWidth="1.5"/>
               <path d="M7.81738 2.97656L9.80612 4.9653" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
               <path d="M1.875 12.5H13.125" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
@@ -164,10 +163,15 @@ const MyProfile = () => {
         <div className="relative flex items-center justify-between text-xs text-white opacity-90">
           <p>Looking for jobs in UI/UX Designer/ Web Designer</p>
           <button className="p-1 rounded-full bg-white/15 hover:bg-white/25 transition-colors">
-            <svg width="24" height="24" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10.1596 4.32367L5.41565 9.06764C5.08103 9.40218 4.66483 9.64379 4.20859 9.76922L2.90555 10.1276C2.71859 10.179 2.54687 10.0073 2.59827 9.82032L2.95665 8.51728C3.08209 8.06105 3.32369 7.64484 3.65824 7.31023L8.4022 2.56626C8.88749 2.08128 9.67445 2.08179 10.1596 2.56695C10.6445 3.05214 10.6445 3.83848 10.1596 4.32367Z" stroke="white" strokeWidth="1.5"/>
-              <path d="M7.81738 2.97656L9.80612 4.9653" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-              <path d="M1.875 12.5H13.125" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clipPath="url(#clip0_879_724)">
+                <path fillRule="evenodd" clipRule="evenodd" d="M23.3103 8.87844L19.1216 4.68875C18.8402 4.40737 18.4587 4.24929 18.0608 4.24929C17.6629 4.24929 17.2813 4.40737 17 4.68875L5.43969 16.25C5.15711 16.5303 4.99873 16.9123 5 17.3103V21.5C5 22.3284 5.67157 23 6.5 23H10.6897C11.0877 23.0013 11.4697 22.8429 11.75 22.5603L23.3103 11C23.5917 10.7187 23.7498 10.3371 23.7498 9.93922C23.7498 9.54133 23.5917 9.15975 23.3103 8.87844ZM10.6897 21.5H6.5V17.3103L14.75 9.06031L18.9397 13.25L10.6897 21.5ZM20 12.1888L15.8103 8L18.0603 5.75L22.25 9.93875L20 12.1888Z" fill="white"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_879_724">
+                  <rect width="24" height="24" fill="white" transform="translate(2 2)"/>
+                </clipPath>
+              </defs>
             </svg>
           </button>
         </div>
@@ -185,7 +189,16 @@ const MyProfile = () => {
               <p className="text-sm text-blue-600">123 Elm Street, Anytown</p>
             </div>
             <button className="p-2 rounded-full hover:bg-gray-50 transition-colors flex-shrink-0">
-              <Edit3 size={16} className="text-gray-400" />
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clipPath="url(#clip0_879_724_contact)">
+                  <path fillRule="evenodd" clipRule="evenodd" d="M23.3103 8.87844L19.1216 4.68875C18.8402 4.40737 18.4587 4.24929 18.0608 4.24929C17.6629 4.24929 17.2813 4.40737 17 4.68875L5.43969 16.25C5.15711 16.5303 4.99873 16.9123 5 17.3103V21.5C5 22.3284 5.67157 23 6.5 23H10.6897C11.0877 23.0013 11.4697 22.8429 11.75 22.5603L23.3103 11C23.5917 10.7187 23.7498 10.3371 23.7498 9.93922C23.7498 9.54133 23.5917 9.15975 23.3103 8.87844ZM10.6897 21.5H6.5V17.3103L14.75 9.06031L18.9397 13.25L10.6897 21.5ZM20 12.1888L15.8103 8L18.0603 5.75L22.25 9.93875L20 12.1888Z" fill="#074799"/>
+                </g>
+                <defs>
+                  <clipPath id="clip0_879_724_contact">
+                    <rect width="24" height="24" fill="white" transform="translate(2 2)"/>
+                  </clipPath>
+                </defs>
+              </svg>
             </button>
           </div>
         </div>
@@ -204,18 +217,27 @@ const MyProfile = () => {
               <p className="font-medium text-gray-900 text-sm">Sumona_resume.pdf</p>
             </div>
             <button className="p-2 rounded-full hover:bg-gray-50 transition-colors flex-shrink-0">
-              <Edit3 size={16} className="text-gray-400" />
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clipPath="url(#clip0_879_724_resume)">
+                  <path fillRule="evenodd" clipRule="evenodd" d="M23.3103 8.87844L19.1216 4.68875C18.8402 4.40737 18.4587 4.24929 18.0608 4.24929C17.6629 4.24929 17.2813 4.40737 17 4.68875L5.43969 16.25C5.15711 16.5303 4.99873 16.9123 5 17.3103V21.5C5 22.3284 5.67157 23 6.5 23H10.6897C11.0877 23.0013 11.4697 22.8429 11.75 22.5603L23.3103 11C23.5917 10.7187 23.7498 10.3371 23.7498 9.93922C23.7498 9.54133 23.5917 9.15975 23.3103 8.87844ZM10.6897 21.5H6.5V17.3103L14.75 9.06031L18.9397 13.25L10.6897 21.5ZM20 12.1888L15.8103 8L18.0603 5.75L22.25 9.93875L20 12.1888Z" fill="#074799"/>
+                </g>
+                <defs>
+                  <clipPath id="clip0_879_724_resume">
+                    <rect width="24" height="24" fill="white" transform="translate(2 2)"/>
+                  </clipPath>
+                </defs>
+              </svg>
             </button>
           </div>
         </div>
 
         <div className="flex gap-3">
-          <button className="flex-1 py-2.5 px-4 bg-gray-200 text-gray-700 rounded-xl text-sm font-medium hover:bg-gray-300 transition-colors">
+          <button className="flex-1 py-2.5 px-4 bg-[#074799]/20 text-black rounded-xl text-sm font-medium hover:bg-[#074799]/30 transition-colors">
             View Resume
           </button>
           <button
             onClick={() => navigate("/resume/resumebuilder")}
-            className="flex-1 py-2.5 px-4 bg-blue-600 text-white rounded-xl text-sm font-medium hover:bg-blue-700 transition-colors"
+            className="flex-1 py-2.5 px-4 bg-[#074799] text-white rounded-xl text-sm font-medium hover:bg-[#053560] transition-colors"
           >
             Build Resume
           </button>
