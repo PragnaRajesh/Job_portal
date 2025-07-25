@@ -146,28 +146,48 @@ const MyProfile = () => {
               <img src={iconWork} alt="Work Experience" className="w-8 h-8" />
               <span className="font-medium">Work experience</span>
             </div>
-            <button className="text-blue-600 text-lg font-bold">+</button>
+            <button className="relative">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle opacity="0.2" cx="12" cy="12" r="11.5" fill="#074799" stroke="#074799"/>
+              </svg>
+              <span className="absolute inset-0 flex items-center justify-center text-[#074799] text-lg font-bold">+</span>
+            </button>
           </div>
           <div className="flex items-center justify-between bg-[#F6F7FB] p-4 rounded-xl">
             <div className="flex items-center gap-3">
               <img src={iconSkills} alt="Skills" className="w-8 h-8" />
               <span className="font-medium">Skills</span>
             </div>
-            <button className="text-blue-600 text-lg font-bold">+</button>
+            <button className="relative">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle opacity="0.2" cx="12" cy="12" r="11.5" fill="#074799" stroke="#074799"/>
+              </svg>
+              <span className="absolute inset-0 flex items-center justify-center text-[#074799] text-lg font-bold">+</span>
+            </button>
           </div>
           <div className="flex items-center justify-between bg-[#F6F7FB] p-4 rounded-xl">
             <div className="flex items-center gap-3">
               <img src={iconCategory} alt="Category Details" className="w-8 h-8" />
               <span className="font-medium">Category Details</span>
             </div>
-            <button className="text-blue-600 text-lg font-bold">+</button>
+            <button className="relative">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle opacity="0.2" cx="12" cy="12" r="11.5" fill="#074799" stroke="#074799"/>
+              </svg>
+              <span className="absolute inset-0 flex items-center justify-center text-[#074799] text-lg font-bold">+</span>
+            </button>
           </div>
           <div className="flex items-center justify-between bg-[#F6F7FB] p-4 rounded-xl">
             <div className="flex items-center gap-3">
               <img src={iconBasic} alt="Basic Details" className="w-8 h-8" />
               <span className="font-medium">Basic Details</span>
             </div>
-            <button className="text-blue-600 text-lg font-bold">+</button>
+            <button className="relative">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle opacity="0.2" cx="12" cy="12" r="11.5" fill="#074799" stroke="#074799"/>
+              </svg>
+              <span className="absolute inset-0 flex items-center justify-center text-[#074799] text-lg font-bold">+</span>
+            </button>
           </div>
         </div>
       </div>
