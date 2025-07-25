@@ -45,6 +45,16 @@ const MyProfile = () => {
     languages: ['English', 'Hindi', 'Kannada'],
     gender: 'Male'
   });
+  const [showEditProfile, setShowEditProfile] = useState(false);
+  const [showEditBio, setShowEditBio] = useState(false);
+  const [showEditContact, setShowEditContact] = useState(false);
+  const [profileData, setProfileData] = useState({
+    name: 'John D',
+    location: 'HSR,Layout, KA',
+    phone: '9136479870',
+    bio: 'Looking for jobs in UI/UX Designer/ Web Designer'
+  });
+  const [tempProfileData, setTempProfileData] = useState(profileData);
   const popupRef = useRef(null);
 
   const addNewWorkExperience = () => {
@@ -138,6 +148,45 @@ const MyProfile = () => {
       ...basicDetails,
       [field]: value
     });
+  };
+
+  // Profile editing functions
+  const handleSaveProfile = () => {
+    setProfileData(tempProfileData);
+    setShowEditProfile(false);
+  };
+
+  const handleCancelProfile = () => {
+    setTempProfileData(profileData);
+    setShowEditProfile(false);
+  };
+
+  const handleSaveBio = () => {
+    setProfileData({...profileData, bio: tempProfileData.bio});
+    setShowEditBio(false);
+  };
+
+  const handleCancelBio = () => {
+    setTempProfileData({...tempProfileData, bio: profileData.bio});
+    setShowEditBio(false);
+  };
+
+  const handleSaveContact = () => {
+    setProfileData({
+      ...profileData, 
+      location: tempProfileData.location,
+      phone: tempProfileData.phone
+    });
+    setShowEditContact(false);
+  };
+
+  const handleCancelContact = () => {
+    setTempProfileData({
+      ...tempProfileData,
+      location: profileData.location,
+      phone: profileData.phone
+    });
+    setShowEditContact(false);
   };
     
     useEffect(() => {
@@ -236,7 +285,7 @@ const MyProfile = () => {
           <button 
             className="p-2 rounded-full bg-white/15 hover:bg-white/25 transition-colors"
             onClick={() => {
-              alert('Settings feature coming soon!');
+              navigate('/settings');
             }}
             title="Settings"
           >
@@ -263,60 +312,157 @@ const MyProfile = () => {
 
         {/* Row 2: Name */}
         <div className="relative mb-2">
-          <h2 className="text-lg font-semibold">John D</h2>
+          {showEditProfile ? (
+            <div className="flex items-center gap-2">
+              <input
+                type="text"
+                value={tempProfileData.name}
+                onChange={(e) => setTempProfileData({...tempProfileData, name: e.target.value})}
+                className="text-lg font-semibold bg-white/20 text-white placeholder-white/70 border border-white/30 rounded px-2 py-1"
+                placeholder="Enter name"
+              />
+              <button onClick={handleSaveProfile} className="text-green-400 hover:text-green-300">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20 6L9 17L4 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+              <button onClick={handleCancelProfile} className="text-red-400 hover:text-red-300">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+            </div>
+          ) : (
+            <div className="flex items-center gap-2">
+              <h2 className="text-lg font-semibold">{profileData.name}</h2>
+              <button 
+                onClick={() => {
+                  setTempProfileData(profileData);
+                  setShowEditProfile(true);
+                }}
+                className="text-white/70 hover:text-white"
+              >
+                <svg width="14" height="14" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10.1596 4.32367L5.41565 9.06764C5.08103 9.40218 4.66483 9.64379 4.20859 9.76922L2.90555 10.1276C2.71859 10.179 2.54687 10.0073 2.59827 9.82032L2.95665 8.51728C3.08209 8.06105 3.32369 7.64484 3.65824 7.31023L8.4022 2.56626C8.88749 2.08128 9.67445 2.08179 10.1596 2.56695C10.6445 3.05214 10.6445 3.83848 10.1596 4.32367Z" stroke="white" strokeWidth="1.5"/>
+                  <path d="M7.81738 2.97656L9.80612 4.9653" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+                </svg>
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Row 3: Location, Phone, and Edit Profile */}
         <div className="relative flex items-center justify-between mb-2">
-          <div className="flex items-center gap-3 text-white text-xs">
-            <div className="flex items-center gap-1.5 opacity-90">
-              <svg width="24" height="24" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M11 5.90909C11 9.72727 6 13 6 13C6 13 1 9.72727 1 5.90909C1 4.60712 1.52678 3.35847 2.46447 2.43784C3.40215 1.51721 4.67392 1 6 1C7.32608 1 8.59785 1.51721 9.53553 2.43784C10.4732 3.35847 11 4.60712 11 5.90909Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M6 8C7.10457 8 8 7.10457 8 6C8 4.89543 7.10457 4 6 4C4.89543 4 4 4.89543 4 6C4 7.10457 4.89543 8 6 8Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-              <span>HSR,Layout, KA</span>
+          {showEditContact ? (
+            <div className="flex-1 space-y-2">
+              <div className="flex items-center gap-2">
+                <svg width="20" height="20" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M11 5.90909C11 9.72727 6 13 6 13C6 13 1 9.72727 1 5.90909C1 4.60712 1.52678 3.35847 2.46447 2.43784C3.40215 1.51721 4.67392 1 6 1C7.32608 1 8.59785 1.51721 9.53553 2.43784C10.4732 3.35847 11 4.60712 11 5.90909Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M6 8C7.10457 8 8 7.10457 8 6C8 4.89543 7.10457 4 6 4C4.89543 4 4 4.89543 4 6C4 7.10457 4.89543 8 6 8Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                <input
+                  type="text"
+                  value={tempProfileData.location}
+                  onChange={(e) => setTempProfileData({...tempProfileData, location: e.target.value})}
+                  className="flex-1 text-xs bg-white/20 text-white placeholder-white/70 border border-white/30 rounded px-2 py-1"
+                  placeholder="Location"
+                />
+              </div>
+              <div className="flex items-center gap-2">
+                <svg width="20" height="20" viewBox="0 0 11 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8.5 1H2.25C1.55964 1 1 1.55964 1 2.25V12.25C1 12.9404 1.55964 13.5 2.25 13.5H8.5C9.19036 13.5 9.75 12.9404 9.75 12.25V2.25C9.75 1.55964 9.19036 1 8.5 1Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                <input
+                  type="text"
+                  value={tempProfileData.phone}
+                  onChange={(e) => setTempProfileData({...tempProfileData, phone: e.target.value})}
+                  className="flex-1 text-xs bg-white/20 text-white placeholder-white/70 border border-white/30 rounded px-2 py-1"
+                  placeholder="Phone number"
+                />
+              </div>
+              <div className="flex gap-2">
+                <button onClick={handleSaveContact} className="px-3 py-1 text-xs bg-green-500 text-white rounded">
+                  Save
+                </button>
+                <button onClick={handleCancelContact} className="px-3 py-1 text-xs bg-red-500 text-white rounded">
+                  Cancel
+                </button>
+              </div>
             </div>
-            <div className="flex items-center gap-1.5 opacity-90">
-              <svg width="24" height="24" viewBox="0 0 11 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8.5 1H2.25C1.55964 1 1 1.55964 1 2.25V12.25C1 12.9404 1.55964 13.5 2.25 13.5H8.5C9.19036 13.5 9.75 12.9404 9.75 12.25V2.25C9.75 1.55964 9.19036 1 8.5 1Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-              <span>9136479870</span>
-            </div>
-          </div>
-          <button 
-            className="px-2.5 py-1 text-xs rounded-lg border border-white/30 bg-white/10 hover:bg-white/20 text-white transition-colors flex items-center gap-1.5"
-            onClick={() => {
-              alert('Edit Profile feature coming soon!\nYou can edit individual sections using the dropdown forms below.');
-            }}
-          >
-            Edit profile
-            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10.1596 4.32367L5.41565 9.06764C5.08103 9.40218 4.66483 9.64379 4.20859 9.76922L2.90555 10.1276C2.71859 10.179 2.54687 10.0073 2.59827 9.82032L2.95665 8.51728C3.08209 8.06105 3.32369 7.64484 3.65824 7.31023L8.4022 2.56626C8.88749 2.08128 9.67445 2.08179 10.1596 2.56695C10.6445 3.05214 10.6445 3.83848 10.1596 4.32367Z" stroke="white" strokeWidth="1.5"/>
-              <path d="M7.81738 2.97656L9.80612 4.9653" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-              <path d="M1.875 12.5H13.125" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-            </svg>
-          </button>
+          ) : (
+            <>
+              <div className="flex items-center gap-3 text-white text-xs">
+                <div className="flex items-center gap-1.5 opacity-90">
+                  <svg width="24" height="24" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11 5.90909C11 9.72727 6 13 6 13C6 13 1 9.72727 1 5.90909C1 4.60712 1.52678 3.35847 2.46447 2.43784C3.40215 1.51721 4.67392 1 6 1C7.32608 1 8.59785 1.51721 9.53553 2.43784C10.4732 3.35847 11 4.60712 11 5.90909Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M6 8C7.10457 8 8 7.10457 8 6C8 4.89543 7.10457 4 6 4C4.89543 4 4 4.89543 4 6C4 7.10457 4.89543 8 6 8Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  <span>{profileData.location}</span>
+                </div>
+                <div className="flex items-center gap-1.5 opacity-90">
+                  <svg width="24" height="24" viewBox="0 0 11 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.5 1H2.25C1.55964 1 1 1.55964 1 2.25V12.25C1 12.9404 1.55964 13.5 2.25 13.5H8.5C9.19036 13.5 9.75 12.9404 9.75 12.25V2.25C9.75 1.55964 9.19036 1 8.5 1Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  <span>{profileData.phone}</span>
+                </div>
+              </div>
+              <button 
+                className="px-2.5 py-1 text-xs rounded-lg border border-white/30 bg-white/10 hover:bg-white/20 text-white transition-colors flex items-center gap-1.5"
+                onClick={() => {
+                  setTempProfileData(profileData);
+                  setShowEditContact(true);
+                }}
+              >
+                Edit profile
+                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10.1596 4.32367L5.41565 9.06764C5.08103 9.40218 4.66483 9.64379 4.20859 9.76922L2.90555 10.1276C2.71859 10.179 2.54687 10.0073 2.59827 9.82032L2.95665 8.51728C3.08209 8.06105 3.32369 7.64484 3.65824 7.31023L8.4022 2.56626C8.88749 2.08128 9.67445 2.08179 10.1596 2.56695C10.6445 3.05214 10.6445 3.83848 10.1596 4.32367Z" stroke="white" strokeWidth="1.5"/>
+                  <path d="M7.81738 2.97656L9.80612 4.9653" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+                  <path d="M1.875 12.5H13.125" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+                </svg>
+              </button>
+            </>
+          )}
         </div>
 
         {/* Row 4: Bio and Edit Icon */}
-        <div className="relative flex items-center justify-between text-xs text-white opacity-90">
-          <p>Looking for jobs in UI/UX Designer/ Web Designer</p>
-          <button 
-            className="p-1 rounded-full hover:bg-white/25 transition-colors"
-            onClick={() => {
-              const newBio = prompt('Edit your bio:', 'Looking for jobs in UI/UX Designer/ Web Designer');
-              if (newBio !== null) {
-                alert(`Bio updated to: "${newBio}"`);
-              }
-            }}
-            title="Edit Bio"
-          >
-            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10.1596 4.32367L5.41565 9.06764C5.08103 9.40218 4.66483 9.64379 4.20859 9.76922L2.90555 10.1276C2.71859 10.179 2.54687 10.0073 2.59827 9.82032L2.95665 8.51728C3.08209 8.06105 3.32369 7.64484 3.65824 7.31023L8.4022 2.56626C8.88749 2.08128 9.67445 2.08179 10.1596 2.56695C10.6445 3.05214 10.6445 3.83848 10.1596 4.32367Z" stroke="white" strokeWidth="1.5"/>
-              <path d="M7.81738 2.97656L9.80612 4.9653" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-              <path d="M1.875 12.5H13.125" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-            </svg>
-          </button>
+        <div className="relative text-xs text-white opacity-90">
+          {showEditBio ? (
+            <div className="space-y-2">
+              <textarea
+                value={tempProfileData.bio}
+                onChange={(e) => setTempProfileData({...tempProfileData, bio: e.target.value})}
+                className="w-full bg-white/20 text-white placeholder-white/70 border border-white/30 rounded px-2 py-1 text-xs resize-none"
+                rows="2"
+                placeholder="Enter your bio"
+              />
+              <div className="flex gap-2">
+                <button onClick={handleSaveBio} className="px-3 py-1 text-xs bg-green-500 text-white rounded">
+                  Save
+                </button>
+                <button onClick={handleCancelBio} className="px-3 py-1 text-xs bg-red-500 text-white rounded">
+                  Cancel
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className="flex items-center justify-between">
+              <p>{profileData.bio}</p>
+              <button 
+                className="p-1 rounded-full hover:bg-white/25 transition-colors ml-2"
+                onClick={() => {
+                  setTempProfileData(profileData);
+                  setShowEditBio(true);
+                }}
+                title="Edit Bio"
+              >
+                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10.1596 4.32367L5.41565 9.06764C5.08103 9.40218 4.66483 9.64379 4.20859 9.76922L2.90555 10.1276C2.71859 10.179 2.54687 10.0073 2.59827 9.82032L2.95665 8.51728C3.08209 8.06105 3.32369 7.64484 3.65824 7.31023L8.4022 2.56626C8.88749 2.08128 9.67445 2.08179 10.1596 2.56695C10.6445 3.05214 10.6445 3.83848 10.1596 4.32367Z" stroke="white" strokeWidth="1.5"/>
+                  <path d="M7.81738 2.97656L9.80612 4.9653" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+                  <path d="M1.875 12.5H13.125" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+                </svg>
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
@@ -328,10 +474,16 @@ const MyProfile = () => {
               <MapPin size={18} className="text-blue-600" />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="font-medium text-gray-900 text-sm">+91 1234567890</p>
-              <p className="text-sm text-blue-600">123 Elm Street, Anytown</p>
+              <p className="font-medium text-gray-900 text-sm">+91 {profileData.phone}</p>
+              <p className="text-sm text-blue-600">{profileData.location}</p>
             </div>
-            <button className="p-2 rounded-full hover:bg-gray-50 transition-colors flex-shrink-0">
+            <button 
+              className="p-2 rounded-full hover:bg-gray-50 transition-colors flex-shrink-0"
+              onClick={() => {
+                setTempProfileData(profileData);
+                setShowEditContact(true);
+              }}
+            >
               <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clipPath="url(#clip0_879_724_contact)">
                   <path fillRule="evenodd" clipRule="evenodd" d="M23.3103 8.87844L19.1216 4.68875C18.8402 4.40737 18.4587 4.24929 18.0608 4.24929C17.6629 4.24929 17.2813 4.40737 17 4.68875L5.43969 16.25C5.15711 16.5303 4.99873 16.9123 5 17.3103V21.5C5 22.3284 5.67157 23 6.5 23H10.6897C11.0877 23.0013 11.4697 22.8429 11.75 22.5603L23.3103 11C23.5917 10.7187 23.7498 10.3371 23.7498 9.93922C23.7498 9.54133 23.5917 9.15975 23.3103 8.87844ZM10.6897 21.5H6.5V17.3103L14.75 9.06031L18.9397 13.25L10.6897 21.5ZM20 12.1888L15.8103 8L18.0603 5.75L22.25 9.93875L20 12.1888Z" fill="#074799"/>
@@ -357,9 +509,29 @@ const MyProfile = () => {
               <FileText size={18} className="text-blue-600" />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="font-medium text-gray-900 text-sm">Sumona_resume.pdf</p>
+              <p className="font-medium text-gray-900 text-sm">{profileData.name.replace(' ', '_')}_resume.pdf</p>
             </div>
-            <button className="p-2 rounded-full hover:bg-gray-50 transition-colors flex-shrink-0">
+            <button 
+              className="p-2 rounded-full hover:bg-gray-50 transition-colors flex-shrink-0"
+              onClick={() => {
+                // Create a file input element
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = '.pdf,.doc,.docx';
+                input.onchange = (e) => {
+                  const file = e.target.files[0];
+                  if (file) {
+                    console.log('New resume file selected:', file.name);
+                    // Update the filename display
+                    const resumeElement = e.target.parentElement.parentElement.querySelector('.font-medium');
+                    if (resumeElement) {
+                      resumeElement.textContent = file.name;
+                    }
+                  }
+                };
+                input.click();
+              }}
+            >
               <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clipPath="url(#clip0_879_724_resume)">
                   <path fillRule="evenodd" clipRule="evenodd" d="M23.3103 8.87844L19.1216 4.68875C18.8402 4.40737 18.4587 4.24929 18.0608 4.24929C17.6629 4.24929 17.2813 4.40737 17 4.68875L5.43969 16.25C5.15711 16.5303 4.99873 16.9123 5 17.3103V21.5C5 22.3284 5.67157 23 6.5 23H10.6897C11.0877 23.0013 11.4697 22.8429 11.75 22.5603L23.3103 11C23.5917 10.7187 23.7498 10.3371 23.7498 9.93922C23.7498 9.54133 23.5917 9.15975 23.3103 8.87844ZM10.6897 21.5H6.5V17.3103L14.75 9.06031L18.9397 13.25L10.6897 21.5ZM20 12.1888L15.8103 8L18.0603 5.75L22.25 9.93875L20 12.1888Z" fill="#074799"/>
@@ -378,7 +550,44 @@ const MyProfile = () => {
           <button 
             className="flex-1 py-2.5 px-4 bg-[#074799]/20 text-black rounded-xl text-sm font-medium hover:bg-[#074799]/30 transition-colors"
             onClick={() => {
-              alert('Opening resume viewer...\nNote: This would typically open a PDF viewer or download the resume.');
+              // Create a mock PDF blob and download it
+              const resumeContent = `
+              ${profileData.name} - Resume
+              
+              Contact Information:
+              Phone: ${profileData.phone}
+              Location: ${profileData.location}
+              
+              Bio: ${profileData.bio}
+              
+              Work Experience:
+              ${workExperiences.map((exp, index) => 
+                `${index + 1}. ${exp.jobTitle} at ${exp.companyName}
+                   Duration: ${exp.years} years, ${exp.months} months
+                   Salary: ${exp.salary}
+                   Currently Working: ${exp.currentlyWorking ? 'Yes' : 'No'}`
+              ).join('\n')}
+              
+              Skills: ${skills.join(', ')}
+              
+              Documents: ${selectedDocuments.join(', ')}
+              
+              Education: ${basicDetails.education.join(', ')}
+              Languages: ${basicDetails.languages.join(', ')}
+              Gender: ${basicDetails.gender}
+              Age: ${basicDetails.age}
+              Alternate Phone: ${basicDetails.alternatePhone}
+              `;
+              
+              const blob = new Blob([resumeContent], { type: 'text/plain' });
+              const url = URL.createObjectURL(blob);
+              const a = document.createElement('a');
+              a.href = url;
+              a.download = `${profileData.name.replace(' ', '_')}_resume.txt`;
+              document.body.appendChild(a);
+              a.click();
+              document.body.removeChild(a);
+              URL.revokeObjectURL(url);
             }}
           >
             View Resume
@@ -556,7 +765,7 @@ const MyProfile = () => {
                   <button
                     className="px-4 py-2 rounded-lg bg-[#0047AB] text-white text-sm"
                     onClick={() => {
-                      alert('Work experience saved');
+                      console.log('Work experiences saved:', workExperiences);
                       setShowWorkExperience(false);
                     }}
                   >
@@ -649,7 +858,7 @@ const MyProfile = () => {
                   <button
                     className="px-4 py-2 bg-blue-700 text-white rounded-lg text-sm hover:bg-blue-800 transition-colors"
                     onClick={() => {
-                      alert(`Skills saved: ${skills.join(', ')}`);
+                      console.log('Skills saved:', skills);
                       setShowSkills(false);
                     }}
                   >
@@ -724,7 +933,7 @@ const MyProfile = () => {
                   <button
                     className="px-4 py-2 bg-blue-700 text-white text-sm rounded-lg hover:bg-blue-800 transition-colors"
                     onClick={() => {
-                      alert(`Documents saved: ${selectedDocuments.join(', ')}`);
+                      console.log('Documents saved:', selectedDocuments);
                       setShowDocuments(false);
                     }}
                   >
@@ -850,7 +1059,7 @@ const MyProfile = () => {
                   <button
                     className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                     onClick={() => {
-                      alert(`Basic details saved:\nPhone: ${basicDetails.alternatePhone}\nAge: ${basicDetails.age}\nEducation: ${basicDetails.education.join(', ')}\nLanguages: ${basicDetails.languages.join(', ')}\nGender: ${basicDetails.gender}`);
+                      console.log('Basic details saved:', basicDetails);
                       setShowBasicDetails(false);
                     }}
                   >
