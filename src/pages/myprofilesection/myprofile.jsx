@@ -146,11 +146,8 @@ const MyProfile = () => {
               <img src={iconWork} alt="Work Experience" className="w-8 h-8" />
               <span className="font-medium">Work experience</span>
             </div>
-            <button className="relative">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="12" cy="12" r="11.5" fill="#dbeafe" stroke="#dbeafe"/>
-              </svg>
-              <span className="absolute inset-0 flex items-center justify-center text-[#074799] text-lg font-bold">+</span>
+            <button className="w-6 h-6 bg-blue-200 rounded-full flex items-center justify-center text-[#074799] text-lg font-bold">
+              +
             </button>
           </div>
           <div className="flex items-center justify-between bg-[#F6F7FB] p-4 rounded-xl">
@@ -158,11 +155,8 @@ const MyProfile = () => {
               <img src={iconSkills} alt="Skills" className="w-8 h-8" />
               <span className="font-medium">Skills</span>
             </div>
-            <button className="relative">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="12" cy="12" r="11.5" fill="#dbeafe" stroke="#dbeafe"/>
-              </svg>
-              <span className="absolute inset-0 flex items-center justify-center text-[#074799] text-lg font-bold">+</span>
+            <button className="w-6 h-6 bg-blue-200 rounded-full flex items-center justify-center text-[#074799] text-lg font-bold">
+              +
             </button>
           </div>
           <div className="flex items-center justify-between bg-[#F6F7FB] p-4 rounded-xl">
@@ -170,11 +164,8 @@ const MyProfile = () => {
               <img src={iconCategory} alt="Category Details" className="w-8 h-8" />
               <span className="font-medium">Category Details</span>
             </div>
-            <button className="relative">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="12" cy="12" r="11.5" fill="#dbeafe" stroke="#dbeafe"/>
-              </svg>
-              <span className="absolute inset-0 flex items-center justify-center text-[#074799] text-lg font-bold">+</span>
+            <button className="w-6 h-6 bg-blue-200 rounded-full flex items-center justify-center text-[#074799] text-lg font-bold">
+              +
             </button>
           </div>
           <div className="flex items-center justify-between bg-[#F6F7FB] p-4 rounded-xl">
@@ -182,11 +173,8 @@ const MyProfile = () => {
               <img src={iconBasic} alt="Basic Details" className="w-8 h-8" />
               <span className="font-medium">Basic Details</span>
             </div>
-            <button className="relative">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="12" cy="12" r="11.5" fill="#dbeafe" stroke="#dbeafe"/>
-              </svg>
-              <span className="absolute inset-0 flex items-center justify-center text-[#074799] text-lg font-bold">+</span>
+            <button className="w-6 h-6 bg-blue-200 rounded-full flex items-center justify-center text-[#074799] text-lg font-bold">
+              +
             </button>
           </div>
         </div>
