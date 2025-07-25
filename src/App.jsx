@@ -43,6 +43,9 @@ import Messages from "./pages/chats/messages";
 import NoMessage from "./pages/chats/nomessage";
 import { ConversationProvider } from "./pages/chats/conversationcontext";
 import ResumeBuilder from "./pages/resume/resumebuilder";
+import Settings from "./pages/settings/settings";
+import ChangePassword from "./pages/settings/changepassword";
+import Help from "./pages/settings/help";
 
 // Wrapper to pass state to SuccessScreen
 const SuccessScreenWrapper = () => {
@@ -112,6 +115,11 @@ const App = () => {
 
           {/* Resume routes */}
           <Route path="/resume/resumebuilder" element={<ResumeBuilder />} />
+
+          {/* Settings Routes */}
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/changepassword" element={<ChangePassword />} />
+          <Route path="/help" element={<Help />} />
         </Routes>
       </ConversationProvider>
     </BrowserRouter>
