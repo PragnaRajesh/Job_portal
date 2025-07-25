@@ -232,7 +232,7 @@ const MyProfile = () => {
         </div>
 
         <div className="flex gap-3">
-          <button className="flex-1 py-2.5 px-4 bg-[#074799] text-white rounded-xl text-sm font-medium hover:bg-[#053560] transition-colors">
+          <button className="flex-1 py-2.5 px-4 bg-[#074799]/20 text-[#074799] rounded-xl text-sm font-medium hover:bg-[#074799]/30 transition-colors">
             View Resume
           </button>
           <button
