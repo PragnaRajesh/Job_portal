@@ -25,7 +25,43 @@ const MyProfile = () => {
   const [showSkills, setShowSkills] = useState(false);
   const [showDocuments, setShowDocuments] = useState(false);
   const [showBasicDetails, setShowBasicDetails] = useState(false);
+  const [workExperiences, setWorkExperiences] = useState([{
+    id: 1,
+    jobTitle: '',
+    jobRole: '',
+    companyName: '',
+    years: '',
+    months: '',
+    salary: '',
+    currentlyWorking: false
+  }]);
   const popupRef = useRef(null);
+
+  const addNewWorkExperience = () => {
+    const newExperience = {
+      id: workExperiences.length + 1,
+      jobTitle: '',
+      jobRole: '',
+      companyName: '',
+      years: '',
+      months: '',
+      salary: '',
+      currentlyWorking: false
+    };
+    setWorkExperiences([...workExperiences, newExperience]);
+  };
+
+  const removeWorkExperience = (id) => {
+    if (workExperiences.length > 1) {
+      setWorkExperiences(workExperiences.filter(exp => exp.id !== id));
+    }
+  };
+
+  const updateWorkExperience = (id, field, value) => {
+    setWorkExperiences(workExperiences.map(exp => 
+      exp.id === id ? { ...exp, [field]: value } : exp
+    ));
+  };
     
     useEffect(() => {
         const handleClickOutside = (e) => {
@@ -283,53 +319,116 @@ const MyProfile = () => {
           </div>
           {showWorkExperience && (
             <div className="px-4 pb-4">
-              <div className="bg-white rounded-lg p-4 space-y-3">
-                <div>
-                  <label className="block text-sm text-[#1a1444] font-medium mb-1">Job Title</label>
-                  <input
-                    type="text"
-                    placeholder="e.g Executive Sales Manager"
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm text-[#1a1444] font-medium mb-1">Job Role</label>
-                  <select className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm">
-                    <option>Select Job Role</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm text-[#1a1444] font-medium mb-1">Company Name</label>
-                  <select className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm">
-                    <option>e.g Amazon</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm text-[#1a1444] font-medium mb-1">Experience in this company</label>
-                  <div className="flex gap-2">
-                    <select className="w-1/2 border border-gray-300 rounded-lg px-3 py-2 text-sm">
-                      <option>Years</option>
-                    </select>
-                    <select className="w-1/2 border border-gray-300 rounded-lg px-3 py-2 text-sm">
-                      <option>Months</option>
-                    </select>
+              <div className="bg-white rounded-lg p-4 space-y-4">
+                {workExperiences.map((experience, index) => (
+                  <div key={experience.id} className="border-b border-gray-200 pb-4 last:border-b-0">
+                    {workExperiences.length > 1 && (
+                      <div className="flex justify-between items-center mb-3">
+                        <h4 className="text-sm font-medium text-[#1a1444]">Job Experience {index + 1}</h4>
+                        <button
+                          onClick={() => removeWorkExperience(experience.id)}
+                          className="text-red-500 hover:text-red-700 text-sm"
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    )}
+                    <div className="space-y-3">
+                      <div>
+                        <label className="block text-sm text-[#1a1444] font-medium mb-1">Job Title</label>
+                        <input
+                          type="text"
+                          placeholder="e.g Executive Sales Manager"
+                          value={experience.jobTitle}
+                          onChange={(e) => updateWorkExperience(experience.id, 'jobTitle', e.target.value)}
+                          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm text-[#1a1444] font-medium mb-1">Job Role</label>
+                        <select 
+                          value={experience.jobRole}
+                          onChange={(e) => updateWorkExperience(experience.id, 'jobRole', e.target.value)}
+                          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
+                        >
+                          <option value="">Select Job Role</option>
+                          <option value="manager">Manager</option>
+                          <option value="developer">Developer</option>
+                          <option value="designer">Designer</option>
+                          <option value="analyst">Analyst</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-sm text-[#1a1444] font-medium mb-1">Company Name</label>
+                        <input
+                          type="text"
+                          placeholder="e.g Amazon"
+                          value={experience.companyName}
+                          onChange={(e) => updateWorkExperience(experience.id, 'companyName', e.target.value)}
+                          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm text-[#1a1444] font-medium mb-1">Experience in this company</label>
+                        <div className="flex gap-2">
+                          <select 
+                            value={experience.years}
+                            onChange={(e) => updateWorkExperience(experience.id, 'years', e.target.value)}
+                            className="w-1/2 border border-gray-300 rounded-lg px-3 py-2 text-sm"
+                          >
+                            <option value="">Years</option>
+                            {[...Array(20)].map((_, i) => (
+                              <option key={i} value={i}>{i} {i === 1 ? 'Year' : 'Years'}</option>
+                            ))}
+                          </select>
+                          <select 
+                            value={experience.months}
+                            onChange={(e) => updateWorkExperience(experience.id, 'months', e.target.value)}
+                            className="w-1/2 border border-gray-300 rounded-lg px-3 py-2 text-sm"
+                          >
+                            <option value="">Months</option>
+                            {[...Array(12)].map((_, i) => (
+                              <option key={i} value={i}>{i} {i === 1 ? 'Month' : 'Months'}</option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
+                      <div>
+                        <label className="block text-sm text-[#1a1444] font-medium mb-1">Current/Last Salary</label>
+                        <input
+                          type="text"
+                          placeholder="$15,0000"
+                          value={experience.salary}
+                          onChange={(e) => updateWorkExperience(experience.id, 'salary', e.target.value)}
+                          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
+                        />
+                      </div>
+                      <div className="flex items-center">
+                        <input 
+                          type="checkbox" 
+                          id={`currentlyWorking-${experience.id}`}
+                          checked={experience.currentlyWorking}
+                          onChange={(e) => updateWorkExperience(experience.id, 'currentlyWorking', e.target.checked)}
+                          className="mr-2" 
+                        />
+                        <label htmlFor={`currentlyWorking-${experience.id}`} className="text-sm text-[#1a1444]">
+                          I am currently working here
+                        </label>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div>
-                  <label className="block text-sm text-[#1a1444] font-medium mb-1">Current/Last Salary</label>
-                  <input
-                    type="text"
-                    placeholder="$15,0000"
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
-                  />
-                </div>
-                <div className="flex items-center">
-                  <input type="checkbox" id="currentlyWorking" className="mr-2" />
-                  <label htmlFor="currentlyWorking" className="text-sm text-[#1a1444]">
-                    I am currently working here
-                  </label>
-                </div>
-                <div className="flex justify-end gap-3 pt-2">
+                ))}
+                
+                {/* Add Another Job Experience Button */}
+                <button
+                  onClick={addNewWorkExperience}
+                  className="w-full py-3 border-2 border-dashed border-blue-300 rounded-lg text-blue-600 hover:border-blue-400 hover:bg-blue-50 transition-colors flex items-center justify-center gap-2"
+                >
+                  <Plus size={18} />
+                  Add Another Job Experience
+                </button>
+
+                <div className="flex justify-end gap-3 pt-4 border-t border-gray-200">
                   <button
                     className="px-4 py-2 rounded-lg border border-[#1a1444] text-[#1a1444] text-sm"
                     onClick={() => setShowWorkExperience(false)}
@@ -343,7 +442,7 @@ const MyProfile = () => {
                       setShowWorkExperience(false);
                     }}
                   >
-                    Save
+                    Save All Experiences
                   </button>
                 </div>
               </div>
