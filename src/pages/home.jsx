@@ -304,6 +304,15 @@ const Home = () => {
                 >
                   🤖 AI Job Prep
                 </button>
+                <button
+                  onClick={() => {
+                    setShowPopup(false);
+                    navigate("/aisupport");
+                  }}
+                  className="w-full bg-orange-500 text-white py-3 rounded-xl font-semibold text-lg shadow-md hover:bg-orange-600 transition"
+                >
+                  🛠️ AI Support
+                </button>
               </div>
             </div>
           )}
