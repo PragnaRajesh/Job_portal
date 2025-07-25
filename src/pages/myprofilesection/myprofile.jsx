@@ -35,6 +35,16 @@ const MyProfile = () => {
     salary: '',
     currentlyWorking: false
   }]);
+  const [skills, setSkills] = useState(['Figma', 'Illustrator', 'Adobe XD', 'Wireframing', 'Flow-map', 'HTML/CSS']);
+  const [newSkill, setNewSkill] = useState('');
+  const [selectedDocuments, setSelectedDocuments] = useState(['PAN Card', 'Aadhar Card', 'Bank Account']);
+  const [basicDetails, setBasicDetails] = useState({
+    alternatePhone: '',
+    age: '',
+    education: ['Graduate'],
+    languages: ['English', 'Hindi', 'Kannada'],
+    gender: 'Male'
+  });
   const popupRef = useRef(null);
 
   const addNewWorkExperience = () => {
@@ -61,6 +71,73 @@ const MyProfile = () => {
     setWorkExperiences(workExperiences.map(exp => 
       exp.id === id ? { ...exp, [field]: value } : exp
     ));
+  };
+
+  // Skills functions
+  const toggleSkill = (skill) => {
+    if (skills.includes(skill)) {
+      setSkills(skills.filter(s => s !== skill));
+    } else {
+      setSkills([...skills, skill]);
+    }
+  };
+
+  const addNewSkill = () => {
+    const trimmedSkill = newSkill.trim();
+    if (trimmedSkill && !skills.includes(trimmedSkill)) {
+      setSkills([...skills, trimmedSkill]);
+      setNewSkill('');
+    }
+  };
+
+  // Documents functions
+  const toggleDocument = (doc) => {
+    if (doc === 'None of these') {
+      setSelectedDocuments(['None of these']);
+    } else {
+      const filtered = selectedDocuments.filter(d => d !== 'None of these');
+      if (selectedDocuments.includes(doc)) {
+        setSelectedDocuments(filtered.filter(d => d !== doc));
+      } else {
+        setSelectedDocuments([...filtered, doc]);
+      }
+    }
+  };
+
+  // Basic Details functions
+  const toggleEducation = (edu) => {
+    if (basicDetails.education.includes(edu)) {
+      setBasicDetails({
+        ...basicDetails,
+        education: basicDetails.education.filter(e => e !== edu)
+      });
+    } else {
+      setBasicDetails({
+        ...basicDetails,
+        education: [...basicDetails.education, edu]
+      });
+    }
+  };
+
+  const toggleLanguage = (lang) => {
+    if (basicDetails.languages.includes(lang)) {
+      setBasicDetails({
+        ...basicDetails,
+        languages: basicDetails.languages.filter(l => l !== lang)
+      });
+    } else {
+      setBasicDetails({
+        ...basicDetails,
+        languages: [...basicDetails.languages, lang]
+      });
+    }
+  };
+
+  const updateBasicDetails = (field, value) => {
+    setBasicDetails({
+      ...basicDetails,
+      [field]: value
+    });
   };
     
     useEffect(() => {
@@ -132,7 +209,23 @@ const MyProfile = () => {
         </div>
         {/* Top Buttons */}
         <div className="relative flex justify-end gap-2 mb-3">
-          <button className="p-2 rounded-full bg-white/15 hover:bg-white/25 transition-colors">
+          <button 
+            className="p-2 rounded-full bg-white/15 hover:bg-white/25 transition-colors"
+            onClick={() => {
+              // Share profile functionality
+              if (navigator.share) {
+                navigator.share({
+                  title: 'John D Profile',
+                  text: 'Check out my profile',
+                  url: window.location.href,
+                });
+              } else {
+                navigator.clipboard.writeText(window.location.href);
+                alert('Profile link copied to clipboard!');
+              }
+            }}
+            title="Share Profile"
+          >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <mask id="path-1-inside-1_879_576" fill="white">
                 <path d="M11.5 3.05878C11.5004 2.24599 12.4193 1.77322 13.0811 2.2453L21.8584 8.50702C22.4174 8.9058 22.4174 9.73617 21.8584 10.1349L13.0811 16.3967C12.4191 16.8688 11.5 16.3953 11.5 15.5822V12.3908C8.0693 12.581 5.02708 14.7163 3.69727 17.9162L2 22.0002V16.0002C2.00012 10.6451 6.20952 6.2734 11.5 6.01288V3.05878Z"/>
@@ -140,7 +233,13 @@ const MyProfile = () => {
               <path d="M11.5 3.05878L10 3.05811V3.05878H11.5ZM13.0811 2.2453L13.9522 1.02419L13.9521 1.02414L13.0811 2.2453ZM21.8584 8.50702L20.9873 9.72813L20.9873 9.72818L21.8584 8.50702ZM21.8584 10.1349L20.9873 8.91379L20.9873 8.91384L21.8584 10.1349ZM13.0811 16.3967L13.9521 17.6178L13.9522 17.6178L13.0811 16.3967ZM11.5 15.5822H13H11.5ZM11.5 12.3908H13V10.8053L11.417 10.8931L11.5 12.3908ZM3.69727 17.9162L5.08241 18.4919L5.08241 18.4918L3.69727 17.9162ZM2 22.0002H0.5L3.38514 22.5758L2 22.0002ZM2 16.0002L0.5 16.0002V16.0002H2ZM11.5 6.01288L11.5738 7.51106L13 7.44083V6.01288H11.5ZM11.5 3.05878L13 3.05944C12.9998 3.46678 12.5402 3.70199 12.21 3.46646L13.0811 2.2453L13.9521 1.02414C12.2983 -0.155543 10.0009 1.0252 10 3.05811L11.5 3.05878ZM13.0811 2.2453L12.2099 3.46641L20.9873 9.72813L21.8584 8.50702L22.7295 7.28591L13.9522 1.02419L13.0811 2.2453ZM21.8584 8.50702L20.9873 9.72818C20.7078 9.52879 20.7078 9.11318 20.9873 8.91379L21.8584 10.1349L22.7295 11.3561C24.1271 10.3592 24.1271 8.2828 22.7295 7.28586L21.8584 8.50702ZM21.8584 10.1349L20.9873 8.91384L12.2099 15.1756L13.0811 16.3967L13.9522 17.6178L22.7295 11.3561L21.8584 10.1349ZM13.0811 16.3967L12.21 15.1755C12.5413 14.9391 13 15.1762 13 15.5822H11.5L10 15.5822C10 17.6144 12.2969 18.7985 13.9521 17.6178L13.0811 16.3967ZM11.5 15.5822H13V12.3908H11.5H10V15.5822H11.5ZM11.5 12.3908L11.417 10.8931C7.41394 11.1151 3.86401 13.6063 2.31212 17.3406L3.69727 17.9162L5.08241 18.4918C6.19015 15.8264 8.72465 14.047 11.583 13.8885L11.5 12.3908ZM3.69727 17.9162L2.31212 17.3405L0.614856 21.4245L2 22.0002L3.38514 22.5758L5.08241 18.4919L3.69727 17.9162ZM2 22.0002H3.5V16.0002H2H0.5V22.0002H2ZM2 16.0002L3.5 16.0002C3.5001 11.4489 7.07806 7.73244 11.5738 7.51106L11.5 6.01288L11.4262 4.51469C5.34098 4.81435 0.500136 9.84133 0.5 16.0002L2 16.0002ZM11.5 6.01288H13V3.05878H11.5H10V6.01288H11.5Z" fill="white" mask="url(#path-1-inside-1_879_576)"/>
             </svg>
           </button>
-          <button className="p-2 rounded-full bg-white/15 hover:bg-white/25 transition-colors">
+          <button 
+            className="p-2 rounded-full bg-white/15 hover:bg-white/25 transition-colors"
+            onClick={() => {
+              alert('Settings feature coming soon!');
+            }}
+            title="Settings"
+          >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <mask id="path-1-inside-1_879_568" fill="white">
                 <path d="M12.0002 2C13.657 2 15.0002 3.34315 15.0002 5V5.67383C15.3409 5.83569 15.6661 6.02472 15.9738 6.2373L16.5627 5.89844C17.9974 5.07032 19.8319 5.56156 20.6603 6.99609C21.4887 8.43089 20.9973 10.2662 19.5627 11.0947L18.9748 11.4326C18.9898 11.6198 19.0002 11.8089 19.0002 12C19.0002 12.1884 18.9904 12.3749 18.9757 12.5596L19.5627 12.8984C20.9972 13.7269 21.4884 15.5614 20.6603 16.9961C19.832 18.4308 17.9975 18.9229 16.5627 18.0947L15.9797 17.7578C15.6702 17.9721 15.343 18.1623 15.0002 18.3252V19C15.0002 20.6569 13.657 22 12.0002 22C10.3433 22 9.00016 20.6569 9.00016 19V18.3252C8.65703 18.1622 8.32932 17.9723 8.01969 17.7578L7.43766 18.0947C6.00282 18.923 4.16839 18.4309 3.34 16.9961C2.51179 15.5613 3.00299 13.7269 4.43766 12.8984L5.0236 12.5586C5.00904 12.3743 5.00016 12.1881 5.00016 12C5.00016 11.8093 5.00961 11.6205 5.02457 11.4336L4.43766 11.0947C3.00287 10.2663 2.5116 8.43094 3.34 6.99609C4.16851 5.56158 6.00294 5.07022 7.43766 5.89844L8.02555 6.2373C8.33345 6.02454 8.6592 5.8358 9.00016 5.67383V5C9.00016 3.34315 10.3433 2 12.0002 2Z"/>
@@ -184,7 +283,12 @@ const MyProfile = () => {
               <span>9136479870</span>
             </div>
           </div>
-          <button className="px-2.5 py-1 text-xs rounded-lg border border-white/30 bg-white/10 hover:bg-white/20 text-white transition-colors flex items-center gap-1.5">
+          <button 
+            className="px-2.5 py-1 text-xs rounded-lg border border-white/30 bg-white/10 hover:bg-white/20 text-white transition-colors flex items-center gap-1.5"
+            onClick={() => {
+              alert('Edit Profile feature coming soon!\nYou can edit individual sections using the dropdown forms below.');
+            }}
+          >
             Edit profile
             <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M10.1596 4.32367L5.41565 9.06764C5.08103 9.40218 4.66483 9.64379 4.20859 9.76922L2.90555 10.1276C2.71859 10.179 2.54687 10.0073 2.59827 9.82032L2.95665 8.51728C3.08209 8.06105 3.32369 7.64484 3.65824 7.31023L8.4022 2.56626C8.88749 2.08128 9.67445 2.08179 10.1596 2.56695C10.6445 3.05214 10.6445 3.83848 10.1596 4.32367Z" stroke="white" strokeWidth="1.5"/>
@@ -197,8 +301,17 @@ const MyProfile = () => {
         {/* Row 4: Bio and Edit Icon */}
         <div className="relative flex items-center justify-between text-xs text-white opacity-90">
           <p>Looking for jobs in UI/UX Designer/ Web Designer</p>
-          <button className="p-1 rounded-full  hover:bg-white/25 transition-colors">
-                        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <button 
+            className="p-1 rounded-full hover:bg-white/25 transition-colors"
+            onClick={() => {
+              const newBio = prompt('Edit your bio:', 'Looking for jobs in UI/UX Designer/ Web Designer');
+              if (newBio !== null) {
+                alert(`Bio updated to: "${newBio}"`);
+              }
+            }}
+            title="Edit Bio"
+          >
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M10.1596 4.32367L5.41565 9.06764C5.08103 9.40218 4.66483 9.64379 4.20859 9.76922L2.90555 10.1276C2.71859 10.179 2.54687 10.0073 2.59827 9.82032L2.95665 8.51728C3.08209 8.06105 3.32369 7.64484 3.65824 7.31023L8.4022 2.56626C8.88749 2.08128 9.67445 2.08179 10.1596 2.56695C10.6445 3.05214 10.6445 3.83848 10.1596 4.32367Z" stroke="white" strokeWidth="1.5"/>
               <path d="M7.81738 2.97656L9.80612 4.9653" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
               <path d="M1.875 12.5H13.125" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
@@ -262,7 +375,12 @@ const MyProfile = () => {
         </div>
 
         <div className="flex gap-3">
-          <button className="flex-1 py-2.5 px-4 bg-[#074799]/20 text-black rounded-xl text-sm font-medium hover:bg-[#074799]/30 transition-colors">
+          <button 
+            className="flex-1 py-2.5 px-4 bg-[#074799]/20 text-black rounded-xl text-sm font-medium hover:bg-[#074799]/30 transition-colors"
+            onClick={() => {
+              alert('Opening resume viewer...\nNote: This would typically open a PDF viewer or download the resume.');
+            }}
+          >
             View Resume
           </button>
           <button
@@ -469,40 +587,73 @@ const MyProfile = () => {
               <div className="bg-white rounded-lg p-4 space-y-3">
                 <p className="text-sm text-gray-700 mb-3">UI/UX Designer/ Web Designer</p>
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {['Figma', 'Illustrator', 'Adobe XD', 'Wireframing', 'Flow-map', 'HTML/CSS'].map((skill) => (
+                  {['Figma', 'Illustrator', 'Adobe XD', 'Wireframing', 'Flow-map', 'HTML/CSS', 'React', 'JavaScript', 'Python', 'Photoshop'].map((skill) => (
                     <button
                       key={skill}
-                      className="px-3 py-1 rounded-full border text-sm bg-blue-100 border-blue-500 text-blue-700"
+                      onClick={() => toggleSkill(skill)}
+                      className={`px-3 py-1 rounded-full border text-sm transition-colors ${
+                        skills.includes(skill)
+                          ? 'bg-blue-100 border-blue-500 text-blue-700'
+                          : 'bg-gray-100 border-gray-300 text-gray-700 hover:bg-gray-200'
+                      }`}
                     >
-                      {skill} ✓
+                      {skill} {skills.includes(skill) ? '✓' : '+'}
                     </button>
                   ))}
                 </div>
+                {skills.length > 0 && (
+                  <div className="mb-3">
+                    <p className="text-sm font-medium text-gray-700 mb-2">Selected Skills:</p>
+                    <div className="flex flex-wrap gap-2">
+                      {skills.map((skill) => (
+                        <span
+                          key={skill}
+                          className="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs flex items-center gap-1"
+                        >
+                          {skill}
+                          <button
+                            onClick={() => toggleSkill(skill)}
+                            className="ml-1 text-green-600 hover:text-green-800"
+                          >
+                            ×
+                          </button>
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
                 <div className="flex gap-2">
                   <input
                     type="text"
                     placeholder="Add custom skill"
-                    className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm"
+                    value={newSkill}
+                    onChange={(e) => setNewSkill(e.target.value)}
+                    onKeyPress={(e) => e.key === 'Enter' && addNewSkill()}
+                    className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
-                  <button className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm">
+                  <button 
+                    onClick={addNewSkill}
+                    disabled={!newSkill.trim()}
+                    className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+                  >
                     Add
                   </button>
                 </div>
                 <div className="flex justify-end gap-3 pt-2">
                   <button
-                    className="px-4 py-2 border border-blue-600 text-blue-600 rounded-lg text-sm"
+                    className="px-4 py-2 border border-blue-600 text-blue-600 rounded-lg text-sm hover:bg-blue-50 transition-colors"
                     onClick={() => setShowSkills(false)}
                   >
                     Cancel
                   </button>
                   <button
-                    className="px-4 py-2 bg-blue-700 text-white rounded-lg text-sm"
+                    className="px-4 py-2 bg-blue-700 text-white rounded-lg text-sm hover:bg-blue-800 transition-colors"
                     onClick={() => {
-                      alert('Skills saved');
+                      alert(`Skills saved: ${skills.join(', ')}`);
                       setShowSkills(false);
                     }}
                   >
-                    Save
+                    Save ({skills.length})
                   </button>
                 </div>
               </div>
@@ -531,30 +682,53 @@ const MyProfile = () => {
                   Which of these IDs/documents do you have?
                 </p>
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {['PAN Card', 'Aadhar Card', 'Bank Account', 'None of these'].map((doc) => (
+                  {['PAN Card', 'Aadhar Card', 'Bank Account', 'Passport', 'Driving License', 'None of these'].map((doc) => (
                     <button
                       key={doc}
-                      className="px-3 py-1 rounded-full border text-sm bg-blue-100 text-blue-900 border-blue-300"
+                      onClick={() => toggleDocument(doc)}
+                      className={`px-3 py-1 rounded-full border text-sm font-medium transition-colors ${
+                        selectedDocuments.includes(doc)
+                          ? 'bg-blue-100 text-blue-900 border-blue-300'
+                          : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+                      }`}
                     >
-                      {doc} ✓
+                      {doc} {selectedDocuments.includes(doc) ? '✓' : '+'}
                     </button>
                   ))}
                 </div>
+                {selectedDocuments.length > 0 && !selectedDocuments.includes('None of these') && (
+                  <div className="mb-3 p-3 bg-green-50 rounded-lg">
+                    <p className="text-sm font-medium text-green-800 mb-2">Selected Documents:</p>
+                    <ul className="text-sm text-green-700">
+                      {selectedDocuments.map((doc) => (
+                        <li key={doc} className="flex items-center gap-2">
+                          <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                          {doc}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {selectedDocuments.includes('None of these') && (
+                  <div className="mb-3 p-3 bg-gray-50 rounded-lg">
+                    <p className="text-sm text-gray-600">No documents selected</p>
+                  </div>
+                )}
                 <div className="flex justify-end gap-3 pt-2">
                   <button
-                    className="px-4 py-2 border rounded-lg text-sm text-blue-700 border-blue-600"
+                    className="px-4 py-2 border rounded-lg text-sm text-blue-700 border-blue-600 hover:bg-blue-50 transition-colors"
                     onClick={() => setShowDocuments(false)}
                   >
                     Cancel
                   </button>
                   <button
-                    className="px-4 py-2 bg-blue-700 text-white text-sm rounded-lg"
+                    className="px-4 py-2 bg-blue-700 text-white text-sm rounded-lg hover:bg-blue-800 transition-colors"
                     onClick={() => {
-                      alert('Documents saved');
+                      alert(`Documents saved: ${selectedDocuments.join(', ')}`);
                       setShowDocuments(false);
                     }}
                   >
-                    Save
+                    Save ({selectedDocuments.length})
                   </button>
                 </div>
               </div>
@@ -583,7 +757,9 @@ const MyProfile = () => {
                   <label className="text-sm font-medium">Add Alternate phone number</label>
                   <input
                     type="text"
-                    className="w-full p-2 border rounded mt-1"
+                    value={basicDetails.alternatePhone}
+                    onChange={(e) => updateBasicDetails('alternatePhone', e.target.value)}
+                    className="w-full p-2 border rounded mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="e.g. 9876543210"
                   />
                 </div>
@@ -591,8 +767,12 @@ const MyProfile = () => {
                   <label className="text-sm font-medium">Age</label>
                   <input
                     type="number"
-                    className="w-full p-2 border rounded mt-1"
+                    value={basicDetails.age}
+                    onChange={(e) => updateBasicDetails('age', e.target.value)}
+                    className="w-full p-2 border rounded mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="e.g. 25"
+                    min="16"
+                    max="65"
                   />
                 </div>
                 <div>
@@ -601,9 +781,14 @@ const MyProfile = () => {
                     {['Below 10th', '10th Pass', '12th Pass', 'Diploma', 'Graduate', 'Post Graduate'].map((edu) => (
                       <button
                         key={edu}
-                        className="border rounded-full px-3 py-1 text-sm bg-blue-100 text-blue-600 border-blue-400"
+                        onClick={() => toggleEducation(edu)}
+                        className={`border rounded-full px-3 py-1 text-sm transition-colors ${
+                          basicDetails.education.includes(edu)
+                            ? 'bg-blue-100 text-blue-600 border-blue-400'
+                            : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-100'
+                        }`}
                       >
-                        {edu}
+                        {edu} {basicDetails.education.includes(edu) ? '✓' : '+'}
                       </button>
                     ))}
                   </div>
@@ -611,12 +796,17 @@ const MyProfile = () => {
                 <div>
                   <label className="text-sm font-medium">Languages</label>
                   <div className="flex flex-wrap gap-2 mt-2">
-                    {['English', 'Hindi', 'Kannada'].map((lang) => (
+                    {['English', 'Hindi', 'Kannada', 'Bengali', 'Tamil', 'Telugu', 'Marathi', 'Gujarati'].map((lang) => (
                       <button
                         key={lang}
-                        className="border rounded-full px-3 py-1 text-sm bg-blue-100 text-blue-600 border-blue-400"
+                        onClick={() => toggleLanguage(lang)}
+                        className={`border rounded-full px-3 py-1 text-sm transition-colors ${
+                          basicDetails.languages.includes(lang)
+                            ? 'bg-blue-100 text-blue-600 border-blue-400'
+                            : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-100'
+                        }`}
                       >
-                        {lang}
+                        {lang} {basicDetails.languages.includes(lang) ? '✓' : '+'}
                       </button>
                     ))}
                   </div>
@@ -624,31 +814,47 @@ const MyProfile = () => {
                 <div>
                   <label className="text-sm font-medium">Gender</label>
                   <div className="flex gap-4 mt-2">
-                    {['Male', 'Female'].map((gender) => (
+                    {['Male', 'Female', 'Other'].map((gender) => (
                       <button
                         key={gender}
-                        className="border rounded-full px-4 py-1 text-sm bg-blue-100 text-blue-600 border-blue-400"
+                        onClick={() => updateBasicDetails('gender', gender)}
+                        className={`border rounded-full px-4 py-1 text-sm transition-colors ${
+                          basicDetails.gender === gender
+                            ? 'bg-blue-100 text-blue-600 border-blue-400'
+                            : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-100'
+                        }`}
                       >
-                        {gender}
+                        {gender} {basicDetails.gender === gender ? '●' : '○'}
                       </button>
                     ))}
                   </div>
                 </div>
+                {/* Summary Section */}
+                <div className="p-3 bg-gray-50 rounded-lg mt-4">
+                  <p className="text-sm font-medium text-gray-700 mb-2">Current Details:</p>
+                  <div className="text-xs text-gray-600 space-y-1">
+                    {basicDetails.alternatePhone && <p>Phone: {basicDetails.alternatePhone}</p>}
+                    {basicDetails.age && <p>Age: {basicDetails.age} years</p>}
+                    {basicDetails.education.length > 0 && <p>Education: {basicDetails.education.join(', ')}</p>}
+                    {basicDetails.languages.length > 0 && <p>Languages: {basicDetails.languages.join(', ')}</p>}
+                    <p>Gender: {basicDetails.gender}</p>
+                  </div>
+                </div>
                 <div className="flex justify-end gap-3 pt-2">
                   <button
-                    className="px-4 py-2 border border-blue-600 rounded-lg text-blue-600"
+                    className="px-4 py-2 border border-blue-600 rounded-lg text-blue-600 hover:bg-blue-50 transition-colors"
                     onClick={() => setShowBasicDetails(false)}
                   >
                     Cancel
                   </button>
                   <button
-                    className="px-4 py-2 bg-blue-600 text-white rounded-lg"
+                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                     onClick={() => {
-                      alert('Basic details saved');
+                      alert(`Basic details saved:\nPhone: ${basicDetails.alternatePhone}\nAge: ${basicDetails.age}\nEducation: ${basicDetails.education.join(', ')}\nLanguages: ${basicDetails.languages.join(', ')}\nGender: ${basicDetails.gender}`);
                       setShowBasicDetails(false);
                     }}
                   >
-                    Save
+                    Save Details
                   </button>
                 </div>
               </div>
