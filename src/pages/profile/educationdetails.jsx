@@ -18,7 +18,7 @@ const EducationDetails = () => {
   };
 
   return (
-    <div className="h-screen bg-white px-4 pt-6 pb-24 flex flex-col justify-between overflow-hidden">
+    <div className="h-screen bg-white px-4 pt-6 pb-24 flex flex-col justify-between overflow-hidden pt-safe pb-safe">
       
       {/* Step Image */}
       <div className="w-full flex justify-center -mt-2 mb-3">

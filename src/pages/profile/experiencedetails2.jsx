@@ -34,7 +34,7 @@ const ExperienceDetails2 = () => {
   };
 
   return (
-    <div className="min-h-screen p-4 bg-white flex flex-col justify-between">
+    <div className="min-h-screen p-4 bg-white flex flex-col justify-between pt-safe pb-safe">
       <div>
         <h2 className="text-center text-lg font-semibold mb-4">Experience Details</h2>
 

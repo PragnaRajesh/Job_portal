@@ -29,7 +29,7 @@ const ProfileSetup2 = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col justify-between p-4">
+    <div className="min-h-screen bg-white flex flex-col justify-between p-4 pt-safe pb-safe">
       <div>
         <h2 className="text-base font-semibold text-center mb-4">
           Basic Details

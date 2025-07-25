@@ -40,6 +40,15 @@ const Home = () => {
       return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
+  useEffect(() => {
+    // Handle hardware back button for mobile browsers
+    const handlePopState = (e) => {
+      setShowPopup(false); // Always close popup on back
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
   const jobCategories = ["Chef", "Marketing", "Technology", "Finance", "Design"];
   const [selectedCategory, setSelectedCategory] = useState("Chef");
 
@@ -81,7 +90,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-24">
+    <div className="min-h-screen bg-gray-50 pb-24 pt-safe pb-safe">
       <div className="p-4">
         {/* Header */}
         <div className="flex justify-between items-center mb-4">
@@ -242,7 +251,7 @@ const Home = () => {
       </div>
 
       {/* ✅ Fixed Bottom Navigation */}
-      <div className="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around py-3 border-t border-gray-200 bg-white/95 backdrop-blur-sm">
+      <div className="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around py-3 border-t border-gray-200 bg-white/95 backdrop-blur-sm pb-safe">
         <button onClick={() => navigate("/home")}>
           <HomeIcon className="w-6 h-6 text-blue-600" />
         </button>
@@ -261,7 +270,7 @@ const Home = () => {
 
           {showPopup && (
             <div
-              className="fixed left-0 bottom-0 w-full h-1/2 bg-gradient-to-t from-blue-100 via-white to-white rounded-t-3xl shadow-2xl z-50 flex flex-col items-center justify-center animate-slideUp"
+              className="fixed left-0 bottom-0 w-full h-1/2 bg-gradient-to-t from-blue-100 via-white to-white rounded-t-3xl shadow-2xl z-50 flex flex-col items-center justify-center animate-slideUp pb-safe pt-4"
               ref={popupRef}
               style={{animation: 'slideUp 0.3s cubic-bezier(0.4,0,0.2,1)'}}
             >
