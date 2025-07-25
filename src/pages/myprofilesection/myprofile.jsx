@@ -232,12 +232,12 @@ const MyProfile = () => {
         </div>
 
         <div className="flex gap-3">
-          <button className="flex-1 py-2.5 px-4 bg-gray-200 text-gray-700 rounded-xl text-sm font-medium hover:bg-gray-300 transition-colors">
+          <button className="flex-1 py-2.5 px-4 bg-[#074799] text-white rounded-xl text-sm font-medium hover:bg-[#053560] transition-colors">
             View Resume
           </button>
           <button
             onClick={() => navigate("/resume/resumebuilder")}
-            className="flex-1 py-2.5 px-4 bg-blue-600 text-white rounded-xl text-sm font-medium hover:bg-blue-700 transition-colors"
+            className="flex-1 py-2.5 px-4 bg-[#074799] text-white rounded-xl text-sm font-medium hover:bg-[#053560] transition-colors"
           >
             Build Resume
           </button>
