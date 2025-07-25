@@ -70,7 +70,7 @@ const EducationDetails2 = () => {
   const currentSpecializations = specializationOptions[degree] || [];
 
   return (
-    <div className="min-h-screen bg-white p-4 flex flex-col justify-between">
+    <div className="min-h-screen bg-white p-4 flex flex-col justify-between pt-safe pb-safe">
       <div>
         <h2 className="text-base font-semibold mb-4">Education Details</h2>
 

@@ -8,7 +8,7 @@ const Verified = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-white flex flex-col items-center justify-center px-6 text-center">
+    <div className="min-h-screen bg-white flex flex-col items-center justify-center px-6 text-center pt-safe pb-safe">
       <img src={appliedImage} alt="applied" className="w-56 mb-6" />
       <CheckCircle className="w-8 h-8 text-blue-600 mb-2" />
       <h2 className="text-xl font-bold text-gray-800 mb-2">Congratulations!</h2>

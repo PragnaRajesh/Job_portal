@@ -57,7 +57,7 @@ const JobList = () => {
   const metroFilters = ["Within 10Km", "10–15 Km away", "10–15 Km away"];
 
   return (
-    <div className="min-h-screen bg-gray-100 pb-24">
+    <div className="min-h-screen bg-gray-100 pb-24 pt-safe pb-safe">
       {/* Header */}
       <div className="bg-gradient-to-r from-[#2b2b76] to-[#412c84] text-white px-4 py-5 rounded-b-3xl">
         <div className="flex justify-between items-center">

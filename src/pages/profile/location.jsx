@@ -23,7 +23,7 @@ const LocationScreen = () => {
   });
 
   return (
-    <div className="h-screen p-4 bg-white pt-6 pb-24 flex flex-col justify-between overflow-hidden">
+    <div className="h-screen p-4 bg-white pt-6 pb-24 flex flex-col justify-between overflow-hidden pt-safe pb-safe">
 
       {/* Step Image */}
       <div className="w-full flex justify-center -mt-2 mb-3">

@@ -43,6 +43,7 @@ import Messages from "./pages/chats/messages";
 import NoMessage from "./pages/chats/nomessage";
 import { ConversationProvider } from "./pages/chats/conversationcontext";
 import ResumeBuilder from "./pages/resume/resumebuilder";
+import AIJobPrep from "./components/AIJobPrep";
 
 // Wrapper to pass state to SuccessScreen
 const SuccessScreenWrapper = () => {
@@ -99,6 +100,9 @@ const App = () => {
           <Route path="/jobs/jobdetails" element={<JobDetails />} />
           <Route path="/jobs/submitdocuments" element={<SubmitDocuments />} />
           <Route path="/jobs/verified" element={<Verified />} />
+
+          {/* AI Job Prep */}
+          <Route path="/aijobprep" element={<AIJobPrep />} />
 
           {/* Application Screen */}
           <Route path="/applications/application" element={<Application />} />
