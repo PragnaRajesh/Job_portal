@@ -239,7 +239,14 @@ const MyProfile = () => {
         <div className="flex-1 p-4 rounded-xl shadow-sm border flex flex-col items-center">
           <img src={iconFolder} alt="History Icon" className="w-10 h-10" />
           <p className="mt-2 font-medium">My History</p>
-          <button className="text-blue-600 text-sm mt-1">Click here</button>
+          <button className="mt-1 hover:opacity-80 transition-opacity">
+            <svg width="82" height="35" viewBox="0 0 82 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="82" height="35" rx="8" fill="#074799"/>
+              <text x="41" y="21" textAnchor="middle" fill="white" fontSize="12" fontFamily="Arial, sans-serif">
+                Click here
+              </text>
+            </svg>
+          </button>
         </div>
         <div className="flex-1 p-4 rounded-xl shadow-sm border">
           <div className="flex flex-col items-center">
