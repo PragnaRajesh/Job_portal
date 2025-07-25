@@ -21,7 +21,11 @@ import iconChart from '../../assets/6.png';
 const MyProfile = () => {
   const navigate = useNavigate();
   const [showPopup, setShowPopup] = useState(false);
-    const popupRef = useRef(null);
+  const [showWorkExperience, setShowWorkExperience] = useState(false);
+  const [showSkills, setShowSkills] = useState(false);
+  const [showDocuments, setShowDocuments] = useState(false);
+  const [showBasicDetails, setShowBasicDetails] = useState(false);
+  const popupRef = useRef(null);
     
     useEffect(() => {
         const handleClickOutside = (e) => {
@@ -263,58 +267,296 @@ const MyProfile = () => {
 
       {/* Sections */}
       <div className="space-y-4 mt-4 px-4">
-  <div className="flex items-center justify-between bg-[#F6F7FB] p-4 rounded-xl">
-    <div className="flex items-center gap-3">
-      <img src={iconWork} alt="Work Experience" className="w-8 h-8" />
-      <span className="font-medium text-[#1A1A2C]">Work experience</span>
-    </div>
-    <button 
-      className="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full hover:bg-blue-200 transition-colors"
-      onClick={() => navigate("/myprofilesection/workexperience")}
-    >
-      <Plus size={20} className="text-[#074799]" />
-    </button>
-  </div>
+        {/* Work Experience Section */}
+        <div className="bg-[#F6F7FB] rounded-xl overflow-hidden">
+          <div className="flex items-center justify-between p-4">
+            <div className="flex items-center gap-3">
+              <img src={iconWork} alt="Work Experience" className="w-8 h-8" />
+              <span className="font-medium text-[#1A1A2C]">Work experience</span>
+            </div>
+            <button 
+              className="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full hover:bg-blue-200 transition-colors"
+              onClick={() => setShowWorkExperience(!showWorkExperience)}
+            >
+              <Plus size={20} className={`text-[#074799] transition-transform ${showWorkExperience ? 'rotate-45' : ''}`} />
+            </button>
+          </div>
+          {showWorkExperience && (
+            <div className="px-4 pb-4">
+              <div className="bg-white rounded-lg p-4 space-y-3">
+                <div>
+                  <label className="block text-sm text-[#1a1444] font-medium mb-1">Job Title</label>
+                  <input
+                    type="text"
+                    placeholder="e.g Executive Sales Manager"
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm text-[#1a1444] font-medium mb-1">Job Role</label>
+                  <select className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm">
+                    <option>Select Job Role</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm text-[#1a1444] font-medium mb-1">Company Name</label>
+                  <select className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm">
+                    <option>e.g Amazon</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm text-[#1a1444] font-medium mb-1">Experience in this company</label>
+                  <div className="flex gap-2">
+                    <select className="w-1/2 border border-gray-300 rounded-lg px-3 py-2 text-sm">
+                      <option>Years</option>
+                    </select>
+                    <select className="w-1/2 border border-gray-300 rounded-lg px-3 py-2 text-sm">
+                      <option>Months</option>
+                    </select>
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm text-[#1a1444] font-medium mb-1">Current/Last Salary</label>
+                  <input
+                    type="text"
+                    placeholder="$15,0000"
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
+                  />
+                </div>
+                <div className="flex items-center">
+                  <input type="checkbox" id="currentlyWorking" className="mr-2" />
+                  <label htmlFor="currentlyWorking" className="text-sm text-[#1a1444]">
+                    I am currently working here
+                  </label>
+                </div>
+                <div className="flex justify-end gap-3 pt-2">
+                  <button
+                    className="px-4 py-2 rounded-lg border border-[#1a1444] text-[#1a1444] text-sm"
+                    onClick={() => setShowWorkExperience(false)}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    className="px-4 py-2 rounded-lg bg-[#0047AB] text-white text-sm"
+                    onClick={() => {
+                      alert('Work experience saved');
+                      setShowWorkExperience(false);
+                    }}
+                  >
+                    Save
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
 
-  <div className="flex items-center justify-between bg-[#F6F7FB] p-4 rounded-xl">
-    <div className="flex items-center gap-3">
-      <img src={iconSkills} alt="Skills" className="w-8 h-8" />
-      <span className="font-medium text-[#1A1A2C]">Skills</span>
-    </div>
-    <button 
-      className="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full hover:bg-blue-200 transition-colors"
-      onClick={() => navigate("/myprofilesection/skills")}
-    >
-      <Plus size={20} className="text-[#074799]" />
-    </button>
-  </div>
+        {/* Skills Section */}
+        <div className="bg-[#F6F7FB] rounded-xl overflow-hidden">
+          <div className="flex items-center justify-between p-4">
+            <div className="flex items-center gap-3">
+              <img src={iconSkills} alt="Skills" className="w-8 h-8" />
+              <span className="font-medium text-[#1A1A2C]">Skills</span>
+            </div>
+            <button 
+              className="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full hover:bg-blue-200 transition-colors"
+              onClick={() => setShowSkills(!showSkills)}
+            >
+              <Plus size={20} className={`text-[#074799] transition-transform ${showSkills ? 'rotate-45' : ''}`} />
+            </button>
+          </div>
+          {showSkills && (
+            <div className="px-4 pb-4">
+              <div className="bg-white rounded-lg p-4 space-y-3">
+                <p className="text-sm text-gray-700 mb-3">UI/UX Designer/ Web Designer</p>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {['Figma', 'Illustrator', 'Adobe XD', 'Wireframing', 'Flow-map', 'HTML/CSS'].map((skill) => (
+                    <button
+                      key={skill}
+                      className="px-3 py-1 rounded-full border text-sm bg-blue-100 border-blue-500 text-blue-700"
+                    >
+                      {skill} ✓
+                    </button>
+                  ))}
+                </div>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    placeholder="Add custom skill"
+                    className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm"
+                  />
+                  <button className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm">
+                    Add
+                  </button>
+                </div>
+                <div className="flex justify-end gap-3 pt-2">
+                  <button
+                    className="px-4 py-2 border border-blue-600 text-blue-600 rounded-lg text-sm"
+                    onClick={() => setShowSkills(false)}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    className="px-4 py-2 bg-blue-700 text-white rounded-lg text-sm"
+                    onClick={() => {
+                      alert('Skills saved');
+                      setShowSkills(false);
+                    }}
+                  >
+                    Save
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
 
-  <div className="flex items-center justify-between bg-[#F6F7FB] p-4 rounded-xl">
-    <div className="flex items-center gap-3">
-      <img src={iconCategory} alt="Category Details" className="w-8 h-8" />
-      <span className="font-medium text-[#1A1A2C]">Category Details</span>
-    </div>
-    <button 
-      className="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full hover:bg-blue-200 transition-colors"
-      onClick={() => navigate("/myprofilesection/documents")}
-    >
-      <Plus size={20} className="text-[#074799]" />
-    </button>
-  </div>
+        {/* Documents Section */}
+        <div className="bg-[#F6F7FB] rounded-xl overflow-hidden">
+          <div className="flex items-center justify-between p-4">
+            <div className="flex items-center gap-3">
+              <img src={iconCategory} alt="Category Details" className="w-8 h-8" />
+              <span className="font-medium text-[#1A1A2C]">Category Details</span>
+            </div>
+            <button 
+              className="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full hover:bg-blue-200 transition-colors"
+              onClick={() => setShowDocuments(!showDocuments)}
+            >
+              <Plus size={20} className={`text-[#074799] transition-transform ${showDocuments ? 'rotate-45' : ''}`} />
+            </button>
+          </div>
+          {showDocuments && (
+            <div className="px-4 pb-4">
+              <div className="bg-white rounded-lg p-4 space-y-3">
+                <p className="text-sm text-gray-600 mb-3">
+                  Which of these IDs/documents do you have?
+                </p>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {['PAN Card', 'Aadhar Card', 'Bank Account', 'None of these'].map((doc) => (
+                    <button
+                      key={doc}
+                      className="px-3 py-1 rounded-full border text-sm bg-blue-100 text-blue-900 border-blue-300"
+                    >
+                      {doc} ✓
+                    </button>
+                  ))}
+                </div>
+                <div className="flex justify-end gap-3 pt-2">
+                  <button
+                    className="px-4 py-2 border rounded-lg text-sm text-blue-700 border-blue-600"
+                    onClick={() => setShowDocuments(false)}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    className="px-4 py-2 bg-blue-700 text-white text-sm rounded-lg"
+                    onClick={() => {
+                      alert('Documents saved');
+                      setShowDocuments(false);
+                    }}
+                  >
+                    Save
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
 
-  <div className="flex items-center justify-between bg-[#F6F7FB] p-4 rounded-xl">
-    <div className="flex items-center gap-3">
-      <img src={iconBasic} alt="Basic Details" className="w-8 h-8" />
-      <span className="font-medium text-[#1A1A2C]">Basic Details</span>
-    </div>
-    <button 
-      className="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full hover:bg-blue-200 transition-colors"
-      onClick={() => navigate("/myprofilesection/basicdetails")}
-    >
-      <Plus size={20} className="text-[#074799]" />
-    </button>
-  </div>
-</div>
+        {/* Basic Details Section */}
+        <div className="bg-[#F6F7FB] rounded-xl overflow-hidden">
+          <div className="flex items-center justify-between p-4">
+            <div className="flex items-center gap-3">
+              <img src={iconBasic} alt="Basic Details" className="w-8 h-8" />
+              <span className="font-medium text-[#1A1A2C]">Basic Details</span>
+            </div>
+            <button 
+              className="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full hover:bg-blue-200 transition-colors"
+              onClick={() => setShowBasicDetails(!showBasicDetails)}
+            >
+              <Plus size={20} className={`text-[#074799] transition-transform ${showBasicDetails ? 'rotate-45' : ''}`} />
+            </button>
+          </div>
+          {showBasicDetails && (
+            <div className="px-4 pb-4">
+              <div className="bg-white rounded-lg p-4 space-y-3">
+                <div>
+                  <label className="text-sm font-medium">Add Alternate phone number</label>
+                  <input
+                    type="text"
+                    className="w-full p-2 border rounded mt-1"
+                    placeholder="e.g. 9876543210"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium">Age</label>
+                  <input
+                    type="number"
+                    className="w-full p-2 border rounded mt-1"
+                    placeholder="e.g. 25"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium">Education level</label>
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    {['Below 10th', '10th Pass', '12th Pass', 'Diploma', 'Graduate', 'Post Graduate'].map((edu) => (
+                      <button
+                        key={edu}
+                        className="border rounded-full px-3 py-1 text-sm bg-blue-100 text-blue-600 border-blue-400"
+                      >
+                        {edu}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <label className="text-sm font-medium">Languages</label>
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    {['English', 'Hindi', 'Kannada'].map((lang) => (
+                      <button
+                        key={lang}
+                        className="border rounded-full px-3 py-1 text-sm bg-blue-100 text-blue-600 border-blue-400"
+                      >
+                        {lang}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <label className="text-sm font-medium">Gender</label>
+                  <div className="flex gap-4 mt-2">
+                    {['Male', 'Female'].map((gender) => (
+                      <button
+                        key={gender}
+                        className="border rounded-full px-4 py-1 text-sm bg-blue-100 text-blue-600 border-blue-400"
+                      >
+                        {gender}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div className="flex justify-end gap-3 pt-2">
+                  <button
+                    className="px-4 py-2 border border-blue-600 rounded-lg text-blue-600"
+                    onClick={() => setShowBasicDetails(false)}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    className="px-4 py-2 bg-blue-600 text-white rounded-lg"
+                    onClick={() => {
+                      alert('Basic details saved');
+                      setShowBasicDetails(false);
+                    }}
+                  >
+                    Save
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
       {/* ✅ Fixed Bottom Navigation */}
       <div className="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around py-3 border-t border-gray-200 bg-white/95 backdrop-blur-sm">
         <button onClick={() => navigate("/home")}>
