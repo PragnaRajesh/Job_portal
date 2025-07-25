@@ -59,7 +59,10 @@ const WorkExperience = () => {
           </button>
           <button
             className="px-5 py-2 rounded-full bg-[#0047AB] text-white text-sm"
-            onClick={() => alert('Saved')}
+            onClick={() => {
+              alert('Work experience saved');
+              navigate('/myprofilesection/myprofile');
+            }}
           >
             Save
           </button>

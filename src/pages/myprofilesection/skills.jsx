@@ -85,7 +85,10 @@ const Skills = () => {
             Cancel
           </button>
           <button
-            onClick={() => alert('Skills saved')}
+            onClick={() => {
+              alert('Skills saved');
+              navigate('/myprofilesection/myprofile');
+            }}
             className="px-5 py-2 bg-blue-700 text-white rounded-full text-sm"
           >
             Save

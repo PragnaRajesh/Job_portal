@@ -239,7 +239,10 @@ const MyProfile = () => {
         <div className="flex-1 p-4 rounded-xl shadow-sm border flex flex-col items-center">
           <img src={iconFolder} alt="History Icon" className="w-10 h-10" />
           <p className="mt-2 font-medium">My History</p>
-          <button className="mt-1">
+          <button 
+            className="mt-1 hover:opacity-80 transition-opacity"
+            onClick={() => navigate("/applications/application")}
+          >
             <svg width="82" height="35" viewBox="0 0 82 35" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect width="82" height="35" rx="8" fill="#074799"/>
               <text x="41" y="22" textAnchor="middle" fill="white" fontSize="12" fontFamily="sans-serif">Click here</text>
@@ -265,7 +268,10 @@ const MyProfile = () => {
       <img src={iconWork} alt="Work Experience" className="w-8 h-8" />
       <span className="font-medium text-[#1A1A2C]">Work experience</span>
     </div>
-    <button className="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full">
+    <button 
+      className="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full hover:bg-blue-200 transition-colors"
+      onClick={() => navigate("/myprofilesection/workexperience")}
+    >
       <Plus size={20} className="text-[#074799]" />
     </button>
   </div>
@@ -275,7 +281,10 @@ const MyProfile = () => {
       <img src={iconSkills} alt="Skills" className="w-8 h-8" />
       <span className="font-medium text-[#1A1A2C]">Skills</span>
     </div>
-    <button className="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full">
+    <button 
+      className="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full hover:bg-blue-200 transition-colors"
+      onClick={() => navigate("/myprofilesection/skills")}
+    >
       <Plus size={20} className="text-[#074799]" />
     </button>
   </div>
@@ -285,7 +294,10 @@ const MyProfile = () => {
       <img src={iconCategory} alt="Category Details" className="w-8 h-8" />
       <span className="font-medium text-[#1A1A2C]">Category Details</span>
     </div>
-    <button className="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full">
+    <button 
+      className="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full hover:bg-blue-200 transition-colors"
+      onClick={() => navigate("/myprofilesection/documents")}
+    >
       <Plus size={20} className="text-[#074799]" />
     </button>
   </div>
@@ -295,7 +307,10 @@ const MyProfile = () => {
       <img src={iconBasic} alt="Basic Details" className="w-8 h-8" />
       <span className="font-medium text-[#1A1A2C]">Basic Details</span>
     </div>
-    <button className="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full">
+    <button 
+      className="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full hover:bg-blue-200 transition-colors"
+      onClick={() => navigate("/myprofilesection/basicdetails")}
+    >
       <Plus size={20} className="text-[#074799]" />
     </button>
   </div>
