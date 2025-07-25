@@ -148,7 +148,7 @@ const MyProfile = () => {
             </div>
             <button className="relative">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle opacity="0.2" cx="12" cy="12" r="11.5" fill="#074799" stroke="#074799"/>
+                <circle cx="12" cy="12" r="11.5" fill="#dbeafe" stroke="#dbeafe"/>
               </svg>
               <span className="absolute inset-0 flex items-center justify-center text-[#074799] text-lg font-bold">+</span>
             </button>
@@ -160,7 +160,7 @@ const MyProfile = () => {
             </div>
             <button className="relative">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle opacity="0.2" cx="12" cy="12" r="11.5" fill="#074799" stroke="#074799"/>
+                <circle cx="12" cy="12" r="11.5" fill="#dbeafe" stroke="#dbeafe"/>
               </svg>
               <span className="absolute inset-0 flex items-center justify-center text-[#074799] text-lg font-bold">+</span>
             </button>
@@ -172,7 +172,7 @@ const MyProfile = () => {
             </div>
             <button className="relative">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle opacity="0.2" cx="12" cy="12" r="11.5" fill="#074799" stroke="#074799"/>
+                <circle cx="12" cy="12" r="11.5" fill="#dbeafe" stroke="#dbeafe"/>
               </svg>
               <span className="absolute inset-0 flex items-center justify-center text-[#074799] text-lg font-bold">+</span>
             </button>
@@ -184,7 +184,7 @@ const MyProfile = () => {
             </div>
             <button className="relative">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle opacity="0.2" cx="12" cy="12" r="11.5" fill="#074799" stroke="#074799"/>
+                <circle cx="12" cy="12" r="11.5" fill="#dbeafe" stroke="#dbeafe"/>
               </svg>
               <span className="absolute inset-0 flex items-center justify-center text-[#074799] text-lg font-bold">+</span>
             </button>
