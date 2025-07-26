@@ -21,7 +21,7 @@ const EducationDetails = () => {
     <div className="h-screen bg-white px-4 pt-6 pb-24 flex flex-col justify-between overflow-hidden pt-safe pb-safe">
       
       {/* Step Image */}
-      <div className="w-full flex justify-center -mt-2 mb-3">
+      <div className="w-full flex justify-center -mt-0 mb-6">
         <img
           src={stepIcon}
           alt="Progress Step 2"

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { ArrowLeft, Download, Save, Edit3, Plus, Trash2 } from 'lucide-react';
-import GraphicsTemplate from './templates/GraphicsTemplate';
-import ProfessionalTemplate from './templates/ProfessionalTemplate';
-import BasicTemplate from './templates/BasicTemplate';
-import AITemplate from './templates/AITemplate';
+import GraphicsTemplate from './graphictemplate';
+import ProfessionalTemplate from './professionaltemplate';
+import BasicTemplate from './basictemplate'; 
+import AITemplate from './AItemplate';
 
 const ResumeEditor = ({ template, onBack, onSave, onDownload }) => {
   const [resumeData, setResumeData] = useState({

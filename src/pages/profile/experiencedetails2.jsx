@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import stepIcon from "../../assets/step4.png";
+
 
 const ExperienceDetails2 = () => {
   const [companyName, setCompanyName] = useState("");
@@ -38,9 +40,14 @@ const ExperienceDetails2 = () => {
       <div>
         <h2 className="text-center text-lg font-semibold mb-4">Experience Details</h2>
 
-        <div className="w-full h-2 bg-gray-200 rounded-full mb-6">
-          <div className="h-2 bg-blue-700 rounded-full w-3/5"></div>
-        </div>
+        {/* Step Image */}
+              <div className="w-full flex justify-center -mt-0 mb-6">
+                <img
+                  src={stepIcon}
+                  alt="Progress Step 4"
+                  className="object-contain"
+                />
+              </div>
 
         {/* Company Dropdown */}
         <label className="font-semibold mb-1 block">Company information</label>

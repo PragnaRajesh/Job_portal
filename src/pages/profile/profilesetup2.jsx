@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import stepIcon from "../../assets/step1.png";
+
 import { useNavigate } from "react-router-dom";
 
 const ProfileSetup2 = () => {
@@ -31,14 +33,18 @@ const ProfileSetup2 = () => {
   return (
     <div className="min-h-screen bg-white flex flex-col justify-between p-4 pt-safe pb-safe">
       <div>
-        <h2 className="text-base font-semibold text-center mb-4">
+        <h2 className="text-base font-semibold text-center mt-6 mb-4">
           Basic Details
         </h2>
 
-        {/* Progress Bar */}
-        <div className="w-full h-2 bg-gray-200 rounded-full mb-6">
-          <div className="h-2 bg-blue-700 rounded-full w-2/5"></div>
-        </div>
+        {/* Step Image */}
+              <div className="w-full flex justify-center -mt-0 mb-6">
+                <img
+                  src={stepIcon}
+                  alt="Progress Step 1"
+                  className="object-contain"
+                />
+              </div>
 
         {/* Full Name */}
         <label className="text-sm font-semibold block mb-1">Full Name</label>

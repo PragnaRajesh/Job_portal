@@ -23,7 +23,7 @@ const CreateProfile = () => {
   return (
     <div className="h-screen bg-white px-4 pt-6 pb-24 flex flex-col justify-between overflow-hidden pt-safe pb-safe">
       {/* Step Image */}
-      <div class="w-full flex justify-center -mt-2 mb-3"><img alt="Progress Step 0" src="/src/assets/step0.png?t=1753261694330" class="object-contain"/></div>
+      <div class="w-full flex justify-center -mt-0 mb-6"><img alt="Progress Step 0" src="/src/assets/step0.png?t=1753261694330" class="object-contain"/></div>
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col justify-start">

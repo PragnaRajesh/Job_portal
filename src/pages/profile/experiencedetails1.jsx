@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import stepIcon from "../../assets/step4.png";
 
 const jobRolesData = {
   "IT & Software": [
@@ -59,10 +60,14 @@ const ExperienceDetails1 = () => {
         <h2 className="text-center text-lg font-semibold mb-2">
           Experience Details
         </h2>
-
-        <div className="w-full h-1 bg-gray-200 rounded-full mb-6">
-          <div className="h-1 bg-blue-700 rounded-full w-[70%]"></div>
-        </div>
+        {/* Step Image */}
+              <div className="w-full flex justify-center -mt-0 mb-6">
+                <img
+                  src={stepIcon}
+                  alt="Progress Step 4"
+                  className="object-contain"
+                />
+              </div>
 
         <h3 className="text-md font-semibold mb-1">Choose your job role</h3>
         <p className="text-sm text-gray-500 mb-3">

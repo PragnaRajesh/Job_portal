@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
-import stepIcon from "../../assets/step3.png";
+import stepIcon from "../../assets/step5.png";
 
 const containerStyle = {
   width: "100%",
@@ -26,10 +26,10 @@ const LocationScreen = () => {
     <div className="h-screen p-4 bg-white pt-6 pb-24 flex flex-col justify-between overflow-hidden pt-safe pb-safe">
 
       {/* Step Image */}
-      <div className="w-full flex justify-center -mt-2 mb-3">
+      <div className="w-full flex justify-center -mt-0 mb-6">
         <img
           src={stepIcon}
-          alt="Progress Step 3"
+          alt="Progress Step 5"
           className="object-contain"
         />
       </div>

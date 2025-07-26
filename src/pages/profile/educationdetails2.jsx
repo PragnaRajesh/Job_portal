@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import stepIcon from "../../assets/step2.png";
+
 
 const degreeOptions = {
   Graduate: ["B.E", "B.Tech", "BA", "BSc", "B.Com", "BBA"],
@@ -72,12 +74,15 @@ const EducationDetails2 = () => {
   return (
     <div className="min-h-screen bg-white p-4 flex flex-col justify-between pt-safe pb-safe">
       <div>
-        <h2 className="text-base font-semibold mb-4">Education Details</h2>
-
-        <div className="w-full h-2 bg-gray-200 rounded-full mb-6">
-          <div className="h-2 bg-blue-700 rounded-full w-[65%]"></div>
-        </div>
-
+        <h2 className="text-base font-semibold mt-8 mb-4">Education Details</h2>
+        {/* Step Image */}
+              <div className="w-full flex justify-center -mt-0 mb-6">
+                <img
+                  src={stepIcon}
+                  alt="Progress Step 2"
+                  className="object-contain"
+                />
+              </div>
         <h3 className="font-semibold mb-2">Select your highest education level</h3>
         <div className="flex flex-wrap gap-2 mb-4">
           {Object.keys(degreeOptions).map((option) => (

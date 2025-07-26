@@ -1,7 +1,7 @@
 import React from 'react';
 import { ArrowLeft, ArrowRight, FileText, Users, User, X, HomeIcon, Briefcase, Plus } from 'lucide-react';
-import ResumeTemplates from './ResumeTemplates';
-import ResumeEditor from './ResumeEditor';
+import ResumeTemplates from './resumetemplates';
+import ResumeEditor from './resumeeditor';
 
 
 function ResumeBuilder() {

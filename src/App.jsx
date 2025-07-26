@@ -45,6 +45,13 @@ import { ConversationProvider } from "./pages/chats/conversationcontext";
 import ResumeBuilder from "./pages/resume/resumebuilder";
 import AIJobPrep from "./components/AIJobPrep";
 import InterviewPrep from "./components/InterviewPrep";
+import ResumeTemplates from "./pages/resume/resumetemplates";
+import ResumeEditor from "./pages/resume/resumeeditor";
+import ProfessionalTemplate from "./pages/resume/professionaltemplate";
+import GraphicTemplate from "./pages/resume/graphictemplate";
+import BasicTemplate from "./pages/resume/basictemplate";
+import AITemplate from "./pages/resume/AItemplate";
+
 const AISupport = () => (
   <div className="min-h-screen flex flex-col items-center justify-center text-center pt-safe pb-safe">
     <h1 className="text-2xl font-bold mb-4">AI Support</h1>
@@ -124,6 +131,12 @@ const App = () => {
 
           {/* Resume routes */}
           <Route path="/resume/resumebuilder" element={<ResumeBuilder />} />
+          <Route path="/resume/templates" element={<ResumeTemplates />} />
+          <Route path="/resume/editor" element={<ResumeEditor />} />
+          <Route path="/resume/template/professional" element={<ProfessionalTemplate />} />
+          <Route path="/resume/template/graphic" element={<GraphicTemplate />} />
+          <Route path="/resume/template/basic" element={<BasicTemplate />} />
+          <Route path="/resume/template/ai" element={<AITemplate />} />
         </Routes>
       </ConversationProvider>
     </BrowserRouter>

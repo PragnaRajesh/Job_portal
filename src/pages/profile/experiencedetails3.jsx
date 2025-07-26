@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import stepIcon from "../../assets/step4.png";
 
 const ExperienceDetails3 = () => {
   const navigate = useNavigate();
@@ -37,10 +38,14 @@ const ExperienceDetails3 = () => {
       <div>
         <h2 className="text-center text-base font-semibold mb-3">Experience Details</h2>
 
-        {/* Progress Bar */}
-        <div className="w-full h-1 bg-gray-200 rounded-full mb-6">
-          <div className="h-1 bg-blue-700 rounded-full w-[85%]"></div>
-        </div>
+        {/* Step Image */}
+              <div className="w-full flex justify-center -mt-0 mb-6">
+                <img
+                  src={stepIcon}
+                  alt="Progress Step 4"
+                  className="object-contain"
+                />
+              </div>
 
         <h3 className="font-semibold mb-2 text-sm">
           Are you currently working in this company?

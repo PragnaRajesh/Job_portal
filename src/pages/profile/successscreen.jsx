@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import confetti from "canvas-confetti";
 import successIcon from "../../assets/success screen.jpeg";
-import stepIcon from "../../assets/step6.png";
 
 const SuccessScreen = () => {
   const navigate = useNavigate();
@@ -35,14 +34,6 @@ const SuccessScreen = () => {
   return (
     <div className="h-screen bg-[#F3FCFF] px-4 pt-4 pb-6 flex flex-col justify-between items-center text-center overflow-hidden">
       
-      {/* Step Progress */}
-      <div className="w-full flex justify-center -mt-2 mb-2">
-        <img
-          src={stepIcon}
-          alt="Progress Step 6"
-          className="object-contain"
-        />
-      </div>
 
      {/* Main Content */}
 <div className="flex flex-col items-center justify-start w-full mt-2 mb-auto">
