@@ -171,7 +171,7 @@ const JobList = () => {
                 })}
               </div>
               
-              <div className="flex justify-end mt-3">
+              <div className="flex justify-end mt-2">
                 <div
                   className="flex flex-col items-center text-[10px] text-blue-600 cursor-pointer"
                   onClick={(e) => {
