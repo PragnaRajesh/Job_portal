@@ -2,7 +2,7 @@ import React from 'react';
 
 const ProfessionalTemplate = ({ data }) => {
   return (
-    <div className="bg-white p-4 sm:p-6 lg:p-8 shadow-lg min-h-screen font-serif max-w-4xl mx-auto">
+    <div className="bg-white p-4 sm:p-6 lg:p-8 shadow-lg min-h-screen font-serif max-w-4xl mx-auto" style={{ aspectRatio: '210/297', minHeight: '297mm', width: '210mm' }}>
       {/* Header */}
       <div className="text-center border-b-2 border-gray-800 pb-4 sm:pb-6 mb-6 sm:mb-8">
         <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-2 sm:mb-3 break-words">{data.personalInfo.name}</h1>

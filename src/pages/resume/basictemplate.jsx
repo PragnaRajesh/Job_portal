@@ -2,7 +2,7 @@ import React from 'react';
 
 const BasicTemplate = ({ data }) => {
   return (
-    <div className="bg-white p-4 sm:p-6 lg:p-8 shadow-lg min-h-screen font-sans max-w-4xl mx-auto">
+    <div className="bg-white p-4 sm:p-6 lg:p-8 shadow-lg min-h-screen font-sans max-w-4xl mx-auto" style={{ aspectRatio: '210/297', minHeight: '297mm', width: '210mm' }}>
       {/* Header */}
       <div className="mb-6 sm:mb-8">
         <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-1 sm:mb-2 break-words">{data.personalInfo.name}</h1>

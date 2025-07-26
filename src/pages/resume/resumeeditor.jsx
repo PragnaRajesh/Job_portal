@@ -513,8 +513,8 @@ const ResumeEditor = ({ template, onBack, onSave, onDownload }) => {
               <h2 className="text-lg font-semibold text-gray-800 text-center lg:text-left">Resume Preview</h2>
             </div>
             <div className="p-4 lg:p-6 bg-gray-50 flex justify-center">
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden w-full max-w-2xl lg:max-w-4xl">
-                <div className="transform scale-75 lg:scale-100 origin-top">
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden w-full max-w-4xl" style={{ aspectRatio: '210/297' }}>
+                <div className="transform scale-90 lg:scale-100 origin-top w-full h-full">
                   {getTemplateComponent()}
                 </div>
               </div>

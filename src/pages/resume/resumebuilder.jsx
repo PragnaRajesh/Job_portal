@@ -149,11 +149,89 @@ function ResumeBuilder() {
           {/* Template Categories */}
           <div className="space-y-4">
             <div 
+              className="bg-cyan-100 p-5 rounded-2xl hover:bg-cyan-200 transition-colors cursor-pointer group border border-cyan-200"
+              onClick={() => handleCategoryClick('technology')}
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="font-medium text-gray-800 text-sm">Technology & Engineering</h3>
+                  <p className="text-gray-600 text-xs mt-1">Colorful tech-focused templates with modern gradients</p>
+                </div>
+                <div className="bg-white p-2 rounded-full group-hover:translate-x-1 transition-transform shadow-sm">
+                  <ArrowRight className="w-4 h-4 text-gray-700" />
+                </div>
+              </div>
+            </div>
+
+            <div 
+              className="bg-pink-100 p-5 rounded-2xl hover:bg-pink-200 transition-colors cursor-pointer group border border-pink-200"
+              onClick={() => handleCategoryClick('marketing')}
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="font-medium text-gray-800 text-sm">Marketing & Creative</h3>
+                  <p className="text-gray-600 text-xs mt-1">Vibrant creative templates with artistic elements</p>
+                </div>
+                <div className="bg-white p-2 rounded-full group-hover:translate-x-1 transition-transform shadow-sm">
+                  <ArrowRight className="w-4 h-4 text-gray-700" />
+                </div>
+              </div>
+            </div>
+
+            <div 
+              className="bg-slate-100 p-5 rounded-2xl hover:bg-slate-200 transition-colors cursor-pointer group border border-slate-200"
+              onClick={() => handleCategoryClick('business')}
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="font-medium text-gray-800 text-sm">Business & Executive</h3>
+                  <p className="text-gray-600 text-xs mt-1">Sophisticated templates for leadership roles</p>
+                </div>
+                <div className="bg-white p-2 rounded-full group-hover:translate-x-1 transition-transform shadow-sm">
+                  <ArrowRight className="w-4 h-4 text-gray-700" />
+                </div>
+              </div>
+            </div>
+
+            <div 
+              className="bg-emerald-100 p-5 rounded-2xl hover:bg-emerald-200 transition-colors cursor-pointer group border border-emerald-200"
+              onClick={() => handleCategoryClick('healthcare')}
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="font-medium text-gray-800 text-sm">Healthcare & Medical</h3>
+                  <p className="text-gray-600 text-xs mt-1">Professional medical templates with healthcare themes</p>
+                </div>
+                <div className="bg-white p-2 rounded-full group-hover:translate-x-1 transition-transform shadow-sm">
+                  <ArrowRight className="w-4 h-4 text-gray-700" />
+                </div>
+              </div>
+            </div>
+
+            <div 
+              className="bg-violet-100 p-5 rounded-2xl hover:bg-violet-200 transition-colors cursor-pointer group border border-violet-200"
+              onClick={() => handleCategoryClick('education')}
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="font-medium text-gray-800 text-sm">Education & Academic</h3>
+                  <p className="text-gray-600 text-xs mt-1">Academic templates perfect for educators and researchers</p>
+                </div>
+                <div className="bg-white p-2 rounded-full group-hover:translate-x-1 transition-transform shadow-sm">
+                  <ArrowRight className="w-4 h-4 text-gray-700" />
+                </div>
+              </div>
+            </div>
+
+            <div 
               className="bg-green-100 p-5 rounded-2xl hover:bg-green-200 transition-colors cursor-pointer group border border-green-200"
               onClick={() => handleCategoryClick('graphics')}
             >
               <div className="flex items-center justify-between">
-                <h3 className="font-medium text-gray-800 text-sm">Graphics Resume Templates</h3>
+                <div>
+                  <h3 className="font-medium text-gray-800 text-sm">Graphics Resume Templates</h3>
+                  <p className="text-gray-600 text-xs mt-1">Classic colorful templates with gradient designs</p>
+                </div>
                 <div className="bg-white p-2 rounded-full group-hover:translate-x-1 transition-transform shadow-sm">
                   <ArrowRight className="w-4 h-4 text-gray-700" />
                 </div>
@@ -165,7 +243,10 @@ function ResumeBuilder() {
               onClick={() => handleCategoryClick('ai')}
             >
               <div className="flex items-center justify-between">
-                <h3 className="font-medium text-gray-800 text-sm">AI Resume Builder Templates</h3>
+                <div>
+                  <h3 className="font-medium text-gray-800 text-sm">AI Resume Builder Templates</h3>
+                  <p className="text-gray-600 text-xs mt-1">Futuristic AI-inspired designs with tech elements</p>
+                </div>
                 <div className="bg-white p-2 rounded-full group-hover:translate-x-1 transition-transform shadow-sm">
                   <ArrowRight className="w-4 h-4 text-gray-700" />
                 </div>
@@ -177,7 +258,10 @@ function ResumeBuilder() {
               onClick={() => handleCategoryClick('professional')}
             >
               <div className="flex items-center justify-between">
-                <h3 className="font-medium text-gray-800 text-sm">Professional Resume Templates</h3>
+                <div>
+                  <h3 className="font-medium text-gray-800 text-sm">Professional Resume Templates</h3>
+                  <p className="text-gray-600 text-xs mt-1">Traditional professional layouts with clean design</p>
+                </div>
                 <div className="bg-white p-2 rounded-full group-hover:translate-x-1 transition-transform shadow-sm">
                   <ArrowRight className="w-4 h-4 text-gray-700" />
                 </div>
@@ -189,7 +273,10 @@ function ResumeBuilder() {
               onClick={() => handleCategoryClick('basic')}
             >
               <div className="flex items-center justify-between">
-                <h3 className="font-medium text-gray-800 text-sm">Basic/Modern Resume Templates</h3>
+                <div>
+                  <h3 className="font-medium text-gray-800 text-sm">Basic/Modern Resume Templates</h3>
+                  <p className="text-gray-600 text-xs mt-1">Simple and clean templates for any profession</p>
+                </div>
                 <div className="bg-white p-2 rounded-full group-hover:translate-x-1 transition-transform shadow-sm">
                   <ArrowRight className="w-4 h-4 text-gray-700" />
                 </div>
