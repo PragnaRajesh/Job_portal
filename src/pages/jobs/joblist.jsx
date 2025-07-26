@@ -133,7 +133,19 @@ const JobList = () => {
                   <div className="text-[10px] font-semibold text-orange-600 bg-orange-100 px-2 py-1 rounded-full">
                     URGENT HIRING
                   </div>
-                  <Bookmark className="text-blue-600 w-4 h-4" />
+                  <div className="flex items-center gap-2">
+                    <Bookmark className="text-blue-600 w-4 h-4" />
+                    <div
+                      className="flex flex-col items-center text-[10px] text-blue-600 cursor-pointer"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setActiveVideoIndex(activeVideoIndex === i ? null : i);
+                      }}
+                    >
+                      <img src={videoIcon} alt="prep" className="w-6 h-6" />
+                      <span>Job Prep.</span>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -143,45 +155,32 @@ const JobList = () => {
                 {job.location}
               </p>
 
-              <div className="flex justify-between items-start mt-3 flex-wrap gap-y-2">
-                <div className="flex flex-wrap gap-2">
-                  {job.tags.map((tag, tagIndex) => {
-                    const isInterview = tag.includes("Interview");
-                    const isHighDemand = tag.includes("High Demand");
-                    const isNewJob = tag.includes("New Job");
-                    const isVacancy = tag.includes("Vacancy");
-                    let bg = "bg-gray-100 text-gray-700";
-                    let icon = null;
-                    if (isInterview) {
-                      bg = "bg-orange-200 text-black font-semibold";
-                    } else if (isHighDemand) {
-                      bg = "bg-yellow-100 text-blue-800 font-medium";
-                      icon = <span className="text-yellow-500">⚡</span>;
-                    } else if (isNewJob || isVacancy) {
-                      bg = "bg-gray-100 text-blue-700 font-medium";
-                    }
-                    return (
-                      <span
-                        key={tagIndex}
-                        className={`text-xs px-3 py-1 rounded-xl flex items-center gap-1 ${bg}`}
-                      >
-                        {icon}
-                        {tag}
-                      </span>
-                    );
-                  })}
-                </div>
-
-                <div
-                  className="flex flex-col items-center text-[10px] text-blue-600 cursor-pointer"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setActiveVideoIndex(activeVideoIndex === i ? null : i);
-                  }}
-                >
-                  <img src={videoIcon} alt="prep" className="w-6 h-6" />
-                  <span>Job Prep.</span>
-                </div>
+              <div className="flex flex-wrap gap-2 mt-3">
+                {job.tags.map((tag, tagIndex) => {
+                  const isInterview = tag.includes("Interview");
+                  const isHighDemand = tag.includes("High Demand");
+                  const isNewJob = tag.includes("New Job");
+                  const isVacancy = tag.includes("Vacancy");
+                  let bg = "bg-gray-100 text-gray-700";
+                  let icon = null;
+                  if (isInterview) {
+                    bg = "bg-orange-200 text-black font-semibold";
+                  } else if (isHighDemand) {
+                    bg = "bg-yellow-100 text-blue-800 font-medium";
+                    icon = <span className="text-yellow-500">⚡</span>;
+                  } else if (isNewJob || isVacancy) {
+                    bg = "bg-gray-100 text-blue-700 font-medium";
+                  }
+                  return (
+                    <span
+                      key={tagIndex}
+                      className={`text-xs px-3 py-1 rounded-xl flex items-center gap-1 ${bg}`}
+                    >
+                      {icon}
+                      {tag}
+                    </span>
+                  );
+                })}
               </div>
 
               <div className="flex justify-between items-center mt-4 pt-2 border-t text-xs text-gray-600">
