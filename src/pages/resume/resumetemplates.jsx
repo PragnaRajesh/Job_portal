@@ -1,16 +1,16 @@
 import React from 'react';
 import { X, Download, Save, Edit3, ArrowLeft } from 'lucide-react';
 
-// CSS for preview mode to override template dimensions
+// CSS for preview mode to override template dimensions - Full A4 size display
 const previewStyles = `
   .resume-preview-wrapper > div {
     width: 794px !important;
     height: 1123px !important;
     min-height: 1123px !important;
-    max-width: 794px !important;
-    max-height: 1123px !important;
+    max-width: none !important;
+    max-height: none !important;
     aspect-ratio: 210/297 !important;
-    overflow: hidden !important;
+    overflow: visible !important;
     position: relative !important;
     transform-origin: top left !important;
   }
@@ -19,30 +19,47 @@ const previewStyles = `
     box-sizing: border-box !important;
   }
   
+  /* Ensure full content is visible */
+  .resume-preview-wrapper {
+    overflow: visible !important;
+  }
+  
   .resume-preview-scale {
-    transform: scale(0.35);
+    transform: scale(0.5);
   }
   
   .resume-preview-container {
-    height: 420px;
+    height: 600px;
+    overflow: auto;
   }
   
   @media (max-width: 640px) {
     .resume-preview-scale {
-      transform: scale(0.25) !important;
+      transform: scale(0.4) !important;
     }
     .resume-preview-container {
-      height: 350px !important;
+      height: 500px !important;
+      overflow: auto !important;
     }
   }
   
   @media (min-width: 641px) and (max-width: 1024px) {
     .resume-preview-scale {
-      transform: scale(0.30) !important;
+      transform: scale(0.45) !important;
     }
     .resume-preview-container {
-      height: 380px !important;
+      height: 550px !important;
+      overflow: auto !important;
     }
+  }
+  
+  /* Override template max-width restrictions in preview mode */
+  .resume-preview-wrapper .max-w-4xl {
+    max-width: none !important;
+  }
+  
+  .resume-preview-wrapper .overflow-hidden {
+    overflow: visible !important;
   }
 `;
 import GraphicsTemplate from './graphictemplate';
