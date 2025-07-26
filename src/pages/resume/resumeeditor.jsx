@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
 import { ArrowLeft, Download, Save, Edit3, Plus, Trash2, ChevronDown, MoreVertical } from 'lucide-react';
 import GraphicsTemplate from './graphictemplate';
+import GraphicsTemplate2 from './graphictemplate2';
+import GraphicsTemplate3 from './graphictemplate3';
 import ProfessionalTemplate from './professionaltemplate';
+import ProfessionalTemplate2 from './professionaltemplate2';
+import ProfessionalTemplate3 from './professionaltemplate3';
 import BasicTemplate from './basictemplate'; 
+import BasicTemplate2 from './basictemplate2';
+import BasicTemplate3 from './basictemplate3';
 import AITemplate from './AItemplate';
+import AITemplate2 from './AItemplate2';
+import AITemplate3 from './AItemplate3';
 
 const ResumeEditor = ({ template, onBack, onSave, onDownload }) => {
   const [resumeData, setResumeData] = useState({
@@ -166,17 +174,17 @@ const ResumeEditor = ({ template, onBack, onSave, onDownload }) => {
   const getTemplateComponent = () => {
     const templateMap = {
       'graphic-1': GraphicsTemplate,
-      'graphic-2': GraphicsTemplate,
-      'graphic-3': GraphicsTemplate,
+      'graphic-2': GraphicsTemplate2,
+      'graphic-3': GraphicsTemplate3,
       'ai-1': AITemplate,
-      'ai-2': AITemplate,
-      'ai-3': AITemplate,
+      'ai-2': AITemplate2,
+      'ai-3': AITemplate3,
       'prof-1': ProfessionalTemplate,
-      'prof-2': ProfessionalTemplate,
-      'prof-3': ProfessionalTemplate,
+      'prof-2': ProfessionalTemplate2,
+      'prof-3': ProfessionalTemplate3,
       'basic-1': BasicTemplate,
-      'basic-2': BasicTemplate,
-      'basic-3': BasicTemplate,
+      'basic-2': BasicTemplate2,
+      'basic-3': BasicTemplate3,
     };
     
     const TemplateComponent = templateMap[template?.id] || BasicTemplate;

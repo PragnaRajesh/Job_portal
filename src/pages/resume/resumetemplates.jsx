@@ -1,9 +1,17 @@
 import React from 'react';
 import { X, Download, Save, Edit3, ArrowLeft } from 'lucide-react';
 import GraphicsTemplate from './graphictemplate';
+import GraphicsTemplate2 from './graphictemplate2';
+import GraphicsTemplate3 from './graphictemplate3';
 import ProfessionalTemplate from './professionaltemplate';
+import ProfessionalTemplate2 from './professionaltemplate2';
+import ProfessionalTemplate3 from './professionaltemplate3';
 import BasicTemplate from './basictemplate';
+import BasicTemplate2 from './basictemplate2';
+import BasicTemplate3 from './basictemplate3';
 import AITemplate from './AItemplate';
+import AITemplate2 from './AItemplate2';
+import AITemplate3 from './AItemplate3';
 
 const ResumeTemplates = ({ 
   isOpen, 
@@ -76,16 +84,16 @@ const ResumeTemplates = ({
       {
         id: 'graphic-2',
         name: 'Visual Impact',
-        description: 'Eye-catching design with color accents and visual hierarchy',
+        description: 'Eye-catching orange and pink theme with numbered timeline',
         category: 'graphics',
-        component: GraphicsTemplate
+        component: GraphicsTemplate2
       },
       {
         id: 'graphic-3',
-        name: 'Design Focus',
-        description: 'Portfolio-style layout emphasizing visual design skills',
+        name: 'Dark Matrix',
+        description: 'Futuristic dark theme with cyan accents and modern cards',
         category: 'graphics',
-        component: GraphicsTemplate
+        component: GraphicsTemplate3
       }
     ],
     ai: [
@@ -98,17 +106,17 @@ const ResumeTemplates = ({
       },
       {
         id: 'ai-2',
-        name: 'AI Optimized',
-        description: 'Data-driven layout with visual elements and smart sections',
+        name: 'Neural Network',
+        description: 'Futuristic blue-purple gradient with AI-inspired elements',
         category: 'ai',
-        component: AITemplate
+        component: AITemplate2
       },
       {
         id: 'ai-3',
-        name: 'Future Ready',
-        description: 'Next-gen design with interactive elements and modern styling',
+        name: 'Matrix Code',
+        description: 'Terminal-style green matrix theme with binary effects',
         category: 'ai',
-        component: AITemplate
+        component: AITemplate3
       }
     ],
     professional: [
@@ -121,17 +129,17 @@ const ResumeTemplates = ({
       },
       {
         id: 'prof-2',
-        name: 'Corporate Standard',
-        description: 'Traditional format preferred by HR departments and recruiters',
+        name: 'Corporate Blue',
+        description: 'Modern corporate design with blue theme and timeline layout',
         category: 'professional',
-        component: ProfessionalTemplate
+        component: ProfessionalTemplate2
       },
       {
         id: 'prof-3',
-        name: 'Business Elite',
-        description: 'Sophisticated design for senior management positions',
+        name: 'Business Green',
+        description: 'Elegant minimalist design with green accents and skill ratings',
         category: 'professional',
-        component: ProfessionalTemplate
+        component: ProfessionalTemplate3
       }
     ],
     basic: [
@@ -144,17 +152,17 @@ const ResumeTemplates = ({
       },
       {
         id: 'basic-2',
-        name: 'Modern Minimal',
-        description: 'Contemporary clean layout with subtle design elements',
+        name: 'Modern Blue',
+        description: 'Contemporary clean layout with blue accents and center alignment',
         category: 'basic',
-        component: BasicTemplate
+        component: BasicTemplate2
       },
       {
         id: 'basic-3',
-        name: 'Essential',
-        description: 'Straightforward design perfect for any industry',
+        name: 'Dark Headers',
+        description: 'Clean design with bold dark headers and professional styling',
         category: 'basic',
-        component: BasicTemplate
+        component: BasicTemplate3
       }
     ]
   };
