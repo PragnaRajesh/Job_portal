@@ -276,52 +276,50 @@ function ResumeBuilder() {
             </div>
           </div>
 
-          {/* Feature Cards - Fixed Layout */}
+          {/* Horizontal Scrolling Feature Cards */}
           <div className="mb-6">
-            <div className="py-6 px-4 rounded-2xl" style={{backgroundColor: '#FFF2EB'}}>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
-                {/* Card 1 - Recruiter-Approved Resume */}
-                <div className="bg-white p-4 rounded-2xl shadow-lg border border-gray-200">
-                  <div className="flex flex-col space-y-3">
-                    <div className="bg-white p-2 rounded-lg w-fit shadow-sm">
-                      <FileText className="w-5 h-5 text-blue-500" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-800 text-sm mb-2">Recruiter-Approved Resume</h3>
-                      <p className="text-xs text-gray-500 leading-relaxed">
-                        We work with recruiters to design resume templates that format automatically.
-                      </p>
-                    </div>
+            <div className="flex space-x-3 overflow-x-auto scrollbar-hide py-6 -mx-6 px-6" style={{backgroundColor: '#FFF2EB'}}>
+              {/* Card 1 - Recruiter-Approved Resume */}
+              <div className="flex-shrink-0 w-52 bg-white p-3 rounded-2xl shadow-lg border border-gray-200">
+                <div className="flex flex-col space-y-2">
+                  <div className="bg-white p-2 rounded-lg w-fit shadow-sm">
+                    <FileText className="w-5 h-5 text-blue-500" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-800 text-sm mb-1">Recruiter-Approved Resume</h3>
+                    <p className="text-xs text-gray-500 leading-tight">
+                      We work with recruiters to design resume templates that format automatically.
+                    </p>
                   </div>
                 </div>
+              </div>
 
-                {/* Card 2 - Land an Interview */}
-                <div className="bg-white p-4 rounded-2xl shadow-lg border border-gray-200">
-                  <div className="flex flex-col space-y-3">
-                    <div className="bg-white p-2 rounded-lg w-fit shadow-sm">
-                      <Users className="w-5 h-5 text-blue-500" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-800 text-sm mb-2">Land an Interview</h3>
-                      <p className="text-xs text-gray-500 leading-relaxed">
-                        We suggest the skills you should add. It helped over a million get interviews.
-                      </p>
-                    </div>
+              {/* Card 2 - Land an Interview */}
+              <div className="flex-shrink-0 w-52 bg-white p-3 rounded-2xl shadow-lg border border-gray-200">
+                <div className="flex flex-col space-y-2">
+                  <div className="bg-white p-2 rounded-lg w-fit shadow-sm">
+                    <Users className="w-5 h-5 text-blue-500" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-800 text-sm mb-1">Land an Interview</h3>
+                    <p className="text-xs text-gray-500 leading-tight">
+                      We suggest the skills you should add. It helped over a million get interviews.
+                    </p>
                   </div>
                 </div>
+              </div>
 
-                {/* Card 3 - Finish Your Resume in 15 Minutes */}
-                <div className="bg-white p-4 rounded-2xl shadow-lg border border-gray-200 sm:col-span-2 lg:col-span-1">
-                  <div className="flex flex-col space-y-3">
-                    <div className="bg-purple-50 p-2 rounded-lg w-fit shadow-sm">
-                      <User className="w-5 h-5 text-purple-500" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-800 text-sm mb-2">Finish Your Resume in 15 Minutes</h3>
-                      <p className="text-xs text-gray-500 leading-relaxed">
-                        Resume Now helps you tackle your work experience by reminding you what you did at your job.
-                      </p>
-                    </div>
+              {/* Card 3 - Finish Your Resume in 15 Minutes */}
+              <div className="flex-shrink-0 w-52 bg-white p-3 rounded-2xl shadow-lg border border-gray-200">
+                <div className="flex flex-col space-y-2">
+                  <div className="bg-purple-50 p-2 rounded-lg w-fit shadow-sm">
+                    <User className="w-5 h-5 text-purple-500" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-800 text-sm mb-1">Finish Your Resume in 15 Minutes</h3>
+                    <p className="text-xs text-gray-500 leading-tight">
+                      Resume Now helps you tackle your work experience by reminding you what you did at your job.
+                    </p>
                   </div>
                 </div>
               </div>
