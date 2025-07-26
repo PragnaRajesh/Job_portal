@@ -12,6 +12,12 @@ import BasicTemplate3 from './basictemplate3';
 import AITemplate from './AItemplate';
 import AITemplate2 from './AItemplate2';
 import AITemplate3 from './AItemplate3';
+// New Section-Based Colorful Templates
+import CreativeTechTemplate from './creativetechtemplate';
+import MarketingCreativeTemplate from './marketingcreativetemplate';
+import BusinessExecutiveTemplate from './businessexecutivetemplate';
+import HealthcareTemplate from './healthcaretemplate';
+import EducationTemplate from './educationtemplate';
 
 const ResumeTemplates = ({ 
   isOpen, 
@@ -164,6 +170,107 @@ const ResumeTemplates = ({
         category: 'basic',
         component: BasicTemplate3
       }
+    ],
+    technology: [
+      {
+        id: 'tech-1',
+        name: 'Tech Innovator Pro',
+        description: 'Vibrant tech-focused design with colorful gradients and A4 sizing',
+        category: 'technology',
+        component: CreativeTechTemplate
+      },
+      {
+        id: 'tech-2',
+        name: 'Silicon Valley',
+        description: 'Modern tech gradient with timeline and skill ratings',
+        category: 'technology',
+        component: AITemplate
+      },
+      {
+        id: 'tech-3',
+        name: 'Code Master',
+        description: 'Developer-focused template with syntax highlighting elements',
+        category: 'technology',
+        component: AITemplate2
+      }
+    ],
+    marketing: [
+      {
+        id: 'marketing-1',
+        name: 'Creative Vision',
+        description: 'Bold creative template with vibrant gradients and artistic elements',
+        category: 'marketing',
+        component: MarketingCreativeTemplate
+      },
+      {
+        id: 'marketing-2',
+        name: 'Brand Storyteller',
+        description: 'Dynamic layout perfect for marketing and creative professionals',
+        category: 'marketing',
+        component: GraphicsTemplate
+      },
+      {
+        id: 'marketing-3',
+        name: 'Visual Impact Pro',
+        description: 'Eye-catching design with colorful timeline and modern aesthetics',
+        category: 'marketing',
+        component: GraphicsTemplate2
+      }
+    ],
+    business: [
+      {
+        id: 'business-1',
+        name: 'Executive Leader',
+        description: 'Sophisticated business template with professional color scheme',
+        category: 'business',
+        component: BusinessExecutiveTemplate
+      },
+      {
+        id: 'business-2',
+        name: 'Corporate Excellence',
+        description: 'Classic business design with elegant typography and layout',
+        category: 'business',
+        component: ProfessionalTemplate
+      },
+      {
+        id: 'business-3',
+        name: 'Finance Pro',
+        description: 'Professional template ideal for finance and consulting roles',
+        category: 'business',
+        component: ProfessionalTemplate2
+      }
+    ],
+    healthcare: [
+      {
+        id: 'healthcare-1',
+        name: 'Medical Professional',
+        description: 'Healthcare-focused template with medical color scheme and symbols',
+        category: 'healthcare',
+        component: HealthcareTemplate
+      },
+      {
+        id: 'healthcare-2',
+        name: 'Clinical Excellence',
+        description: 'Clean medical template with professional healthcare aesthetics',
+        category: 'healthcare',
+        component: ProfessionalTemplate3
+      },
+      {
+        id: 'healthcare-3',
+        name: 'Nursing Care',
+        description: 'Compassionate design perfect for nursing and patient care roles',
+        category: 'healthcare',
+        component: BasicTemplate2
+      }
+    ],
+    education: [
+      {
+        id: 'edu-1',
+        name: 'Academic Excellence',
+        description: 'Modern education-focused template with timeline and skill ratings',
+        category: 'education',
+        component: EducationTemplate
+      }
     ]
   };
 
@@ -172,7 +279,12 @@ const ResumeTemplates = ({
       graphics: 'Graphics Resume Templates',
       ai: 'AI Resume Builder Templates',
       professional: 'Professional Resume Templates',
-      basic: 'Basic/Modern Resume Templates'
+      basic: 'Basic/Modern Resume Templates',
+      technology: 'Technology & Engineering Templates',
+      marketing: 'Marketing & Creative Templates',
+      business: 'Business & Executive Templates',
+      healthcare: 'Healthcare & Medical Templates',
+      education: 'Education & Academic Templates'
     };
     return titles[category] || 'Resume Templates';
   };
@@ -199,35 +311,35 @@ const ResumeTemplates = ({
         
         {/* Template Grid */}
         <div className="p-4 sm:p-6">
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto">
             {currentTemplates.map((template) => (
-              <div key={template.id} className="bg-gray-50 rounded-lg sm:rounded-xl p-2 sm:p-4 hover:shadow-xl transition-all duration-300 cursor-pointer group flex flex-col items-center">
-                <div className="bg-white rounded-md sm:rounded-lg mb-2 sm:mb-4 border-2 border-gray-200 group-hover:border-blue-300 transition-colors overflow-hidden w-full flex justify-center" style={{ aspectRatio: '210/297', height: '280px', maxHeight: '420px' }}>
-                  <div className="transform scale-[0.3] sm:scale-[0.4] origin-top-left w-[250%] sm:w-[250%] h-[250%] flex justify-center">
+              <div key={template.id} className="bg-gray-50 rounded-lg sm:rounded-xl p-3 sm:p-4 hover:shadow-xl transition-all duration-300 cursor-pointer group flex flex-col items-center">
+                <div className="bg-white rounded-md sm:rounded-lg mb-3 sm:mb-4 border-2 border-gray-200 group-hover:border-blue-300 transition-colors overflow-hidden w-full flex justify-center" style={{ aspectRatio: '210/297', height: '400px', maxHeight: '500px' }}>
+                  <div className="transform scale-[0.5] sm:scale-[0.6] lg:scale-[0.55] origin-top w-[180%] sm:w-[170%] lg:w-[180%] h-[180%] flex justify-center">
                     {template.component && (
                       <template.component data={sampleData} />
                     )}
                   </div>
                 </div>
 
-                <div className="space-y-1 sm:space-y-3 w-full">
+                <div className="space-y-2 sm:space-y-3 w-full">
                   <div className="text-center">
-                    <h3 className="font-semibold text-gray-800 mb-1 text-xs sm:text-base">{template.name}</h3>
-                    <p className="text-xs text-gray-600 leading-relaxed hidden sm:block">{template.description}</p>
+                    <h3 className="font-semibold text-gray-800 mb-1 text-sm sm:text-base">{template.name}</h3>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">{template.description}</p>
                   </div>
                   
-                  <div className="flex flex-col gap-1 sm:gap-2">
+                  <div className="flex flex-col gap-2">
                     <button 
                       onClick={() => onSelectTemplate(template)}
-                      className="w-full bg-blue-600 text-white py-2 sm:py-2.5 px-2 sm:px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors text-xs sm:text-sm shadow-md hover:shadow-lg"
+                      className="w-full bg-blue-600 text-white py-2.5 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors text-sm shadow-md hover:shadow-lg"
                     >
-                      Choose
+                      Choose Template
                     </button>
                     <button 
                       onClick={() => onPreviewTemplate(template)}
-                      className="w-full px-2 sm:px-4 py-2 sm:py-2.5 border-2 border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition-colors text-xs sm:text-sm"
+                      className="w-full px-4 py-2.5 border-2 border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition-colors text-sm"
                     >
-                      Preview
+                      Full Preview
                     </button>
                   </div>
                 </div>

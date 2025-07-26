@@ -2,7 +2,7 @@ import React from 'react';
 
 const GraphicsTemplate = ({ data }) => {
   return (
-    <div className="bg-white shadow-lg min-h-screen font-sans max-w-4xl mx-auto overflow-hidden">
+    <div className="bg-white shadow-lg min-h-screen font-sans max-w-4xl mx-auto overflow-hidden" style={{ aspectRatio: '210/297', minHeight: '297mm', width: '210mm' }}>
       {/* Header with colored background */}
       <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white p-4 sm:p-6 lg:p-8 mb-6 sm:mb-8">
         <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 sm:mb-3 break-words">{data.personalInfo.name}</h1>
