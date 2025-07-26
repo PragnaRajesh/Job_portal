@@ -153,19 +153,6 @@ const JobList = () => {
                   let icon = null;
                   if (isInterview) {
                     bg = "bg-orange-200 text-black font-semibold";
-                    return (
-                      <span
-                        key={tagIndex}
-                        className={`text-xs px-3 py-1 rounded-xl flex items-center gap-3 ${bg} cursor-pointer`}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setActiveVideoIndex(activeVideoIndex === i ? null : i);
-                        }}
-                      >
-                        {tag}
-                        <img src={videoIcon} alt="prep" className="w-4 h-4" />
-                      </span>
-                    );
                   } else if (isHighDemand) {
                     bg = "bg-yellow-100 text-blue-800 font-medium";
                     icon = <span className="text-yellow-500">⚡</span>;
@@ -182,6 +169,17 @@ const JobList = () => {
                     </span>
                   );
                 })}
+                
+                <div
+                  className="flex flex-col items-center text-[10px] text-blue-600 cursor-pointer"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setActiveVideoIndex(activeVideoIndex === i ? null : i);
+                  }}
+                >
+                  <img src={videoIcon} alt="prep" className="w-6 h-6" />
+                  <span>Job Prep.</span>
+                </div>
               </div>
 
               <div className="flex justify-between items-center mt-4 pt-2 border-t text-xs text-gray-600">
