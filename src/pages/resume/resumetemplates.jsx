@@ -174,50 +174,50 @@ const ResumeTemplates = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl max-w-6xl w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-2 sm:p-4">
+      <div className="bg-white rounded-lg sm:rounded-2xl w-full max-w-7xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto">
         {/* Modal Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200">
-          <h2 className="text-xl font-bold text-gray-800">
+        <div className="flex items-center justify-between p-4 sm:p-6 border-b border-gray-200 sticky top-0 bg-white rounded-t-lg sm:rounded-t-2xl z-10">
+          <h2 className="text-lg sm:text-xl font-bold text-gray-800 truncate mr-4">
             {getCategoryTitle(templateCategory)}
           </h2>
           <button 
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+            className="p-2 hover:bg-gray-100 rounded-full transition-colors flex-shrink-0"
           >
-            <X className="w-6 h-6 text-gray-600" />
+            <X className="w-5 h-5 sm:w-6 sm:h-6 text-gray-600" />
           </button>
         </div>
         
         {/* Template Grid */}
-        <div className="p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="p-3 sm:p-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {currentTemplates.map((template) => (
-              <div key={template.id} className="bg-gray-50 rounded-xl p-4 hover:shadow-xl transition-all duration-300 cursor-pointer group">
-                <div className="bg-white rounded-lg mb-4 min-h-[400px] border-2 border-gray-200 group-hover:border-blue-300 transition-colors overflow-hidden">
-                  <div className="transform scale-[0.25] origin-top-left w-[400%] h-[400%]">
+              <div key={template.id} className="bg-gray-50 rounded-lg sm:rounded-xl p-3 sm:p-4 hover:shadow-xl transition-all duration-300 cursor-pointer group">
+                <div className="bg-white rounded-md sm:rounded-lg mb-3 sm:mb-4 min-h-[300px] sm:min-h-[400px] border-2 border-gray-200 group-hover:border-blue-300 transition-colors overflow-hidden">
+                  <div className="transform scale-[0.15] sm:scale-[0.25] origin-top-left w-[666%] sm:w-[400%] h-[666%] sm:h-[400%]">
                     {template.component && (
                       <template.component data={sampleData} />
                     )}
                   </div>
                 </div>
 
-                <div className="space-y-3">
+                <div className="space-y-2 sm:space-y-3">
                   <div>
-                    <h3 className="font-semibold text-gray-800 mb-1">{template.name}</h3>
-                    <p className="text-sm text-gray-600">{template.description}</p>
+                    <h3 className="font-semibold text-gray-800 mb-1 text-sm sm:text-base">{template.name}</h3>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">{template.description}</p>
                   </div>
                   
-                  <div className="flex gap-2">
+                  <div className="flex flex-col sm:flex-row gap-2">
                     <button 
                       onClick={() => onSelectTemplate(template)}
-                      className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors text-sm shadow-md hover:shadow-lg"
+                      className="flex-1 bg-blue-600 text-white py-2 sm:py-2.5 px-3 sm:px-4 rounded-md sm:rounded-lg font-medium hover:bg-blue-700 transition-colors text-xs sm:text-sm shadow-md hover:shadow-lg"
                     >
                       Choose Template
                     </button>
                     <button 
                       onClick={() => onPreviewTemplate(template)}
-                      className="px-4 py-2 border-2 border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition-colors text-sm"
+                      className="flex-1 sm:flex-none px-3 sm:px-4 py-2 sm:py-2.5 border-2 border-gray-300 text-gray-700 rounded-md sm:rounded-lg hover:bg-gray-50 hover:border-gray-400 transition-colors text-xs sm:text-sm"
                     >
                       Preview
                     </button>
@@ -228,10 +228,10 @@ const ResumeTemplates = ({
           </div>
           
           {/* Action Buttons */}
-          <div className="mt-8 flex justify-center">
+          <div className="mt-6 sm:mt-8 flex justify-center">
             <button 
               onClick={onClose}
-              className="border-2 border-gray-300 text-gray-700 py-3 px-8 rounded-full font-medium hover:bg-gray-50 hover:border-gray-400 transition-colors shadow-md"
+              className="border-2 border-gray-300 text-gray-700 py-2 sm:py-3 px-6 sm:px-8 rounded-full font-medium hover:bg-gray-50 hover:border-gray-400 transition-colors shadow-md text-sm sm:text-base"
             >
               Cancel
             </button>
