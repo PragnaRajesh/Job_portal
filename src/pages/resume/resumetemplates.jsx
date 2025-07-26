@@ -1,5 +1,50 @@
 import React from 'react';
 import { X, Download, Save, Edit3, ArrowLeft } from 'lucide-react';
+
+// CSS for preview mode to override template dimensions
+const previewStyles = `
+  .resume-preview-wrapper > div {
+    width: 794px !important;
+    height: 1123px !important;
+    min-height: 1123px !important;
+    max-width: 794px !important;
+    max-height: 1123px !important;
+    aspect-ratio: 210/297 !important;
+    overflow: hidden !important;
+    position: relative !important;
+    transform-origin: top left !important;
+  }
+  
+  .resume-preview-wrapper > div * {
+    box-sizing: border-box !important;
+  }
+  
+  .resume-preview-scale {
+    transform: scale(0.28);
+  }
+  
+  .resume-preview-container {
+    height: 380px;
+  }
+  
+  @media (max-width: 640px) {
+    .resume-preview-scale {
+      transform: scale(0.20) !important;
+    }
+    .resume-preview-container {
+      height: 320px !important;
+    }
+  }
+  
+  @media (min-width: 641px) and (max-width: 1024px) {
+    .resume-preview-scale {
+      transform: scale(0.24) !important;
+    }
+    .resume-preview-container {
+      height: 350px !important;
+    }
+  }
+`;
 import GraphicsTemplate from './graphictemplate';
 import GraphicsTemplate2 from './graphictemplate2';
 import GraphicsTemplate3 from './graphictemplate3';
@@ -295,6 +340,7 @@ const ResumeTemplates = ({
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-2 sm:p-4">
+      <style>{previewStyles}</style>
       <div className="bg-white rounded-lg sm:rounded-2xl w-full max-w-6xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto overflow-x-hidden">
         {/* Modal Header */}
         <div className="flex items-center justify-between p-4 sm:p-6 border-b border-gray-200 sticky top-0 bg-white rounded-t-lg sm:rounded-t-2xl z-10">
@@ -314,11 +360,22 @@ const ResumeTemplates = ({
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto">
             {currentTemplates.map((template) => (
               <div key={template.id} className="bg-gray-50 rounded-lg sm:rounded-xl p-3 sm:p-4 hover:shadow-xl transition-all duration-300 cursor-pointer group flex flex-col items-center">
-                <div className="bg-white rounded-md sm:rounded-lg mb-3 sm:mb-4 border-2 border-gray-200 group-hover:border-blue-300 transition-colors overflow-hidden w-full flex justify-center" style={{ aspectRatio: '210/297', height: '400px', maxHeight: '500px' }}>
-                  <div className="transform scale-[0.5] sm:scale-[0.6] lg:scale-[0.55] origin-top w-[180%] sm:w-[170%] lg:w-[180%] h-[180%] flex justify-center">
-                    {template.component && (
-                      <template.component data={sampleData} />
-                    )}
+                <div className="bg-white rounded-md sm:rounded-lg mb-3 sm:mb-4 border-2 border-gray-200 group-hover:border-blue-300 transition-colors overflow-hidden w-full relative resume-preview-container">
+                  <div className="w-full h-full flex items-center justify-center">
+                    <div 
+                      className="transform origin-center shadow-sm resume-preview-scale"
+                      style={{ 
+                        width: '794px',
+                        height: '1123px',
+                        aspectRatio: '210/297'
+                      }}
+                    >
+                      {template.component && (
+                        <div className="resume-preview-wrapper">
+                          <template.component data={sampleData} />
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
 
