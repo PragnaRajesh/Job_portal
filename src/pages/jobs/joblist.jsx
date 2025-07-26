@@ -153,6 +153,14 @@ const JobList = () => {
                   let icon = null;
                   if (isInterview) {
                     bg = "bg-orange-200 text-black font-semibold";
+                    return (
+                      <span
+                        key={tagIndex}
+                        className={`text-xs px-2 py-0.5 rounded-xl flex items-center gap-1 ${bg}`}
+                      >
+                        {tag}
+                      </span>
+                    );
                   } else if (isHighDemand) {
                     bg = "bg-yellow-100 text-blue-800 font-medium";
                     icon = <span className="text-yellow-500">⚡</span>;
@@ -171,7 +179,7 @@ const JobList = () => {
                 })}
               </div>
               
-              <div className="flex justify-end mt-2">
+              <div className="flex justify-end mt-2 pr-2">
                 <div
                   className="flex flex-col items-center text-[10px] text-blue-600 cursor-pointer"
                   onClick={(e) => {
