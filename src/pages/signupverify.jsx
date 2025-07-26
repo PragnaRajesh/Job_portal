@@ -22,7 +22,7 @@ const SignupVerify = () => {
         <h3 className="text-blue-600 text-lg font-semibold text-center mt-6">Verification</h3>
         <p className="text-center text-sm text-gray-600">Enter the code sent to your number</p>
 
-        <OtpTimer duration={300} onExpire={() => alert("OTP expired!")} />
+        <OtpTimer duration={30} onExpire={() => alert("OTP expired!")} />
 
         <OtpInput length={6} onChange={(val) => setOtp(val)} />
       </div>

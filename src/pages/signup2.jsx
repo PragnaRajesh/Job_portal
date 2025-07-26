@@ -28,7 +28,7 @@ const Signup2 = () => {
         <h2 className="text-2xl font-bold text-center">Sign Up</h2>
         <h3 className="text-blue-600 text-lg font-semibold text-center mt-6">Verification</h3>
         <p className="text-center text-gray-600 text-sm">Enter the code from the SMS we sent you</p>
-        <p className="text-center text-black mt-4">05:00</p>
+        <p className="text-center text-black mt-4">30 secs</p>
 
         {/* OTP boxes */}
         <div className="flex justify-center gap-2 mt-6">
