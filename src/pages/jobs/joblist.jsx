@@ -172,42 +172,15 @@ const JobList = () => {
                   })}
                 </div>
 
-                <div className="relative">
-                  <div
-                    className="flex flex-col items-center text-[10px] text-blue-600 ml-auto cursor-pointer"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setActiveVideoIndex(activeVideoIndex === i ? null : i);
-                    }}
-                  >
-                    <img src={videoIcon} alt="prep" className="w-6 h-6" />
-                    <span>Job Prep.</span>
-                  </div>
-                  
-                  {/* Video Dropdown */}
-                  {activeVideoIndex === i && (
-                    <div className="absolute top-full left-0 right-0 bg-white border border-gray-200 rounded-lg shadow-lg z-50 mt-2 min-w-[300px]">
-                      <div className="p-4">
-                        <div className="flex justify-between items-center mb-3">
-                          <h3 className="text-lg font-semibold">Job Preparation Video</h3>
-                          <button
-                            onClick={() => setActiveVideoIndex(null)}
-                            className="p-1 hover:bg-gray-100 rounded-full"
-                          >
-                            <X className="w-5 h-5" />
-                          </button>
-                        </div>
-                        <video
-                          controls
-                          className="w-full h-auto max-h-[300px] rounded-lg"
-                          autoPlay
-                        >
-                          <source src={jobPrepVideo} type="video/mp4" />
-                          Your browser does not support the video tag.
-                        </video>
-                      </div>
-                    </div>
-                  )}
+                <div
+                  className="flex flex-col items-center text-[10px] text-blue-600 ml-auto cursor-pointer"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setActiveVideoIndex(activeVideoIndex === i ? null : i);
+                  }}
+                >
+                  <img src={videoIcon} alt="prep" className="w-6 h-6" />
+                  <span>Job Prep.</span>
                 </div>
               </div>
 
@@ -215,6 +188,29 @@ const JobList = () => {
                 <span className="text-green-600">{job.benefit}</span>
                 <span>{job.time}</span>
               </div>
+              
+              {/* Video Section - Card Extension */}
+              {activeVideoIndex === i && (
+                <div className="mt-4 pt-4 border-t border-gray-200">
+                  <div className="flex justify-between items-center mb-3">
+                    <h3 className="text-lg font-semibold text-gray-800">Job Preparation Video</h3>
+                    <button
+                      onClick={() => setActiveVideoIndex(null)}
+                      className="p-1 hover:bg-gray-100 rounded-full"
+                    >
+                      <X className="w-5 h-5" />
+                    </button>
+                  </div>
+                  <video
+                    controls
+                    className="w-full h-auto max-h-[300px] rounded-lg"
+                    autoPlay
+                  >
+                    <source src={jobPrepVideo} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              )}
             </div>
           </div>
         ))}
