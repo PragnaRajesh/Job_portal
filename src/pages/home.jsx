@@ -270,7 +270,7 @@ const Home = () => {
 
           {showPopup && (
             <div
-              className="fixed left-0 bottom-0 w-full h-1/2 bg-gradient-to-t from-blue-100 via-white to-white rounded-t-3xl shadow-2xl z-50 flex flex-col items-center justify-center animate-slideUp pb-safe pt-4"
+              className="fixed left-0 bottom-0 w-full h-2/3 bg-gradient-to-t from-blue-100 via-white to-white rounded-t-3xl shadow-2xl z-50 flex flex-col items-center justify-center animate-slideUp pb-safe pt-4"
               ref={popupRef}
               style={{animation: 'slideUp 0.3s cubic-bezier(0.4,0,0.2,1)'}}
             >
