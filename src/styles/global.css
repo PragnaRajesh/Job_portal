@@ -27,3 +27,18 @@
 .pb-safe {
   padding-bottom: max(env(safe-area-inset-bottom), 1rem);
 }
+
+/* Prevent horizontal scrolling */
+body, html {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Hide horizontal scrollbar for specific elements */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
