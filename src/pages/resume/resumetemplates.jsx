@@ -377,6 +377,13 @@ const ResumeTemplates = ({
                       )}
                     </div>
                   </div>
+                  
+                  {/* Template overlay for better interaction */}
+                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-5 transition-all duration-200 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                    <div className="bg-white bg-opacity-90 rounded-lg p-2 transform scale-90 group-hover:scale-100 transition-transform">
+                      <span className="text-xs font-medium text-gray-700">Click to select</span>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="space-y-2 sm:space-y-3 w-full">

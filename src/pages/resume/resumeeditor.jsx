@@ -109,6 +109,13 @@ const ResumeEditor = ({ template, onBack, onSave, onDownload }) => {
     }));
   };
 
+  const removeExperience = (id) => {
+    setResumeData(prev => ({
+      ...prev,
+      experience: prev.experience.filter(exp => exp.id !== id)
+    }));
+  };
+
   const addResponsibility = (expId) => {
     setResumeData(prev => ({
       ...prev,
@@ -171,17 +178,51 @@ const ResumeEditor = ({ template, onBack, onSave, onDownload }) => {
     }));
   };
 
+  const addEducation = () => {
+    const newEdu = {
+      id: Date.now(),
+      degree: '',
+      school: '',
+      location: '',
+      year: ''
+    };
+    setResumeData(prev => ({
+      ...prev,
+      education: [...prev.education, newEdu]
+    }));
+  };
+
+  const updateEducation = (id, field, value) => {
+    setResumeData(prev => ({
+      ...prev,
+      education: prev.education.map(edu => 
+        edu.id === id ? { ...edu, [field]: value } : edu
+      )
+    }));
+  };
+
+  const removeEducation = (id) => {
+    setResumeData(prev => ({
+      ...prev,
+      education: prev.education.filter(edu => edu.id !== id)
+    }));
+  };
+
   const getTemplateComponent = () => {
     const templateMap = {
+      // Graphics Templates
       'graphic-1': GraphicsTemplate,
       'graphic-2': GraphicsTemplate2,
       'graphic-3': GraphicsTemplate3,
+      // AI Templates
       'ai-1': AITemplate,
       'ai-2': AITemplate2,
       'ai-3': AITemplate3,
+      // Professional Templates
       'prof-1': ProfessionalTemplate,
       'prof-2': ProfessionalTemplate2,
       'prof-3': ProfessionalTemplate3,
+      // Basic Templates
       'basic-1': BasicTemplate,
       'basic-2': BasicTemplate2,
       'basic-3': BasicTemplate3,
@@ -374,6 +415,20 @@ const ResumeEditor = ({ template, onBack, onSave, onDownload }) => {
                     onChange={(e) => updatePersonalInfo('phone', e.target.value)}
                     className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   />
+                  <input
+                    type="text"
+                    placeholder="Location"
+                    value={resumeData.personalInfo.location}
+                    onChange={(e) => updatePersonalInfo('location', e.target.value)}
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                  <input
+                    type="text"
+                    placeholder="LinkedIn Profile (optional)"
+                    value={resumeData.personalInfo.linkedin}
+                    onChange={(e) => updatePersonalInfo('linkedin', e.target.value)}
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
                 </div>
               </div>
 
@@ -465,6 +520,78 @@ const ResumeEditor = ({ template, onBack, onSave, onDownload }) => {
                         </div>
                       ))}
                     </div>
+                    
+                    {resumeData.experience.length > 1 && (
+                      <div className="flex justify-end pt-2">
+                        <button
+                          onClick={() => removeExperience(exp.id)}
+                          className="text-red-500 hover:text-red-700 text-sm flex items-center space-x-1"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                          <span>Remove Experience</span>
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              {/* Education */}
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="font-medium text-gray-700">Education</h3>
+                  <button
+                    onClick={addEducation}
+                    className="flex items-center space-x-1 text-blue-600 hover:text-blue-700 text-sm"
+                  >
+                    <Plus className="w-4 h-4" />
+                    <span>Add Education</span>
+                  </button>
+                </div>
+                
+                {resumeData.education.map((edu) => (
+                  <div key={edu.id} className="border border-gray-200 rounded-lg p-4 space-y-3">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      <input
+                        type="text"
+                        placeholder="Degree/Certificate"
+                        value={edu.degree}
+                        onChange={(e) => updateEducation(edu.id, 'degree', e.target.value)}
+                        className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                      />
+                      <input
+                        type="text"
+                        placeholder="School/Institution"
+                        value={edu.school}
+                        onChange={(e) => updateEducation(edu.id, 'school', e.target.value)}
+                        className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                      />
+                      <input
+                        type="text"
+                        placeholder="Location"
+                        value={edu.location}
+                        onChange={(e) => updateEducation(edu.id, 'location', e.target.value)}
+                        className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                      />
+                      <input
+                        type="text"
+                        placeholder="Year (e.g., 2020)"
+                        value={edu.year}
+                        onChange={(e) => updateEducation(edu.id, 'year', e.target.value)}
+                        className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                      />
+                    </div>
+                    {resumeData.education.length > 1 && (
+                      <div className="flex justify-end">
+                        <button
+                          onClick={() => removeEducation(edu.id)}
+                          className="text-red-500 hover:text-red-700 text-sm flex items-center space-x-1"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                          <span>Remove</span>
+                        </button>
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
@@ -509,13 +636,50 @@ const ResumeEditor = ({ template, onBack, onSave, onDownload }) => {
 
           {/* Preview Panel */}
           <div className={`bg-white rounded-xl shadow-lg overflow-hidden ${isEditing ? '' : 'lg:col-span-2'}`}>
-            <div className="p-4 lg:p-6 border-b border-gray-200">
-              <h2 className="text-lg font-semibold text-gray-800 text-center lg:text-left">Resume Preview</h2>
+            <div className="p-4 lg:p-6 border-b border-gray-200 flex items-center justify-between">
+              <h2 className="text-lg font-semibold text-gray-800">Resume Preview</h2>
+              <div className="text-sm text-gray-500">
+                {template?.name || 'Template'}
+              </div>
             </div>
-            <div className="p-4 lg:p-6 bg-gray-50 flex justify-center">
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden w-full max-w-4xl" style={{ aspectRatio: '210/297' }}>
-                <div className="transform scale-90 lg:scale-100 origin-top w-full h-full">
-                  {getTemplateComponent()}
+            <div className="p-2 sm:p-4 lg:p-6 bg-gray-50">
+              <div className="bg-white rounded-lg shadow-xl overflow-hidden mx-auto" 
+                   style={{ 
+                     width: '100%', 
+                     maxWidth: isEditing ? '600px' : '800px',
+                     aspectRatio: '210/297',
+                     transformOrigin: 'top center'
+                   }}>
+                <div className="w-full h-full overflow-hidden relative">
+                  <div 
+                    className="absolute inset-0 origin-top-left"
+                    style={{
+                      width: '794px',
+                      height: '1123px',
+                      transform: isEditing 
+                        ? 'scale(0.75)' 
+                        : window.innerWidth < 768 
+                          ? 'scale(0.8)' 
+                          : 'scale(1)',
+                      transformOrigin: 'top left'
+                    }}
+                  >
+                    {getTemplateComponent()}
+                  </div>
+                </div>
+              </div>
+              
+              {/* Template Info */}
+              <div className="mt-4 text-center">
+                <p className="text-sm text-gray-600">
+                  {template?.description || 'Professional resume template'}
+                </p>
+                <div className="mt-2 flex justify-center space-x-4 text-xs text-gray-500">
+                  <span>A4 Size</span>
+                  <span>•</span>
+                  <span>Print Ready</span>
+                  <span>•</span>
+                  <span>ATS Friendly</span>
                 </div>
               </div>
             </div>
