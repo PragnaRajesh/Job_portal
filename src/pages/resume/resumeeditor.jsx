@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Download, Save, Edit3, Plus, Trash2 } from 'lucide-react';
+import { ArrowLeft, Download, Save, Edit3, Plus, Trash2, ChevronDown, MoreVertical } from 'lucide-react';
 import GraphicsTemplate from './graphictemplate';
+import GraphicsTemplate2 from './graphictemplate2';
+import GraphicsTemplate3 from './graphictemplate3';
 import ProfessionalTemplate from './professionaltemplate';
+import ProfessionalTemplate2 from './professionaltemplate2';
+import ProfessionalTemplate3 from './professionaltemplate3';
 import BasicTemplate from './basictemplate'; 
+import BasicTemplate2 from './basictemplate2';
+import BasicTemplate3 from './basictemplate3';
 import AITemplate from './AItemplate';
+import AITemplate2 from './AItemplate2';
+import AITemplate3 from './AItemplate3';
 
 const ResumeEditor = ({ template, onBack, onSave, onDownload }) => {
   const [resumeData, setResumeData] = useState({
@@ -58,6 +66,7 @@ const ResumeEditor = ({ template, onBack, onSave, onDownload }) => {
   });
 
   const [isEditing, setIsEditing] = useState(false);
+  const [showMobileDropdown, setShowMobileDropdown] = useState(false);
 
   const updatePersonalInfo = (field, value) => {
     setResumeData(prev => ({
@@ -165,17 +174,17 @@ const ResumeEditor = ({ template, onBack, onSave, onDownload }) => {
   const getTemplateComponent = () => {
     const templateMap = {
       'graphic-1': GraphicsTemplate,
-      'graphic-2': GraphicsTemplate,
-      'graphic-3': GraphicsTemplate,
+      'graphic-2': GraphicsTemplate2,
+      'graphic-3': GraphicsTemplate3,
       'ai-1': AITemplate,
-      'ai-2': AITemplate,
-      'ai-3': AITemplate,
+      'ai-2': AITemplate2,
+      'ai-3': AITemplate3,
       'prof-1': ProfessionalTemplate,
-      'prof-2': ProfessionalTemplate,
-      'prof-3': ProfessionalTemplate,
+      'prof-2': ProfessionalTemplate2,
+      'prof-3': ProfessionalTemplate3,
       'basic-1': BasicTemplate,
-      'basic-2': BasicTemplate,
-      'basic-3': BasicTemplate,
+      'basic-2': BasicTemplate2,
+      'basic-3': BasicTemplate3,
     };
     
     const TemplateComponent = templateMap[template?.id] || BasicTemplate;
@@ -183,9 +192,9 @@ const ResumeEditor = ({ template, onBack, onSave, onDownload }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 pb-20">
       {/* Header */}
-      <div className="bg-white shadow-sm border-b">
+      <div className="bg-white shadow-sm border-b sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
@@ -194,15 +203,16 @@ const ResumeEditor = ({ template, onBack, onSave, onDownload }) => {
                 className="flex items-center text-gray-600 hover:text-gray-800 transition-colors"
               >
                 <ArrowLeft className="w-5 h-5 mr-2" />
-                Back to Templates
+                <span className="hidden sm:inline">Back to Templates</span>
               </button>
-              <div className="h-6 w-px bg-gray-300"></div>
-              <h1 className="text-xl font-semibold text-gray-800">
+              <div className="h-6 w-px bg-gray-300 hidden sm:block"></div>
+              <h1 className="text-lg sm:text-xl font-semibold text-gray-800">
                 {template?.name || 'Resume Editor'}
               </h1>
             </div>
             
-            <div className="flex items-center space-x-3">
+            {/* Desktop Action Buttons */}
+            <div className="hidden md:flex items-center space-x-3">
               <button
                 onClick={() => setIsEditing(!isEditing)}
                 className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-colors ${
@@ -235,12 +245,101 @@ const ResumeEditor = ({ template, onBack, onSave, onDownload }) => {
         </div>
       </div>
 
+      {/* Fixed Mobile Action Bar - Option 1: All buttons */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-3 z-20 md:hidden">
+        <div className="flex items-center justify-between space-x-3">
+          <button
+            onClick={() => setIsEditing(!isEditing)}
+            className={`flex-1 flex items-center justify-center space-x-2 py-3 rounded-lg font-medium transition-colors ${
+              isEditing 
+                ? 'bg-green-100 text-green-700 hover:bg-green-200' 
+                : 'bg-blue-100 text-blue-700 hover:bg-blue-200'
+            }`}
+          >
+            <Edit3 className="w-4 h-4" />
+            <span className="text-sm">{isEditing ? 'Preview' : 'Edit'}</span>
+          </button>
+          
+          <button
+            onClick={() => onSave(resumeData)}
+            className="flex-1 flex items-center justify-center space-x-2 bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+          >
+            <Save className="w-4 h-4" />
+            <span className="text-sm">Save</span>
+          </button>
+          
+          <button
+            onClick={() => onDownload(resumeData)}
+            className="flex-1 flex items-center justify-center space-x-2 bg-green-600 text-white py-3 rounded-lg font-medium hover:bg-green-700 transition-colors"
+          >
+            <Download className="w-4 h-4" />
+            <span className="text-sm">Download</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Alternative Mobile Action Bar - Option 2: Dropdown style */}
+      {/* Uncomment below and comment above for dropdown version */}
+      {/*
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-3 z-20 md:hidden">
+        <div className="flex items-center justify-between space-x-3">
+          <button
+            onClick={() => setIsEditing(!isEditing)}
+            className={`flex-1 flex items-center justify-center space-x-2 py-3 rounded-lg font-medium transition-colors ${
+              isEditing 
+                ? 'bg-green-100 text-green-700 hover:bg-green-200' 
+                : 'bg-blue-100 text-blue-700 hover:bg-blue-200'
+            }`}
+          >
+            <Edit3 className="w-4 h-4" />
+            <span className="text-sm">{isEditing ? 'Preview' : 'Edit'}</span>
+          </button>
+          
+          <div className="relative">
+            <button
+              onClick={() => setShowMobileDropdown(!showMobileDropdown)}
+              className="flex items-center justify-center space-x-2 bg-blue-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+            >
+              <MoreVertical className="w-4 h-4" />
+              <span className="text-sm">Actions</span>
+              <ChevronDown className="w-4 h-4" />
+            </button>
+            
+            {showMobileDropdown && (
+              <div className="absolute bottom-full mb-2 right-0 bg-white border border-gray-200 rounded-lg shadow-lg py-2 min-w-[160px]">
+                <button
+                  onClick={() => {
+                    onSave(resumeData);
+                    setShowMobileDropdown(false);
+                  }}
+                  className="w-full flex items-center space-x-2 px-4 py-3 text-left hover:bg-gray-50 transition-colors"
+                >
+                  <Save className="w-4 h-4 text-blue-600" />
+                  <span className="text-sm text-gray-700">Save Resume</span>
+                </button>
+                <button
+                  onClick={() => {
+                    onDownload(resumeData);
+                    setShowMobileDropdown(false);
+                  }}
+                  className="w-full flex items-center space-x-2 px-4 py-3 text-left hover:bg-gray-50 transition-colors"
+                >
+                  <Download className="w-4 h-4 text-green-600" />
+                  <span className="text-sm text-gray-700">Download PDF</span>
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+      */}
+
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8">
           {/* Editor Panel */}
           {isEditing && (
-            <div className="bg-white rounded-xl shadow-lg p-6 space-y-6">
+            <div className="bg-white rounded-xl shadow-lg p-4 lg:p-6 space-y-4 lg:space-y-6">
               <h2 className="text-lg font-semibold text-gray-800 mb-4">Edit Resume Content</h2>
               
               {/* Personal Information */}
@@ -410,12 +509,14 @@ const ResumeEditor = ({ template, onBack, onSave, onDownload }) => {
 
           {/* Preview Panel */}
           <div className={`bg-white rounded-xl shadow-lg overflow-hidden ${isEditing ? '' : 'lg:col-span-2'}`}>
-            <div className="p-6 border-b border-gray-200">
-              <h2 className="text-lg font-semibold text-gray-800 mb-6">Resume Preview</h2>
+            <div className="p-4 lg:p-6 border-b border-gray-200">
+              <h2 className="text-lg font-semibold text-gray-800 text-center lg:text-left">Resume Preview</h2>
             </div>
-            <div className="p-6 bg-gray-50">
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden max-w-4xl mx-auto">
-                {getTemplateComponent()}
+            <div className="p-4 lg:p-6 bg-gray-50 flex justify-center">
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden w-full max-w-2xl lg:max-w-4xl">
+                <div className="transform scale-75 lg:scale-100 origin-top">
+                  {getTemplateComponent()}
+                </div>
               </div>
             </div>
           </div>
