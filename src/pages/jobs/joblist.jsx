@@ -11,16 +11,19 @@ import {
   Plus,
   User,
   Bookmark,
+  X,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import verifiedIcon from "../../assets/verified.jpeg";
 import videoIcon from "../../assets/job prep.jpeg";
+import jobPrepVideo from "../../assets/job prep vedio.mp4";
 import InterviewPrep from "../../components/InterviewPrep";
 
 const JobList = () => {
   const navigate = useNavigate();
   const [showInterviewPrep, setShowInterviewPrep] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+  const [activeVideoIndex, setActiveVideoIndex] = useState(null);
   const popupRef = useRef(null);
 
   useEffect(() => {
@@ -57,7 +60,7 @@ const JobList = () => {
   const metroFilters = ["Within 10Km", "10–15 Km away", "10–15 Km away"];
 
   return (
-    <div className="min-h-screen bg-gray-100 pb-24 pt-safe pb-safe">
+    <div className="h-screen overflow-y-auto bg-gray-100 pb-24 pt-safe pb-safe">
       {/* Header */}
       <div className="bg-gradient-to-r from-[#2b2b76] to-[#412c84] text-white px-4 py-5 rounded-b-3xl">
         <div className="flex justify-between items-center">
@@ -103,7 +106,9 @@ const JobList = () => {
         {jobData.map((job, i) => (
           <div
             key={i}
-            className="bg-white rounded-2xl p-4 shadow border border-blue-100 transition relative"
+            className="bg-white rounded-2xl p-4 shadow-[0_8px_20px_rgba(59,130,246,0.2)] transition duration-300"
+
+
           >
             <div className="relative z-10">
               <div className="flex justify-between items-start">
@@ -140,40 +145,48 @@ const JobList = () => {
                 {job.location}
               </p>
 
-              <div className="flex justify-between items-start mt-3 flex-wrap gap-y-2">
-                <div className="flex flex-wrap gap-2">
-                  {job.tags.map((tag, tagIndex) => {
-                    const isInterview = tag.includes("Interview");
-                    const isHighDemand = tag.includes("High Demand");
-                    const isNewJob = tag.includes("New Job");
-                    const isVacancy = tag.includes("Vacancy");
-                    let bg = "bg-gray-100 text-gray-700";
-                    let icon = null;
-                    if (isInterview) {
-                      bg = "bg-orange-200 text-black font-semibold";
-                    } else if (isHighDemand) {
-                      bg = "bg-yellow-100 text-blue-800 font-medium";
-                      icon = <span className="text-yellow-500">⚡</span>;
-                    } else if (isNewJob || isVacancy) {
-                      bg = "bg-gray-100 text-blue-700 font-medium";
-                    }
+              <div className="flex flex-wrap gap-2 mt-3">
+                {job.tags.map((tag, tagIndex) => {
+                  const isInterview = tag.includes("Interview");
+                  const isHighDemand = tag.includes("High Demand");
+                  const isNewJob = tag.includes("New Job");
+                  const isVacancy = tag.includes("Vacancy");
+                  let bg = "bg-gray-100 text-gray-700";
+                  let icon = null;
+                  if (isInterview) {
+                    bg = "bg-orange-200 text-black font-semibold";
                     return (
                       <span
                         key={tagIndex}
-                        className={`text-xs px-3 py-1 rounded-xl flex items-center gap-1 ${bg}`}
+                        className={`text-xs px-2 py-0.5 rounded-xl flex items-center gap-1 ${bg}`}
                       >
-                        {icon}
                         {tag}
                       </span>
                     );
-                  })}
-                </div>
-
+                  } else if (isHighDemand) {
+                    bg = "bg-yellow-100 text-blue-800 font-medium";
+                    icon = <span className="text-yellow-500">⚡</span>;
+                  } else if (isNewJob || isVacancy) {
+                    bg = "bg-gray-100 text-blue-700 font-medium";
+                  }
+                  return (
+                    <span
+                      key={tagIndex}
+                      className={`text-xs px-3 py-1 rounded-xl flex items-center gap-1 ${bg}`}
+                    >
+                      {icon}
+                      {tag}
+                    </span>
+                  );
+                })}
+              </div>
+              
+              <div className="flex justify-end mt-2 pr-2">
                 <div
-                  className="flex flex-col items-center text-[10px] text-blue-600 ml-auto cursor-pointer"
+                  className="flex flex-col items-center text-[10px] text-blue-600 cursor-pointer"
                   onClick={(e) => {
                     e.stopPropagation();
-                    setShowInterviewPrep(true);
+                    setActiveVideoIndex(activeVideoIndex === i ? null : i);
                   }}
                 >
                   <img src={videoIcon} alt="prep" className="w-6 h-6" />
@@ -181,12 +194,33 @@ const JobList = () => {
                 </div>
               </div>
 
-
-
               <div className="flex justify-between items-center mt-4 pt-2 border-t text-xs text-gray-600">
                 <span className="text-green-600">{job.benefit}</span>
                 <span>{job.time}</span>
               </div>
+              
+              {/* Video Section - Card Extension */}
+              {activeVideoIndex === i && (
+                <div className="mt-4 pt-4 border-t border-gray-200">
+                  <div className="flex justify-between items-center mb-3">
+                    <h3 className="text-lg font-semibold text-gray-800">Job Preparation Video</h3>
+                    <button
+                      onClick={() => setActiveVideoIndex(null)}
+                      className="p-1 hover:bg-gray-100 rounded-full"
+                    >
+                      <X className="w-5 h-5" />
+                    </button>
+                  </div>
+                  <video
+                    controls
+                    className="w-full h-auto max-h-[300px] rounded-lg"
+                    autoPlay
+                  >
+                    <source src={jobPrepVideo} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              )}
             </div>
           </div>
         ))}
@@ -209,12 +243,12 @@ const JobList = () => {
           ))}
         </div>
       </div>
-       {/* Job Cards */}
+      {/* Job Cards */}
       <div className="px-4 space-y-6">
         {jobData.map((job, i) => (
           <div
             key={i}
-            className="bg-white rounded-2xl p-4 shadow border border-blue-100 transition relative"
+                        className="bg-white rounded-2xl p-4 shadow-[0_8px_20px_rgba(59,130,246,0.2)] transition duration-300"
           >
             <div className="relative z-10">
               <div className="flex justify-between items-start">
@@ -251,40 +285,48 @@ const JobList = () => {
                 {job.location}
               </p>
 
-              <div className="flex justify-between items-start mt-3 flex-wrap gap-y-2">
-                <div className="flex flex-wrap gap-2">
-                  {job.tags.map((tag, tagIndex) => {
-                    const isInterview = tag.includes("Interview");
-                    const isHighDemand = tag.includes("High Demand");
-                    const isNewJob = tag.includes("New Job");
-                    const isVacancy = tag.includes("Vacancy");
-                    let bg = "bg-gray-100 text-gray-700";
-                    let icon = null;
-                    if (isInterview) {
-                      bg = "bg-orange-200 text-black font-semibold";
-                    } else if (isHighDemand) {
-                      bg = "bg-yellow-100 text-blue-800 font-medium";
-                      icon = <span className="text-yellow-500">⚡</span>;
-                    } else if (isNewJob || isVacancy) {
-                      bg = "bg-gray-100 text-blue-700 font-medium";
-                    }
+              <div className="flex flex-wrap gap-2 mt-3">
+                {job.tags.map((tag, tagIndex) => {
+                  const isInterview = tag.includes("Interview");
+                  const isHighDemand = tag.includes("High Demand");
+                  const isNewJob = tag.includes("New Job");
+                  const isVacancy = tag.includes("Vacancy");
+                  let bg = "bg-gray-100 text-gray-700";
+                  let icon = null;
+                  if (isInterview) {
+                    bg = "bg-orange-200 text-black font-semibold";
                     return (
                       <span
                         key={tagIndex}
-                        className={`text-xs px-3 py-1 rounded-xl flex items-center gap-1 ${bg}`}
+                        className={`text-xs px-2 py-0.5 rounded-xl flex items-center gap-1 ${bg}`}
                       >
-                        {icon}
                         {tag}
                       </span>
                     );
-                  })}
-                </div>
-
+                  } else if (isHighDemand) {
+                    bg = "bg-yellow-100 text-blue-800 font-medium";
+                    icon = <span className="text-yellow-500">⚡</span>;
+                  } else if (isNewJob || isVacancy) {
+                    bg = "bg-gray-100 text-blue-700 font-medium";
+                  }
+                  return (
+                    <span
+                      key={tagIndex}
+                      className={`text-xs px-3 py-1 rounded-xl flex items-center gap-1 ${bg}`}
+                    >
+                      {icon}
+                      {tag}
+                    </span>
+                  );
+                })}
+              </div>
+              
+              <div className="flex justify-end mt-2 pr-2">
                 <div
-                  className="flex flex-col items-center text-[10px] text-blue-600 ml-auto cursor-pointer"
+                  className="flex flex-col items-center text-[10px] text-blue-600 cursor-pointer"
                   onClick={(e) => {
                     e.stopPropagation();
-                    setShowInterviewPrep(true);
+                    setActiveVideoIndex(activeVideoIndex === i ? null : i);
                   }}
                 >
                   <img src={videoIcon} alt="prep" className="w-6 h-6" />
@@ -292,16 +334,39 @@ const JobList = () => {
                 </div>
               </div>
 
-
-
               <div className="flex justify-between items-center mt-4 pt-2 border-t text-xs text-gray-600">
                 <span className="text-green-600">{job.benefit}</span>
                 <span>{job.time}</span>
               </div>
+              
+              {/* Video Section - Card Extension */}
+              {activeVideoIndex === i && (
+                <div className="mt-4 pt-4 border-t border-gray-200">
+                  <div className="flex justify-between items-center mb-3">
+                    <h3 className="text-lg font-semibold text-gray-800">Job Preparation Video</h3>
+                    <button
+                      onClick={() => setActiveVideoIndex(null)}
+                      className="p-1 hover:bg-gray-100 rounded-full"
+                    >
+                      <X className="w-5 h-5" />
+                    </button>
+                  </div>
+                  <video
+                    controls
+                    className="w-full h-auto max-h-[300px] rounded-lg"
+                    autoPlay
+                  >
+                    <source src={jobPrepVideo} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              )}
             </div>
           </div>
         ))}
       </div>
+
+
 
 
      {/* ✅ Fixed Bottom Navigation */}
@@ -378,6 +443,8 @@ const JobList = () => {
       {showInterviewPrep && (
         <InterviewPrep onClose={() => setShowInterviewPrep(false)} />
       )}
+
+
     </div>
   );
 };
