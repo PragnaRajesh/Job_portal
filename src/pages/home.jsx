@@ -269,44 +269,45 @@ const Home = () => {
           </button>
 
           {showPopup && (
-            <div
-              className="fixed left-0 bottom-0 w-full h-1/2 bg-gradient-to-t from-blue-100 via-white to-white rounded-t-3xl shadow-2xl z-50 flex flex-col items-center justify-center animate-slideUp pb-safe pt-4"
-              ref={popupRef}
-              style={{animation: 'slideUp 0.3s cubic-bezier(0.4,0,0.2,1)'}}
-            >
-              <div className="w-16 h-1 bg-blue-300 rounded-full mb-6 mt-2" />
-              <h3 className="text-xl font-bold mb-8 text-blue-900">Quick Actions</h3>
-              <div className="flex flex-col gap-5 w-3/4">
-                <button
-                  onClick={() => {
-                    setShowPopup(false);
-                    navigate("/resume/resumebuilder");
-                  }}
-                  className="w-full bg-blue-500 text-white py-3 rounded-xl font-semibold text-lg shadow-md hover:bg-blue-600 transition"
-                >
-                  📝 Resume Builder
-                </button>
-                <button
-                  onClick={() => {
-                    setShowPopup(false);
-                    navigate("/messages");
-                  }}
-                  className="w-full bg-green-500 text-white py-3 rounded-xl font-semibold text-lg shadow-md hover:bg-green-600 transition"
-                >
-                  💬 Chats
-                </button>
-                <button
-                  onClick={() => {
-                    setShowPopup(false);
-                    navigate("/aisupport");
-                  }}
-                  className="w-full bg-purple-500 text-white py-3 rounded-xl font-semibold text-lg shadow-md hover:bg-purple-600 transition"
-                >
-                  🤖 AI Job Prep
-                </button>
-              </div>
-            </div>
-          )}
+  <div
+    ref={popupRef}
+    className="fixed bottom-16 left-0 w-full h-[50vh] bg-gradient-to-t from-blue-100 via-white to-white z-50 rounded-t-3xl shadow-2xl flex flex-col items-center pt-6 pb-4 animate-slideUp"
+  >
+    <div className="w-16 h-1 bg-blue-200 rounded-full mb-6 mt-2" />
+    <h3 className="text-xl font-bold mb-6 text-gray-800">Quick Actions</h3>
+
+    <div className="flex flex-col gap-4 w-4/5">
+      <button
+        onClick={() => {
+          setShowPopup(false);
+          navigate("/resume/resumebuilder");
+        }}
+        className="w-full bg-[#EAF3FF] text-[#074799] py-3 rounded-xl font-medium text-base shadow-sm border border-[#BFDFFF] hover:bg-[#dbeeff] transition"
+      >
+        📝 Resume Builder
+      </button>
+      <button
+        onClick={() => {
+          setShowPopup(false);
+          navigate("/messages");
+        }}
+        className="w-full bg-[#E8F9ED] text-[#2E7D32] py-3 rounded-xl font-medium text-base shadow-sm border border-[#BEE7C9] hover:bg-[#d3f3db] transition"
+      >
+        💬 Chats
+      </button>
+      <button
+        onClick={() => {
+          setShowPopup(false);
+          navigate("/aisupport");
+        }}
+        className="w-full bg-[#F3E9FF] text-[#6A1B9A] py-3 rounded-xl font-medium text-base shadow-sm border border-[#D8C5ED] hover:bg-[#ebdbff] transition"
+      >
+        🤖 AI Job Prep
+      </button>
+    </div>
+  </div>
+)}
+
         </div>
 
         <button onClick={() => navigate("/applications/application")}>
