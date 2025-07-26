@@ -11,15 +11,18 @@ import {
   Plus,
   User,
   Bookmark,
+  X,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import verifiedIcon from "../../assets/verified.jpeg";
 import videoIcon from "../../assets/job prep.jpeg";
+import jobPrepVideo from "../../assets/job prep vedio.mp4";
 import InterviewPrep from "../../components/InterviewPrep";
 
 const JobList = () => {
   const navigate = useNavigate();
   const [showInterviewPrep, setShowInterviewPrep] = useState(false);
+  const [showVideoModal, setShowVideoModal] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const popupRef = useRef(null);
 
@@ -173,7 +176,7 @@ const JobList = () => {
                   className="flex flex-col items-center text-[10px] text-blue-600 ml-auto cursor-pointer"
                   onClick={(e) => {
                     e.stopPropagation();
-                    setShowInterviewPrep(true);
+                    setShowVideoModal(true);
                   }}
                 >
                   <img src={videoIcon} alt="prep" className="w-6 h-6" />
@@ -284,7 +287,7 @@ const JobList = () => {
                   className="flex flex-col items-center text-[10px] text-blue-600 ml-auto cursor-pointer"
                   onClick={(e) => {
                     e.stopPropagation();
-                    setShowInterviewPrep(true);
+                    setShowVideoModal(true);
                   }}
                 >
                   <img src={videoIcon} alt="prep" className="w-6 h-6" />
@@ -377,6 +380,33 @@ const JobList = () => {
       {/* Interview Prep Modal */}
       {showInterviewPrep && (
         <InterviewPrep onClose={() => setShowInterviewPrep(false)} />
+      )}
+
+      {/* Video Modal */}
+      {showVideoModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden">
+            <div className="flex justify-between items-center p-4 border-b">
+              <h3 className="text-lg font-semibold">Job Preparation Video</h3>
+              <button
+                onClick={() => setShowVideoModal(false)}
+                className="p-2 hover:bg-gray-100 rounded-full"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+            <div className="p-4">
+              <video
+                controls
+                className="w-full h-auto max-h-[70vh] rounded-lg"
+                autoPlay
+              >
+                <source src={jobPrepVideo} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
