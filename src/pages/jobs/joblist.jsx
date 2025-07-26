@@ -156,7 +156,7 @@ const JobList = () => {
                     return (
                       <span
                         key={tagIndex}
-                        className={`text-xs px-3 py-1 rounded-xl flex items-center gap-2 ${bg} cursor-pointer`}
+                        className={`text-xs px-3 py-1 rounded-xl flex items-center gap-3 ${bg} cursor-pointer`}
                         onClick={(e) => {
                           e.stopPropagation();
                           setActiveVideoIndex(activeVideoIndex === i ? null : i);
