@@ -25,31 +25,37 @@ const previewStyles = `
   }
   
   .resume-preview-scale {
-    transform: scale(0.5);
+    transform: scale(0.35);
+    transform-origin: top center;
   }
   
   .resume-preview-container {
-    height: 600px;
-    overflow: auto;
+    height: 400px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
   }
   
   @media (max-width: 640px) {
     .resume-preview-scale {
-      transform: scale(0.4) !important;
+      transform: scale(0.25) !important;
+      transform-origin: top center;
     }
     .resume-preview-container {
-      height: 500px !important;
-      overflow: auto !important;
+      height: 320px !important;
+      overflow: hidden !important;
     }
   }
   
   @media (min-width: 641px) and (max-width: 1024px) {
     .resume-preview-scale {
-      transform: scale(0.45) !important;
+      transform: scale(0.3) !important;
+      transform-origin: top center;
     }
     .resume-preview-container {
-      height: 550px !important;
-      overflow: auto !important;
+      height: 360px !important;
+      overflow: hidden !important;
     }
   }
   
@@ -380,7 +386,7 @@ const ResumeTemplates = ({
                 <div className="bg-white rounded-md sm:rounded-lg mb-3 sm:mb-4 border-2 border-gray-200 group-hover:border-blue-300 transition-colors overflow-hidden w-full relative resume-preview-container shadow-sm">
                   <div className="w-full h-full flex items-center justify-center bg-gray-50">
                     <div 
-                      className="transform origin-center shadow-lg resume-preview-scale bg-white"
+                      className="transform shadow-lg resume-preview-scale bg-white"
                       style={{ 
                         width: '794px',
                         height: '1123px',

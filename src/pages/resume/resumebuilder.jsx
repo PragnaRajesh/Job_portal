@@ -191,19 +191,19 @@ function ResumeBuilder() {
           
           {/* Preview Content */}
           <div className="flex-1 overflow-auto bg-gray-100 p-4">
-            <div className="mx-auto bg-white shadow-lg flex items-center justify-center" 
+            <div className="mx-auto bg-white shadow-lg flex items-center justify-center overflow-hidden" 
                  style={{ 
                    width: '100%',
-                   minHeight: '600px',
-                   maxWidth: '900px'
+                   minHeight: '500px',
+                   maxWidth: '500px'
                  }}>
               <div 
                 className="bg-white shadow-xl full-resume-preview"
                 style={{ 
                   width: '794px',
                   height: '1123px',
-                  transform: 'scale(0.9)',
-                  transformOrigin: 'center'
+                  transform: 'scale(0.6)',
+                  transformOrigin: 'top center'
                 }}
               >
                 <TemplateComponent data={sampleData} />
