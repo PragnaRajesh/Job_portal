@@ -20,28 +20,28 @@ const previewStyles = `
   }
   
   .resume-preview-scale {
-    transform: scale(0.28);
+    transform: scale(0.35);
   }
   
   .resume-preview-container {
-    height: 380px;
+    height: 420px;
   }
   
   @media (max-width: 640px) {
     .resume-preview-scale {
-      transform: scale(0.20) !important;
+      transform: scale(0.25) !important;
     }
     .resume-preview-container {
-      height: 320px !important;
+      height: 350px !important;
     }
   }
   
   @media (min-width: 641px) and (max-width: 1024px) {
     .resume-preview-scale {
-      transform: scale(0.24) !important;
+      transform: scale(0.30) !important;
     }
     .resume-preview-container {
-      height: 350px !important;
+      height: 380px !important;
     }
   }
 `;
@@ -360,10 +360,10 @@ const ResumeTemplates = ({
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto">
             {currentTemplates.map((template) => (
               <div key={template.id} className="bg-gray-50 rounded-lg sm:rounded-xl p-3 sm:p-4 hover:shadow-xl transition-all duration-300 cursor-pointer group flex flex-col items-center">
-                <div className="bg-white rounded-md sm:rounded-lg mb-3 sm:mb-4 border-2 border-gray-200 group-hover:border-blue-300 transition-colors overflow-hidden w-full relative resume-preview-container">
-                  <div className="w-full h-full flex items-center justify-center">
+                <div className="bg-white rounded-md sm:rounded-lg mb-3 sm:mb-4 border-2 border-gray-200 group-hover:border-blue-300 transition-colors overflow-hidden w-full relative resume-preview-container shadow-sm">
+                  <div className="w-full h-full flex items-center justify-center bg-gray-50">
                     <div 
-                      className="transform origin-center shadow-sm resume-preview-scale"
+                      className="transform origin-center shadow-lg resume-preview-scale bg-white"
                       style={{ 
                         width: '794px',
                         height: '1123px',
