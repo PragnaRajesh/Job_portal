@@ -44,6 +44,7 @@ import NoMessage from "./pages/chats/nomessage";
 import { ConversationProvider } from "./pages/chats/conversationcontext";
 import ResumeBuilder from "./pages/resume/resumebuilder";
 import AIJobPrep from "./components/AIJobPrep";
+import InterviewPrep from "./components/InterviewPrep";
 const AISupport = () => (
   <div className="min-h-screen flex flex-col items-center justify-center text-center pt-safe pb-safe">
     <h1 className="text-2xl font-bold mb-4">AI Support</h1>
@@ -108,8 +109,8 @@ const App = () => {
           <Route path="/jobs/verified" element={<Verified />} />
 
           {/* AI Job Prep */}
-          <Route path="/aijobprep" element={<AIJobPrep />} />
-          <Route path="/aisupport" element={<AISupport />} />
+          <Route path="/AIJobPrep" element={<AIJobPrep />} />
+          <Route path="/InterviewPrep" element={<InterviewPrep />} />
 
           {/* Application Screen */}
           <Route path="/applications/application" element={<Application />} />

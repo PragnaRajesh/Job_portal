@@ -256,7 +256,7 @@ const Home = () => {
           <HomeIcon className="w-6 h-6 text-blue-600" />
         </button>
         <button onClick={() => navigate("/jobs/joblist")}>
-          <Briefcase className="w-6 h-6 text-gray-400 hover:text-gray-600 transition-colors" />
+          <Briefcase className="w-6 h-6 text-gray-400" />
         </button>
 
         {/* Plus Icon with Popup */}
@@ -298,7 +298,7 @@ const Home = () => {
       <button
         onClick={() => {
           setShowPopup(false);
-          navigate("/aisupport");
+          navigate("/InterviewPrep");;
         }}
         className="w-full bg-[#F3E9FF] text-[#6A1B9A] py-3 rounded-xl font-medium text-base shadow-sm border border-[#D8C5ED] hover:bg-[#ebdbff] transition"
       >
@@ -311,10 +311,10 @@ const Home = () => {
         </div>
 
         <button onClick={() => navigate("/applications/application")}>
-          <FileText className="w-6 h-6 text-gray-400 hover:text-gray-600 transition-colors" />
+          <FileText className="w-6 h-6 text-gray-400" />
         </button>
         <button onClick={() => navigate("/myprofilesection/myprofile")}>
-          <User className="w-6 h-6 text-gray-400 hover:text-gray-600 transition-colors" />
+          <User className="w-6 h-6 text-gray-400" />
         </button>
       </div>
 
