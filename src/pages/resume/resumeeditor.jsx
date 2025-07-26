@@ -14,6 +14,23 @@ import AITemplate2 from './AItemplate2';
 import AITemplate3 from './AItemplate3';
 
 const ResumeEditor = ({ template, onBack, onSave, onDownload }) => {
+  // CSS for ensuring full A4 resume preview without cropping
+  const editorPreviewStyles = `
+    .resume-editor-preview .max-w-4xl {
+      max-width: none !important;
+    }
+    
+    .resume-editor-preview .overflow-hidden {
+      overflow: visible !important;
+    }
+    
+    .resume-editor-preview > div {
+      width: 794px !important;
+      height: 1123px !important;
+      overflow: visible !important;
+    }
+  `;
+
   const [resumeData, setResumeData] = useState({
     personalInfo: {
       name: 'John Doe',
@@ -234,6 +251,7 @@ const ResumeEditor = ({ template, onBack, onSave, onDownload }) => {
 
   return (
     <div className="min-h-screen bg-gray-50 pb-20">
+      <style dangerouslySetInnerHTML={{ __html: editorPreviewStyles }} />
       {/* Header */}
       <div className="bg-white shadow-sm border-b sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 py-4">
@@ -643,25 +661,25 @@ const ResumeEditor = ({ template, onBack, onSave, onDownload }) => {
               </div>
             </div>
             <div className="p-2 sm:p-4 lg:p-6 bg-gray-50">
-              <div className="bg-white rounded-lg shadow-xl overflow-hidden mx-auto" 
+              <div className="bg-white rounded-lg shadow-xl mx-auto overflow-auto" 
                    style={{ 
                      width: '100%', 
-                     maxWidth: isEditing ? '600px' : '800px',
-                     aspectRatio: '210/297',
+                     maxWidth: isEditing ? '900px' : '1000px',
+                     height: isEditing ? '600px' : '700px',
                      transformOrigin: 'top center'
                    }}>
-                <div className="w-full h-full overflow-hidden relative">
+                <div className="w-full h-full flex items-start justify-center p-4">
                   <div 
-                    className="absolute inset-0 origin-top-left"
+                    className="origin-top-center bg-white shadow-lg resume-editor-preview"
                     style={{
                       width: '794px',
                       height: '1123px',
                       transform: isEditing 
-                        ? 'scale(0.75)' 
+                        ? 'scale(0.85)' 
                         : window.innerWidth < 768 
-                          ? 'scale(0.8)' 
-                          : 'scale(1)',
-                      transformOrigin: 'top left'
+                          ? 'scale(0.9)' 
+                          : 'scale(0.95)',
+                      transformOrigin: 'top center'
                     }}
                   >
                     {getTemplateComponent()}

@@ -30,6 +30,23 @@ function ResumeBuilder() {
   const [showPreview, setShowPreview] = React.useState(false);
   const [previewTemplate, setPreviewTemplate] = React.useState(null);
 
+  // CSS for full A4 resume preview
+  const fullPreviewStyles = `
+    .full-resume-preview .max-w-4xl {
+      max-width: none !important;
+    }
+    
+    .full-resume-preview .overflow-hidden {
+      overflow: visible !important;
+    }
+    
+    .full-resume-preview {
+      width: 794px !important;
+      height: 1123px !important;
+      overflow: visible !important;
+    }
+  `;
+
   // Sample data for template previews
   const sampleData = {
     personalInfo: {
@@ -156,7 +173,8 @@ function ResumeBuilder() {
 
     return (
       <div className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4">
-        <div className="bg-white rounded-lg max-w-4xl max-h-[95vh] w-full overflow-hidden flex flex-col">
+        <style dangerouslySetInnerHTML={{ __html: fullPreviewStyles }} />
+        <div className="bg-white rounded-lg max-w-6xl max-h-[95vh] w-full overflow-hidden flex flex-col">
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b border-gray-200">
             <div>
@@ -173,8 +191,23 @@ function ResumeBuilder() {
           
           {/* Preview Content */}
           <div className="flex-1 overflow-auto bg-gray-100 p-4">
-            <div className="max-w-2xl mx-auto bg-white shadow-lg" style={{ aspectRatio: '210/297' }}>
-              <TemplateComponent data={sampleData} />
+            <div className="mx-auto bg-white shadow-lg flex items-center justify-center" 
+                 style={{ 
+                   width: '100%',
+                   minHeight: '600px',
+                   maxWidth: '900px'
+                 }}>
+              <div 
+                className="bg-white shadow-xl full-resume-preview"
+                style={{ 
+                  width: '794px',
+                  height: '1123px',
+                  transform: 'scale(0.9)',
+                  transformOrigin: 'center'
+                }}
+              >
+                <TemplateComponent data={sampleData} />
+              </div>
             </div>
           </div>
           
