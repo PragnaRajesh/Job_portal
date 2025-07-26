@@ -661,24 +661,24 @@ const ResumeEditor = ({ template, onBack, onSave, onDownload }) => {
               </div>
             </div>
             <div className="p-2 sm:p-4 lg:p-6 bg-gray-50">
-              <div className="bg-white rounded-lg shadow-xl mx-auto overflow-auto" 
+              <div className="bg-white rounded-lg shadow-xl mx-auto overflow-hidden" 
                    style={{ 
                      width: '100%', 
-                     maxWidth: isEditing ? '900px' : '1000px',
-                     height: isEditing ? '600px' : '700px',
+                     maxWidth: isEditing ? '400px' : '500px',
+                     height: isEditing ? '500px' : '600px',
                      transformOrigin: 'top center'
                    }}>
-                <div className="w-full h-full flex items-start justify-center p-4">
+                <div className="w-full h-full flex items-start justify-center p-2">
                   <div 
                     className="origin-top-center bg-white shadow-lg resume-editor-preview"
                     style={{
                       width: '794px',
                       height: '1123px',
                       transform: isEditing 
-                        ? 'scale(0.85)' 
+                        ? 'scale(0.45)' 
                         : window.innerWidth < 768 
-                          ? 'scale(0.9)' 
-                          : 'scale(0.95)',
+                          ? 'scale(0.4)' 
+                          : 'scale(0.5)',
                       transformOrigin: 'top center'
                     }}
                   >
