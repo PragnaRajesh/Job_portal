@@ -3,12 +3,84 @@ import { ArrowLeft, ArrowRight, FileText, Users, User, X, HomeIcon, Briefcase, P
 import ResumeTemplates from './resumetemplates';
 import ResumeEditor from './resumeeditor';
 
+// Import all template components for preview
+import GraphicsTemplate from './graphictemplate';
+import GraphicsTemplate2 from './graphictemplate2';
+import GraphicsTemplate3 from './graphictemplate3';
+import ProfessionalTemplate from './professionaltemplate';
+import ProfessionalTemplate2 from './professionaltemplate2';
+import ProfessionalTemplate3 from './professionaltemplate3';
+import BasicTemplate from './basictemplate';
+import BasicTemplate2 from './basictemplate2';
+import BasicTemplate3 from './basictemplate3';
+import AITemplate from './AItemplate';
+import AITemplate2 from './AItemplate2';
+import AITemplate3 from './AItemplate3';
+import CreativeTechTemplate from './creativetechtemplate';
+import MarketingCreativeTemplate from './marketingcreativetemplate';
+import BusinessExecutiveTemplate from './businessexecutivetemplate';
+import HealthcareTemplate from './healthcaretemplate';
+import EducationTemplate from './educationtemplate';
 
 function ResumeBuilder() {
   const [showTemplates, setShowTemplates] = React.useState(false);
   const [templateCategory, setTemplateCategory] = React.useState('');
   const [selectedTemplate, setSelectedTemplate] = React.useState(null);
   const [showEditor, setShowEditor] = React.useState(false);
+  const [showPreview, setShowPreview] = React.useState(false);
+  const [previewTemplate, setPreviewTemplate] = React.useState(null);
+
+  // Sample data for template previews
+  const sampleData = {
+    personalInfo: {
+      name: 'Alex Johnson',
+      title: 'Senior Software Engineer',
+      email: 'alex.johnson@email.com',
+      phone: '+1 (555) 123-4567',
+      location: 'San Francisco, CA',
+      linkedin: 'linkedin.com/in/alexjohnson',
+      website: 'alexjohnson.dev'
+    },
+    summary: 'Innovative software engineer with 8+ years of experience in full-stack development, specializing in React, Node.js, and cloud technologies. Proven track record of leading cross-functional teams and delivering scalable solutions.',
+    experience: [
+      {
+        id: 1,
+        title: 'Senior Software Engineer',
+        company: 'TechCorp Inc.',
+        location: 'San Francisco, CA',
+        duration: '2021 - Present',
+        responsibilities: [
+          'Led development of microservices architecture serving 1M+ users',
+          'Mentored team of 5 junior developers and conducted technical interviews',
+          'Implemented CI/CD pipelines reducing deployment time by 70%'
+        ]
+      },
+      {
+        id: 2,
+        title: 'Software Engineer',
+        company: 'StartupXYZ',
+        location: 'San Francisco, CA',
+        duration: '2019 - 2021',
+        responsibilities: [
+          'Built responsive web applications using React and TypeScript',
+          'Optimized database performance improving query speed by 50%',
+          'Collaborated with design team to implement pixel-perfect UIs'
+        ]
+      }
+    ],
+    education: [
+      {
+        id: 1,
+        degree: 'Bachelor of Science in Computer Science',
+        school: 'Stanford University',
+        location: 'Stanford, CA',
+        year: '2019'
+      }
+    ],
+    skills: [
+      'JavaScript', 'React', 'Node.js', 'Python', 'AWS', 'Docker', 'MongoDB', 'PostgreSQL'
+    ]
+  };
 
   const handleCategoryClick = (category) => {
     setTemplateCategory(category);
@@ -22,8 +94,8 @@ function ResumeBuilder() {
   };
 
   const handlePreviewTemplate = (template) => {
-    // Handle template preview
-    console.log('Preview template:', template);
+    setPreviewTemplate(template);
+    setShowPreview(true);
   };
 
   const handleBackToTemplates = () => {
@@ -42,6 +114,91 @@ function ResumeBuilder() {
     // Handle downloading resume as PDF
     console.log('Download resume:', resumeData);
     alert('Resume download started!');
+  };
+
+  // Template component mapping
+  const getTemplateComponent = (templateId) => {
+    const templateMap = {
+      'graphic-1': GraphicsTemplate,
+      'graphic-2': GraphicsTemplate2,
+      'graphic-3': GraphicsTemplate3,
+      'ai-1': AITemplate,
+      'ai-2': AITemplate2,
+      'ai-3': AITemplate3,
+      'prof-1': ProfessionalTemplate,
+      'prof-2': ProfessionalTemplate2,
+      'prof-3': ProfessionalTemplate3,
+      'basic-1': BasicTemplate,
+      'basic-2': BasicTemplate2,
+      'basic-3': BasicTemplate3,
+      'tech-1': CreativeTechTemplate,
+      'tech-2': AITemplate,
+      'tech-3': AITemplate2,
+      'marketing-1': MarketingCreativeTemplate,
+      'marketing-2': GraphicsTemplate,
+      'marketing-3': GraphicsTemplate2,
+      'business-1': BusinessExecutiveTemplate,
+      'business-2': ProfessionalTemplate,
+      'business-3': ProfessionalTemplate2,
+      'healthcare-1': HealthcareTemplate,
+      'healthcare-2': ProfessionalTemplate3,
+      'healthcare-3': BasicTemplate2,
+      'edu-1': EducationTemplate
+    };
+    return templateMap[templateId] || BasicTemplate;
+  };
+
+  // Preview Modal Component
+  const PreviewModal = () => {
+    if (!showPreview || !previewTemplate) return null;
+
+    const TemplateComponent = getTemplateComponent(previewTemplate.id);
+
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4">
+        <div className="bg-white rounded-lg max-w-4xl max-h-[95vh] w-full overflow-hidden flex flex-col">
+          {/* Header */}
+          <div className="flex items-center justify-between p-4 border-b border-gray-200">
+            <div>
+              <h3 className="text-lg font-semibold text-gray-800">{previewTemplate.name}</h3>
+              <p className="text-sm text-gray-600">{previewTemplate.description}</p>
+            </div>
+            <button 
+              onClick={() => setShowPreview(false)}
+              className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+            >
+              <X className="w-5 h-5 text-gray-600" />
+            </button>
+          </div>
+          
+          {/* Preview Content */}
+          <div className="flex-1 overflow-auto bg-gray-100 p-4">
+            <div className="max-w-2xl mx-auto bg-white shadow-lg" style={{ aspectRatio: '210/297' }}>
+              <TemplateComponent data={sampleData} />
+            </div>
+          </div>
+          
+          {/* Footer */}
+          <div className="p-4 border-t border-gray-200 flex justify-between">
+            <button 
+              onClick={() => setShowPreview(false)}
+              className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+            >
+              Close
+            </button>
+            <button 
+              onClick={() => {
+                handleSelectTemplate(previewTemplate);
+                setShowPreview(false);
+              }}
+              className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              Use This Template
+            </button>
+          </div>
+        </div>
+      </div>
+    );
   };
 
   // If editor is open, show editor
@@ -219,6 +376,9 @@ function ResumeBuilder() {
         onSelectTemplate={handleSelectTemplate}
         onPreviewTemplate={handlePreviewTemplate}
       />
+
+      {/* Preview Modal */}
+      <PreviewModal />
 
       {/* Bottom Navigation */}
       <div className="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around py-4 border-t border-gray-100 bg-white">
