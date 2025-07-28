@@ -46,7 +46,9 @@ const OnboardingFlow = () => {
 
   return (
     <div className="h-screen flex flex-col items-stretch justify-between">
-      {renderScreen()}
+      <div className="scaled-wrapper">
+        {renderScreen()}
+      </div>
     </div>
   );
 };
