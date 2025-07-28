@@ -47,6 +47,7 @@ import AIJobPrep from "./components/AIJobPrep";
 import InterviewPrep from "./components/InterviewPrep";
 import ResumeTemplates from "./pages/resume/resumetemplates";
 import ResumeEditor from "./pages/resume/resumeeditor";
+import ResumePreview from "./pages/resume/resumepreview";
 import ProfessionalTemplate from "./pages/resume/professionaltemplate";
 import GraphicTemplate from "./pages/resume/graphictemplate";
 import BasicTemplate from "./pages/resume/basictemplate";
@@ -127,6 +128,7 @@ const App = () => {
           <Route path="/resume/resumebuilder" element={<ResumeBuilder />} />
           <Route path="/resume/templates" element={<ResumeTemplates />} />
           <Route path="/resume/editor" element={<ResumeEditor />} />
+          <Route path="/resume/preview" element={<ResumePreview />} />
           <Route path="/resume/template/professional" element={<ProfessionalTemplate />} />
           <Route path="/resume/template/graphic" element={<GraphicTemplate />} />
           <Route path="/resume/template/basic" element={<BasicTemplate />} />
