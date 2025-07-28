@@ -63,7 +63,6 @@ const App = () => {
   return (
     <BrowserRouter>
       <ConversationProvider>
-        <div className="h-screen flex flex-col items-stretch justify-between bg-white">
         <Routes>
           {/* Onboarding and Auth */}
           <Route path="/" element={<OnboardingFlow />} />
@@ -132,7 +131,6 @@ const App = () => {
           <Route path="/resume/template/basic" element={<BasicTemplate />} />
           <Route path="/resume/template/ai" element={<AITemplate />} />
         </Routes>
-        </div>
       </ConversationProvider>
     </BrowserRouter>
   );

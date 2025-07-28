@@ -21,7 +21,7 @@ const OnboardingScreen4 = ({ onSignUp, onLogIn }) => {
   };
 
   return (
-    <div className="h-full w-full flex flex-col items-stretch justify-between bg-white pb-safe">
+    <div className="min-h-screen w-full bg-white flex flex-col items-center justify-between overflow-y-auto pb-safe">
       {/* Text Content */}
       <div className="pt-[10vh] text-center px-6 z-10 w-full">
         <h1
@@ -49,7 +49,7 @@ const OnboardingScreen4 = ({ onSignUp, onLogIn }) => {
         <img
           src="https://cdn.builder.io/api/v1/image/assets%2F066a49ebd63d4888b50b2ed95c4b0a2d%2F1fce1cfe00ad43b39d0f0e156be3f338?format=webp&width=800"
           alt="Professional character"
-          className="w-full max-w-lg h-auto aspect-[4/3] object-contain"
+          className="w-[105vw] max-w-lg object-contain"
         />
       </div>
 
