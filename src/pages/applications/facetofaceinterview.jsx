@@ -169,9 +169,9 @@ const FaceToFaceInterview = () => {
 
         <div className="text-xs text-gray-500 mt-2">Time: {job.time}</div>
         <div className="grid grid-cols-3 gap-2 mt-4">
-          <button className="w-full bg-blue-500 text-white text-[13px] py-2 rounded-[5px]">Attend Interview</button>
-          <button className="w-full bg-yellow-400 text-white text-[13px] py-2 rounded-[5px]">Route</button>
-          <button className="w-full bg-sky-400 text-white text-[13px] py-2 rounded-[5px]">Reschedule</button>
+          <button className="w-full bg-blue-500 text-white text-sm py-2 rounded-md">Attend Interview</button>
+          <button className="w-full bg-yellow-400 text-white text-sm py-2 rounded-md">Route</button>
+          <button className="w-full bg-sky-400 text-white text-sm py-2 rounded-md">Reschedule</button>
         </div>
 
         {showReasonDropdown && (
@@ -239,7 +239,7 @@ const FaceToFaceInterview = () => {
             <div className="mt-6 flex items-center justify-center">
               <div
                 ref={trackRef}
-                className="relative w-full max-w-[320px] h-12 rounded-full overflow-hidden cursor-pointer select-none"
+                className="relative w-full max-w-sm h-12 rounded-full overflow-hidden cursor-pointer select-none"
                 style={{
                   backgroundImage: `url(${hasReached ? reachedGreen : reachedGrey})`,
                   backgroundSize: "cover",

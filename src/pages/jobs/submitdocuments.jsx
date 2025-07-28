@@ -53,7 +53,7 @@ const SubmitDocuments = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white px-5 pt-6 pb-28 text-[15px] font-sans text-gray-800 pt-safe pb-safe">
+    <div className="min-h-screen bg-white px-5 pt-6 pb-28 text-base font-sans text-gray-800 pt-safe pb-safe">
       <ToastContainer position="top-center" autoClose={2000} />
       <h2 className="text-xl font-semibold text-center mb-6">
         Submit Documents
@@ -118,7 +118,7 @@ const SubmitDocuments = () => {
         <img
         src={attachIllustration}
         alt="Attach Documents"
-        className="w-[200px] h-auto"
+        className="w-50 h-auto"
         />
       </div>
 
