@@ -22,7 +22,7 @@ const OnboardingScreen2 = ({ onNext, onSkip }) => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-white relative overflow-y-auto pb-safe">
+    <div className="h-full w-full flex flex-col items-stretch justify-between bg-white relative pb-safe">
       {/* Main Rectangle */}
       <div
         className="absolute z-10 px-6 top-16 left-4 w-[95%] max-w-sm h-[39rem] bg-[#94E082] border border-[#CB9D73] rounded-[1.875rem]"
@@ -53,7 +53,7 @@ const OnboardingScreen2 = ({ onNext, onSkip }) => {
 <img
   src={rocketImage}
   alt="Rocket Illustration"
-  className="absolute z-20 w-90 h-85 -top-16 left-0 opacity-100 transform rotate-0"
+  className="absolute z-20 w-90 h-auto aspect-[4/3] object-contain -top-16 left-0 opacity-100 transform rotate-0"
 />
 
         </div>
