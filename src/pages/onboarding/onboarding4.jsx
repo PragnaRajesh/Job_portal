@@ -25,17 +25,17 @@ const OnboardingScreen4 = ({ onSignUp, onLogIn }) => {
       {/* Text Content */}
       <div className="pt-[10vh] text-center px-6 z-10 w-full">
         <h1
-          className="text-[8vw] sm:text-[7vw] md:text-[6vw] lg:text-[40px] font-semibold leading-snug text-black"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-[2.5rem] font-semibold leading-snug text-black"
           style={{
             fontFamily: 'Montserrat, sans-serif',
-            letterSpacing: '0.5px'
+            letterSpacing: '0.03125rem'
           }}
         >
           Find Your Job
         </h1>
 
         <p
-          className="mt-4 text-[4vw] sm:text-[3.5vw] md:text-[3vw] lg:text-[20px] text-[#A7A7A7] font-medium max-w-[90%] mx-auto leading-relaxed"
+          className="mt-4 text-lg sm:text-xl md:text-2xl lg:text-xl text-[#A7A7A7] font-medium max-w-[90%] mx-auto leading-relaxed"
           style={{
             fontFamily: 'Poppins, sans-serif'
           }}
@@ -49,7 +49,7 @@ const OnboardingScreen4 = ({ onSignUp, onLogIn }) => {
         <img
           src="https://cdn.builder.io/api/v1/image/assets%2F066a49ebd63d4888b50b2ed95c4b0a2d%2F1fce1cfe00ad43b39d0f0e156be3f338?format=webp&width=800"
           alt="Professional character"
-          className="w-[105vw] max-w-[500px] object-contain"
+          className="w-full max-w-lg object-contain"
         />
       </div>
 
@@ -57,7 +57,7 @@ const OnboardingScreen4 = ({ onSignUp, onLogIn }) => {
       <div className="relative z-10 w-full flex flex-col items-center gap-4 px-6 pb-[5vh]">
         <button
           onClick={handleSignUp}
-          className="w-full max-w-[343px] h-[12vw] max-h-[48px] text-white font-semibold rounded-[20px] text-[4vw] sm:text-base border shadow-md"
+          className="w-full max-w-sm h-12 text-white font-semibold rounded-2xl text-base sm:text-base border shadow-md"
           style={{
             backgroundColor: '#2563EB',
             borderColor: '#CB9D73'}}>
@@ -66,7 +66,7 @@ const OnboardingScreen4 = ({ onSignUp, onLogIn }) => {
 
         <button
           onClick={handleLogIn}
-          className="w-full max-w-[343px] h-[12vw] max-h-[48px] text-black font-semibold rounded-[20px] text-[4vw] sm:text-base border"
+          className="w-full max-w-sm h-12 text-black font-semibold rounded-2xl text-base sm:text-base border"
           style={{ borderColor: '#2563EB' }}
         >
           Log in

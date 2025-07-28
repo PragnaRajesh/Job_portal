@@ -43,7 +43,7 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
         <img
           src={resumeImg}
           alt="Resume Illustration"
-          className="w-full max-w-[600px] h-auto max-h-[620px]"
+          className="w-full max-w-2xl h-auto max-h-[38.75rem]"
         />
       </div>
 

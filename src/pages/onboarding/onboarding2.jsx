@@ -83,16 +83,16 @@ const OnboardingScreen2 = ({ onNext, onSkip }) => {
       </button>
 
       <div
-  className="absolute z-30 bottom-24 right-16 w-[70px] h-[70px]"
+  className="absolute z-30 bottom-24 right-16 w-[4.375rem] h-[4.375rem]"
 >
   {/* Outer Circle */}
   <div
-    className="flex items-center justify-center rounded-full w-[70px] h-[70px] border-2 border-white bg-transparent"
+    className="flex items-center justify-center rounded-full w-[4.375rem] h-[4.375rem] border-2 border-white bg-transparent"
   >
     {/* Inner Circle */}
     <button
       onClick={handleNext}
-      className="flex items-center justify-center rounded-full shadow-md w-[52px] h-[52px] bg-white"
+      className="flex items-center justify-center rounded-full shadow-md w-[3.25rem] h-[3.25rem] bg-white"
     >
       {/* Arrow Icon */}
       <svg

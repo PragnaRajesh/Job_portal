@@ -365,7 +365,7 @@ const ResumeEditor = ({ template, onBack, onSave, onDownload }) => {
             </button>
             
             {showMobileDropdown && (
-              <div className="absolute bottom-full mb-2 right-0 bg-white border border-gray-200 rounded-lg shadow-lg py-2 min-w-[160px]">
+              <div className="absolute bottom-full mb-2 right-0 bg-white border border-gray-200 rounded-lg shadow-lg py-2 min-w-40">
                 <button
                   onClick={() => {
                     onSave(resumeData);
