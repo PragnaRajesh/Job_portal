@@ -25,8 +25,8 @@ const ResumeEditor = ({ template, onBack, onSave, onDownload }) => {
     }
     
     .resume-editor-preview > div {
-      width: 794px !important;
-      height: 1123px !important;
+      width: 49.625rem !important;
+      height: 70.1875rem !important;
       overflow: visible !important;
     }
   `;
@@ -365,7 +365,7 @@ const ResumeEditor = ({ template, onBack, onSave, onDownload }) => {
             </button>
             
             {showMobileDropdown && (
-              <div className="absolute bottom-full mb-2 right-0 bg-white border border-gray-200 rounded-lg shadow-lg py-2 min-w-[160px]">
+              <div className="absolute bottom-full mb-2 right-0 bg-white border border-gray-200 rounded-lg shadow-lg py-2 min-w-40">
                 <button
                   onClick={() => {
                     onSave(resumeData);
@@ -664,16 +664,16 @@ const ResumeEditor = ({ template, onBack, onSave, onDownload }) => {
               <div className="bg-white rounded-lg shadow-xl mx-auto overflow-hidden" 
                    style={{ 
                      width: '100%', 
-                     maxWidth: isEditing ? '400px' : '500px',
-                     height: isEditing ? '500px' : '600px',
+                     maxWidth: isEditing ? '25rem' : '31.25rem',
+                     height: isEditing ? '31.25rem' : '37.5rem',
                      transformOrigin: 'top center'
                    }}>
                 <div className="w-full h-full flex items-start justify-center p-2">
                   <div 
                     className="origin-top-center bg-white shadow-lg resume-editor-preview"
                     style={{
-                      width: '794px',
-                      height: '1123px',
+                      width: '49.625rem',
+                      height: '70.1875rem',
                       transform: isEditing 
                         ? 'scale(0.45)' 
                         : window.innerWidth < 768 

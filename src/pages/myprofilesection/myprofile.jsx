@@ -202,7 +202,7 @@ const MyProfile = () => {
   return (
      <div className="min-h-screen bg-gray-100 pb-24 font-sans">
       {/* Profile Header Card */}
-      <div className="relative rounded-b-3xl p-4 text-white overflow-hidden mb-4" style={{ background: 'none', minHeight: '180px' }}>
+      <div className="relative rounded-b-3xl p-4 text-white overflow-hidden mb-4" style={{ background: 'none', minHeight: '11.25rem' }}>
         {/* Custom SVG Background */}
         <div className="absolute inset-0 w-full h-full">
           <svg width="100%" height="100%" viewBox="0 0 375 180" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" className="w-full h-full">

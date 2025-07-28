@@ -5,8 +5,8 @@ import stepIcon from "../../assets/step5.png";
 
 const containerStyle = {
   width: "100%",
-  height: "250px",
-  borderRadius: "12px",
+  height: "16rem",
+  borderRadius: "0.75rem",
   overflow: "hidden",
 };
 

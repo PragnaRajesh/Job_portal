@@ -96,15 +96,15 @@ const VirtualInterview = () => {
         <div className="text-xs text-gray-500 mt-2">Time: {job.time}</div>
 
         <div className="grid grid-cols-3 gap-2 mt-4">
-  <button className="w-full bg-blue-500 text-white text-[13px] py-2 rounded-[5px]">
+  <button className="w-full bg-blue-500 text-white text-sm py-2 rounded-md">
     Ready to join
   </button>
-  <button className="w-full bg-yellow-400 text-white text-[13px] py-2 rounded-[5px]">
+  <button className="w-full bg-yellow-400 text-white text-sm py-2 rounded-md">
     Link to join
   </button>
   <button
     onClick={() => setShowReasonDropdown(!showReasonDropdown)}
-    className="w-full bg-sky-400 text-white text-[13px] py-2 rounded-[5px]"
+    className="w-full bg-sky-400 text-white text-sm py-2 rounded-md"
   >
     Reschedule
   </button>

@@ -97,7 +97,7 @@ const InterviewPrep = ({ onClose }) => {
             {practiceInterviews.map((interview) => (
               <div
                 key={interview.id}
-                className={`min-w-[120px] bg-black rounded-2xl p-4 border-2 ${interview.borderColor} relative overflow-hidden`}
+                className={`min-w-[7.5rem] bg-black rounded-2xl p-4 border-2 ${interview.borderColor} relative overflow-hidden`}
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${interview.color} opacity-20`} />
                 <div className="relative z-10">

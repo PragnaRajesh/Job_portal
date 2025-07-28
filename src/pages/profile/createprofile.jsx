@@ -32,7 +32,7 @@ const CreateProfile = () => {
         <img
           src={profileImg}
           alt="Create Profile"
-          className="w-full h-[200px] object-contain mb-3"
+          className="w-full h-50 object-contain mb-3"
         />
 
         <div className="mb-3 flex items-start justify-between">

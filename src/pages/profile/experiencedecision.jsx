@@ -36,7 +36,7 @@ const ExperienceDecision = () => {
         <img
           src={experienceImg}
           alt="Experience"
-          className="w-full h-[180px] object-contain mb-4"
+          className="w-full h-44 object-contain mb-4"
         />
 
         <h3 className="text-sm font-semibold mb-1">
