@@ -25,7 +25,7 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
     <div className="h-full w-full flex flex-col items-stretch justify-between bg-white relative pb-safe">
       {/* Top Rectangle with Text */}
       <div
-        className="absolute z-10 flex items-center justify-start text-left px-6 top-12 left-7 w-[91%] max-w-sm h-72 md:h-80 bg-[#799EFF] border border-[#CB9D73] rounded-2xl font-montserrat font-medium text-3xl md:text-4xl leading-tight text-gray-900"
+        className="absolute z-10 flex items-center justify-start text-left px-6 top-12 left-7 w-[91%] max-w-sm h-72 md:h-80 bg-[#3B82F6] border border-[#CB9D73] rounded-2xl font-montserrat font-medium text-3xl md:text-4xl leading-tight text-white"
       >
         <p>
           Build a graphic-<br />
@@ -49,7 +49,7 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
 
       {/* Bottom Rectangle */}
       <div
-        className="absolute z-10 bottom-16 left-3 w-[95%] max-w-sm h-36 bg-[#799EFF] rounded-[2rem] border border-[#CB9D73]"
+        className="absolute z-10 bottom-16 left-3 w-[95%] max-w-sm h-36 bg-[#3B82F6] rounded-[2rem] border border-[#CB9D73]"
       />
 
       {/* Dots */}
@@ -58,8 +58,8 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
       >
         <div className="w-6 h-2 bg-white/50 rounded-full" />
         <div className="w-2 h-2 bg-white/50 rounded-full" />
+        <div className="w-6 h-2 bg-white rounded-full" />
         <div className="w-2 h-2 bg-white/50 rounded-full" />
-        <div className="w-2 h-2 bg-white rounded-full" />
       </div>
 
       {/* Skip Button */}

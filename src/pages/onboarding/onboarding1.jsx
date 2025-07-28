@@ -26,10 +26,10 @@ const OnboardingScreen1 = ({ onNext, onSkip }) => {
     <div className="h-full w-full flex flex-col items-stretch justify-between bg-white relative pb-safe">
       {/* Top Rectangle with Text */}
       <div
-        className="absolute z-10 px-6 sm:px-8 top-16 sm:top-20 md:top-24 left-5 sm:left-8 md:left-12 lg:left-1/2 lg:transform lg:-translate-x-1/2 w-[93%] sm:w-[85%] md:w-[75%] lg:w-[60%] max-w-sm sm:max-w-md md:max-w-lg h-64 sm:h-72 md:h-80 lg:h-96 bg-[#7551FF99] border border-[#CB9D73] rounded-2xl"
+        className="absolute z-10 px-6 sm:px-8 top-16 sm:top-20 md:top-24 left-5 sm:left-8 md:left-12 lg:left-1/2 lg:transform lg:-translate-x-1/2 w-[93%] sm:w-[85%] md:w-[75%] lg:w-[60%] max-w-sm sm:max-w-md md:max-w-lg h-64 sm:h-72 md:h-80 lg:h-96 bg-[#A855F7] border border-[#CB9D73] rounded-2xl"
       >
         <h1
-          className="font-montserrat font-medium text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight text-black w-full max-w-xs sm:max-w-sm md:max-w-md pt-2 sm:pt-4"
+          className="font-montserrat font-medium text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight text-white w-full max-w-xs sm:max-w-sm md:max-w-md pt-2 sm:pt-4"
         >
           Worried about<br />
           job feedback!<br />
@@ -58,12 +58,12 @@ const OnboardingScreen1 = ({ onNext, onSkip }) => {
       >
         Secure your dream job<br />
         with our trusted<br />
-        companies..<br />
+        companies..
       </p>
 
       {/* Bottom Rectangle */}
       <div
-        className="absolute z-10 bottom-16 sm:bottom-20 md:bottom-24 lg:bottom-28 left-3 sm:left-6 md:left-12 lg:left-1/2 lg:transform lg:-translate-x-1/2 w-[95%] sm:w-[85%] md:w-[75%] lg:w-[60%] max-w-sm sm:max-w-md md:max-w-lg h-36 sm:h-40 md:h-44 lg:h-48 bg-[#9E85FF] rounded-[2rem] border border-[#CB9D73]"
+        className="absolute z-10 bottom-16 sm:bottom-20 md:bottom-24 lg:bottom-28 left-3 sm:left-6 md:left-12 lg:left-1/2 lg:transform lg:-translate-x-1/2 w-[95%] sm:w-[85%] md:w-[75%] lg:w-[60%] max-w-sm sm:max-w-md md:max-w-lg h-36 sm:h-40 md:h-44 lg:h-48 bg-[#A855F7] rounded-[2rem] border border-[#CB9D73]"
       />
 
       {/* Dots */}
@@ -103,7 +103,7 @@ const OnboardingScreen1 = ({ onNext, onSkip }) => {
               height="24"
               className="sm:w-7 sm:h-7 md:w-8 md:h-8"
               fill="none"
-              stroke="#9E85FF"
+              stroke="#A855F7"
               strokeWidth="3"
               strokeLinecap="round"
               strokeLinejoin="round"
