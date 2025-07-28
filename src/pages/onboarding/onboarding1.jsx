@@ -23,7 +23,7 @@ const OnboardingScreen1 = ({ onNext, onSkip }) => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-white relative overflow-y-auto pb-safe">
+    <div className="h-full w-full flex flex-col items-stretch justify-between bg-white relative pb-safe">
       {/* Top Rectangle with Text */}
       <div
         className="absolute z-10 px-6 sm:px-8 top-16 sm:top-20 md:top-24 left-5 sm:left-8 md:left-12 lg:left-1/2 lg:transform lg:-translate-x-1/2 w-[93%] sm:w-[85%] md:w-[75%] lg:w-[60%] max-w-sm sm:max-w-md md:max-w-lg h-64 sm:h-72 md:h-80 lg:h-96 bg-[#7551FF99] border border-[#CB9D73] rounded-2xl"
@@ -41,7 +41,7 @@ const OnboardingScreen1 = ({ onNext, onSkip }) => {
         <img
           src={questionIcon}
           alt="Question Bubble"
-          className="absolute top-32 sm:top-36 md:top-40 left-32 sm:left-36 md:left-40 w-36 sm:w-40 md:w-44 lg:w-48 h-24 sm:h-28 md:h-32 lg:h-36 transform rotate-[9.65deg]"
+          className="absolute top-32 sm:top-36 md:top-40 left-32 sm:left-36 md:left-40 w-36 sm:w-40 md:w-44 lg:w-48 h-auto aspect-[3/1] object-contain transform rotate-[9.65deg]"
         />
       </div>
 
@@ -49,7 +49,7 @@ const OnboardingScreen1 = ({ onNext, onSkip }) => {
       <img
         src={sadBoyImage}
         alt="Sad Character"
-        className="absolute z-20 w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl h-auto top-52 sm:top-60 md:top-72 lg:top-80 left-2 sm:left-4 md:left-8 lg:left-1/2 lg:transform lg:-translate-x-1/2"
+        className="absolute z-20 w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl h-auto aspect-[4/3] object-contain top-52 sm:top-60 md:top-72 lg:top-80 left-2 sm:left-4 md:left-8 lg:left-1/2 lg:transform lg:-translate-x-1/2"
       />
 
       {/* Description */}

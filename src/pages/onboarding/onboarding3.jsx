@@ -22,7 +22,7 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-white relative overflow-y-auto pb-safe">
+    <div className="h-full w-full flex flex-col items-stretch justify-between bg-white relative pb-safe">
       {/* Top Rectangle with Text */}
       <div
         className="absolute z-10 flex items-center justify-start text-left px-6 top-12 left-7 w-[91%] max-w-sm h-72 md:h-80 bg-[#799EFF] border border-[#CB9D73] rounded-2xl font-montserrat font-medium text-3xl md:text-4xl leading-tight text-gray-900"
@@ -43,7 +43,7 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
         <img
           src={resumeImg}
           alt="Resume Illustration"
-          className="w-full max-w-2xl h-auto max-h-[38rem]"
+          className="w-full max-w-2xl h-auto aspect-[4/3] object-contain"
         />
       </div>
 
