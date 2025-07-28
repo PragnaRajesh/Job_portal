@@ -63,7 +63,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <ConversationProvider>
-         <div className="scaled-wrapper">
+        <div className="min-h-screen flex flex-col overflow-y-auto pb-safe bg-white">
         <Routes>
           {/* Onboarding and Auth */}
           <Route path="/" element={<OnboardingFlow />} />

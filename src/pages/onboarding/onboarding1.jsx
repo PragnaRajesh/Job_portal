@@ -23,7 +23,7 @@ const OnboardingScreen1 = ({ onNext, onSkip }) => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-white relative overflow-hidden">
+    <div className="min-h-screen w-full bg-white relative overflow-y-auto pb-safe">
       {/* Top Rectangle with Text */}
       <div
         className="absolute z-10 px-6 sm:px-8 top-16 sm:top-20 md:top-24 left-5 sm:left-8 md:left-12 lg:left-1/2 lg:transform lg:-translate-x-1/2 w-[93%] sm:w-[85%] md:w-[75%] lg:w-[60%] max-w-sm sm:max-w-md md:max-w-lg h-64 sm:h-72 md:h-80 lg:h-96 bg-[#7551FF99] border border-[#CB9D73] rounded-2xl"

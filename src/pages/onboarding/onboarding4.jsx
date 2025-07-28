@@ -21,7 +21,7 @@ const OnboardingScreen4 = ({ onSignUp, onLogIn }) => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-white flex flex-col items-center justify-between overflow-hidden">
+    <div className="min-h-screen w-full bg-white flex flex-col items-center justify-between overflow-y-auto pb-safe">
       {/* Text Content */}
       <div className="pt-[10vh] text-center px-6 z-10 w-full">
         <h1
