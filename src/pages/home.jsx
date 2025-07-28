@@ -149,7 +149,7 @@ const Home = () => {
           {recommendedJobs.map((job, idx) => (
             <div
               key={idx}
-              className="min-w-[270px] rounded-2xl p-4 relative border border-gray-200 bg-white shadow-xl"
+              className="min-w-[16.875rem] rounded-2xl p-4 relative border border-gray-200 bg-white shadow-xl"
             >
               <Bookmark
                 size={18}
@@ -179,7 +179,7 @@ const Home = () => {
                   </span>
                 ))}
               </div>
-              <div className="flex justify-between items-center text-[11px] text-gray-400">
+                              <div className="flex justify-between items-center text-xs text-gray-400">
                 <span>3 days ago</span>
                 <button className="text-blue-600 font-medium text-xs">
                   View Details
@@ -228,14 +228,14 @@ const Home = () => {
                   {job.tags.map((tag, i) => (
                     <span
                       key={i}
-                      className="text-[11px] px-2 py-1 bg-blue-100 text-blue-700 rounded-full font-medium"
+                      className="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded-full font-medium"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
                 <div className="flex justify-between items-center mt-3">
-                  <p className="text-[10px] text-gray-400">3 days ago</p>
+                  <p className="text-xs text-gray-400">3 days ago</p>
                   <button className="text-blue-600 text-xs font-semibold">
                     View Details
                   </button>

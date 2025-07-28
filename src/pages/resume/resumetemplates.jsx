@@ -4,9 +4,9 @@ import { X, Download, Save, Edit3, ArrowLeft } from 'lucide-react';
 // CSS for preview mode to override template dimensions - Full A4 size display
 const previewStyles = `
   .resume-preview-wrapper > div {
-    width: 794px !important;
-    height: 1123px !important;
-    min-height: 1123px !important;
+    width: 49.625rem !important;
+    height: 70.1875rem !important;
+    min-height: 70.1875rem !important;
     max-width: none !important;
     max-height: none !important;
     aspect-ratio: 210/297 !important;
@@ -30,7 +30,7 @@ const previewStyles = `
   }
   
   .resume-preview-container {
-    height: 400px;
+    height: 25rem;
     overflow: hidden;
     display: flex;
     align-items: flex-start;
@@ -43,7 +43,7 @@ const previewStyles = `
       transform-origin: top center;
     }
     .resume-preview-container {
-      height: 320px !important;
+      height: 20rem !important;
       overflow: hidden !important;
     }
   }
@@ -54,7 +54,7 @@ const previewStyles = `
       transform-origin: top center;
     }
     .resume-preview-container {
-      height: 360px !important;
+      height: 22.5rem !important;
       overflow: hidden !important;
     }
   }
@@ -388,8 +388,8 @@ const ResumeTemplates = ({
                     <div 
                       className="transform shadow-lg resume-preview-scale bg-white"
                       style={{ 
-                        width: '794px',
-                        height: '1123px',
+                        width: '49.625rem',
+                        height: '70.1875rem',
                         aspectRatio: '210/297'
                       }}
                     >

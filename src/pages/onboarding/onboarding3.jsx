@@ -25,21 +25,7 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
     <div className="min-h-screen w-full bg-white relative overflow-hidden">
       {/* Top Rectangle with Text */}
       <div
-        className="absolute z-10 flex items-center justify-start text-left px-6"
-        style={{
-          top: '48px',
-          left: '30px',
-          width: '365px',
-          height: '298px',
-          backgroundColor: '#799EFF',
-          border: '1px solid #CB9D73',
-          borderRadius: '16px',
-          fontFamily: 'Montserrat, sans-serif',
-          fontWeight: 500,
-          fontSize: '38px',
-          lineHeight: '56px',
-          color: '#111111',
-        }}
+        className="absolute z-10 flex items-center justify-start text-left px-6 top-12 left-7 w-[88vw] max-w-sm h-72 sm:h-80 bg-[#799EFF] border border-[#CB9D73] rounded-2xl font-montserrat font-medium text-3xl sm:text-4xl leading-tight text-[#111111]"
       >
         <p>
           Build a graphic-<br />
@@ -52,46 +38,23 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
 
       {/* Full-Width Image Container (overlaps till Get Started button) */}
       <div
-        className="absolute z-20 w-full flex justify-center"
-        style={{
-          top: '228px',
-        }}
+        className="absolute z-20 w-full flex justify-center top-56"
       >
         <img
           src={resumeImg}
           alt="Resume Illustration"
-          style={{
-            width: '100%',
-            maxWidth: '600px',
-            height: 'auto',
-            maxHeight: '620px',
-          }}
+          className="w-full max-w-[600px] h-auto max-h-[620px]"
         />
       </div>
 
       {/* Bottom Rectangle */}
       <div
-        className="absolute z-10"
-        style={{
-          top: '714px',
-          left: '13px',
-          width: '389px',
-          height: '144px',
-          backgroundColor: '#799EFF',
-          borderRadius: '32px',
-          border: '1px solid #CB9D73',
-        }}
+        className="absolute z-10 bottom-32 left-3 w-[95vw] max-w-sm h-36 bg-[#799EFF] rounded-[32px] border border-[#CB9D73]"
       />
 
       {/* Dots */}
       <div
-        className="absolute z-30 flex gap-2"
-        style={{
-          top: '762px',
-          left: '37px',
-          width: '72px',
-          height: '8px',
-        }}
+        className="absolute z-30 flex gap-2 bottom-20 left-9 w-[4.5rem] h-2"
       >
         <div className="w-6 h-2 bg-white/50 rounded-full" />
         <div className="w-2 h-2 bg-white/50 rounded-full" />
@@ -102,11 +65,7 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
       {/* Skip Button */}
       <button
         onClick={handleSkip}
-        className="absolute z-30 text-white text-[18px] font-semibold font-poppins"
-        style={{
-          top: '780px',
-          left: '37px',
-        }}
+        className="absolute z-30 text-white text-lg font-semibold font-poppins bottom-16 left-9"
       >
         Skip
       </button>
@@ -114,14 +73,7 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
       {/* Get Started Button */}
       <button
         onClick={handleGetStarted}
-        className="absolute z-30 bg-white text-[#2563EB] border border-[#CB9D73] text-[18px] font-semibold font-poppins shadow-md"
-        style={{
-          top: '758px',
-          left: '220px',
-          width: '141px',
-          height: '41px',
-          borderRadius: '5px',
-        }}
+        className="absolute z-30 bg-white text-[#2563EB] border border-[#CB9D73] text-lg font-semibold font-poppins shadow-md bottom-24 right-14 w-36 h-10 rounded-md"
       >
         Get Started
       </button>

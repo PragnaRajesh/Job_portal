@@ -121,18 +121,18 @@ const JobList = () => {
                   <div>
                     <div className="flex items-center gap-1">
                       <h2
-                        className="text-[15px] font-semibold cursor-pointer"
+                        className="text-sm font-semibold cursor-pointer"
                         onClick={() => navigate("/jobs/jobdetails")}
                       >
                         {job.title}
                       </h2>
                       <img src={verifiedIcon} alt="verified" className="w-4 h-4" />
                     </div>
-                    <p className="text-[14px] font-bold text-green-600">{job.salary}</p>
+                    <p className="text-sm font-bold text-green-600">{job.salary}</p>
                   </div>
                 </div>
                 <div className="flex flex-col items-end gap-1">
-                  <div className="text-[10px] font-semibold text-orange-600 bg-orange-100 px-2 py-1 rounded-full">
+                  <div className="text-xs font-semibold text-orange-600 bg-orange-100 px-2 py-1 rounded-full">
                     URGENT HIRING
                   </div>
                   <Bookmark className="text-blue-600 w-4 h-4" />
@@ -183,7 +183,7 @@ const JobList = () => {
               
               <div className="flex justify-end mt-2 pr-2">
                 <div
-                  className="flex flex-col items-center text-[10px] text-blue-600 cursor-pointer"
+                  className="flex flex-col items-center text-xs text-blue-600 cursor-pointer"
                   onClick={(e) => {
                     e.stopPropagation();
                     setActiveVideoIndex(activeVideoIndex === i ? null : i);
@@ -213,7 +213,7 @@ const JobList = () => {
                   </div>
                   <video
                     controls
-                    className="w-full h-auto max-h-[300px] rounded-lg"
+                    className="w-full h-auto max-h-80 rounded-lg"
                     autoPlay
                   >
                     <source src={jobPrepVideo} type="video/mp4" />
@@ -228,7 +228,7 @@ const JobList = () => {
 
       {/* Metro Filter */}
       <div className="px-4 mt-6">
-        <h2 className="font-semibold text-gray-800 mb-2 text-[16px]">
+        <h2 className="font-semibold text-gray-800 mb-2 text-base">
           Jobs Near Metro Stations
         </h2>
         <div className="flex gap-3 overflow-x-auto no-scrollbar pb-2">
@@ -261,18 +261,18 @@ const JobList = () => {
                   <div>
                     <div className="flex items-center gap-1">
                       <h2
-                        className="text-[15px] font-semibold cursor-pointer"
+                        className="text-sm font-semibold cursor-pointer"
                         onClick={() => navigate("/jobs/jobdetails")}
                       >
                         {job.title}
                       </h2>
                       <img src={verifiedIcon} alt="verified" className="w-4 h-4" />
                     </div>
-                    <p className="text-[14px] font-bold text-green-600">{job.salary}</p>
+                    <p className="text-sm font-bold text-green-600">{job.salary}</p>
                   </div>
                 </div>
                 <div className="flex flex-col items-end gap-1">
-                  <div className="text-[10px] font-semibold text-orange-600 bg-orange-100 px-2 py-1 rounded-full">
+                  <div className="text-xs font-semibold text-orange-600 bg-orange-100 px-2 py-1 rounded-full">
                     URGENT HIRING
                   </div>
                   <Bookmark className="text-blue-600 w-4 h-4" />
@@ -323,7 +323,7 @@ const JobList = () => {
               
               <div className="flex justify-end mt-2 pr-2">
                 <div
-                  className="flex flex-col items-center text-[10px] text-blue-600 cursor-pointer"
+                  className="flex flex-col items-center text-xs text-blue-600 cursor-pointer"
                   onClick={(e) => {
                     e.stopPropagation();
                     setActiveVideoIndex(activeVideoIndex === i ? null : i);
@@ -353,7 +353,7 @@ const JobList = () => {
                   </div>
                   <video
                     controls
-                    className="w-full h-auto max-h-[300px] rounded-lg"
+                    className="w-full h-auto max-h-80 rounded-lg"
                     autoPlay
                   >
                     <source src={jobPrepVideo} type="video/mp4" />

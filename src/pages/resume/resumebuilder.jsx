@@ -41,8 +41,8 @@ function ResumeBuilder() {
     }
     
     .full-resume-preview {
-      width: 794px !important;
-      height: 1123px !important;
+      width: 49.625rem !important;
+      height: 70.1875rem !important;
       overflow: visible !important;
     }
   `;
@@ -194,14 +194,14 @@ function ResumeBuilder() {
             <div className="mx-auto bg-white shadow-lg flex items-center justify-center overflow-hidden" 
                  style={{ 
                    width: '100%',
-                   minHeight: '500px',
-                   maxWidth: '500px'
+                   minHeight: '31.25rem',
+                   maxWidth: '31.25rem'
                  }}>
               <div 
                 className="bg-white shadow-xl full-resume-preview"
                 style={{ 
-                  width: '794px',
-                  height: '1123px',
+                  width: '49.625rem',
+                  height: '70.1875rem',
                   transform: 'scale(0.6)',
                   transformOrigin: 'top center'
                 }}

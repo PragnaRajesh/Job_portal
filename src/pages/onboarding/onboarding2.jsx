@@ -25,28 +25,11 @@ const OnboardingScreen2 = ({ onNext, onSkip }) => {
     <div className="min-h-screen w-full bg-white relative overflow-hidden">
       {/* Main Rectangle */}
       <div
-        className="absolute z-10 px-6"
-        style={{
-          top: '64px',
-          left: '16px',
-          width: '381px',
-          height: '630px',
-          backgroundColor: '#94E082',
-          border: '1px solid #CB9D73',
-          borderRadius: '30px',
-        }}
+        className="absolute z-10 px-6 top-16 left-4 w-[92vw] max-w-sm h-[39rem] bg-[#94E082] border border-[#CB9D73] rounded-[30px]"
       >
         {/* Heading */}
         <h1
-          style={{
-            fontFamily: 'Montserrat',
-            fontWeight: 500,
-            fontSize: '38px',
-            lineHeight: '56px',
-            color: '#111111',
-            marginTop: '5px',
-            width: '317px',
-          }}
+          className="font-montserrat font-medium text-3xl sm:text-4xl leading-tight text-[#111111] mt-1 w-full max-w-xs"
         >
           Track your<br />
           application on<br />
@@ -55,15 +38,7 @@ const OnboardingScreen2 = ({ onNext, onSkip }) => {
 
         {/* Description */}
         <p
-          style={{
-            fontFamily: 'Poppins',
-            fontWeight: 400,
-            fontSize: '18px',
-            lineHeight: '28px',
-            color: '#4B5563',
-            marginTop: '16px',
-            width: '317px',
-          }}
+          className="font-poppins font-normal text-lg leading-7 text-gray-600 mt-4 w-full max-w-xs"
         >
           Our team of professionals will guide you through the process and find
           the best career for your unique situation. Get started on your path
@@ -72,29 +47,13 @@ const OnboardingScreen2 = ({ onNext, onSkip }) => {
 
         {/* Image */}
         <div
-          style={{
-            position: 'absolute',
-            top: '369px',
-            left: '36px',
-            width: '483px',
-            height: '322px',
-            zIndex: 20,
-          }}
+          className="absolute top-80 left-9 w-[30rem] h-80 z-20"
         >
           {/* Image (accurate to Figma specs) */}
 <img
   src={rocketImage}
   alt="Rocket Illustration"
-  className="absolute z-20"
-  style={{
-    width: '360px',
-    height: '340px',
-    top: '-70px',
-    left: '0px',
-    opacity: 1,
-    transform: 'rotate(0deg)',
-    position: 'absolute',
-  }}
+  className="absolute z-20 w-[22.5rem] h-[21.25rem] -top-[4.375rem] left-0 opacity-100 transform rotate-0"
 />
 
         </div>
@@ -102,27 +61,12 @@ const OnboardingScreen2 = ({ onNext, onSkip }) => {
 
       {/* Bottom Rectangle */}
       <div
-        className="absolute z-10"
-        style={{
-          top: '714px',
-          left: '13px',
-          width: '389px',
-          height: '144px',
-          backgroundColor: '#94E082',
-          borderRadius: '32px',
-          border: '1px solid #CB9D73',
-        }}
+        className="absolute z-10 bottom-32 left-3 w-[95vw] max-w-sm h-36 bg-[#94E082] rounded-[32px] border border-[#CB9D73]"
       />
 
       {/* Dots */}
       <div
-        className="absolute z-30 flex gap-2"
-        style={{
-          top: '762px',
-          left: '37px',
-          width: '72px',
-          height: '8px',
-        }}
+        className="absolute z-30 flex gap-2 bottom-20 left-9 w-[4.5rem] h-2"
       >
         <div className="w-6 h-2 bg-white/50 rounded-full" />
         <div className="w-2 h-2 bg-white/50 rounded-full" />
@@ -133,43 +77,22 @@ const OnboardingScreen2 = ({ onNext, onSkip }) => {
       {/* Skip Button */}
       <button
         onClick={handleSkip}
-        className="absolute z-30 text-white text-[18px] font-semibold font-poppins"
-        style={{
-          top: '780px',
-          left: '37px',
-        }}
+        className="absolute z-30 text-white text-lg font-semibold font-poppins bottom-16 left-9"
       >
         Skip
       </button>
 
       <div
-  className="absolute z-30"
-  style={{
-    top: '750px',
-    left: '298px',
-    width: '70px',
-    height: '70px',
-  }}
+  className="absolute z-30 bottom-24 right-16 w-[70px] h-[70px]"
 >
   {/* Outer Circle */}
   <div
-    className="flex items-center justify-center rounded-full"
-    style={{
-      width: '70px',
-      height: '70px',
-      border: '2px solid white',
-      backgroundColor: 'transparent',
-    }}
+    className="flex items-center justify-center rounded-full w-[70px] h-[70px] border-2 border-white bg-transparent"
   >
     {/* Inner Circle */}
     <button
       onClick={handleNext}
-      className="flex items-center justify-center rounded-full shadow-md"
-      style={{
-        width: '52px',
-        height: '52px',
-        backgroundColor: 'white',
-      }}
+      className="flex items-center justify-center rounded-full shadow-md w-[52px] h-[52px] bg-white"
     >
       {/* Arrow Icon */}
       <svg

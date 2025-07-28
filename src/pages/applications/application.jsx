@@ -58,7 +58,7 @@ const Application = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white px-4 pt-6 pb-32 font-sans text-[15px]">
+    <div className="min-h-screen bg-white px-4 pt-6 pb-32 font-sans text-sm">
       {/* Top Bar */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
@@ -109,15 +109,15 @@ const Application = () => {
           <div className="grid grid-cols-3 gap-2 mt-4">
             {job.type === "Virtual Interview" ? (
               <>
-                <button className="w-full bg-blue-500 text-white text-[13px] py-2 rounded-[5px]">Ready to join</button>
-                <button className="w-full bg-yellow-400 text-white text-[13px] py-2 rounded-[5px]">Link to join</button>
-                <button className="w-full bg-sky-400 text-white text-[13px] py-2 rounded-[5px]">Reschedule</button>
+                <button className="w-full bg-blue-500 text-white text-xs py-2 rounded-md">Ready to join</button>
+                <button className="w-full bg-yellow-400 text-white text-xs py-2 rounded-md">Link to join</button>
+                <button className="w-full bg-sky-400 text-white text-xs py-2 rounded-md">Reschedule</button>
               </>
             ) : (
               <>
-                <button className="w-full bg-blue-500 text-white text-[13px] py-2 rounded-[5px]">Attend Interview</button>
-                <button className="w-full bg-yellow-400 text-white text-[13px] py-2 rounded-[5px]">Route</button>
-                <button className="w-full bg-sky-400 text-white text-[13px] py-2 rounded-[5px]">Reschedule</button>
+                <button className="w-full bg-blue-500 text-white text-xs py-2 rounded-md">Attend Interview</button>
+                <button className="w-full bg-yellow-400 text-white text-xs py-2 rounded-md">Route</button>
+                <button className="w-full bg-sky-400 text-white text-xs py-2 rounded-md">Reschedule</button>
               </>
             )}
           </div>
