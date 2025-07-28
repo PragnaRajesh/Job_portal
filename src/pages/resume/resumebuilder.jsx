@@ -251,43 +251,43 @@ function ResumeBuilder() {
       {/* Full Width Container */}
       <div className="bg-gray-50 min-h-screen">
         {/* Header */}
-        <div className="px-6 py-4">
+        <div className="px-6 sm:px-8 md:px-12 lg:px-16 py-4 sm:py-6">
           <button className="flex items-center text-gray-600 hover:text-gray-800 transition-colors">
-            <ArrowLeft className="w-6 h-6" />
+            <ArrowLeft className="w-6 h-6 sm:w-7 sm:h-7" />
           </button>
         </div>
 
         {/* Main Content */}
-        <div className="px-6 pb-8">
+        <div className="px-6 sm:px-8 md:px-12 lg:px-16 lg:max-w-4xl lg:mx-auto pb-8">
           {/* Title Section */}
-          <div className="mb-8">
-            <h1 className="text-2xl font-bold text-blue-600 mb-3 text-center">
+          <div className="mb-8 sm:mb-12">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-blue-600 mb-3 sm:mb-4 text-center">
               Job-Winning<br />Resume Template!
             </h1>
-            <p className="text-gray-600 text-sm leading-relaxed mb-6">
+            <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed mb-6 sm:mb-8 text-center lg:text-left">
               Get the job 2x as fast. Use recruiter-approved templates and step by step content recommendations to create a new resume.
             </p>
             
-            <div className="flex justify-end">
-              <button className="bg-white border-2 border-blue-600 text-blue-600 py-3 px-6 rounded-full font-medium hover:bg-blue-50 transition-all duration-200 flex items-center space-x-2 group">
+            <div className="flex justify-center lg:justify-end">
+              <button className="bg-white border-2 border-blue-600 text-blue-600 py-3 sm:py-4 px-6 sm:px-8 md:px-10 rounded-full font-medium text-sm sm:text-base md:text-lg hover:bg-blue-50 transition-all duration-200 flex items-center space-x-2 group">
                 <span>Build Your Resume</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
           </div>
 
           {/* Horizontal Scrolling Feature Cards */}
-          <div className="mb-6">
-            <div className="flex space-x-3 overflow-x-auto scrollbar-hide py-6 -mx-6 px-6" style={{backgroundColor: '#FFF2EB'}}>
+          <div className="mb-6 sm:mb-8">
+            <div className="flex space-x-3 sm:space-x-4 md:space-x-6 overflow-x-auto scrollbar-hide py-6 sm:py-8 -mx-6 sm:-mx-8 md:-mx-12 lg:-mx-16 px-6 sm:px-8 md:px-12 lg:px-16 md:grid md:grid-cols-3 md:overflow-visible md:space-x-0 md:gap-6" style={{backgroundColor: '#FFF2EB'}}>
               {/* Card 1 - Recruiter-Approved Resume */}
-              <div className="flex-shrink-0 w-52 bg-white p-3 rounded-2xl shadow-lg border border-gray-200">
-                <div className="flex flex-col space-y-2">
-                  <div className="bg-white p-2 rounded-lg w-fit shadow-sm">
-                    <FileText className="w-5 h-5 text-blue-500" />
+              <div className="flex-shrink-0 w-52 sm:w-60 md:w-full bg-white p-3 sm:p-4 md:p-6 rounded-2xl shadow-lg border border-gray-200">
+                <div className="flex flex-col space-y-2 sm:space-y-3">
+                  <div className="bg-white p-2 sm:p-3 rounded-lg w-fit shadow-sm">
+                    <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-blue-500" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-800 text-sm mb-1">Recruiter-Approved Resume</h3>
-                    <p className="text-xs text-gray-500 leading-tight">
+                    <h3 className="font-semibold text-gray-800 text-sm sm:text-base md:text-lg mb-1">Recruiter-Approved Resume</h3>
+                    <p className="text-xs sm:text-sm md:text-base text-gray-500 leading-tight">
                       We work with recruiters to design resume templates that format automatically.
                     </p>
                   </div>
@@ -295,14 +295,14 @@ function ResumeBuilder() {
               </div>
 
               {/* Card 2 - Land an Interview */}
-              <div className="flex-shrink-0 w-52 bg-white p-3 rounded-2xl shadow-lg border border-gray-200">
-                <div className="flex flex-col space-y-2">
-                  <div className="bg-white p-2 rounded-lg w-fit shadow-sm">
-                    <Users className="w-5 h-5 text-blue-500" />
+              <div className="flex-shrink-0 w-52 sm:w-60 md:w-full bg-white p-3 sm:p-4 md:p-6 rounded-2xl shadow-lg border border-gray-200">
+                <div className="flex flex-col space-y-2 sm:space-y-3">
+                  <div className="bg-white p-2 sm:p-3 rounded-lg w-fit shadow-sm">
+                    <Users className="w-5 h-5 sm:w-6 sm:h-6 text-blue-500" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-800 text-sm mb-1">Land an Interview</h3>
-                    <p className="text-xs text-gray-500 leading-tight">
+                    <h3 className="font-semibold text-gray-800 text-sm sm:text-base md:text-lg mb-1">Land an Interview</h3>
+                    <p className="text-xs sm:text-sm md:text-base text-gray-500 leading-tight">
                       We suggest the skills you should add. It helped over a million get interviews.
                     </p>
                   </div>
@@ -310,14 +310,14 @@ function ResumeBuilder() {
               </div>
 
               {/* Card 3 - Finish Your Resume in 15 Minutes */}
-              <div className="flex-shrink-0 w-52 bg-white p-3 rounded-2xl shadow-lg border border-gray-200">
-                <div className="flex flex-col space-y-2">
-                  <div className="bg-purple-50 p-2 rounded-lg w-fit shadow-sm">
-                    <User className="w-5 h-5 text-purple-500" />
+              <div className="flex-shrink-0 w-52 sm:w-60 md:w-full bg-white p-3 sm:p-4 md:p-6 rounded-2xl shadow-lg border border-gray-200">
+                <div className="flex flex-col space-y-2 sm:space-y-3">
+                  <div className="bg-purple-50 p-2 sm:p-3 rounded-lg w-fit shadow-sm">
+                    <User className="w-5 h-5 sm:w-6 sm:h-6 text-purple-500" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-800 text-sm mb-1">Finish Your Resume in 15 Minutes</h3>
-                    <p className="text-xs text-gray-500 leading-tight">
+                    <h3 className="font-semibold text-gray-800 text-sm sm:text-base md:text-lg mb-1">Finish Your Resume in 15 Minutes</h3>
+                    <p className="text-xs sm:text-sm md:text-base text-gray-500 leading-tight">
                       Resume Now helps you tackle your work experience by reminding you what you did at your job.
                     </p>
                   </div>
@@ -327,71 +327,71 @@ function ResumeBuilder() {
           </div>
 
           {/* Progress Indicators */}
-          <div className="flex justify-center space-x-2 mb-8">
-            <div className="w-6 h-2 bg-blue-500 rounded-full"></div>
-            <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-            <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-            <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+          <div className="flex justify-center space-x-2 mb-8 sm:mb-12">
+            <div className="w-6 h-2 sm:w-8 sm:h-3 bg-blue-500 rounded-full"></div>
+            <div className="w-2 h-2 sm:w-3 sm:h-3 bg-gray-400 rounded-full"></div>
+            <div className="w-2 h-2 sm:w-3 sm:h-3 bg-gray-400 rounded-full"></div>
+            <div className="w-2 h-2 sm:w-3 sm:h-3 bg-gray-400 rounded-full"></div>
           </div>
 
           {/* Template Categories */}
-          <div className="space-y-4">
+          <div className="space-y-4 sm:space-y-6 md:grid md:grid-cols-2 md:gap-6 md:space-y-0">
             <div 
-              className="bg-green-100 p-5 rounded-2xl hover:bg-green-200 transition-colors cursor-pointer group border border-green-200"
+              className="bg-green-100 p-5 sm:p-6 md:p-8 rounded-2xl hover:bg-green-200 transition-colors cursor-pointer group border border-green-200"
               onClick={() => handleCategoryClick('graphics')}
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="font-medium text-gray-800 text-sm">Graphics Resume Templates</h3>
-                  <p className="text-gray-600 text-xs mt-1">Classic colorful templates with gradient designs</p>
+                  <h3 className="font-medium text-gray-800 text-sm sm:text-base md:text-lg">Graphics Resume Templates</h3>
+                  <p className="text-gray-600 text-xs sm:text-sm md:text-base mt-1">Classic colorful templates with gradient designs</p>
                 </div>
-                <div className="bg-white p-2 rounded-full group-hover:translate-x-1 transition-transform shadow-sm">
-                  <ArrowRight className="w-4 h-4 text-gray-700" />
+                <div className="bg-white p-2 sm:p-3 rounded-full group-hover:translate-x-1 transition-transform shadow-sm">
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-gray-700" />
                 </div>
               </div>
             </div>
 
             <div 
-              className="bg-purple-100 p-5 rounded-2xl hover:bg-purple-200 transition-colors cursor-pointer group border border-purple-200"
+              className="bg-purple-100 p-5 sm:p-6 md:p-8 rounded-2xl hover:bg-purple-200 transition-colors cursor-pointer group border border-purple-200"
               onClick={() => handleCategoryClick('ai')}
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="font-medium text-gray-800 text-sm">AI Resume Builder Templates</h3>
-                  <p className="text-gray-600 text-xs mt-1">Futuristic AI-inspired designs with tech elements</p>
+                  <h3 className="font-medium text-gray-800 text-sm sm:text-base md:text-lg">AI Resume Builder Templates</h3>
+                  <p className="text-gray-600 text-xs sm:text-sm md:text-base mt-1">Futuristic AI-inspired designs with tech elements</p>
                 </div>
-                <div className="bg-white p-2 rounded-full group-hover:translate-x-1 transition-transform shadow-sm">
-                  <ArrowRight className="w-4 h-4 text-gray-700" />
+                <div className="bg-white p-2 sm:p-3 rounded-full group-hover:translate-x-1 transition-transform shadow-sm">
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-gray-700" />
                 </div>
               </div>
             </div>
 
             <div 
-              className="bg-orange-100 p-5 rounded-2xl hover:bg-orange-200 transition-colors cursor-pointer group border border-orange-200"
+              className="bg-orange-100 p-5 sm:p-6 md:p-8 rounded-2xl hover:bg-orange-200 transition-colors cursor-pointer group border border-orange-200"
               onClick={() => handleCategoryClick('professional')}
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="font-medium text-gray-800 text-sm">Professional Resume Templates</h3>
-                  <p className="text-gray-600 text-xs mt-1">Traditional professional layouts with clean design</p>
+                  <h3 className="font-medium text-gray-800 text-sm sm:text-base md:text-lg">Professional Resume Templates</h3>
+                  <p className="text-gray-600 text-xs sm:text-sm md:text-base mt-1">Traditional professional layouts with clean design</p>
                 </div>
-                <div className="bg-white p-2 rounded-full group-hover:translate-x-1 transition-transform shadow-sm">
-                  <ArrowRight className="w-4 h-4 text-gray-700" />
+                <div className="bg-white p-2 sm:p-3 rounded-full group-hover:translate-x-1 transition-transform shadow-sm">
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-gray-700" />
                 </div>
               </div>
             </div>
 
             <div 
-              className="bg-blue-100 p-5 rounded-2xl hover:bg-blue-200 transition-colors cursor-pointer group border border-blue-200"
+              className="bg-blue-100 p-5 sm:p-6 md:p-8 rounded-2xl hover:bg-blue-200 transition-colors cursor-pointer group border border-blue-200"
               onClick={() => handleCategoryClick('basic')}
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="font-medium text-gray-800 text-sm">Basic/Modern Resume Templates</h3>
-                  <p className="text-gray-600 text-xs mt-1">Simple and clean templates for any profession</p>
+                  <h3 className="font-medium text-gray-800 text-sm sm:text-base md:text-lg">Basic/Modern Resume Templates</h3>
+                  <p className="text-gray-600 text-xs sm:text-sm md:text-base mt-1">Simple and clean templates for any profession</p>
                 </div>
-                <div className="bg-white p-2 rounded-full group-hover:translate-x-1 transition-transform shadow-sm">
-                  <ArrowRight className="w-4 h-4 text-gray-700" />
+                <div className="bg-white p-2 sm:p-3 rounded-full group-hover:translate-x-1 transition-transform shadow-sm">
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-gray-700" />
                 </div>
               </div>
             </div>
@@ -412,25 +412,25 @@ function ResumeBuilder() {
       <PreviewModal />
 
       {/* Bottom Navigation */}
-      <div className="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around py-4 border-t border-gray-100 bg-white">
-        <HomeIcon size={22} className="text-gray-600" 
+      <div className="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around py-4 sm:py-5 border-t border-gray-100 bg-white">
+        <HomeIcon size={22} className="text-gray-600 sm:w-6 sm:h-6 md:w-7 md:h-7 cursor-pointer hover:text-blue-600 transition-colors" 
         onClick={() => console.log('Navigate to home')}/>
         <Briefcase
           size={22}
-          className="text-gray-600"
+          className="text-gray-600 sm:w-6 sm:h-6 md:w-7 md:h-7 cursor-pointer hover:text-blue-600 transition-colors"
           onClick={() => console.log('Navigate to jobs')}
         />
-         <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
-                  <Plus className="w-6 h-6 text-white" onClick={() => console.log('Navigate to chats')} />
+         <div className="w-12 h-12 sm:w-14 sm:h-14 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
+                  <Plus className="w-6 h-6 sm:w-7 sm:h-7 text-white" onClick={() => console.log('Navigate to chats')} />
                 </div>
         <FileText
           size={22}
-          className="text-gray-600"
+          className="text-gray-600 sm:w-6 sm:h-6 md:w-7 md:h-7 cursor-pointer hover:text-blue-600 transition-colors"
           onClick={() => console.log('Navigate to applications')}
         />
         <User
           size={22}
-          className="text-gray-600 cursor-pointer"
+          className="text-gray-600 sm:w-6 sm:h-6 md:w-7 md:h-7 cursor-pointer hover:text-blue-600 transition-colors"
           onClick={() => console.log('Navigate to profile')}
         />
       </div>
