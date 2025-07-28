@@ -22,18 +22,18 @@ const Login = () => {
   };
 
   return (
-    <div className="p-6">
-      <h2 className="text-xl font-semibold mb-4">Login</h2>
+    <div className="p-6 sm:p-8 md:p-12 lg:max-w-md lg:mx-auto lg:mt-12">
+      <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4 sm:mb-6 text-center lg:text-left">Login</h2>
       <input
         type="text"
         placeholder="Enter phone number"
         value={phone}
         onChange={(e) => setPhone(e.target.value)}
-        className="border px-4 py-2 rounded w-full mb-4"
+        className="border px-4 py-2 sm:px-6 sm:py-3 md:py-4 rounded w-full mb-4 sm:mb-6 text-sm sm:text-base focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
       />
       <button
         onClick={handleLogin}
-        className="bg-blue-700 text-white px-6 py-2 rounded-full w-full"
+        className="bg-blue-700 text-white px-6 py-2 sm:py-3 md:py-4 rounded-full w-full text-sm sm:text-base md:text-lg font-medium hover:bg-blue-800 transition-colors"
       >
         Submit
       </button>

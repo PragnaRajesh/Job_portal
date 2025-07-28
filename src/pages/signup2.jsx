@@ -3,59 +3,136 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 
 const Signup2 = () => {
-  const [otp, setOtp] = useState(Array(6).fill(''));
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  });
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
-  const handleChange = (index, value) => {
-    if (!/^\d?$/.test(value)) return;
-    const updatedOtp = [...otp];
-    updatedOtp[index] = value;
-    setOtp(updatedOtp);
+  const handleInputChange = (field, value) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+    
+    // Clear error when user starts typing
+    if (errors[field]) {
+      setErrors(prev => ({
+        ...prev,
+        [field]: ''
+      }));
+    }
   };
 
-  const handleSubmit = () => {
-    if (otp.every(d => d !== '')) {
-      navigate('./pages/profile/createprofile');
+  const validateForm = () => {
+    const newErrors = {};
+    
+    if (!formData.fullName.trim()) {
+      newErrors.fullName = 'Full name is required';
+    }
+    
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email';
+    }
+    
+    if (!formData.password) {
+      newErrors.password = 'Password is required';
+    } else if (formData.password.length < 6) {
+      newErrors.password = 'Password must be at least 6 characters';
+    }
+    
+    if (formData.password !== formData.confirmPassword) {
+      newErrors.confirmPassword = 'Passwords do not match';
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleNext = () => {
+    if (validateForm()) {
+      navigate('/profile/createprofile');
     }
   };
 
   return (
-    <div className="min-h-screen bg-white p-6 rounded-3xl flex flex-col justify-between">
+    <div className="min-h-screen bg-white p-6 sm:p-8 md:p-12 lg:max-w-md lg:mx-auto flex flex-col justify-between rounded-3xl">
       <div>
-        <button onClick={() => navigate(-1)} className="mb-4">
-          <ArrowLeft />
+        <button onClick={() => navigate(-1)} className="mb-4 sm:mb-6">
+          <ArrowLeft className="w-6 h-6 sm:w-7 sm:h-7" />
         </button>
-        <h2 className="text-2xl font-bold text-center">Sign Up</h2>
-        <h3 className="text-blue-600 text-lg font-semibold text-center mt-6">Verification</h3>
-        <p className="text-center text-gray-600 text-sm">Enter the code from the SMS we sent you</p>
-        <p className="text-center text-black mt-4">30 secs</p>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12">Complete Your Profile</h2>
 
-        {/* OTP boxes */}
-        <div className="flex justify-center gap-2 mt-6">
-          {otp.map((digit, i) => (
+        <div className="space-y-4 sm:space-y-6">
+          <div>
+            <label className="block text-gray-700 font-medium text-sm sm:text-base mb-2">Full Name</label>
             <input
-              key={i}
               type="text"
-              value={digit}
-              onChange={(e) => handleChange(i, e.target.value)}
-              maxLength="1"
-              className="w-12 h-12 text-center border border-gray-400 rounded-md text-lg"
+              value={formData.fullName}
+              onChange={(e) => handleInputChange('fullName', e.target.value)}
+              placeholder="Enter your full name"
+              className={`w-full border px-4 py-3 sm:px-6 sm:py-4 rounded-md text-sm sm:text-base focus:ring-2 focus:ring-blue-500 transition-all ${
+                errors.fullName ? 'border-red-500' : 'border-blue-400'
+              }`}
             />
-          ))}
+            {errors.fullName && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.fullName}</p>}
+          </div>
+
+          <div>
+            <label className="block text-gray-700 font-medium text-sm sm:text-base mb-2">Email Address</label>
+            <input
+              type="email"
+              value={formData.email}
+              onChange={(e) => handleInputChange('email', e.target.value)}
+              placeholder="Enter your email"
+              className={`w-full border px-4 py-3 sm:px-6 sm:py-4 rounded-md text-sm sm:text-base focus:ring-2 focus:ring-blue-500 transition-all ${
+                errors.email ? 'border-red-500' : 'border-blue-400'
+              }`}
+            />
+            {errors.email && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.email}</p>}
+          </div>
+
+          <div>
+            <label className="block text-gray-700 font-medium text-sm sm:text-base mb-2">Password</label>
+            <input
+              type="password"
+              value={formData.password}
+              onChange={(e) => handleInputChange('password', e.target.value)}
+              placeholder="Create a password"
+              className={`w-full border px-4 py-3 sm:px-6 sm:py-4 rounded-md text-sm sm:text-base focus:ring-2 focus:ring-blue-500 transition-all ${
+                errors.password ? 'border-red-500' : 'border-blue-400'
+              }`}
+            />
+            {errors.password && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.password}</p>}
+          </div>
+
+          <div>
+            <label className="block text-gray-700 font-medium text-sm sm:text-base mb-2">Confirm Password</label>
+            <input
+              type="password"
+              value={formData.confirmPassword}
+              onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
+              placeholder="Confirm your password"
+              className={`w-full border px-4 py-3 sm:px-6 sm:py-4 rounded-md text-sm sm:text-base focus:ring-2 focus:ring-blue-500 transition-all ${
+                errors.confirmPassword ? 'border-red-500' : 'border-blue-400'
+              }`}
+            />
+            {errors.confirmPassword && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.confirmPassword}</p>}
+          </div>
         </div>
       </div>
 
-      <div>
-        <button
-          onClick={handleSubmit}
-          className="bg-blue-800 text-white w-full py-4 mt-6 rounded-full font-semibold"
-        >
-          Submit
-        </button>
-        <p className="text-center text-sm mt-3">
-          I didn’t receive the code! <span className="text-blue-600 font-medium cursor-pointer">Resend</span>
-        </p>
-      </div>
+      <button
+        onClick={handleNext}
+        className="w-full py-4 sm:py-5 mt-8 sm:mt-12 rounded-full text-white font-semibold text-base sm:text-lg bg-blue-800 hover:bg-blue-900 transition-colors"
+      >
+        Continue
+      </button>
     </div>
   );
 };
