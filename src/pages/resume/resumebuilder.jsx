@@ -268,9 +268,16 @@ function ResumeBuilder() {
               Get the job 2x as fast. Use recruiter-approved templates and step by step content recommendations to create a new resume.
             </p>
             
-            <div className="flex justify-center lg:justify-end">
-              <button className="bg-white border-2 border-blue-600 text-blue-600 py-3 sm:py-4 px-6 sm:px-8 md:px-10 rounded-full font-medium text-sm sm:text-base md:text-lg hover:bg-blue-50 transition-all duration-200 flex items-center space-x-2 group">
-                <span>Build Your Resume</span>
+            <div className="flex flex-col lg:flex-row justify-center lg:justify-end space-y-3 lg:space-y-0 lg:space-x-4">
+              <button
+                onClick={() => window.location.href = '/resume/ai-chat'}
+                className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 sm:py-4 px-6 sm:px-8 md:px-10 rounded-full font-medium text-sm sm:text-base md:text-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-200 flex items-center justify-center space-x-2 group shadow-lg"
+              >
+                <span>✨ AI Resume Chat</span>
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+              <button className="bg-white border-2 border-blue-600 text-blue-600 py-3 sm:py-4 px-6 sm:px-8 md:px-10 rounded-full font-medium text-sm sm:text-base md:text-lg hover:bg-blue-50 transition-all duration-200 flex items-center justify-center space-x-2 group">
+                <span>Traditional Builder</span>
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
@@ -351,14 +358,17 @@ function ResumeBuilder() {
               </div>
             </div>
 
-            <div 
-              className="bg-purple-100 p-5 sm:p-6 md:p-8 rounded-2xl hover:bg-purple-200 transition-colors cursor-pointer group border border-purple-200"
-              onClick={() => handleCategoryClick('ai')}
+            <div
+              className="bg-gradient-to-r from-purple-100 to-blue-100 p-5 sm:p-6 md:p-8 rounded-2xl hover:from-purple-200 hover:to-blue-200 transition-all cursor-pointer group border border-purple-200 relative overflow-hidden"
+              onClick={() => window.location.href = '/resume/ai-chat'}
             >
+              <div className="absolute top-2 right-2 bg-gradient-to-r from-purple-500 to-blue-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+                ✨ NEW
+              </div>
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="font-medium text-gray-800 text-sm sm:text-base md:text-lg">AI Resume Builder Templates</h3>
-                  <p className="text-gray-600 text-xs sm:text-sm md:text-base mt-1">Futuristic AI-inspired designs with tech elements</p>
+                  <h3 className="font-medium text-gray-800 text-sm sm:text-base md:text-lg">AI Resume Builder Chat</h3>
+                  <p className="text-gray-600 text-xs sm:text-sm md:text-base mt-1">Create resumes with AI assistance through chat</p>
                 </div>
                 <div className="bg-white p-2 sm:p-3 rounded-full group-hover:translate-x-1 transition-transform shadow-sm">
                   <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-gray-700" />

@@ -27,7 +27,7 @@ const OnboardingScreen1 = ({ onNext, onSkip }) => {
       <div className="w-[390px] h-[844px] relative overflow-hidden bg-white">
         {/* Top Rectangle with Text */}
         <div
-          className="absolute z-2 px-6 sm:px-8 top-16 sm:top-20 md:top-24 left-5 sm:left-8 md:left-12 lg:left-1/2 lg:transform lg:-translate-x-1/2 w-[93%] sm:w-[85%] md:w-[75%] lg:w-[60%] max-w-sm sm:max-w-md md:max-w-lg h-64 sm:h-72 md:h-80 lg:h-96 bg-[#7551FF99] border border-[#CB9D73] rounded-2xl"
+          className="absolute z-2 px-6 sm:px-8 top-6 sm:top-20 md:top-24 left-5 sm:left-8 md:left-12 lg:left-1/2 lg:transform lg:-translate-x-1/2 w-[93%] sm:w-[85%] md:w-[75%] lg:w-[60%] max-w-sm sm:max-w-md md:max-w-lg h-64 sm:h-72 md:h-80 lg:h-96 bg-[#7551FF99] border border-[#CB9D73] rounded-2xl"
         >
           <h1 className="font-montserrat font-medium text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight text-black w-full max-w-xs sm:max-w-sm md:max-w-md pt-2 sm:pt-4">
             Worried about<br />
@@ -45,11 +45,7 @@ const OnboardingScreen1 = ({ onNext, onSkip }) => {
         </div>
 
         {/* Sad Character Image (slimmed) */}
-        <img
-          src={sadBoyImage}
-          alt="Sad Character"
-          className="absolute z-5 w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl h-auto top-52 sm:top-60 md:top-72 lg:top-80 left-2 sm:left-4 md:left-8 lg:left-1/2 lg:transform lg:-translate-x-1/2 scale-x-90"
-        />
+        
 
         {/* Description (left aligned) */}
         <p className="absolute z-20 top-[34rem] sm:top-[38rem] md:top-[42rem] lg:top-[46rem] left-5 sm:left-8 md:left-12 lg:left-1/2 lg:transform lg:-translate-x-1/2 w-72 sm:w-80 md:w-96 lg:w-auto font-poppins font-medium text-lg sm:text-xl md:text-2xl lg:text-3xl leading-6 sm:leading-7 md:leading-8 lg:leading-9 text-black/80 text-left lg:text-left">
@@ -59,7 +55,15 @@ const OnboardingScreen1 = ({ onNext, onSkip }) => {
         </p>
 
         {/* Bottom Rectangle */}
-        <div className="absolute z-10 bottom-16 sm:bottom-20 md:bottom-24 lg:bottom-28 left-3 sm:left-6 md:left-12 lg:left-1/2 lg:transform lg:-translate-x-1/2 w-[95%] sm:w-[85%] md:w-[75%] lg:w-[60%] max-w-sm sm:max-w-md md:max-w-lg h-36 sm:h-40 md:h-44 lg:h-48 bg-[#9E85FF] rounded-[2rem] border border-[#CB9D73]" />
+        <div className="absolute z-10 bottom-14 sm:bottom-20 md:bottom-24 lg:bottom-28 left-3 sm:left-6 md:left-12 lg:left-1/2 lg:transform lg:-translate-x-1/2 w-[95%] sm:w-[85%] md:w-[75%] lg:w-[60%] max-w-sm sm:max-w-md md:max-w-lg h-36 sm:h-40 md:h-44 lg:h-48 bg-[#9E85FF] rounded-[2rem] border border-[#CB9D73]" >
+          <img
+          src={sadBoyImage}
+          alt="Sad Character"
+          // className="absolute z-5 w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl h-auto top- sm:top-60 md:top-72 lg:top-80 left-2 sm:left-4 md:left-8 lg:left-1/2 lg:transform lg:-translate-x-1/2 scale-x-90"
+          className="absolute z-5 w-full h-auto bottom-20"
+        
+        />
+        </div>
 
         {/* Dots (moved up) */}
         <div className="absolute z-30 flex gap-2 sm:gap-3 bottom-28 sm:bottom-32 md:bottom-36 lg:bottom-40 left-9 sm:left-12 md:left-16 lg:left-1/2 lg:transform lg:-translate-x-1/2">

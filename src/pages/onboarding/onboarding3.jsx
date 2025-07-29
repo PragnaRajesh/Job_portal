@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import resumeImg from '../../assets/onboarding3.png';
 
+
 const OnboardingScreen3 = ({ onNext, onSkip }) => {
   const navigate = useNavigate();
 

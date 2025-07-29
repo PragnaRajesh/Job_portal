@@ -216,14 +216,17 @@ const Application = () => {
      
          <div className="flex flex-col gap-4 w-4/5">
            <button
-             onClick={() => {
-               setShowPopup(false);
-               navigate("/resume/resumebuilder");
-             }}
-             className="w-full bg-[#EAF3FF] text-[#074799] py-3 rounded-xl font-medium text-base shadow-sm border border-[#BFDFFF] hover:bg-[#dbeeff] transition"
-           >
-             📝 Resume Builder
-           </button>
+            onClick={() => {
+              setShowPopup(false);
+              navigate("/resume/ai-chat");
+            }}
+            className="w-full bg-gradient-to-r from-purple-100 to-blue-100 text-purple-800 py-3 rounded-xl font-medium text-base shadow-sm border border-purple-200 hover:from-purple-200 hover:to-blue-200 transition relative overflow-hidden"
+          >
+            <span className="absolute top-0.5 right-1 bg-gradient-to-r from-purple-500 to-blue-500 text-white px-1.5 py-0.5 rounded-full text-xs font-medium">
+              ✨ AI
+            </span>
+            📝 AI Resume Builder
+          </button>
            <button
              onClick={() => {
                setShowPopup(false);

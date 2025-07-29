@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+
 const OnboardingScreen4 = ({ onSignUp, onLogIn }) => {
   const navigate = useNavigate();
 

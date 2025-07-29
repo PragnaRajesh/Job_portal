@@ -11,6 +11,10 @@ import {
   Briefcase,
   FileText
 } from "lucide-react";
+// import resumeVideo from "../assets/resume.mp4";
+// import chatVideo from "../assets/chat.mp4";
+// import robotVideo from "../assets/robot.mp4";
+
 
 import telegramLogo from "../assets/telegram.png";
 import netflixLogo from "../assets/netflix.jpeg";
@@ -276,35 +280,47 @@ const Home = () => {
     <div className="w-16 h-1 bg-blue-200 rounded-full mb-6 mt-2" />
     <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 text-gray-800">Quick Actions</h3>
 
-    <div className="flex flex-col gap-4 sm:gap-6 w-4/5 sm:w-3/5 md:w-2/5">
-      <button
-        onClick={() => {
-          setShowPopup(false);
-          navigate("/resume/resumebuilder");
-        }}
-        className="w-full bg-[#EAF3FF] text-[#074799] py-3 sm:py-4 rounded-xl font-medium text-base sm:text-lg shadow-sm border border-[#BFDFFF] hover:bg-[#dbeeff] transition"
-      >
-        📝 Resume Builder
-      </button>
-      <button
-        onClick={() => {
-          setShowPopup(false);
-          navigate("/messages");
-        }}
-        className="w-full bg-[#E8F9ED] text-[#2E7D32] py-3 sm:py-4 rounded-xl font-medium text-base sm:text-lg shadow-sm border border-[#BEE7C9] hover:bg-[#d3f3db] transition"
-      >
-        💬 Chats
-      </button>
-      <button
-        onClick={() => {
-          setShowPopup(false);
-          navigate("/InterviewPrep");;
-        }}
-        className="w-full bg-[#F3E9FF] text-[#6A1B9A] py-3 sm:py-4 rounded-xl font-medium text-base sm:text-lg shadow-sm border border-[#D8C5ED] hover:bg-[#ebdbff] transition"
-      >
-        🤖 AI Job Prep
-      </button>
-    </div>
+    <div className="flex flex-col gap-4 w-4/5 sm:w-3/5 md:w-2/5">
+
+  {/* Resume Button */}
+  <button
+    onClick={() => {
+      setShowPopup(false);
+      navigate("/resume/ai-chat");
+    }}
+    className="w-full bg-gradient-to-r from-purple-100 to-blue-100 text-purple-800 py-6 sm:py-8 rounded-2xl font-semibold text-lg sm:text-xl shadow-md border border-purple-200 hover:from-purple-200 hover:to-blue-200 transition-all flex items-center justify-center gap-3 relative overflow-hidden"
+  >
+   <span className="absolute top-1 right-2 bg-gradient-to-r from-purple-500 to-blue-500 text-white px-2 py-0.5 rounded-full text-xs font-medium">
+     ✨ AI
+   </span>
+   📝 AI Resume Builder
+  </button>
+  
+
+  {/* Chats Button */}
+  <button
+    onClick={() => {
+      setShowPopup(false);
+      navigate("/messages");
+    }}
+    className="w-full bg-[#E8F9ED] text-[#2E7D32] py-6 sm:py-8 rounded-2xl font-semibold text-lg sm:text-xl shadow-md border border-[#BEE7C9] hover:bg-[#d3f3db] transition-all flex items-center justify-center gap-3"
+  >
+   💬  Chats
+  </button>
+
+  {/* AI Job Prep Button */}
+  <button
+    onClick={() => {
+      setShowPopup(false);
+      navigate("/InterviewPrep");
+    }}
+    className="w-full bg-[#F3E9FF] text-[#6A1B9A] py-6 sm:py-8 rounded-2xl font-semibold text-lg sm:text-xl shadow-md border border-[#D8C5ED] hover:bg-[#ebdbff] transition-all flex items-center justify-center gap-3"
+  >
+    🤖 AI Job Prep
+  </button>
+
+</div>
+
   </div>
 )}
 
@@ -323,4 +339,3 @@ const Home = () => {
 };
 
 export default Home;
-

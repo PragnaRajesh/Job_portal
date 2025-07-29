@@ -397,11 +397,14 @@ const JobList = () => {
                 <button
                   onClick={() => {
                     setShowPopup(false);
-                    navigate("/resume/resumebuilder");
+                    navigate("/resume/ai-chat");
                   }}
-                  className="w-full bg-[#EAF3FF] text-[#074799] py-3 sm:py-4 rounded-xl font-medium text-base sm:text-lg shadow-sm border border-[#BFDFFF] hover:bg-[#dbeeff] transition"
+                  className="w-full bg-gradient-to-r from-purple-100 to-blue-100 text-purple-800 py-3 sm:py-4 rounded-xl font-medium text-base sm:text-lg shadow-sm border border-purple-200 hover:from-purple-200 hover:to-blue-200 transition relative overflow-hidden"
                 >
-                  📝 Resume Builder
+                  <span className="absolute top-0.5 right-1 bg-gradient-to-r from-purple-500 to-blue-500 text-white px-1.5 py-0.5 rounded-full text-xs font-medium">
+                    ✨ AI
+                  </span>
+                  📝 AI Resume Builder
                 </button>
                 <button
                   onClick={() => {
