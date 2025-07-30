@@ -1135,6 +1135,19 @@ Make it professional, accurate, and based on the conversation. If information is
     );
   };
 
+  // Resume Preview Component
+  const ResumePreview = ({ data }) => {
+    // Check if we have a specific template component
+    const hasCustomTemplate = ['minimalbrowntemplate', 'greenillustratedtemplate', 'detaileduitemplate', 'creativegeometrictemplate'].includes(currentTemplate);
+
+    if (hasCustomTemplate) {
+      return getTemplateComponent(currentTemplate, data);
+    }
+
+    // Use default preview for other templates
+    return getDefaultPreview(data);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}
