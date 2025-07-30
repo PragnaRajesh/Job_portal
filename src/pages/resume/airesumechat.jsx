@@ -126,7 +126,7 @@ What's your comfort level with modern JavaScript? Have you worked with any speci
       return `Excellent! Work experience is crucial for your resume. Let's structure this effectively:
 
 **For each role, I'll help you highlight:**
-�� Specific technologies and frameworks used
+• Specific technologies and frameworks used
 • Quantifiable achievements (performance improvements, user engagement, etc.)
 • Team collaboration and project leadership
 • Problem-solving examples
@@ -854,6 +854,17 @@ Make it professional, accurate, and based on the conversation. If information is
         setTimeout(() => {
           printWindow.print();
           printWindow.close();
+
+          // Show success feedback
+          const notification = document.createElement('div');
+          notification.innerHTML = '📄 Resume download initiated! Save as PDF from the print dialog.';
+          notification.className = 'fixed top-4 right-4 bg-blue-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 transition-all';
+          document.body.appendChild(notification);
+          setTimeout(() => {
+            if (notification.parentNode) {
+              notification.parentNode.removeChild(notification);
+            }
+          }, 5000);
         }, 250);
       } else {
         // Fallback: Create a simple text version for download
