@@ -2,6 +2,12 @@ import React, { useState, useRef, useEffect } from 'react';
 import { ArrowLeft, Send, Bot, User, Download, FileText, Eye, Sparkles, MessageCircle, Edit3, Save, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
+// Import the specific template components
+import MinimalBrownTemplate from './minimalbrowntemplate';
+import GreenIllustratedTemplate from './greenillustratedtemplate';
+import DetailedUITemplate from './detaileduitemplate';
+import CreativeGeometricTemplate from './creativegeometrictemplate';
+
 const AIResumeChat = () => {
   const navigate = useNavigate();
   const [messages, setMessages] = useState([
