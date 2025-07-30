@@ -1020,22 +1020,74 @@ Make it professional, accurate, and based on the conversation. If information is
     );
   };
 
-  // Template component mapping
+  // Template component mapping with unique layouts
   const getTemplateComponent = (templateId, data) => {
-    const templateMap = {
+    // Custom template files
+    const customTemplateMap = {
       'minimalbrowntemplate': MinimalBrownTemplate,
       'greenillustratedtemplate': GreenIllustratedTemplate,
       'detaileduitemplate': DetailedUITemplate,
       'creativegeometrictemplate': CreativeGeometricTemplate
     };
 
-    const TemplateComponent = templateMap[templateId];
-    if (TemplateComponent) {
-      return <TemplateComponent data={data} />;
+    const CustomTemplate = customTemplateMap[templateId];
+    if (CustomTemplate) {
+      return <CustomTemplate data={data} />;
     }
 
-    // Fall back to default preview for other templates
-    return getDefaultPreview(data);
+    // Unique layout patterns for each template
+    return getUniqueTemplateLayout(templateId, data);
+  };
+
+  // Create unique layouts for all templates
+  const getUniqueTemplateLayout = (templateId, data) => {
+    const template = templateOptions.find(t => t.id === templateId);
+    const templateColor = template?.color || 'from-blue-500 to-indigo-500';
+
+    switch (templateId) {
+      case 'ai-1':
+        return getAIModernLayout(data, templateColor);
+      case 'ai-2':
+        return getAIProfessionalLayout(data, templateColor);
+      case 'ai-3':
+        return getAICreativeLayout(data, templateColor);
+      case 'prof-1':
+        return getExecutiveProLayout(data, templateColor);
+      case 'prof-2':
+        return getCorporateEliteLayout(data, templateColor);
+      case 'prof-3':
+        return getBusinessClassicLayout(data, templateColor);
+      case 'graphic-1':
+        return getCreativeBurstLayout(data, templateColor);
+      case 'graphic-2':
+        return getVisualImpactLayout(data, templateColor);
+      case 'graphic-3':
+        return getArtisticFlowLayout(data, templateColor);
+      case 'basic-1':
+        return getCleanMinimalLayout(data, templateColor);
+      case 'basic-2':
+        return getModernSimpleLayout(data, templateColor);
+      case 'basic-3':
+        return getEssentialLayout(data, templateColor);
+      case 'tech-1':
+        return getTechInnovatorLayout(data, templateColor);
+      case 'business-1':
+        return getBusinessExecutiveLayout(data, templateColor);
+      case 'marketing-1':
+        return getMarketingCreativeLayout(data, templateColor);
+      case 'healthcare-1':
+        return getHealthcareProfessionalLayout(data, templateColor);
+      case 'education-1':
+        return getEducationSpecialistLayout(data, templateColor);
+      case 'nature':
+        return getNaturalFlowLayout(data, templateColor);
+      case 'sunset':
+        return getSunsetGlowLayout(data, templateColor);
+      case 'ocean':
+        return getOceanDepthsLayout(data, templateColor);
+      default:
+        return getDefaultPreview(data);
+    }
   };
 
   // Default resume preview for templates without specific components
