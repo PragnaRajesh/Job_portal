@@ -133,7 +133,7 @@ What's your comfort level with modern JavaScript? Have you worked with any speci
 
 **For each role, I'll help you highlight:**
 • Specific technologies and frameworks used
-• Quantifiable achievements (performance improvements, user engagement, etc.)
+�� Quantifiable achievements (performance improvements, user engagement, etc.)
 • Team collaboration and project leadership
 • Problem-solving examples
 
@@ -1597,6 +1597,301 @@ Make it professional, accurate, and based on the conversation. If information is
       </div>
     </div>
   );
+
+  // Clean Minimal Layout - Ultra minimalist design
+  const getCleanMinimalLayout = (data, templateColor) => (
+    <div className="bg-white max-w-4xl mx-auto">
+      <div className="p-12 space-y-12">
+        <div className="text-center border-b pb-8">
+          <h1 className="text-4xl font-light text-gray-800 mb-2">{data.personalInfo.name}</h1>
+          <p className="text-xl text-gray-600 font-light">{data.personalInfo.title}</p>
+          <div className="flex justify-center space-x-6 mt-4 text-sm text-gray-500">
+            <span>{data.personalInfo.email}</span>
+            <span>{data.personalInfo.phone}</span>
+            <span>{data.personalInfo.location}</span>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 gap-12">
+          <div>
+            <h2 className="text-lg font-light text-gray-800 mb-4 uppercase tracking-widest">Summary</h2>
+            <p className="text-gray-700 leading-relaxed font-light">{data.summary}</p>
+          </div>
+          <div>
+            <h2 className="text-lg font-light text-gray-800 mb-4 uppercase tracking-widest">Experience</h2>
+            {data.experience.slice(0, 1).map((exp) => (
+              <div key={exp.id} className="mb-6">
+                <div className="flex justify-between items-baseline mb-2">
+                  <h3 className="text-xl font-medium text-gray-800">{exp.title}</h3>
+                  <span className="text-sm text-gray-500">{exp.duration}</span>
+                </div>
+                <p className="text-gray-600 mb-3">{exp.company}</p>
+                <ul className="space-y-1 text-gray-700 font-light">
+                  {exp.responsibilities.slice(0, 2).map((resp, idx) => (
+                    <li key={idx}>• {resp}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <div>
+            <h2 className="text-lg font-light text-gray-800 mb-4 uppercase tracking-widest">Skills</h2>
+            <div className="flex flex-wrap gap-4">
+              {data.skills.slice(0, 8).map((skill, index) => (
+                <span key={index} className="text-gray-700 font-light">{skill}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  // Modern Simple Layout - Contemporary clean design
+  const getModernSimpleLayout = (data, templateColor) => (
+    <div className="bg-gray-50 min-h-screen">
+      <div className="max-w-5xl mx-auto bg-white shadow-lg">
+        <div className={`bg-gradient-to-r ${templateColor} text-white p-8`}>
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-bold">{data.personalInfo.name}</h1>
+              <p className="text-xl opacity-90">{data.personalInfo.title}</p>
+            </div>
+            <div className="w-24 h-24 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+              <span className="text-2xl font-bold">{data.personalInfo.name.charAt(0)}</span>
+            </div>
+          </div>
+        </div>
+        <div className="p-8 grid grid-cols-4 gap-8">
+          <div className="col-span-3 space-y-8">
+            <div>
+              <h2 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                <div className="w-1 h-8 bg-gray-600 mr-4"></div>
+                About
+              </h2>
+              <p className="text-gray-700 leading-relaxed">{data.summary}</p>
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                <div className="w-1 h-8 bg-gray-600 mr-4"></div>
+                Experience
+              </h2>
+              {data.experience.slice(0, 1).map((exp) => (
+                <div key={exp.id} className="bg-gray-50 p-6 rounded-lg">
+                  <div className="flex justify-between items-start mb-3">
+                    <div>
+                      <h3 className="text-xl font-bold text-gray-800">{exp.title}</h3>
+                      <p className="text-gray-600 font-semibold">{exp.company}</p>
+                    </div>
+                    <span className="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">{exp.duration}</span>
+                  </div>
+                  <ul className="list-disc list-inside text-gray-700 space-y-1">
+                    {exp.responsibilities.slice(0, 3).map((resp, idx) => (
+                      <li key={idx} className="text-sm">{resp}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="space-y-6">
+            <div>
+              <h2 className="text-lg font-bold text-gray-800 mb-4">Contact</h2>
+              <div className="space-y-2 text-sm text-gray-600">
+                <p>{data.personalInfo.email}</p>
+                <p>{data.personalInfo.phone}</p>
+                <p>{data.personalInfo.location}</p>
+              </div>
+            </div>
+            <div>
+              <h2 className="text-lg font-bold text-gray-800 mb-4">Skills</h2>
+              <div className="space-y-2">
+                {data.skills.slice(0, 8).map((skill, index) => (
+                  <div key={index} className="bg-gray-100 text-gray-700 px-3 py-2 rounded text-sm">{skill}</div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  // Essential Layout - Streamlined professional look
+  const getEssentialLayout = (data, templateColor) => (
+    <div className="bg-white border border-gray-300 max-w-4xl mx-auto">
+      <div className="p-8">
+        <div className="text-center mb-8 pb-6 border-b-2 border-gray-800">
+          <h1 className="text-3xl font-bold text-gray-800 mb-2">{data.personalInfo.name}</h1>
+          <p className="text-lg text-gray-600">{data.personalInfo.title}</p>
+          <div className="flex justify-center space-x-4 mt-4 text-sm text-gray-600">
+            <span>{data.personalInfo.email}</span>
+            <span>|</span>
+            <span>{data.personalInfo.phone}</span>
+            <span>|</span>
+            <span>{data.personalInfo.location}</span>
+          </div>
+        </div>
+        <div className="space-y-8">
+          <div>
+            <h2 className="text-xl font-bold text-gray-800 mb-3 uppercase">Professional Summary</h2>
+            <p className="text-gray-700 leading-relaxed">{data.summary}</p>
+          </div>
+          <div>
+            <h2 className="text-xl font-bold text-gray-800 mb-3 uppercase">Professional Experience</h2>
+            {data.experience.slice(0, 1).map((exp) => (
+              <div key={exp.id} className="mb-4">
+                <div className="flex justify-between items-baseline mb-2">
+                  <div>
+                    <h3 className="text-lg font-bold text-gray-800">{exp.title}</h3>
+                    <p className="text-gray-600 italic">{exp.company}</p>
+                  </div>
+                  <span className="text-sm text-gray-500">{exp.duration}</span>
+                </div>
+                <ul className="list-disc list-inside text-gray-700 ml-4 space-y-1">
+                  {exp.responsibilities.slice(0, 3).map((resp, idx) => (
+                    <li key={idx} className="text-sm">{resp}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <div>
+            <h2 className="text-xl font-bold text-gray-800 mb-3 uppercase">Core Skills</h2>
+            <div className="grid grid-cols-4 gap-2">
+              {data.skills.slice(0, 8).map((skill, index) => (
+                <div key={index} className="text-center border border-gray-300 py-2 px-1 text-sm text-gray-700">{skill}</div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  // Tech Innovator Layout - Modern tech-inspired design
+  const getTechInnovatorLayout = (data, templateColor) => (
+    <div className="bg-gray-900 text-green-400 font-mono">
+      <div className="p-8">
+        <div className="border border-green-400 p-6 mb-8">
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h1 className="text-2xl font-bold text-green-300">$ {data.personalInfo.name.toLowerCase().replace(' ', '_')}</h1>
+              <p className="text-cyan-400">~/{data.personalInfo.title.toLowerCase().replace(' ', '_')}</p>
+            </div>
+            <div className="text-right text-sm">
+              <p>email: {data.personalInfo.email}</p>
+              <p>phone: {data.personalInfo.phone}</p>
+              <p>location: {data.personalInfo.location}</p>
+            </div>
+          </div>
+          <div className="border-t border-green-400 pt-4">
+            <p className="text-green-300 text-sm leading-relaxed">{data.summary}</p>
+          </div>
+        </div>
+        <div className="grid grid-cols-2 gap-8">
+          <div>
+            <h2 className="text-lg font-bold text-cyan-400 mb-4">./experience</h2>
+            <div className="border border-green-400 p-4">
+              {data.experience.slice(0, 1).map((exp) => (
+                <div key={exp.id}>
+                  <h3 className="text-green-300 font-bold">{exp.title}</h3>
+                  <p className="text-cyan-400">{exp.company}</p>
+                  <p className="text-gray-400 text-sm mb-3">{exp.duration}</p>
+                  <ul className="space-y-1 text-sm">
+                    {exp.responsibilities.slice(0, 2).map((resp, idx) => (
+                      <li key={idx} className="text-green-400">→ {resp}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div>
+            <h2 className="text-lg font-bold text-cyan-400 mb-4">./skills</h2>
+            <div className="border border-green-400 p-4">
+              <div className="grid grid-cols-1 gap-2">
+                {data.skills.slice(0, 8).map((skill, index) => (
+                  <div key={index} className="flex items-center justify-between">
+                    <span className="text-green-400 text-sm">{skill}</span>
+                    <span className="text-cyan-400 text-xs">████████░░ 80%</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  // Business Executive Layout - Premium business design
+  const getBusinessExecutiveLayout = (data, templateColor) => (
+    <div className="bg-gradient-to-br from-blue-900 to-gray-900 text-white">
+      <div className="p-8">
+        <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-8 mb-8">
+          <div className="text-center">
+            <h1 className="text-4xl font-bold mb-2">{data.personalInfo.name}</h1>
+            <p className="text-2xl text-blue-300 mb-6">{data.personalInfo.title}</p>
+            <div className="flex justify-center space-x-8 text-sm opacity-80">
+              <span>{data.personalInfo.email}</span>
+              <span>{data.personalInfo.phone}</span>
+              <span>{data.personalInfo.location}</span>
+            </div>
+          </div>
+        </div>
+        <div className="grid grid-cols-3 gap-8">
+          <div className="col-span-2">
+            <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-6 mb-6">
+              <h2 className="text-2xl font-bold text-blue-300 mb-4">Executive Summary</h2>
+              <p className="leading-relaxed opacity-90">{data.summary}</p>
+            </div>
+            <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-6">
+              <h2 className="text-2xl font-bold text-blue-300 mb-4">Leadership Experience</h2>
+              {data.experience.slice(0, 1).map((exp) => (
+                <div key={exp.id}>
+                  <div className="flex justify-between items-start mb-3">
+                    <div>
+                      <h3 className="text-xl font-bold">{exp.title}</h3>
+                      <p className="text-blue-300 font-semibold">{exp.company}</p>
+                    </div>
+                    <span className="bg-blue-600 px-3 py-1 rounded-full text-sm">{exp.duration}</span>
+                  </div>
+                  <ul className="space-y-2 opacity-90">
+                    {exp.responsibilities.slice(0, 3).map((resp, idx) => (
+                      <li key={idx} className="flex items-start text-sm">
+                        <span className="w-2 h-2 bg-blue-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        {resp}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div>
+            <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-6">
+              <h2 className="text-xl font-bold text-blue-300 mb-4">Core Competencies</h2>
+              <div className="space-y-3">
+                {data.skills.slice(0, 8).map((skill, index) => (
+                  <div key={index} className="bg-white bg-opacity-5 p-3 rounded text-center text-sm font-medium">
+                    {skill}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  // Add remaining specialized layouts...
+  const getMarketingCreativeLayout = (data, templateColor) => getCreativeBurstLayout(data, templateColor);
+  const getHealthcareProfessionalLayout = (data, templateColor) => getExecutiveProLayout(data, templateColor);
+  const getEducationSpecialistLayout = (data, templateColor) => getBusinessClassicLayout(data, templateColor);
+  const getNaturalFlowLayout = (data, templateColor) => getArtisticFlowLayout(data, templateColor);
+  const getSunsetGlowLayout = (data, templateColor) => getVisualImpactLayout(data, templateColor);
+  const getOceanDepthsLayout = (data, templateColor) => getAIModernLayout(data, templateColor);
 
   // Default resume preview for templates without specific components
   const getDefaultPreview = (data) => {
