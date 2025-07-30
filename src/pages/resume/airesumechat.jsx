@@ -821,6 +821,48 @@ Make it professional, accurate, and based on the conversation. If information is
             {section === 'personalInfo' && (
               <div className="space-y-4">
                 <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Profile Photo</label>
+                  <div className="flex items-center space-x-4">
+                    {editData.profilePhoto ? (
+                      <img
+                        src={editData.profilePhoto}
+                        alt="Profile"
+                        className="w-16 h-16 rounded-full object-cover border-2 border-gray-300"
+                      />
+                    ) : (
+                      <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center border-2 border-gray-300">
+                        <User className="w-8 h-8 text-gray-400" />
+                      </div>
+                    )}
+                    <div className="flex-1">
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => {
+                          const file = e.target.files[0];
+                          if (file) {
+                            const reader = new FileReader();
+                            reader.onload = (event) => {
+                              setEditData({...editData, profilePhoto: event.target.result});
+                            };
+                            reader.readAsDataURL(file);
+                          }
+                        }}
+                        className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                      />
+                      {editData.profilePhoto && (
+                        <button
+                          type="button"
+                          onClick={() => setEditData({...editData, profilePhoto: null})}
+                          className="mt-2 text-sm text-red-600 hover:text-red-800"
+                        >
+                          Remove Photo
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
                   <input
                     type="text"
@@ -1083,7 +1125,7 @@ Make it professional, accurate, and based on the conversation. If information is
         <p className="text-xl opacity-90">{data.personalInfo.title}</p>
         <div className="flex gap-4 mt-4 text-sm">
           <span>📧 {data.personalInfo.email}</span>
-          <span>��� {data.personalInfo.phone}</span>
+          <span>📱 {data.personalInfo.phone}</span>
         </div>
       </div>
       <div className="p-6 grid grid-cols-3 gap-6">
