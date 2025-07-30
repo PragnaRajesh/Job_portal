@@ -788,6 +788,45 @@ Make it professional, accurate, and based on the conversation. If information is
     setShowTemplateSelector(false);
   };
 
+  const handleDownloadResume = () => {
+    if (!generatedResume) return;
+
+    // Create a simple text version for download
+    const resumeText = `
+${generatedResume.personalInfo.name}
+${generatedResume.personalInfo.title}
+${generatedResume.personalInfo.email} | ${generatedResume.personalInfo.phone} | ${generatedResume.personalInfo.location}
+
+PROFESSIONAL SUMMARY
+${generatedResume.summary}
+
+EXPERIENCE
+${generatedResume.experience.map(exp => `
+${exp.title} at ${exp.company} (${exp.duration})
+${exp.responsibilities.map(resp => `• ${resp}`).join('\n')}
+`).join('\n')}
+
+EDUCATION
+${generatedResume.education.map(edu => `
+${edu.degree} - ${edu.school} (${edu.year})
+`).join('\n')}
+
+SKILLS
+${generatedResume.skills.join(', ')}
+    `.trim();
+
+    // Create blob and download
+    const blob = new Blob([resumeText], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${generatedResume.personalInfo.name.replace(/\s+/g, '_')}_Resume.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
   // Edit Modal Component
   const EditModal = () => {
     if (!editingSection) return null;
