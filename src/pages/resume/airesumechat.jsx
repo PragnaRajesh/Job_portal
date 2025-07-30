@@ -1730,8 +1730,24 @@ Make it professional, accurate, and based on the conversation. If information is
               <h1 className="text-3xl font-bold">{data.personalInfo.name}</h1>
               <p className="text-xl opacity-90">{data.personalInfo.title}</p>
             </div>
-            <div className="w-24 h-24 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
-              <span className="text-2xl font-bold">{data.personalInfo.name.charAt(0)}</span>
+            <div className="w-24 h-24 rounded-full overflow-hidden relative group">
+              {data.personalInfo.profilePhoto ? (
+                <img
+                  src={data.personalInfo.profilePhoto}
+                  alt={data.personalInfo.name}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-full h-full bg-white bg-opacity-20 flex items-center justify-center">
+                  <span className="text-2xl font-bold">{data.personalInfo.name.charAt(0)}</span>
+                </div>
+              )}
+              <button
+                onClick={() => handleEditSection('personalInfo')}
+                className="absolute inset-0 bg-black bg-opacity-50 text-white opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center rounded-full"
+              >
+                <Edit3 className="w-5 h-5" />
+              </button>
             </div>
           </div>
         </div>
