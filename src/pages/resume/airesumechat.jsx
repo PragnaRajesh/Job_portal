@@ -1165,8 +1165,24 @@ Make it professional, accurate, and based on the conversation. If information is
       <div className="flex">
         <div className="w-1/3 bg-gray-50 p-6">
           <div className="text-center mb-6">
-            <div className="w-24 h-24 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-              <span className="text-white font-bold text-xl">{data.personalInfo.name.charAt(0)}</span>
+            <div className="w-24 h-24 rounded-full mx-auto mb-4 overflow-hidden relative group">
+              {data.personalInfo.profilePhoto ? (
+                <img
+                  src={data.personalInfo.profilePhoto}
+                  alt={data.personalInfo.name}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-full h-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
+                  <span className="text-white font-bold text-xl">{data.personalInfo.name.charAt(0)}</span>
+                </div>
+              )}
+              <button
+                onClick={() => handleEditSection('personalInfo')}
+                className="absolute inset-0 bg-black bg-opacity-50 text-white opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
+              >
+                <Edit3 className="w-4 h-4" />
+              </button>
             </div>
             <h1 className="text-xl font-bold text-gray-800">{data.personalInfo.name}</h1>
             <p className="text-indigo-600 font-medium">{data.personalInfo.title}</p>
