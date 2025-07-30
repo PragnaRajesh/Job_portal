@@ -329,25 +329,25 @@ Would you like me to generate your frontend developer resume now?`;
     },
     // New requested templates
     {
-      id: 'minimal-brown',
+      id: 'minimalbrowntemplate',
       name: 'Minimal Brown',
       description: 'Elegant brown-toned minimalist design',
       color: 'from-amber-700 via-orange-800 to-yellow-700'
     },
     {
-      id: 'green-illustrated',
+      id: 'greenillustratedtemplate',
       name: 'Green Illustrated',
       description: 'Nature-inspired green design with illustrations',
       color: 'from-emerald-600 via-green-500 to-lime-600'
     },
     {
-      id: 'detailed-ui',
+      id: 'detaileduitemplate',
       name: 'Detailed UI',
       description: 'Modern UI-focused template with detailed sections',
       color: 'from-slate-700 via-gray-600 to-zinc-700'
     },
     {
-      id: 'creative-geometric',
+      id: 'creativegeometrictemplate',
       name: 'Creative Geometric',
       description: 'Bold geometric patterns and creative layout',
       color: 'from-purple-600 via-pink-500 to-rose-600'
