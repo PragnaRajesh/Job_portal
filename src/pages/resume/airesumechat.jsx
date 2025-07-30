@@ -1020,11 +1020,29 @@ Make it professional, accurate, and based on the conversation. If information is
     );
   };
 
-  // Resume Preview Component
-  const ResumePreview = ({ data }) => {
+  // Template component mapping
+  const getTemplateComponent = (templateId, data) => {
+    const templateMap = {
+      'minimalbrowntemplate': MinimalBrownTemplate,
+      'greenillustratedtemplate': GreenIllustratedTemplate,
+      'detaileduitemplate': DetailedUITemplate,
+      'creativegeometrictemplate': CreativeGeometricTemplate
+    };
+
+    const TemplateComponent = templateMap[templateId];
+    if (TemplateComponent) {
+      return <TemplateComponent data={data} />;
+    }
+
+    // Fall back to default preview for other templates
+    return getDefaultPreview(data);
+  };
+
+  // Default resume preview for templates without specific components
+  const getDefaultPreview = (data) => {
     const template = templateOptions.find(t => t.id === currentTemplate);
     const templateColor = template?.color || 'from-blue-500 to-indigo-500';
-    
+
     return (
       <div className="bg-white shadow-lg rounded-lg overflow-hidden">
         <div className={`bg-gradient-to-r ${templateColor} text-white p-6`}>
