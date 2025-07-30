@@ -1191,6 +1191,134 @@ Make it professional, accurate, and based on the conversation. If information is
                 </div>
               </div>
             )}
+
+            {section === 'education' && (
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Degree</label>
+                  <input
+                    type="text"
+                    value={editData.degree || ''}
+                    onChange={(e) => setEditData({...editData, degree: e.target.value})}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">School</label>
+                  <input
+                    type="text"
+                    value={editData.school || ''}
+                    onChange={(e) => setEditData({...editData, school: e.target.value})}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Year</label>
+                  <input
+                    type="text"
+                    value={editData.year || ''}
+                    onChange={(e) => setEditData({...editData, year: e.target.value})}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">GPA (Optional)</label>
+                  <input
+                    type="text"
+                    value={editData.gpa || ''}
+                    onChange={(e) => setEditData({...editData, gpa: e.target.value})}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+              </div>
+            )}
+
+            {section === 'projects' && (
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Project Name</label>
+                  <input
+                    type="text"
+                    value={editData.name || ''}
+                    onChange={(e) => setEditData({...editData, name: e.target.value})}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                  <textarea
+                    value={editData.description || ''}
+                    onChange={(e) => setEditData({...editData, description: e.target.value})}
+                    rows={3}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Technologies (comma-separated)</label>
+                  <input
+                    type="text"
+                    value={editData.technologies?.join(', ') || ''}
+                    onChange={(e) => setEditData({...editData, technologies: e.target.value.split(', ').filter(t => t.trim())})}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Project Link</label>
+                  <input
+                    type="text"
+                    value={editData.link || ''}
+                    onChange={(e) => setEditData({...editData, link: e.target.value})}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+              </div>
+            )}
+
+            {section === 'certifications' && (
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Certification Name</label>
+                  <input
+                    type="text"
+                    value={editData.name || ''}
+                    onChange={(e) => setEditData({...editData, name: e.target.value})}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Issuing Organization</label>
+                  <input
+                    type="text"
+                    value={editData.issuer || ''}
+                    onChange={(e) => setEditData({...editData, issuer: e.target.value})}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Date</label>
+                  <input
+                    type="text"
+                    value={editData.date || ''}
+                    onChange={(e) => setEditData({...editData, date: e.target.value})}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+              </div>
+            )}
+
+            {section === 'skills' && (
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Skills (comma-separated)</label>
+                  <textarea
+                    value={Array.isArray(editData) ? editData.join(', ') : editData || ''}
+                    onChange={(e) => setEditData(e.target.value.split(', ').filter(skill => skill.trim()))}
+                    rows={4}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+              </div>
+            )}
           </div>
           
           <div className="p-6 border-t border-gray-200 flex justify-end space-x-3">
