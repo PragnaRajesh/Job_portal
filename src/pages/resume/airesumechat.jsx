@@ -1,6 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ArrowLeft, Send, Bot, User, Download, FileText, Eye, Sparkles, MessageCircle, Edit3, Save, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import OnboardingStyleTemplate from './OnboardingStyleTemplate';
+import CreativeGeometricTemplate from './CreativeGeometricTemplate';
+import MinimalBrownTemplate from './MinimalBrownTemplate';
+import GreenIllustratedTemplate from './GreenIllustratedTemplate';
+import DetailedUXTemplate from './DetailedUXTemplate';
+import ApiKeySettings from '../../components/ApiKeySettings';
+import { getChatResponse, generateResumeContent } from '../../services/openaiService';
 
 const AIResumeChat = () => {
   const navigate = useNavigate();
@@ -8,10 +15,10 @@ const AIResumeChat = () => {
     {
       id: 1,
       type: 'bot',
-      content: "Hi! I'm your AI Resume Assistant. I'll help you create a professional resume tailored to your needs. To get started, please tell me about:",
+      content: "Hi! I'm your AI Resume Assistant. I'll help you create a professional, personalized resume by understanding your unique background and experience. Let's start building your perfect resume together! Tell me about:",
       suggestions: [
         "Your current job title or target position",
-        "Your industry and years of experience", 
+        "Your industry and years of experience",
         "Key skills and achievements you want to highlight",
         "The type of job you're applying for"
       ]
@@ -24,6 +31,7 @@ const AIResumeChat = () => {
   const [editingSection, setEditingSection] = useState(null);
   const [currentTemplate, setCurrentTemplate] = useState('ai');
   const [showTemplateSelector, setShowTemplateSelector] = useState(false);
+  const [showApiKeySettings, setShowApiKeySettings] = useState(false);
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -34,8 +42,43 @@ const AIResumeChat = () => {
     scrollToBottom();
   }, [messages]);
 
-  // Enhanced template options with more creative designs
+  // Featured template options - Custom designed templates
   const templateOptions = [
+    {
+      id: 'geometric',
+      name: 'Creative Geometric',
+      description: 'Modern geometric design with artistic flair',
+      color: 'from-blue-400 via-orange-400 to-blue-500',
+      featured: true
+    },
+    {
+      id: 'minimal-brown',
+      name: 'Minimal Brown',
+      description: 'Clean and warm minimalist design',
+      color: 'from-amber-200 to-amber-400',
+      featured: true
+    },
+    {
+      id: 'green-illustrated',
+      name: 'Green Illustrated',
+      description: 'Professional with work illustrations',
+      color: 'from-green-300 to-green-500',
+      featured: true
+    },
+    {
+      id: 'detailed-ux',
+      name: 'Detailed UX',
+      description: 'Comprehensive UX/UI focused layout',
+      color: 'from-gray-300 to-blue-400',
+      featured: true
+    },
+    {
+      id: 'onboarding',
+      name: 'Creative Journey',
+      description: 'Playful onboarding-inspired design',
+      color: 'from-purple-400 via-purple-500 to-blue-400',
+      featured: true
+    },
     {
       id: 'ai',
       name: 'AI Modern',
@@ -65,24 +108,6 @@ const AIResumeChat = () => {
       name: 'Tech Innovator',
       description: 'Modern tech-inspired design',
       color: 'from-cyan-500 to-blue-600'
-    },
-    {
-      id: 'nature',
-      name: 'Natural Flow',
-      description: 'Earth-toned organic design',
-      color: 'from-green-600 to-emerald-700'
-    },
-    {
-      id: 'sunset',
-      name: 'Sunset Glow',
-      description: 'Warm sunset-inspired palette',
-      color: 'from-orange-400 via-pink-500 to-purple-600'
-    },
-    {
-      id: 'ocean',
-      name: 'Ocean Depths',
-      description: 'Deep blue oceanic theme',
-      color: 'from-blue-800 via-blue-600 to-cyan-400'
     }
   ];
 
@@ -419,15 +444,48 @@ const AIResumeChat = () => {
       content: inputMessage
     };
 
+    const currentInput = inputMessage;
     setMessages(prev => [...prev, userMessage]);
     setInputMessage('');
     setIsTyping(true);
 
-    setTimeout(() => {
-      const botResponse = generateBotResponse(inputMessage, messages.length);
+    try {
+      // Get AI response from OpenAI
+      const aiResponse = await getChatResponse(messages, currentInput);
+
+      const botResponse = {
+        id: messages.length + 2,
+        type: 'bot',
+        content: aiResponse.content,
+        suggestions: aiResponse.suggestions,
+        showGenerateButton: aiResponse.showGenerateButton
+      };
+
       setMessages(prev => [...prev, botResponse]);
+    } catch (error) {
+      console.error('Error getting AI response:', error);
+
+      // Check if it's an API key error
+      if (error.message.includes('API key')) {
+        const errorResponse = {
+          id: messages.length + 2,
+          type: 'bot',
+          content: "🔑 I need an OpenAI API key to provide intelligent responses. Please click the settings button (⚙️) in the header to configure your API key. Don't worry, I'll still help you build a great resume using my built-in knowledge!",
+          suggestions: [
+            "Click the settings button to add API key",
+            "Continue with built-in responses",
+            "I understand, let's proceed"
+          ]
+        };
+        setMessages(prev => [...prev, errorResponse]);
+      } else {
+        // Fallback to mock response for other errors
+        const fallbackResponse = generateBotResponse(currentInput, messages.length);
+        setMessages(prev => [...prev, fallbackResponse]);
+      }
+    } finally {
       setIsTyping(false);
-    }, 1500);
+    }
   };
 
   const generateBotResponse = (userInput, messageCount) => {
@@ -470,19 +528,73 @@ const AIResumeChat = () => {
     };
   };
 
-  const generateResume = () => {
-    const extractedInputs = extractUserInputs();
+  const generateResume = async () => {
     setActiveTab('resume');
-    
-    setTimeout(() => {
-      setGeneratedResume(extractedInputs);
-      setMessages(prev => [...prev, {
-        id: prev.length + 1,
-        type: 'bot',
-        content: `🎉 Your personalized resume has been generated! I've analyzed our conversation and created a professional resume tailored to your background. You can now edit any section, choose different templates, or download your resume.`,
-        hasResume: true
-      }]);
-    }, 3000);
+
+    setMessages(prev => [...prev, {
+      id: prev.length + 1,
+      type: 'bot',
+      content: `🎉 I'm now generating your personalized resume using AI! This will take just a moment...`,
+      isGenerating: true
+    }]);
+
+    try {
+      // Try to generate enhanced resume content using OpenAI
+      const aiGeneratedContent = await generateResumeContent(messages);
+
+      let finalResumeData;
+
+      if (aiGeneratedContent) {
+        // Use AI-generated content if successful
+        finalResumeData = {
+          ...aiGeneratedContent,
+          // Ensure required fields have defaults
+          personalInfo: {
+            name: 'Your Name',
+            title: 'Professional',
+            email: 'your.email@example.com',
+            phone: '+1 (555) 123-4567',
+            location: 'Your City, State',
+            ...aiGeneratedContent.personalInfo
+          },
+          experience: aiGeneratedContent.experience?.length > 0 ?
+            aiGeneratedContent.experience : extractExperience(messages.filter(msg => msg.type === 'user').map(msg => msg.content).join(' ')),
+          education: aiGeneratedContent.education?.length > 0 ?
+            aiGeneratedContent.education : extractEducation(messages.filter(msg => msg.type === 'user').map(msg => msg.content).join(' ')),
+          skills: aiGeneratedContent.skills?.length > 0 ?
+            aiGeneratedContent.skills : extractSkills(messages.filter(msg => msg.type === 'user').map(msg => msg.content).join(' ')),
+          summary: aiGeneratedContent.summary || generateProfessionalSummary(messages.filter(msg => msg.type === 'user').map(msg => msg.content).join(' '))
+        };
+      } else {
+        // Fallback to existing extraction method
+        finalResumeData = extractUserInputs();
+      }
+
+      setTimeout(() => {
+        setGeneratedResume(finalResumeData);
+        setMessages(prev => [...prev, {
+          id: prev.length + 1,
+          type: 'bot',
+          content: `🎉 Your personalized resume has been generated! I've analyzed our conversation and created a professional resume tailored to your background. You can now edit any section, choose different templates, or download your resume.`,
+          hasResume: true
+        }]);
+      }, 2000);
+
+    } catch (error) {
+      console.error('Error generating resume:', error);
+
+      // Fallback to existing method
+      setTimeout(() => {
+        const extractedInputs = extractUserInputs();
+        setGeneratedResume(extractedInputs);
+        setMessages(prev => [...prev, {
+          id: prev.length + 1,
+          type: 'bot',
+          content: `🎉 Your personalized resume has been generated! I've analyzed our conversation and created a professional resume tailored to your background. You can now edit any section, choose different templates, or download your resume.`,
+          hasResume: true
+        }]);
+      }, 2000);
+    }
   };
 
   const handleSuggestionClick = (suggestion) => {
@@ -680,10 +792,10 @@ const AIResumeChat = () => {
     
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-        <div className="bg-white rounded-lg max-w-2xl w-full max-h-[80vh] overflow-hidden">
-          <div className="p-6 border-b border-gray-200">
+        <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] sm:max-h-[80vh] overflow-hidden">
+          <div className="p-4 sm:p-6 border-b border-gray-200">
             <div className="flex items-center justify-between">
-              <h2 className="text-xl font-semibold text-gray-800">Choose Resume Template</h2>
+              <h2 className="text-lg sm:text-xl font-semibold text-gray-800">Choose Resume Template</h2>
               <button
                 onClick={() => setShowTemplateSelector(false)}
                 className="text-gray-500 hover:text-gray-700"
@@ -693,33 +805,73 @@ const AIResumeChat = () => {
             </div>
           </div>
           
-          <div className="p-6 grid grid-cols-2 lg:grid-cols-3 gap-4 max-h-96 overflow-y-auto">
-            {templateOptions.map((template) => (
-              <div
-                key={template.id}
-                onClick={() => handleTemplateChange(template.id)}
-                className={`relative cursor-pointer rounded-lg border-2 transition-all ${
-                  currentTemplate === template.id 
-                    ? 'border-blue-500 bg-blue-50' 
-                    : 'border-gray-200 hover:border-gray-300'
-                }`}
-              >
-                <div className="p-4">
-                  <div className={`w-full h-32 rounded-lg bg-gradient-to-br ${template.color} mb-3 flex items-center justify-center`}>
-                    <div className="text-white text-xs font-medium">Preview</div>
-                  </div>
-                  <h3 className="font-semibold text-gray-800 mb-1">{template.name}</h3>
-                  <p className="text-sm text-gray-600">{template.description}</p>
-                  {currentTemplate === template.id && (
-                    <div className="absolute top-2 right-2 bg-blue-500 text-white rounded-full p-1">
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
+          <div className="p-4 sm:p-6 max-h-96 overflow-y-auto">
+            {/* Featured Templates Section */}
+            <div className="mb-4 sm:mb-6">
+              <h3 className="text-xs sm:text-sm font-semibold text-gray-700 mb-2 sm:mb-3 uppercase tracking-wide">✨ Featured Templates</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+                {templateOptions.filter(t => t.featured).map((template) => (
+                  <div
+                    key={template.id}
+                    onClick={() => handleTemplateChange(template.id)}
+                    className={`relative cursor-pointer rounded-lg border-2 transition-all ${
+                      currentTemplate === template.id
+                        ? 'border-blue-500 bg-blue-50 ring-2 ring-blue-200'
+                        : 'border-gray-200 hover:border-blue-300 hover:shadow-md'
+                    }`}
+                  >
+                    <div className="p-4">
+                      <div className={`w-full h-28 rounded-lg bg-gradient-to-br ${template.color} mb-3 flex items-center justify-center relative`}>
+                        <div className="text-white text-xs font-medium">Preview</div>
+                        <div className="absolute top-1 right-1 bg-yellow-400 text-yellow-900 text-xs px-1 py-0.5 rounded font-bold">NEW</div>
+                      </div>
+                      <h3 className="font-semibold text-gray-800 mb-1">{template.name}</h3>
+                      <p className="text-xs text-gray-600">{template.description}</p>
+                      {currentTemplate === template.id && (
+                        <div className="absolute top-2 right-2 bg-blue-500 text-white rounded-full p-1">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                          </svg>
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+
+            {/* Other Templates Section */}
+            <div>
+              <h3 className="text-xs sm:text-sm font-semibold text-gray-700 mb-2 sm:mb-3 uppercase tracking-wide">Other Templates</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+                {templateOptions.filter(t => !t.featured).map((template) => (
+                  <div
+                    key={template.id}
+                    onClick={() => handleTemplateChange(template.id)}
+                    className={`relative cursor-pointer rounded-lg border-2 transition-all ${
+                      currentTemplate === template.id
+                        ? 'border-blue-500 bg-blue-50'
+                        : 'border-gray-200 hover:border-gray-300'
+                    }`}
+                  >
+                    <div className="p-4">
+                      <div className={`w-full h-28 rounded-lg bg-gradient-to-br ${template.color} mb-3 flex items-center justify-center`}>
+                        <div className="text-white text-xs font-medium">Preview</div>
+                      </div>
+                      <h3 className="font-semibold text-gray-800 mb-1">{template.name}</h3>
+                      <p className="text-xs text-gray-600">{template.description}</p>
+                      {currentTemplate === template.id && (
+                        <div className="absolute top-2 right-2 bg-blue-500 text-white rounded-full p-1">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                          </svg>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -730,7 +882,52 @@ const AIResumeChat = () => {
   const ResumePreview = ({ data }) => {
     const template = templateOptions.find(t => t.id === currentTemplate);
     const templateColor = template?.color || 'from-blue-500 to-indigo-500';
-    
+
+    // If onboarding template is selected, use the OnboardingStyleTemplate component
+    if (currentTemplate === 'onboarding') {
+      return (
+        <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+          <OnboardingStyleTemplate data={data} onEditSection={handleEditSection} />
+        </div>
+      );
+    }
+
+    // If geometric template is selected, use the CreativeGeometricTemplate component
+    if (currentTemplate === 'geometric') {
+      return (
+        <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+          <CreativeGeometricTemplate data={data} onEditSection={handleEditSection} />
+        </div>
+      );
+    }
+
+    // If minimal-brown template is selected
+    if (currentTemplate === 'minimal-brown') {
+      return (
+        <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+          <MinimalBrownTemplate data={data} onEditSection={handleEditSection} />
+        </div>
+      );
+    }
+
+    // If green-illustrated template is selected
+    if (currentTemplate === 'green-illustrated') {
+      return (
+        <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+          <GreenIllustratedTemplate data={data} onEditSection={handleEditSection} />
+        </div>
+      );
+    }
+
+    // If detailed-ux template is selected
+    if (currentTemplate === 'detailed-ux') {
+      return (
+        <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+          <DetailedUXTemplate data={data} onEditSection={handleEditSection} />
+        </div>
+      );
+    }
+
     return (
       <div className="bg-white shadow-lg rounded-lg overflow-hidden">
         <div className={`bg-gradient-to-r ${templateColor} text-white p-6`}>
@@ -786,7 +983,7 @@ const AIResumeChat = () => {
                 </div>
                 <ul className="list-disc list-inside text-gray-700 text-sm space-y-1">
                   {exp.responsibilities.map((resp, idx) => (
-                    <li key={idx}>{resp}</li>
+                    <li key={`${exp.id}-resp-${idx}`}>{resp}</li>
                   ))}
                 </ul>
               </div>
@@ -798,7 +995,7 @@ const AIResumeChat = () => {
             <h2 className="text-lg font-semibold text-gray-800 mb-3">Skills</h2>
             <div className="flex flex-wrap gap-2">
               {data.skills.map((skill, index) => (
-                <span key={index} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+                <span key={`skill-${index}-${skill}`} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
                   {skill}
                 </span>
               ))}
@@ -841,8 +1038,24 @@ const AIResumeChat = () => {
               </div>
               <div>
                 <h1 className="font-semibold text-gray-800">AI Resume Builder</h1>
+                <p className="text-xs text-gray-500">Powered by OpenAI</p>
               </div>
             </div>
+          </div>
+
+          {/* Settings Button */}
+          <button
+            onClick={() => setShowApiKeySettings(true)}
+            className="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-full transition-colors"
+            title="API Settings"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+          </button>
+
+          <div className="flex items-center space-x-3">
           </div>
           
           {/* Tab Navigation */}
@@ -979,25 +1192,27 @@ const AIResumeChat = () => {
 
         {/* Resume Tab */}
         {activeTab === 'resume' && generatedResume && (
-          <div className="h-full bg-gray-50 p-6 overflow-y-auto pb-24">
+          <div className="h-full bg-gray-50 p-3 sm:p-6 overflow-y-auto pb-24">
             <div className="max-w-4xl mx-auto">
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-semibold text-gray-800">Your Resume</h2>
-                <div className="flex items-center space-x-3">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 sm:mb-6 space-y-3 sm:space-y-0">
+                <h2 className="text-xl sm:text-2xl font-semibold text-gray-800">Your Resume</h2>
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-2 sm:space-y-0 sm:space-x-3">
                   <button
                     onClick={() => setShowTemplateSelector(true)}
-                    className="flex items-center space-x-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                    className="flex items-center justify-center space-x-2 px-3 sm:px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors text-sm sm:text-base"
                   >
                     <Eye className="w-4 h-4" />
                     <span>Change Template</span>
                   </button>
-                  <button className="flex items-center space-x-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
+                  <button className="flex items-center justify-center space-x-2 px-3 sm:px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm sm:text-base">
                     <Download className="w-4 h-4" />
                     <span>Download PDF</span>
                   </button>
                 </div>
               </div>
-              <ResumePreview data={generatedResume} />
+              <div className="w-full">
+                <ResumePreview data={generatedResume} />
+              </div>
             </div>
           </div>
         )}
@@ -1033,6 +1248,10 @@ const AIResumeChat = () => {
       {/* Modals */}
       <EditModal />
       <TemplateSelector />
+      <ApiKeySettings
+        isOpen={showApiKeySettings}
+        onClose={() => setShowApiKeySettings(false)}
+      />
     </div>
   );
 };

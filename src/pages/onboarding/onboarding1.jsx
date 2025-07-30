@@ -45,7 +45,11 @@ const OnboardingScreen1 = ({ onNext, onSkip }) => {
         </div>
 
         {/* Sad Character Image (slimmed) */}
-        
+        <img
+          src={sadBoyImage}
+          alt="Sad Character"
+          className="absolute z-5 w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl h-auto  sm:top-60 md:top-60 lg:top-80 left-2 sm:left-4 md:left-8 lg:left-1/2 lg:transform lg:-translate-x-1/2 scale-x-90"/>
+
 
         {/* Description (left aligned) */}
         <p className="absolute z-20 top-[34rem] sm:top-[38rem] md:top-[42rem] lg:top-[46rem] left-5 sm:left-8 md:left-12 lg:left-1/2 lg:transform lg:-translate-x-1/2 w-72 sm:w-80 md:w-96 lg:w-auto font-poppins font-medium text-lg sm:text-xl md:text-2xl lg:text-3xl leading-6 sm:leading-7 md:leading-8 lg:leading-9 text-black/80 text-left lg:text-left">
@@ -56,13 +60,7 @@ const OnboardingScreen1 = ({ onNext, onSkip }) => {
 
         {/* Bottom Rectangle */}
         <div className="absolute z-10 bottom-14 sm:bottom-20 md:bottom-24 lg:bottom-28 left-3 sm:left-6 md:left-12 lg:left-1/2 lg:transform lg:-translate-x-1/2 w-[95%] sm:w-[85%] md:w-[75%] lg:w-[60%] max-w-sm sm:max-w-md md:max-w-lg h-36 sm:h-40 md:h-44 lg:h-48 bg-[#9E85FF] rounded-[2rem] border border-[#CB9D73]" >
-          <img
-          src={sadBoyImage}
-          alt="Sad Character"
-          // className="absolute z-5 w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl h-auto top- sm:top-60 md:top-72 lg:top-80 left-2 sm:left-4 md:left-8 lg:left-1/2 lg:transform lg:-translate-x-1/2 scale-x-90"
-          className="absolute z-5 w-full h-auto bottom-20"
-        
-        />
+          
         </div>
 
         {/* Dots (moved up) */}
