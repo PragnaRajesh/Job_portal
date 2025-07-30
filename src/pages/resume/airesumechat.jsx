@@ -1408,6 +1408,196 @@ Make it professional, accurate, and based on the conversation. If information is
     </div>
   );
 
+  // Creative Burst Layout - Vibrant artistic design
+  const getCreativeBurstLayout = (data, templateColor) => (
+    <div className="bg-gradient-to-br from-pink-50 to-orange-50 overflow-hidden relative">
+      <div className="absolute top-0 left-0 w-full h-full">
+        <div className="absolute top-10 right-10 w-32 h-32 bg-pink-200 rounded-full opacity-50"></div>
+        <div className="absolute bottom-20 left-20 w-24 h-24 bg-orange-200 rounded-full opacity-50"></div>
+        <div className="absolute top-1/3 left-1/4 w-16 h-16 bg-red-200 rounded-full opacity-30"></div>
+      </div>
+      <div className="relative z-10 p-8">
+        <div className="text-center mb-8">
+          <div className={`w-32 h-32 bg-gradient-to-r ${templateColor} rounded-full mx-auto mb-4 flex items-center justify-center`}>
+            <span className="text-white text-3xl font-bold">{data.personalInfo.name.charAt(0)}</span>
+          </div>
+          <h1 className="text-4xl font-bold text-gray-800 mb-2">{data.personalInfo.name}</h1>
+          <p className="text-2xl text-pink-600 font-semibold">{data.personalInfo.title}</p>
+        </div>
+        <div className="grid grid-cols-2 gap-8">
+          <div className="space-y-6">
+            <div className="bg-white p-6 rounded-2xl shadow-lg transform rotate-1">
+              <h2 className="text-2xl font-bold text-pink-600 mb-3">About Me</h2>
+              <p className="text-gray-700">{data.summary}</p>
+            </div>
+            <div className="bg-white p-6 rounded-2xl shadow-lg transform -rotate-1">
+              <h2 className="text-2xl font-bold text-orange-600 mb-3">Contact</h2>
+              <div className="space-y-2 text-gray-700">
+                <p>📧 {data.personalInfo.email}</p>
+                <p>📱 {data.personalInfo.phone}</p>
+                <p>📍 {data.personalInfo.location}</p>
+              </div>
+            </div>
+          </div>
+          <div className="space-y-6">
+            <div className="bg-white p-6 rounded-2xl shadow-lg">
+              <h2 className="text-2xl font-bold text-red-600 mb-3">Experience</h2>
+              {data.experience.slice(0, 1).map((exp) => (
+                <div key={exp.id}>
+                  <h3 className="text-xl font-bold text-gray-800">{exp.title}</h3>
+                  <p className="text-pink-600 font-semibold">{exp.company}</p>
+                  <p className="text-sm text-gray-500">{exp.duration}</p>
+                </div>
+              ))}
+            </div>
+            <div className="bg-white p-6 rounded-2xl shadow-lg">
+              <h2 className="text-2xl font-bold text-purple-600 mb-3">Skills</h2>
+              <div className="grid grid-cols-2 gap-2">
+                {data.skills.slice(0, 6).map((skill, index) => (
+                  <span key={index} className="bg-gradient-to-r from-pink-400 to-red-400 text-white px-3 py-1 rounded-full text-xs font-semibold text-center">{skill}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  // Visual Impact Layout - Bold geometric design
+  const getVisualImpactLayout = (data, templateColor) => (
+    <div className="bg-white">
+      <div className="flex h-96">
+        <div className="w-1/3 bg-gray-900 text-white p-6 clip-path-diagonal">
+          <div className="pt-8">
+            <h1 className="text-2xl font-bold mb-1">{data.personalInfo.name}</h1>
+            <p className="text-red-400 text-lg font-semibold mb-6">{data.personalInfo.title}</p>
+            <div className="space-y-4 text-sm">
+              <div className="border-l-4 border-red-500 pl-3">
+                <h3 className="font-bold text-red-400 mb-2">CONTACT</h3>
+                <p>{data.personalInfo.email}</p>
+                <p>{data.personalInfo.phone}</p>
+                <p>{data.personalInfo.location}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="w-2/3 p-8 flex items-center">
+          <div>
+            <div className="mb-8">
+              <div className="flex items-center mb-4">
+                <div className="w-8 h-8 bg-red-500 mr-4"></div>
+                <h2 className="text-3xl font-bold text-gray-800">PROFILE</h2>
+              </div>
+              <p className="text-gray-700 leading-relaxed">{data.summary}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="p-8 grid grid-cols-2 gap-8">
+        <div>
+          <div className="flex items-center mb-4">
+            <div className="w-8 h-8 bg-red-500 mr-4"></div>
+            <h2 className="text-2xl font-bold text-gray-800">EXPERIENCE</h2>
+          </div>
+          {data.experience.slice(0, 1).map((exp) => (
+            <div key={exp.id} className="border-l-4 border-red-500 pl-4">
+              <h3 className="text-xl font-bold text-gray-800">{exp.title}</h3>
+              <p className="text-red-600 font-semibold">{exp.company}</p>
+              <p className="text-sm text-gray-500 mb-2">{exp.duration}</p>
+              <ul className="list-disc list-inside text-gray-700 text-sm space-y-1">
+                {exp.responsibilities.slice(0, 2).map((resp, idx) => (
+                  <li key={idx}>{resp}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+        <div>
+          <div className="flex items-center mb-4">
+            <div className="w-8 h-8 bg-red-500 mr-4"></div>
+            <h2 className="text-2xl font-bold text-gray-800">SKILLS</h2>
+          </div>
+          <div className="grid grid-cols-1 gap-2">
+            {data.skills.slice(0, 8).map((skill, index) => (
+              <div key={index} className="flex items-center justify-between bg-gray-100 p-2 rounded">
+                <span className="text-sm font-medium text-gray-800">{skill}</span>
+                <div className="w-20 h-2 bg-gray-300 rounded-full">
+                  <div className="h-full bg-red-500 rounded-full" style={{width: '85%'}}></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  // Artistic Flow Layout - Fluid creative design
+  const getArtisticFlowLayout = (data, templateColor) => (
+    <div className="bg-gradient-to-tr from-orange-50 via-red-50 to-pink-50 relative overflow-hidden">
+      <div className="absolute inset-0">
+        <svg className="w-full h-full" viewBox="0 0 400 600" fill="none">
+          <path d="M0,200 Q200,100 400,200 L400,600 L0,600 Z" fill="rgba(239, 68, 68, 0.1)"/>
+          <path d="M0,300 Q200,200 400,300 L400,600 L0,600 Z" fill="rgba(245, 101, 101, 0.1)"/>
+        </svg>
+      </div>
+      <div className="relative z-10 p-8">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <h1 className="text-5xl font-bold text-gray-800 mb-4">{data.personalInfo.name}</h1>
+            <p className="text-2xl text-orange-600 font-semibold mb-6">{data.personalInfo.title}</p>
+            <div className="flex justify-center space-x-8 text-gray-600">
+              <span>📧 {data.personalInfo.email}</span>
+              <span>📱 {data.personalInfo.phone}</span>
+              <span>📍 {data.personalInfo.location}</span>
+            </div>
+          </div>
+          <div className="grid grid-cols-3 gap-8">
+            <div className="col-span-2">
+              <div className="bg-white p-8 rounded-3xl shadow-xl mb-6 border-l-8 border-orange-500">
+                <h2 className="text-3xl font-bold text-orange-600 mb-4">Creative Vision</h2>
+                <p className="text-gray-700 leading-relaxed text-lg">{data.summary}</p>
+              </div>
+              <div className="bg-white p-8 rounded-3xl shadow-xl border-l-8 border-red-500">
+                <h2 className="text-3xl font-bold text-red-600 mb-4">Portfolio Highlights</h2>
+                {data.experience.slice(0, 1).map((exp) => (
+                  <div key={exp.id}>
+                    <h3 className="text-2xl font-bold text-gray-800 mb-2">{exp.title}</h3>
+                    <p className="text-orange-600 text-xl font-semibold mb-2">{exp.company}</p>
+                    <p className="text-gray-500 mb-4">{exp.duration}</p>
+                    <ul className="space-y-2">
+                      {exp.responsibilities.slice(0, 2).map((resp, idx) => (
+                        <li key={idx} className="flex items-start">
+                          <span className="w-3 h-3 bg-red-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span className="text-gray-700">{resp}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div>
+              <div className="bg-white p-6 rounded-3xl shadow-xl border-t-8 border-pink-500">
+                <h2 className="text-2xl font-bold text-pink-600 mb-6">Creative Skills</h2>
+                <div className="space-y-4">
+                  {data.skills.slice(0, 6).map((skill, index) => (
+                    <div key={index} className="relative">
+                      <div className="bg-gradient-to-r from-orange-400 to-red-500 text-white px-4 py-3 rounded-2xl text-center font-semibold transform hover:scale-105 transition-transform">
+                        {skill}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
   // Default resume preview for templates without specific components
   const getDefaultPreview = (data) => {
     const template = templateOptions.find(t => t.id === currentTemplate);
