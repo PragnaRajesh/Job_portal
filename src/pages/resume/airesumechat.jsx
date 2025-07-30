@@ -1016,20 +1016,7 @@ Make it professional, accurate, and based on the conversation. If information is
 
   // Template component mapping with unique layouts
   const getTemplateComponent = (templateId, data) => {
-    // Custom template files
-    const customTemplateMap = {
-      'minimalbrowntemplate': MinimalBrownTemplate,
-      'greenillustratedtemplate': GreenIllustratedTemplate,
-      'detaileduitemplate': DetailedUITemplate,
-      'creativegeometrictemplate': CreativeGeometricTemplate
-    };
-
-    const CustomTemplate = customTemplateMap[templateId];
-    if (CustomTemplate) {
-      return <CustomTemplate data={data} />;
-    }
-
-    // Unique layout patterns for each template
+    // All templates now use unique layout patterns
     return getUniqueTemplateLayout(templateId, data);
   };
 
@@ -1807,7 +1794,7 @@ Make it professional, accurate, and based on the conversation. If information is
                 {data.skills.slice(0, 8).map((skill, index) => (
                   <div key={index} className="flex items-center justify-between">
                     <span className="text-green-400 text-sm">{skill}</span>
-                    <span className="text-cyan-400 text-xs">████████░░ 80%</span>
+                    <span className="text-cyan-400 text-xs">█��██████░░ 80%</span>
                   </div>
                 ))}
               </div>
