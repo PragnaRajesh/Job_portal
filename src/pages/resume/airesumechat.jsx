@@ -180,7 +180,7 @@ What's a project or piece of work you're particularly proud of? Tell me about th
       return `Perfect! I'm getting a comprehensive picture of your frontend development background. You're ready for me to create a professional resume that highlights your skills and experience effectively.
 
 Your resume will showcase:
-✓ Technical skills and frameworks
+�� Technical skills and frameworks
 ✓ Project experience and achievements
 ✓ Professional growth and capabilities
 ✓ Modern, clean formatting that stands out
@@ -297,18 +297,8 @@ Respond as a helpful resume expert who genuinely cares about helping the user su
     } catch (error) {
       console.error('OpenAI API error:', error);
 
-      // Return helpful fallback responses based on conversation stage
-      const messageCount = conversationHistory.length;
-
-      if (messageCount < 2) {
-        return "I'm here to help you create an outstanding resume! While my AI service is temporarily unavailable, I can still guide you through the process. Let's start with the basics - what's your current job title or the position you're targeting?";
-      } else if (messageCount < 4) {
-        return "Great information! Now let's dig deeper into your experience. Can you tell me about your key responsibilities and any major achievements or projects you've worked on? Numbers and specific results really make a resume stand out!";
-      } else if (messageCount < 6) {
-        return "Excellent! I'm getting a good picture of your background. Let's talk about your skills and qualifications. What technical skills, certifications, or unique abilities do you have that make you stand out in your field?";
-      } else {
-        return "Perfect! I have enough information to help you create a professional resume. Based on what you've shared, I can generate a tailored resume that highlights your strengths and experience. Would you like me to create your resume now?";
-      }
+      // Use intelligent fallback that understands user context
+      return generateIntelligentFallback(userMessage, conversationHistory);
     }
   };
 
