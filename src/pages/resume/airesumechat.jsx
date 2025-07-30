@@ -942,33 +942,47 @@ Make it professional, accurate, and based on the conversation. If information is
             </div>
           </div>
           
-          <div className="p-6 grid grid-cols-2 lg:grid-cols-3 gap-4 max-h-96 overflow-y-auto">
-            {templateOptions.map((template) => (
-              <div
-                key={template.id}
-                onClick={() => handleTemplateChange(template.id)}
-                className={`relative cursor-pointer rounded-lg border-2 transition-all ${
-                  currentTemplate === template.id 
-                    ? 'border-blue-500 bg-blue-50' 
-                    : 'border-gray-200 hover:border-gray-300'
-                }`}
-              >
-                <div className="p-4">
-                  <div className={`w-full h-32 rounded-lg bg-gradient-to-br ${template.color} mb-3 flex items-center justify-center`}>
-                    <div className="text-white text-xs font-medium">Preview</div>
-                  </div>
-                  <h3 className="font-semibold text-gray-800 mb-1">{template.name}</h3>
-                  <p className="text-sm text-gray-600">{template.description}</p>
-                  {currentTemplate === template.id && (
-                    <div className="absolute top-2 right-2 bg-blue-500 text-white rounded-full p-1">
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
+          <div className="p-6">
+            <div className="mb-4">
+              <p className="text-gray-600 text-sm">Choose from {templateOptions.length} professional resume templates</p>
+            </div>
+
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 max-h-[60vh] overflow-y-auto">
+              {templateOptions.map((template) => (
+                <div
+                  key={template.id}
+                  onClick={() => handleTemplateChange(template.id)}
+                  className={`relative cursor-pointer rounded-lg border-2 transition-all hover:scale-105 ${
+                    currentTemplate === template.id
+                      ? 'border-blue-500 bg-blue-50 shadow-lg'
+                      : 'border-gray-200 hover:border-gray-300 hover:shadow-md'
+                  }`}
+                >
+                  <div className="p-3">
+                    <div className={`w-full h-24 rounded-lg bg-gradient-to-br ${template.color} mb-2 flex items-center justify-center relative overflow-hidden`}>
+                      <div className="text-white text-xs font-medium">
+                        {template.name}
+                      </div>
+                      {currentTemplate === template.id && (
+                        <div className="absolute top-1 right-1 bg-white bg-opacity-90 text-blue-600 rounded-full p-1">
+                          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                          </svg>
+                        </div>
+                      )}
                     </div>
-                  )}
+                    <h3 className="font-semibold text-gray-800 text-xs mb-1 leading-tight">{template.name}</h3>
+                    <p className="text-xs text-gray-600 leading-tight">{template.description}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+
+            <div className="mt-4 p-3 bg-gray-50 rounded-lg">
+              <p className="text-xs text-gray-600 text-center">
+                ✨ All templates are ATS-friendly and professionally designed
+              </p>
+            </div>
           </div>
         </div>
       </div>
