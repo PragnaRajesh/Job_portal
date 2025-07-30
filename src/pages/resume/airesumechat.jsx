@@ -435,7 +435,7 @@ Make it professional, accurate, and based on the conversation. If information is
       };
 
       // Add generate button after sufficient conversation
-      if (newConversationHistory.length >= 6) {
+      if (newConversationHistory.length >= 4) {
         botResponse.showGenerateButton = true;
       }
 
@@ -444,13 +444,26 @@ Make it professional, accurate, and based on the conversation. If information is
     } catch (error) {
       console.error('Error getting AI response:', error);
       setIsTyping(false);
-      
+
+      // Provide contextual fallback based on conversation progress
+      const messageCount = newConversationHistory.length;
+      let fallbackContent = "I apologize for the technical issue. Let me help you continue building your resume.";
+
+      if (messageCount < 2) {
+        fallbackContent = "Let's start building your resume! What's your current job title or the position you're targeting?";
+      } else if (messageCount < 4) {
+        fallbackContent = "Tell me more about your work experience. What are your main responsibilities and achievements in your current or most recent role?";
+      } else {
+        fallbackContent = "Great! I have enough information to help create your resume. Would you like me to generate it now?";
+      }
+
       const errorResponse = {
         id: messages.length + 2,
         type: 'bot',
-        content: "I apologize for the technical issue. Let me help you continue building your resume. What would you like to focus on next?"
+        content: fallbackContent,
+        showGenerateButton: messageCount >= 4
       };
-      
+
       setMessages(prev => [...prev, errorResponse]);
     }
   };
