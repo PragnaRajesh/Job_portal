@@ -629,10 +629,60 @@ Make it professional, accurate, and based on the conversation. If information is
         degree: 'Bachelor\'s Degree',
         school: 'University Name',
         location: 'City, State',
-        year: '2020'
+        year: '2020',
+        gpa: '3.8'
       });
     }
     return education;
+  };
+
+  const extractProjects = (text) => {
+    const projects = [];
+    if (text.toLowerCase().includes('project') || text.toLowerCase().includes('built') || text.toLowerCase().includes('developed')) {
+      projects.push({
+        id: 1,
+        name: 'Featured Project',
+        description: 'Developed a comprehensive web application using modern technologies',
+        technologies: ['React', 'Node.js', 'MongoDB'],
+        link: 'https://github.com/username/project'
+      });
+    }
+    return projects;
+  };
+
+  const extractCertifications = (text) => {
+    const certifications = [];
+    if (text.toLowerCase().includes('certified') || text.toLowerCase().includes('certification')) {
+      certifications.push({
+        id: 1,
+        name: 'Professional Certification',
+        issuer: 'Certification Authority',
+        date: '2023',
+        credential: 'CERT-123456'
+      });
+    }
+    return certifications;
+  };
+
+  const extractLanguages = (text) => {
+    const languages = [
+      { name: 'English', proficiency: 'Native' },
+      { name: 'Spanish', proficiency: 'Conversational' }
+    ];
+    return languages;
+  };
+
+  const extractAchievements = (text) => {
+    const achievements = [];
+    if (text.toLowerCase().includes('award') || text.toLowerCase().includes('achievement') || text.toLowerCase().includes('recognition')) {
+      achievements.push({
+        id: 1,
+        title: 'Professional Achievement',
+        description: 'Recognized for outstanding performance and contribution',
+        date: '2023'
+      });
+    }
+    return achievements;
   };
 
   const extractSkills = (text) => {
