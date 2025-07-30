@@ -128,7 +128,7 @@ Respond as a helpful resume expert who genuinely cares about helping the user su
         const errorData = await response.json().catch(() => ({}));
 
         if (response.status === 429) {
-          return "I'm experiencing high demand right now. Let me help you with some expert resume guidance while we wait. What specific aspect of your career would you like to highlight on your resume?";
+          return generateIntelligentFallback(userMessage, conversationHistory);
         } else if (response.status === 401) {
           return "There's an authentication issue with the AI service. Don't worry - I can still help you build an excellent resume! Tell me about your work experience and I'll guide you through creating a professional resume.";
         } else if (response.status === 403) {
