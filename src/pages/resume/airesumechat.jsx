@@ -2284,7 +2284,10 @@ ${generatedResume.skills.join(', ')}
                     <Eye className="w-4 h-4" />
                     <span>Change Template</span>
                   </button>
-                  <button className="flex items-center space-x-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
+                  <button
+                    onClick={handleDownloadResume}
+                    className="flex items-center space-x-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+                  >
                     <Download className="w-4 h-4" />
                     <span>Download PDF</span>
                   </button>
