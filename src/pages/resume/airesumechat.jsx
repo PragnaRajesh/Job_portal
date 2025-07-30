@@ -87,7 +87,7 @@ const AIResumeChat = () => {
     }
   ];
 
-  // Call OpenAI API for intelligent responses
+  // Call OpenAI API for intelligent responses with error handling
   const callOpenAI = async (userMessage, conversationContext) => {
     try {
       const response = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -101,7 +101,7 @@ const AIResumeChat = () => {
           messages: [
             {
               role: 'system',
-              content: `You are an expert AI Resume Assistant. Your job is to help users create professional, compelling resumes by gathering information about their background, skills, and career goals. 
+              content: `You are an expert AI Resume Assistant. Your job is to help users create professional, compelling resumes by gathering information about their background, skills, and career goals.
 
 Key guidelines:
 - Ask follow-up questions to gather comprehensive information
@@ -125,14 +125,36 @@ Respond as a helpful resume expert who genuinely cares about helping the user su
       });
 
       if (!response.ok) {
-        throw new Error(`OpenAI API error: ${response.status}`);
+        const errorData = await response.json().catch(() => ({}));
+
+        if (response.status === 429) {
+          return "I'm experiencing high demand right now. Let me help you with some expert resume guidance while we wait. What specific aspect of your career would you like to highlight on your resume?";
+        } else if (response.status === 401) {
+          return "There's an authentication issue with the AI service. Don't worry - I can still help you build an excellent resume! Tell me about your work experience and I'll guide you through creating a professional resume.";
+        } else if (response.status === 403) {
+          return "The AI service is temporarily unavailable. Let's continue building your resume together! What's your current job title or the position you're targeting?";
+        } else {
+          throw new Error(`OpenAI API error: ${response.status} - ${errorData.error?.message || 'Unknown error'}`);
+        }
       }
 
       const data = await response.json();
       return data.choices[0].message.content;
     } catch (error) {
       console.error('OpenAI API error:', error);
-      return `I apologize, but I'm having trouble connecting to my AI service right now. Let me help you with some standard resume guidance instead. Could you tell me more about your professional background?`;
+
+      // Return helpful fallback responses based on conversation stage
+      const messageCount = conversationHistory.length;
+
+      if (messageCount < 2) {
+        return "I'm here to help you create an outstanding resume! While my AI service is temporarily unavailable, I can still guide you through the process. Let's start with the basics - what's your current job title or the position you're targeting?";
+      } else if (messageCount < 4) {
+        return "Great information! Now let's dig deeper into your experience. Can you tell me about your key responsibilities and any major achievements or projects you've worked on? Numbers and specific results really make a resume stand out!";
+      } else if (messageCount < 6) {
+        return "Excellent! I'm getting a good picture of your background. Let's talk about your skills and qualifications. What technical skills, certifications, or unique abilities do you have that make you stand out in your field?";
+      } else {
+        return "Perfect! I have enough information to help you create a professional resume. Based on what you've shared, I can generate a tailored resume that highlights your strengths and experience. Would you like me to create your resume now?";
+      }
     }
   };
 
