@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ArrowLeft, Send, Bot, User, Download, FileText, Eye, Sparkles, MessageCircle, Edit3, Save, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 const AIResumeChat = () => {
   const navigate = useNavigate();
@@ -55,7 +57,7 @@ const AIResumeChat = () => {
 • Build Tools (Webpack, Vite, etc.)
 
 **Additional Valuable Skills:**
-• UI/UX Design principles
+��� UI/UX Design principles
 • Testing (Jest, Cypress)
 • Performance optimization
 • Accessibility (WCAG compliance)
@@ -1585,7 +1587,7 @@ ${generatedResume.skills.join(' • ')}
               <h2 className="text-2xl font-bold text-orange-600 mb-3">Contact</h2>
               <div className="space-y-2 text-gray-700">
                 <p>📧 {data.personalInfo.email}</p>
-                <p>📱 {data.personalInfo.phone}</p>
+                <p>�� {data.personalInfo.phone}</p>
                 <p>📍 {data.personalInfo.location}</p>
               </div>
             </div>
