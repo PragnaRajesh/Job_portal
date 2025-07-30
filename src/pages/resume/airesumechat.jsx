@@ -2,12 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import { ArrowLeft, Send, Bot, User, Download, FileText, Eye, Sparkles, MessageCircle, Edit3, Save, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-// Import the specific template components
-import MinimalBrownTemplate from './minimalbrowntemplate';
-import GreenIllustratedTemplate from './greenillustratedtemplate';
-import DetailedUITemplate from './detaileduitemplate';
-import CreativeGeometricTemplate from './creativegeometrictemplate';
-
 const AIResumeChat = () => {
   const navigate = useNavigate();
   const [messages, setMessages] = useState([
@@ -133,7 +127,7 @@ What's your comfort level with modern JavaScript? Have you worked with any speci
 
 **For each role, I'll help you highlight:**
 • Specific technologies and frameworks used
-�� Quantifiable achievements (performance improvements, user engagement, etc.)
+• Quantifiable achievements (performance improvements, user engagement, etc.)
 • Team collaboration and project leadership
 • Problem-solving examples
 
