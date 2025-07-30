@@ -2180,7 +2180,11 @@ ${generatedResume.skills.join(', ')}
   // Resume Preview Component
   const ResumePreview = ({ data }) => {
     // All templates now use the unified template system
-    return getTemplateComponent(currentTemplate, data);
+    return (
+      <div className="resume-preview">
+        {getTemplateComponent(currentTemplate, data)}
+      </div>
+    );
   };
 
   return (
