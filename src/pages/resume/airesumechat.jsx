@@ -1794,7 +1794,7 @@ Make it professional, accurate, and based on the conversation. If information is
                 {data.skills.slice(0, 8).map((skill, index) => (
                   <div key={index} className="flex items-center justify-between">
                     <span className="text-green-400 text-sm">{skill}</span>
-                    <span className="text-cyan-400 text-xs">█��██████░░ 80%</span>
+                    <span className="text-cyan-400 text-xs">████████░░ 80%</span>
                   </div>
                 ))}
               </div>
@@ -1973,15 +1973,8 @@ Make it professional, accurate, and based on the conversation. If information is
 
   // Resume Preview Component
   const ResumePreview = ({ data }) => {
-    // Check if we have a specific template component
-    const hasCustomTemplate = ['minimalbrowntemplate', 'greenillustratedtemplate', 'detaileduitemplate', 'creativegeometrictemplate'].includes(currentTemplate);
-
-    if (hasCustomTemplate) {
-      return getTemplateComponent(currentTemplate, data);
-    }
-
-    // Use default preview for other templates
-    return getDefaultPreview(data);
+    // All templates now use the unified template system
+    return getTemplateComponent(currentTemplate, data);
   };
 
   return (
