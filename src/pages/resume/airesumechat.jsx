@@ -180,7 +180,7 @@ What's a project or piece of work you're particularly proud of? Tell me about th
       return `Perfect! I'm getting a comprehensive picture of your frontend development background. You're ready for me to create a professional resume that highlights your skills and experience effectively.
 
 Your resume will showcase:
-�� Technical skills and frameworks
+✓ Technical skills and frameworks
 ✓ Project experience and achievements
 ✓ Professional growth and capabilities
 ✓ Modern, clean formatting that stands out
@@ -189,38 +189,120 @@ Would you like me to generate your frontend developer resume now?`;
     }
   };
 
-  // Enhanced template options with more creative designs
+  // Enhanced template options with all available designs
   const templateOptions = [
+    // AI Templates
     {
-      id: 'ai',
+      id: 'ai-1',
       name: 'AI Modern',
       description: 'Futuristic design with gradient colors',
       color: 'from-purple-500 to-blue-500'
     },
     {
-      id: 'professional',
+      id: 'ai-2',
+      name: 'AI Professional',
+      description: 'Clean AI-inspired layout',
+      color: 'from-indigo-500 to-purple-600'
+    },
+    {
+      id: 'ai-3',
+      name: 'AI Creative',
+      description: 'Advanced AI template design',
+      color: 'from-violet-500 to-purple-700'
+    },
+    // Professional Templates
+    {
+      id: 'prof-1',
       name: 'Executive Pro',
       description: 'Sophisticated business layout',
       color: 'from-blue-600 to-indigo-700'
     },
     {
-      id: 'creative',
+      id: 'prof-2',
+      name: 'Corporate Elite',
+      description: 'Premium professional design',
+      color: 'from-slate-600 to-blue-700'
+    },
+    {
+      id: 'prof-3',
+      name: 'Business Classic',
+      description: 'Traditional executive style',
+      color: 'from-gray-600 to-slate-700'
+    },
+    // Graphics Templates
+    {
+      id: 'graphic-1',
       name: 'Creative Burst',
       description: 'Vibrant design for creative professionals',
       color: 'from-pink-500 via-red-500 to-orange-500'
     },
     {
-      id: 'minimal',
+      id: 'graphic-2',
+      name: 'Visual Impact',
+      description: 'Bold graphic design template',
+      color: 'from-red-500 to-pink-600'
+    },
+    {
+      id: 'graphic-3',
+      name: 'Artistic Flow',
+      description: 'Dynamic creative layout',
+      color: 'from-orange-500 to-red-600'
+    },
+    // Basic/Modern Templates
+    {
+      id: 'basic-1',
       name: 'Clean Minimal',
       description: 'Elegant simplicity',
       color: 'from-slate-600 to-slate-800'
     },
     {
-      id: 'tech',
+      id: 'basic-2',
+      name: 'Modern Simple',
+      description: 'Contemporary clean design',
+      color: 'from-gray-500 to-slate-600'
+    },
+    {
+      id: 'basic-3',
+      name: 'Essential',
+      description: 'Streamlined professional look',
+      color: 'from-zinc-500 to-gray-600'
+    },
+    // Tech Templates
+    {
+      id: 'tech-1',
       name: 'Tech Innovator',
       description: 'Modern tech-inspired design',
       color: 'from-cyan-500 to-blue-600'
     },
+    // Business Templates
+    {
+      id: 'business-1',
+      name: 'Business Executive',
+      description: 'Premium business professional',
+      color: 'from-blue-700 to-indigo-800'
+    },
+    // Marketing Templates
+    {
+      id: 'marketing-1',
+      name: 'Marketing Creative',
+      description: 'Perfect for marketing professionals',
+      color: 'from-emerald-500 to-teal-600'
+    },
+    // Healthcare Templates
+    {
+      id: 'healthcare-1',
+      name: 'Healthcare Professional',
+      description: 'Designed for medical professionals',
+      color: 'from-teal-500 to-cyan-600'
+    },
+    // Education Templates
+    {
+      id: 'education-1',
+      name: 'Education Specialist',
+      description: 'Perfect for educators and academics',
+      color: 'from-amber-500 to-orange-600'
+    },
+    // Additional Creative Templates
     {
       id: 'nature',
       name: 'Natural Flow',
