@@ -57,7 +57,7 @@ const AIResumeChat = () => {
 • Build Tools (Webpack, Vite, etc.)
 
 **Additional Valuable Skills:**
-��� UI/UX Design principles
+• UI/UX Design principles
 • Testing (Jest, Cypress)
 • Performance optimization
 • Accessibility (WCAG compliance)
@@ -801,62 +801,150 @@ Make it professional, accurate, and based on the conversation. If information is
     setShowTemplateSelector(false);
   };
 
-  const handleDownloadResume = () => {
+  const handleDownloadResume = async () => {
     if (!generatedResume) return;
 
     try {
-      // Create a formatted text version for download (more reliable than popup)
-      const resumeText = `${generatedResume.personalInfo.name}
-${generatedResume.personalInfo.title}
-Email: ${generatedResume.personalInfo.email}
-Phone: ${generatedResume.personalInfo.phone}
-Location: ${generatedResume.personalInfo.location}
+      // Show loading notification
+      const loadingNotification = document.createElement('div');
+      loadingNotification.innerHTML = '⏳ Generating PDF...';
+      loadingNotification.className = 'fixed top-4 right-4 bg-blue-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 transition-all';
+      document.body.appendChild(loadingNotification);
 
-PROFESSIONAL SUMMARY
-${generatedResume.summary}
+      // Get the resume element
+      const resumeElement = document.querySelector('.resume-preview');
 
-PROFESSIONAL EXPERIENCE
-${generatedResume.experience.map(exp => `
-${exp.title}
-${exp.company} | ${exp.duration}
-${exp.responsibilities.map(resp => `• ${resp}`).join('\n')}
-`).join('\n')}
+      if (resumeElement) {
+        // Create a temporary container for better PDF generation
+        const tempContainer = document.createElement('div');
+        tempContainer.style.position = 'absolute';
+        tempContainer.style.left = '-9999px';
+        tempContainer.style.top = '0';
+        tempContainer.style.width = '210mm'; // A4 width
+        tempContainer.style.background = 'white';
+        tempContainer.style.padding = '20px';
+        tempContainer.innerHTML = resumeElement.innerHTML;
+        document.body.appendChild(tempContainer);
 
-EDUCATION
-${generatedResume.education.map(edu => `${edu.degree} - ${edu.school} (${edu.year})`).join('\n')}
+        // Generate canvas from the element
+        const canvas = await html2canvas(tempContainer, {
+          scale: 2,
+          useCORS: true,
+          allowTaint: true,
+          backgroundColor: '#ffffff',
+          width: 794, // A4 width in pixels at 96 DPI
+          height: 1123 // A4 height in pixels at 96 DPI
+        });
 
-SKILLS
-${generatedResume.skills.join(' • ')}
-      `.trim();
+        // Create PDF
+        const pdf = new jsPDF({
+          orientation: 'portrait',
+          unit: 'mm',
+          format: 'a4'
+        });
 
-      // Create blob and download
-      const blob = new Blob([resumeText], { type: 'text/plain' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `${generatedResume.personalInfo.name.replace(/\s+/g, '_')}_Resume.txt`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
+        const imgData = canvas.toDataURL('image/png');
+        const imgWidth = 190; // A4 width minus margins
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-      // Show success feedback
-      const notification = document.createElement('div');
-      notification.innerHTML = '✅ Resume downloaded successfully!';
-      notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 transition-all';
-      document.body.appendChild(notification);
-      setTimeout(() => {
-        if (notification.parentNode) {
-          notification.parentNode.removeChild(notification);
-        }
-      }, 3000);
+        pdf.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
+
+        // Download the PDF
+        pdf.save(`${generatedResume.personalInfo.name.replace(/\s+/g, '_')}_Resume.pdf`);
+
+        // Clean up
+        document.body.removeChild(tempContainer);
+        document.body.removeChild(loadingNotification);
+
+        // Show success notification
+        const notification = document.createElement('div');
+        notification.innerHTML = '✅ PDF Resume downloaded successfully!';
+        notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 transition-all';
+        document.body.appendChild(notification);
+        setTimeout(() => {
+          if (notification.parentNode) {
+            notification.parentNode.removeChild(notification);
+          }
+        }, 3000);
+
+      } else {
+        // Fallback: Create a text-based PDF
+        document.body.removeChild(loadingNotification);
+
+        const pdf = new jsPDF();
+
+        // Add content to PDF
+        pdf.setFontSize(16);
+        pdf.text(generatedResume.personalInfo.name, 20, 20);
+
+        pdf.setFontSize(12);
+        pdf.text(generatedResume.personalInfo.title, 20, 30);
+        pdf.text(`Email: ${generatedResume.personalInfo.email}`, 20, 40);
+        pdf.text(`Phone: ${generatedResume.personalInfo.phone}`, 20, 50);
+        pdf.text(`Location: ${generatedResume.personalInfo.location}`, 20, 60);
+
+        pdf.setFontSize(14);
+        pdf.text('PROFESSIONAL SUMMARY', 20, 80);
+        pdf.setFontSize(10);
+        const summaryLines = pdf.splitTextToSize(generatedResume.summary, 170);
+        pdf.text(summaryLines, 20, 90);
+
+        let yPos = 90 + (summaryLines.length * 5) + 10;
+
+        pdf.setFontSize(14);
+        pdf.text('EXPERIENCE', 20, yPos);
+        yPos += 10;
+
+        generatedResume.experience.forEach(exp => {
+          pdf.setFontSize(12);
+          pdf.text(`${exp.title} at ${exp.company}`, 20, yPos);
+          yPos += 7;
+          pdf.setFontSize(10);
+          pdf.text(exp.duration, 20, yPos);
+          yPos += 10;
+
+          exp.responsibilities.forEach(resp => {
+            const respLines = pdf.splitTextToSize(`• ${resp}`, 170);
+            pdf.text(respLines, 25, yPos);
+            yPos += respLines.length * 5;
+          });
+          yPos += 5;
+        });
+
+        pdf.setFontSize(14);
+        pdf.text('SKILLS', 20, yPos);
+        yPos += 10;
+        pdf.setFontSize(10);
+        const skillsText = generatedResume.skills.join(', ');
+        const skillsLines = pdf.splitTextToSize(skillsText, 170);
+        pdf.text(skillsLines, 20, yPos);
+
+        pdf.save(`${generatedResume.personalInfo.name.replace(/\s+/g, '_')}_Resume.pdf`);
+
+        // Show success notification
+        const notification = document.createElement('div');
+        notification.innerHTML = '✅ PDF Resume downloaded successfully!';
+        notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 transition-all';
+        document.body.appendChild(notification);
+        setTimeout(() => {
+          if (notification.parentNode) {
+            notification.parentNode.removeChild(notification);
+          }
+        }, 3000);
+      }
 
     } catch (error) {
       console.error('Error downloading resume:', error);
 
+      // Remove loading notification if it exists
+      const loadingNotification = document.querySelector('.fixed.top-4.right-4.bg-blue-500');
+      if (loadingNotification) {
+        document.body.removeChild(loadingNotification);
+      }
+
       // Show error feedback
       const notification = document.createElement('div');
-      notification.innerHTML = '❌ Error downloading resume. Please try again.';
+      notification.innerHTML = '❌ Error generating PDF. Please try again.';
       notification.className = 'fixed top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 transition-all';
       document.body.appendChild(notification);
       setTimeout(() => {
@@ -1587,7 +1675,7 @@ ${generatedResume.skills.join(' • ')}
               <h2 className="text-2xl font-bold text-orange-600 mb-3">Contact</h2>
               <div className="space-y-2 text-gray-700">
                 <p>📧 {data.personalInfo.email}</p>
-                <p>�� {data.personalInfo.phone}</p>
+                <p>📱 {data.personalInfo.phone}</p>
                 <p>📍 {data.personalInfo.location}</p>
               </div>
             </div>
