@@ -320,6 +320,31 @@ Would you like me to generate your frontend developer resume now?`;
       name: 'Ocean Depths',
       description: 'Deep blue oceanic theme',
       color: 'from-blue-800 via-blue-600 to-cyan-400'
+    },
+    // New requested templates
+    {
+      id: 'minimal-brown',
+      name: 'Minimal Brown',
+      description: 'Elegant brown-toned minimalist design',
+      color: 'from-amber-700 via-orange-800 to-yellow-700'
+    },
+    {
+      id: 'green-illustrated',
+      name: 'Green Illustrated',
+      description: 'Nature-inspired green design with illustrations',
+      color: 'from-emerald-600 via-green-500 to-lime-600'
+    },
+    {
+      id: 'detailed-ui',
+      name: 'Detailed UI',
+      description: 'Modern UI-focused template with detailed sections',
+      color: 'from-slate-700 via-gray-600 to-zinc-700'
+    },
+    {
+      id: 'creative-geometric',
+      name: 'Creative Geometric',
+      description: 'Bold geometric patterns and creative layout',
+      color: 'from-purple-600 via-pink-500 to-rose-600'
     }
   ];
 
