@@ -35,6 +35,160 @@ const AIResumeChat = () => {
     scrollToBottom();
   }, [messages]);
 
+  // Intelligent fallback responses when API is unavailable
+  const generateIntelligentFallback = (userMessage, history) => {
+    const message = userMessage.toLowerCase();
+    const messageCount = history.length;
+
+    // Frontend Developer specific responses
+    if (message.includes('frontend') || message.includes('front end') || message.includes('front-end')) {
+      if (message.includes('skills')) {
+        return `Excellent! Frontend developers need a strong skill set. Here are the key skills I'd recommend highlighting on your resume:
+
+**Technical Skills:**
+• JavaScript (ES6+), TypeScript
+• React, Vue.js, or Angular
+• HTML5, CSS3, SASS/SCSS
+• Responsive Design & Mobile-First Development
+• Git/Version Control
+• REST APIs & GraphQL
+• Build Tools (Webpack, Vite, etc.)
+
+**Additional Valuable Skills:**
+• UI/UX Design principles
+• Testing (Jest, Cypress)
+• Performance optimization
+• Accessibility (WCAG compliance)
+
+What's your experience level with these technologies? And tell me about any projects you've worked on!`;
+      } else if (messageCount < 2) {
+        return `Perfect! Frontend development is an exciting field. To create a standout resume for frontend developer positions, I'll need to know more about your background:
+
+• How many years of frontend development experience do you have?
+• What frameworks and technologies are you most comfortable with? (React, Vue, Angular, etc.)
+• Have you worked on any notable projects or at any companies?
+• Are you looking for junior, mid-level, or senior positions?
+
+Let's start with your experience level - are you a beginner, or do you have professional experience?`;
+      } else {
+        return `Great choice focusing on frontend development! Based on what you've shared, I can help you create a compelling resume that showcases your technical skills and projects effectively.
+
+For frontend roles, employers particularly look for:
+• Strong portfolio of projects
+• Clean, efficient code
+• Understanding of user experience
+• Problem-solving abilities
+
+Tell me about a project you're most proud of - what technologies did you use and what challenges did you overcome?`;
+      }
+    }
+
+    // React specific responses
+    if (message.includes('react')) {
+      return `React is definitely in high demand! For a React developer resume, you'll want to highlight:
+
+**Core React Skills:**
+• React Hooks (useState, useEffect, useContext, etc.)
+• Component lifecycle and state management
+• Redux or Context API for state management
+• React Router for navigation
+• JSX and component composition
+
+**Related Technologies:**
+• Next.js for full-stack React applications
+• Testing with React Testing Library
+• Styling (CSS-in-JS, Styled Components, Tailwind)
+
+What type of React projects have you built? Any experience with Next.js or state management libraries?`;
+    }
+
+    // JavaScript specific responses
+    if (message.includes('javascript') || message.includes('js')) {
+      return `JavaScript is the foundation of frontend development! Here's what I'd recommend highlighting:
+
+**Core JavaScript:**
+• ES6+ features (arrow functions, destructuring, async/await)
+• DOM manipulation and event handling
+• Asynchronous programming (Promises, fetch API)
+• Object-oriented and functional programming concepts
+
+**Advanced Concepts:**
+• Closures and scope
+• Prototypes and inheritance
+• Error handling
+• Performance optimization
+
+What's your comfort level with modern JavaScript? Have you worked with any specific frameworks or built any interesting projects?`;
+    }
+
+    // Experience related responses
+    if (message.includes('experience') || message.includes('work') || message.includes('job')) {
+      return `Excellent! Work experience is crucial for your resume. Let's structure this effectively:
+
+**For each role, I'll help you highlight:**
+• Specific technologies and frameworks used
+• Quantifiable achievements (performance improvements, user engagement, etc.)
+• Team collaboration and project leadership
+• Problem-solving examples
+
+Tell me about your most recent frontend development role:
+• What was your job title?
+• What company or projects did you work on?
+• What technologies did you primarily use?
+• What were your main achievements or contributions?`;
+    }
+
+    // Project related responses
+    if (message.includes('project') || message.includes('portfolio')) {
+      return `Projects are incredibly important for frontend developers! They demonstrate your practical skills better than anything else.
+
+**For your resume, let's highlight projects that show:**
+• Technical proficiency with modern frameworks
+• User interface design skills
+• Problem-solving abilities
+• End-to-end development experience
+
+Tell me about your best project:
+• What does it do and who is it for?
+• What technologies did you use to build it?
+• What challenges did you face and how did you solve them?
+• Is it deployed anywhere I could reference?
+
+Even personal projects count - they show initiative and passion!`;
+    }
+
+    // Generic encouraging responses based on conversation stage
+    if (messageCount < 2) {
+      return `I'm here to help you create an outstanding frontend developer resume! Even though my AI service is temporarily at capacity, I have extensive knowledge about what makes frontend resumes stand out.
+
+Let's start with the basics:
+• What's your experience level with frontend development?
+• Are you focusing on any specific technologies? (React, Vue, Angular, etc.)
+• Are you looking for your first frontend role, or do you have some experience?
+
+The more specific you can be, the better I can tailor your resume!`;
+    } else if (messageCount < 4) {
+      return `Great information! Let's dive deeper into your technical background. Frontend employers love to see:
+
+• Specific projects you've built (even personal ones!)
+• Technologies you're comfortable with
+• Any challenges you've overcome
+• Measurable impact of your work
+
+What's a project or piece of work you're particularly proud of? Tell me about the technical details and what made it successful!`;
+    } else {
+      return `Perfect! I'm getting a comprehensive picture of your frontend development background. You're ready for me to create a professional resume that highlights your skills and experience effectively.
+
+Your resume will showcase:
+✓ Technical skills and frameworks
+✓ Project experience and achievements
+✓ Professional growth and capabilities
+✓ Modern, clean formatting that stands out
+
+Would you like me to generate your frontend developer resume now?`;
+    }
+  };
+
   // Enhanced template options with more creative designs
   const templateOptions = [
     {
