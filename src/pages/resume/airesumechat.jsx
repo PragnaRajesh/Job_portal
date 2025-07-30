@@ -791,8 +791,62 @@ Make it professional, accurate, and based on the conversation. If information is
   const handleDownloadResume = () => {
     if (!generatedResume) return;
 
-    // Create a simple text version for download
-    const resumeText = `
+    try {
+      // Get the resume element for printing/downloading
+      const resumeElement = document.querySelector('.resume-preview');
+
+      if (resumeElement) {
+        // Use browser's print functionality to save as PDF
+        const printWindow = window.open('', '_blank');
+        const resumeHTML = resumeElement.outerHTML;
+
+        printWindow.document.write(`
+          <html>
+            <head>
+              <title>${generatedResume.personalInfo.name} - Resume</title>
+              <style>
+                * { margin: 0; padding: 0; box-sizing: border-box; }
+                body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+                .resume-preview { width: 210mm; max-width: none; margin: 0; }
+                @media print {
+                  body { margin: 0; }
+                  .resume-preview { box-shadow: none !important; }
+                }
+                /* Copy existing Tailwind styles inline */
+                .bg-white { background-color: white; }
+                .text-gray-800 { color: #1f2937; }
+                .text-gray-700 { color: #374151; }
+                .text-gray-600 { color: #4b5563; }
+                .font-bold { font-weight: 700; }
+                .text-xl { font-size: 1.25rem; }
+                .text-2xl { font-size: 1.5rem; }
+                .text-3xl { font-size: 1.875rem; }
+                .p-8 { padding: 2rem; }
+                .mb-4 { margin-bottom: 1rem; }
+                .mb-6 { margin-bottom: 1.5rem; }
+                .space-y-4 > * + * { margin-top: 1rem; }
+                .grid { display: grid; }
+                .grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+                .col-span-2 { grid-column: span 2; }
+                .gap-8 { gap: 2rem; }
+              </style>
+            </head>
+            <body>
+              ${resumeHTML}
+            </body>
+          </html>
+        `);
+
+        printWindow.document.close();
+        printWindow.focus();
+
+        setTimeout(() => {
+          printWindow.print();
+          printWindow.close();
+        }, 250);
+      } else {
+        // Fallback: Create a simple text version for download
+        const resumeText = `
 ${generatedResume.personalInfo.name}
 ${generatedResume.personalInfo.title}
 ${generatedResume.personalInfo.email} | ${generatedResume.personalInfo.phone} | ${generatedResume.personalInfo.location}
@@ -813,18 +867,22 @@ ${edu.degree} - ${edu.school} (${edu.year})
 
 SKILLS
 ${generatedResume.skills.join(', ')}
-    `.trim();
+        `.trim();
 
-    // Create blob and download
-    const blob = new Blob([resumeText], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `${generatedResume.personalInfo.name.replace(/\s+/g, '_')}_Resume.txt`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+        const blob = new Blob([resumeText], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${generatedResume.personalInfo.name.replace(/\s+/g, '_')}_Resume.txt`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
+    } catch (error) {
+      console.error('Error downloading resume:', error);
+      alert('Error downloading resume. Please try again.');
+    }
   };
 
   // Edit Modal Component
