@@ -517,7 +517,8 @@ Make it professional, accurate, and based on the conversation. If information is
         title: extractJobTitle(conversationText) || 'Professional',
         email: 'professional.email@example.com',
         phone: '+1 (555) 123-4567',
-        location: extractLocation(conversationText) || 'City, State'
+        location: extractLocation(conversationText) || 'City, State',
+        profilePhoto: null
       },
       summary: generateProfessionalSummary(conversationText),
       experience: extractExperience(conversationText),
@@ -1082,7 +1083,7 @@ Make it professional, accurate, and based on the conversation. If information is
         <p className="text-xl opacity-90">{data.personalInfo.title}</p>
         <div className="flex gap-4 mt-4 text-sm">
           <span>📧 {data.personalInfo.email}</span>
-          <span>📱 {data.personalInfo.phone}</span>
+          <span>��� {data.personalInfo.phone}</span>
         </div>
       </div>
       <div className="p-6 grid grid-cols-3 gap-6">
