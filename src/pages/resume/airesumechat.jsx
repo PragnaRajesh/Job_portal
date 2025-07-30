@@ -160,9 +160,14 @@ Respond as a helpful resume expert who genuinely cares about helping the user su
 
   // Extract structured data from conversation for resume generation
   const extractUserInputs = async () => {
-    const conversationText = conversationHistory.map(msg => 
+    const conversationText = conversationHistory.map(msg =>
       `${msg.role === 'user' ? 'User: ' : 'Assistant: '}${msg.content}`
     ).join('\n');
+
+    // If no conversation history, use fallback immediately
+    if (conversationHistory.length === 0) {
+      return generateFallbackResume('No conversation data available');
+    }
 
     try {
       const response = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -225,12 +230,28 @@ Make it professional, accurate, and based on the conversation. If information is
         })
       });
 
+      if (!response.ok) {
+        console.log(`API error ${response.status}, using fallback extraction`);
+        return generateFallbackResume(conversationText);
+      }
+
       const data = await response.json();
-      const extractedData = JSON.parse(data.choices[0].message.content);
-      return extractedData;
+
+      if (!data.choices || !data.choices[0] || !data.choices[0].message) {
+        console.log('Invalid API response structure, using fallback');
+        return generateFallbackResume(conversationText);
+      }
+
+      try {
+        const extractedData = JSON.parse(data.choices[0].message.content);
+        return extractedData;
+      } catch (parseError) {
+        console.log('Failed to parse AI response as JSON, using fallback');
+        return generateFallbackResume(conversationText);
+      }
     } catch (error) {
       console.error('Error extracting resume data:', error);
-      // Fallback to basic extraction
+      // Always fallback to basic extraction when API fails
       return generateFallbackResume(conversationText);
     }
   };
