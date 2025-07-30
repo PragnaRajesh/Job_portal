@@ -8,7 +8,7 @@ const AIResumeChat = () => {
     {
       id: 1,
       type: 'bot',
-      content: "Hi! I'm your AI Resume Assistant. I'll help you create a professional resume tailored to your needs. To get started, please tell me about:",
+      content: "Hi! I'm your AI Resume Assistant powered by ChatGPT. I'll help you create a professional resume tailored to your needs. To get started, please tell me about:",
       suggestions: [
         "Your current job title or target position",
         "Your industry and years of experience", 
@@ -24,6 +24,7 @@ const AIResumeChat = () => {
   const [editingSection, setEditingSection] = useState(null);
   const [currentTemplate, setCurrentTemplate] = useState('ai');
   const [showTemplateSelector, setShowTemplateSelector] = useState(false);
+  const [conversationHistory, setConversationHistory] = useState([]);
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -86,28 +87,152 @@ const AIResumeChat = () => {
     }
   ];
 
-  // Extract user inputs from conversation
-  const extractUserInputs = () => {
-    const userMessages = messages.filter(msg => msg.type === 'user').map(msg => msg.content);
-    const conversationText = userMessages.join(' ');
-    
-    const extractedData = {
-      personalInfo: {
-        name: extractName(conversationText) || 'Your Name',
-        title: extractJobTitle(conversationText) || 'Professional',
-        email: 'your.email@example.com',
-        phone: '+1 (555) 123-4567',
-        location: extractLocation(conversationText) || 'Your City, State'
-      },
-      experience: extractExperience(conversationText),
-      education: extractEducation(conversationText),
-      skills: extractSkills(conversationText),
-      summary: generateProfessionalSummary(conversationText)
-    };
-    
-    return extractedData;
+  // Call OpenAI API for intelligent responses
+  const callOpenAI = async (userMessage, conversationContext) => {
+    try {
+      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${import.meta.env.VITE_OPENAI_API_KEY || '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'}`
+        },
+        body: JSON.stringify({
+          model: 'gpt-3.5-turbo',
+          messages: [
+            {
+              role: 'system',
+              content: `You are an expert AI Resume Assistant. Your job is to help users create professional, compelling resumes by gathering information about their background, skills, and career goals. 
+
+Key guidelines:
+- Ask follow-up questions to gather comprehensive information
+- Provide specific, actionable advice for resume improvement
+- Be encouraging and professional
+- Help extract key achievements and quantifiable results
+- Suggest relevant skills and experiences to highlight
+- Keep responses conversational but focused on resume building
+- When you have enough information (after 3-4 exchanges), offer to generate their resume
+
+Current conversation context: ${conversationContext}
+
+Respond as a helpful resume expert who genuinely cares about helping the user succeed.`
+            },
+            ...conversationHistory,
+            { role: 'user', content: userMessage }
+          ],
+          max_tokens: 500,
+          temperature: 0.7,
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error(`OpenAI API error: ${response.status}`);
+      }
+
+      const data = await response.json();
+      return data.choices[0].message.content;
+    } catch (error) {
+      console.error('OpenAI API error:', error);
+      return `I apologize, but I'm having trouble connecting to my AI service right now. Let me help you with some standard resume guidance instead. Could you tell me more about your professional background?`;
+    }
   };
 
+  // Extract structured data from conversation for resume generation
+  const extractUserInputs = async () => {
+    const conversationText = conversationHistory.map(msg => 
+      `${msg.role === 'user' ? 'User: ' : 'Assistant: '}${msg.content}`
+    ).join('\n');
+
+    try {
+      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${import.meta.env.VITE_OPENAI_API_KEY || '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'}`
+        },
+        body: JSON.stringify({
+          model: 'gpt-3.5-turbo',
+          messages: [
+            {
+              role: 'system',
+              content: `You are a resume data extraction expert. Based on the conversation below, extract structured resume information and return it as a JSON object with this exact format:
+
+{
+  "personalInfo": {
+    "name": "extracted or 'John Doe'",
+    "title": "extracted job title or 'Professional'",
+    "email": "generated professional email",
+    "phone": "+1 (555) 123-4567",
+    "location": "extracted or 'City, State'"
+  },
+  "summary": "A professional 2-3 sentence summary highlighting key qualifications",
+  "experience": [
+    {
+      "id": 1,
+      "title": "Job Title",
+      "company": "Company Name",
+      "location": "City, State",
+      "duration": "Year - Present",
+      "responsibilities": [
+        "Achievement-focused bullet point with metrics if possible",
+        "Another responsibility with impact",
+        "Third key responsibility"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "id": 1,
+      "degree": "Degree Type",
+      "school": "School Name",
+      "location": "City, State",
+      "year": "Graduation Year"
+    }
+  ],
+  "skills": ["Skill1", "Skill2", "Skill3", "Skill4", "Skill5", "Skill6"]
+}
+
+Make it professional, accurate, and based on the conversation. If information is missing, create reasonable professional examples based on what was discussed.`
+            },
+            {
+              role: 'user',
+              content: `Extract resume data from this conversation:\n\n${conversationText}`
+            }
+          ],
+          max_tokens: 1000,
+          temperature: 0.3,
+        })
+      });
+
+      const data = await response.json();
+      const extractedData = JSON.parse(data.choices[0].message.content);
+      return extractedData;
+    } catch (error) {
+      console.error('Error extracting resume data:', error);
+      // Fallback to basic extraction
+      return generateFallbackResume(conversationText);
+    }
+  };
+
+  // Fallback resume generation if API fails
+  const generateFallbackResume = (conversationText) => {
+    const text = conversationText.toLowerCase();
+    
+    return {
+      personalInfo: {
+        name: extractName(conversationText) || 'Professional Name',
+        title: extractJobTitle(conversationText) || 'Professional',
+        email: 'professional.email@example.com',
+        phone: '+1 (555) 123-4567',
+        location: extractLocation(conversationText) || 'City, State'
+      },
+      summary: generateProfessionalSummary(conversationText),
+      experience: extractExperience(conversationText),
+      education: extractEducation(conversationText),
+      skills: extractSkills(conversationText)
+    };
+  };
+
+  // Helper functions for fallback extraction
   const extractName = (text) => {
     const namePatterns = [
       /my name is ([a-zA-Z\s]+)/i,
@@ -150,128 +275,45 @@ const AIResumeChat = () => {
 
   const extractExperience = (text) => {
     const experiences = [];
-    const standardizedText = standardizeUserInput(text);
-
-    // Generate creative company names based on industry
-    const generateCompanyName = (industry) => {
-      const techCompanies = ['InnovaTech Solutions', 'Digital Dynamics Corp', 'NextGen Technologies', 'CodeCraft Industries', 'TechVision Labs'];
-      const marketingCompanies = ['BrandSphere Agency', 'Creative Catalyst Group', 'MarketMind Solutions', 'Engagement Edge', 'BrandVision Collective'];
-      const designCompanies = ['DesignForge Studio', 'Creative Canvas Co.', 'Visual Impact Design', 'Artisan Creative Group', 'Design Nexus'];
-      const generalCompanies = ['Excellence Enterprises', 'Innovation Hub', 'Strategic Solutions Inc.', 'Growth Partners', 'Visionary Corp'];
-
-      if (industry === 'tech') return techCompanies[Math.floor(Math.random() * techCompanies.length)];
-      if (industry === 'marketing') return marketingCompanies[Math.floor(Math.random() * marketingCompanies.length)];
-      if (industry === 'design') return designCompanies[Math.floor(Math.random() * designCompanies.length)];
-      return generalCompanies[Math.floor(Math.random() * generalCompanies.length)];
-    };
-
+    
     if (text.toLowerCase().includes('software') || text.toLowerCase().includes('developer')) {
-      const techResponsibilities = [
-        [
-          'Architected and developed scalable web applications using React, Node.js, and cloud technologies',
-          'Led cross-functional teams in agile development cycles, delivering projects 30% ahead of schedule',
-          'Implemented automated testing and CI/CD pipelines, reducing deployment errors by 85%',
-          'Mentored junior developers and conducted code reviews to maintain high-quality standards'
-        ],
-        [
-          'Designed and built microservices architecture serving over 1 million active users',
-          'Optimized database performance and queries, improving application response time by 60%',
-          'Collaborated with UX/UI teams to create intuitive user interfaces and seamless user experiences',
-          'Integrated third-party APIs and payment systems, enhancing platform functionality'
-        ],
-        [
-          'Developed innovative mobile and web applications using cutting-edge technologies',
-          'Implemented machine learning algorithms to enhance user personalization and engagement',
-          'Established coding standards and best practices across development teams',
-          'Participated in technical architecture decisions and technology stack evaluations'
-        ]
-      ];
-
       experiences.push({
         id: 1,
-        title: extractJobTitle(text) || 'Senior Software Engineer',
-        company: generateCompanyName('tech'),
+        title: extractJobTitle(text) || 'Software Engineer',
+        company: 'Technology Company',
         location: extractLocation(text) || 'San Francisco, CA',
         duration: '2021 - Present',
-        responsibilities: techResponsibilities[Math.floor(Math.random() * techResponsibilities.length)]
+        responsibilities: [
+          'Developed and maintained scalable web applications using modern frameworks',
+          'Collaborated with cross-functional teams to deliver high-quality software solutions',
+          'Implemented best practices for code quality, testing, and deployment'
+        ]
       });
     } else if (text.toLowerCase().includes('marketing')) {
-      const marketingResponsibilities = [
-        [
-          'Developed and executed integrated marketing campaigns that increased brand awareness by 45%',
-          'Managed multi-platform social media strategies, growing follower engagement by 200%',
-          'Analyzed consumer behavior data to optimize marketing funnels and improve conversion rates',
-          'Collaborated with creative teams to produce compelling content across digital channels'
-        ],
-        [
-          'Led digital marketing initiatives resulting in 60% increase in qualified leads',
-          'Orchestrated influencer partnerships and brand collaborations to expand market reach',
-          'Implemented marketing automation workflows that improved customer retention by 35%',
-          'Conducted A/B testing on campaigns to maximize ROI and optimize performance metrics'
-        ],
-        [
-          'Crafted compelling brand narratives and messaging strategies for diverse target audiences',
-          'Managed PPC campaigns across Google Ads and social platforms with $500K+ budget',
-          'Developed content marketing strategies that drove 80% increase in organic website traffic',
-          'Built and maintained relationships with media contacts and industry influencers'
-        ]
-      ];
-
       experiences.push({
         id: 1,
-        title: extractJobTitle(text) || 'Digital Marketing Manager',
-        company: generateCompanyName('marketing'),
+        title: extractJobTitle(text) || 'Marketing Professional',
+        company: 'Marketing Agency',
         location: extractLocation(text) || 'New York, NY',
         duration: '2021 - Present',
-        responsibilities: marketingResponsibilities[Math.floor(Math.random() * marketingResponsibilities.length)]
-      });
-    } else if (text.toLowerCase().includes('design')) {
-      const designResponsibilities = [
-        [
-          'Created visually stunning user interfaces and experiences for web and mobile applications',
-          'Conducted user research and usability testing to inform design decisions and improve UX',
-          'Collaborated with development teams to ensure design feasibility and pixel-perfect implementation',
-          'Developed comprehensive design systems and style guides for brand consistency'
-        ],
-        [
-          'Designed innovative marketing materials and brand assets that increased customer engagement',
-          'Led creative brainstorming sessions and presented design concepts to stakeholders',
-          'Utilized Adobe Creative Suite and Figma to create high-fidelity prototypes and mockups',
-          'Maintained brand guidelines while adapting designs for various platforms and mediums'
+        responsibilities: [
+          'Developed and executed integrated marketing campaigns across multiple channels',
+          'Analyzed performance metrics to optimize campaign effectiveness and ROI',
+          'Collaborated with creative teams to produce compelling marketing content'
         ]
-      ];
-
-      experiences.push({
-        id: 1,
-        title: extractJobTitle(text) || 'UX/UI Designer',
-        company: generateCompanyName('design'),
-        location: extractLocation(text) || 'Los Angeles, CA',
-        duration: '2021 - Present',
-        responsibilities: designResponsibilities[Math.floor(Math.random() * designResponsibilities.length)]
       });
     } else {
-      const genericResponsibilities = [
-        [
-          'Managed strategic initiatives and cross-departmental projects with measurable impact',
-          'Developed and implemented process improvements that increased efficiency by 25%',
-          'Led team collaboration efforts and facilitated effective communication across departments',
-          'Analyzed performance metrics and provided actionable insights for continuous improvement'
-        ],
-        [
-          'Coordinated complex projects from conception to completion within budget and timeline',
-          'Built and maintained relationships with key stakeholders and business partners',
-          'Implemented innovative solutions to address operational challenges and drive growth',
-          'Provided mentorship and guidance to team members for professional development'
-        ]
-      ];
-
       experiences.push({
         id: 1,
-        title: extractJobTitle(text) || 'Project Manager',
-        company: generateCompanyName('general'),
+        title: extractJobTitle(text) || 'Professional',
+        company: 'Professional Services Company',
         location: extractLocation(text) || 'Chicago, IL',
         duration: '2021 - Present',
-        responsibilities: genericResponsibilities[Math.floor(Math.random() * genericResponsibilities.length)]
+        responsibilities: [
+          'Managed key projects and initiatives to drive business objectives',
+          'Collaborated effectively with stakeholders across multiple departments',
+          'Delivered consistent results while maintaining high quality standards'
+        ]
       });
     }
 
@@ -293,121 +335,25 @@ const AIResumeChat = () => {
   };
 
   const extractSkills = (text) => {
-    const standardizedText = standardizeUserInput(text);
-
-    // Comprehensive skill sets by category
-    const techSkillSets = [
-      ['JavaScript', 'React', 'Node.js', 'TypeScript', 'Python', 'AWS', 'Docker', 'MongoDB', 'REST APIs', 'GraphQL', 'Git', 'Agile/Scrum'],
-      ['React', 'Vue.js', 'Angular', 'Express.js', 'PostgreSQL', 'Redis', 'Kubernetes', 'CI/CD', 'Jest', 'Webpack', 'Redux', 'Material-UI'],
-      ['Python', 'Django', 'Flask', 'PostgreSQL', 'Redis', 'Celery', 'Docker', 'AWS', 'TensorFlow', 'Machine Learning', 'Data Analysis', 'API Development'],
-      ['JavaScript', 'React Native', 'Flutter', 'Swift', 'Kotlin', 'Firebase', 'MongoDB', 'Socket.io', 'Push Notifications', 'App Store Optimization', 'Mobile UX/UI']
-    ];
-
-    const marketingSkillSets = [
-      ['Digital Marketing', 'Google Analytics', 'SEO/SEM', 'Social Media Marketing', 'Content Strategy', 'Email Marketing', 'PPC Advertising', 'Marketing Automation', 'A/B Testing', 'Conversion Optimization'],
-      ['Brand Management', 'Influencer Marketing', 'Community Management', 'Content Creation', 'Adobe Creative Suite', 'Video Marketing', 'Podcast Marketing', 'Growth Hacking', 'Customer Segmentation'],
-      ['Performance Marketing', 'Facebook Ads', 'Google Ads', 'LinkedIn Marketing', 'Marketing Analytics', 'CRM Management', 'Lead Generation', 'Attribution Modeling', 'ROI Analysis', 'Market Research'],
-      ['Content Marketing', 'Copywriting', 'Blog Writing', 'Social Media Content', 'Video Production', 'Graphic Design', 'Brand Storytelling', 'Editorial Calendar', 'Content Distribution']
-    ];
-
-    const designSkillSets = [
-      ['UI/UX Design', 'Figma', 'Adobe Creative Suite', 'Sketch', 'Prototyping', 'User Research', 'Wireframing', 'Design Systems', 'Accessibility Design', 'Mobile Design'],
-      ['Graphic Design', 'Brand Identity', 'Typography', 'Color Theory', 'Layout Design', 'Print Design', 'Packaging Design', 'Logo Design', 'Adobe Illustrator', 'Adobe Photoshop'],
-      ['Web Design', 'Responsive Design', 'HTML/CSS', 'JavaScript', 'WordPress', 'User Experience', 'Information Architecture', 'Interaction Design', 'Visual Design', 'Design Thinking']
-    ];
-
-    const projectManagementSkillSets = [
-      ['Project Management', 'Agile/Scrum', 'Stakeholder Management', 'Risk Management', 'Budget Planning', 'Team Leadership', 'Process Improvement', 'Quality Assurance', 'Strategic Planning'],
-      ['Business Analysis', 'Requirements Gathering', 'Data Analysis', 'Process Optimization', 'Change Management', 'Cross-functional Collaboration', 'Vendor Management', 'Performance Metrics'],
-      ['Operations Management', 'Supply Chain', 'Logistics', 'Inventory Management', 'Cost Optimization', 'Quality Control', 'Team Development', 'Training & Development', 'Safety Management']
-    ];
-
-    const salesSkillSets = [
-      ['Sales Strategy', 'Lead Generation', 'Customer Relationship Management', 'Negotiation', 'B2B Sales', 'B2C Sales', 'CRM Software', 'Sales Analytics', 'Pipeline Management', 'Closing Techniques'],
-      ['Account Management', 'Business Development', 'Prospecting', 'Cold Calling', 'Proposal Writing', 'Contract Negotiation', 'Territory Management', 'Customer Retention', 'Upselling/Cross-selling']
-    ];
-
-    // Detect industry and return appropriate skill set
-    if (text.toLowerCase().includes('software') || text.toLowerCase().includes('developer') || text.toLowerCase().includes('engineer')) {
-      return techSkillSets[Math.floor(Math.random() * techSkillSets.length)];
-    } else if (text.toLowerCase().includes('marketing') || text.toLowerCase().includes('digital marketing')) {
-      return marketingSkillSets[Math.floor(Math.random() * marketingSkillSets.length)];
-    } else if (text.toLowerCase().includes('design') || text.toLowerCase().includes('ui') || text.toLowerCase().includes('ux')) {
-      return designSkillSets[Math.floor(Math.random() * designSkillSets.length)];
-    } else if (text.toLowerCase().includes('project') || text.toLowerCase().includes('manager') || text.toLowerCase().includes('management')) {
-      return projectManagementSkillSets[Math.floor(Math.random() * projectManagementSkillSets.length)];
-    } else if (text.toLowerCase().includes('sales') || text.toLowerCase().includes('business development')) {
-      return salesSkillSets[Math.floor(Math.random() * salesSkillSets.length)];
+    if (text.toLowerCase().includes('software') || text.toLowerCase().includes('developer')) {
+      return ['JavaScript', 'React', 'Node.js', 'Python', 'Git', 'Problem Solving', 'Team Collaboration', 'Agile Development'];
+    } else if (text.toLowerCase().includes('marketing')) {
+      return ['Digital Marketing', 'Social Media', 'Analytics', 'Content Creation', 'SEO', 'Campaign Management', 'Data Analysis', 'Brand Strategy'];
     }
-
-    // Default professional skills
-    return ['Strategic Planning', 'Leadership', 'Communication', 'Problem Solving', 'Team Collaboration', 'Project Management', 'Data Analysis', 'Process Improvement'];
-  };
-
-  // AI function to standardize and professionalize user input
-  const standardizeUserInput = (userText) => {
-    // Clean and standardize common phrases
-    let text = userText.toLowerCase();
-
-    // Replace casual phrases with professional ones
-    const replacements = {
-      'i work at': 'currently employed at',
-      'i worked at': 'previously worked at',
-      'i do': 'responsible for',
-      'i did': 'successfully completed',
-      'my job is': 'my role involves',
-      'i help': 'assist in',
-      'i make': 'develop and create',
-      'i build': 'architect and develop',
-      'i fix': 'troubleshoot and resolve',
-      'i manage': 'oversee and coordinate',
-      'im good at': 'proficient in',
-      'i know': 'experienced with',
-      'i can': 'capable of',
-      'i have experience': 'experienced in'
-    };
-
-    Object.entries(replacements).forEach(([casual, professional]) => {
-      text = text.replace(new RegExp(casual, 'g'), professional);
-    });
-
-    return text;
+    return ['Communication', 'Leadership', 'Problem Solving', 'Team Collaboration', 'Project Management', 'Critical Thinking'];
   };
 
   const generateProfessionalSummary = (text) => {
-    const standardizedText = standardizeUserInput(text);
     const years = text.match(/(\d+)\s*years?/i);
     const yearText = years ? `${years[1]}+ years of` : 'Results-driven professional with';
 
-    // More creative and varied summaries based on role
     if (text.toLowerCase().includes('software') || text.toLowerCase().includes('developer')) {
-      const techSummaries = [
-        `${yearText} expertise in cutting-edge software development, specializing in innovative solutions and scalable architectures. Passionate about leveraging emerging technologies to solve complex business challenges while maintaining exceptional code quality and user experience.`,
-        `${yearText} experience as a versatile software engineer with a proven ability to transform ideas into robust, high-performance applications. Expert in full-stack development with a keen eye for optimizing system performance and enhancing user engagement.`,
-        `${yearText} dedicated software development experience, combining technical excellence with creative problem-solving. Skilled in building intuitive applications that bridge the gap between complex technology and seamless user experiences.`
-      ];
-      return techSummaries[Math.floor(Math.random() * techSummaries.length)];
+      return `${yearText} experience in software development with expertise in modern technologies and frameworks. Proven track record of delivering high-quality solutions and collaborating effectively with cross-functional teams.`;
     } else if (text.toLowerCase().includes('marketing')) {
-      const marketingSummaries = [
-        `${yearText} dynamic marketing expertise with a talent for crafting compelling brand narratives that resonate with target audiences. Proven track record of driving engagement through innovative campaigns and data-driven strategies that deliver measurable ROI.`,
-        `${yearText} creative marketing professional specializing in multi-channel campaign development and brand positioning. Expert in leveraging digital platforms to amplify brand presence and create authentic connections with diverse customer segments.`,
-        `${yearText} strategic marketing experience focused on transforming consumer insights into powerful marketing initiatives. Skilled in building integrated campaigns that drive brand awareness, customer acquisition, and long-term loyalty.`
-      ];
-      return marketingSummaries[Math.floor(Math.random() * marketingSummaries.length)];
-    } else if (text.toLowerCase().includes('design')) {
-      const designSummaries = [
-        `${yearText} innovative design experience with a passion for creating visually stunning and functionally superior user experiences. Expert in translating complex concepts into intuitive designs that captivate audiences and drive engagement.`,
-        `${yearText} creative design professional specializing in user-centered design principles and aesthetic innovation. Proven ability to blend artistic vision with strategic thinking to deliver designs that not only look exceptional but also achieve business objectives.`
-      ];
-      return designSummaries[Math.floor(Math.random() * designSummaries.length)];
+      return `${yearText} experience in digital marketing with a focus on driving brand awareness and customer engagement. Skilled in developing comprehensive marketing strategies and analyzing campaign performance.`;
     }
 
-    // Generic professional summaries
-    const genericSummaries = [
-      `${yearText} comprehensive professional experience with exceptional analytical capabilities and innovative problem-solving skills. Committed to delivering outstanding results while fostering collaborative relationships and driving organizational success.`,
-      `${yearText} versatile professional background with a strong foundation in strategic thinking and operational excellence. Proven ability to adapt to dynamic environments while maintaining high standards of quality and performance.`
-    ];
-    return genericSummaries[Math.floor(Math.random() * genericSummaries.length)];
+    return `${yearText} professional experience with strong analytical and problem-solving skills. Dedicated to delivering excellent results and contributing to team success.`;
   };
 
   const handleSendMessage = async () => {
@@ -420,69 +366,90 @@ const AIResumeChat = () => {
     };
 
     setMessages(prev => [...prev, userMessage]);
+    
+    // Update conversation history for OpenAI context
+    const newConversationHistory = [...conversationHistory, { role: 'user', content: inputMessage }];
+    setConversationHistory(newConversationHistory);
+    
     setInputMessage('');
     setIsTyping(true);
 
-    setTimeout(() => {
-      const botResponse = generateBotResponse(inputMessage, messages.length);
+    try {
+      // Get AI response from OpenAI
+      const conversationContext = messages.slice(-4).map(msg => 
+        `${msg.type}: ${msg.content}`
+      ).join('\n');
+      
+      const aiResponse = await callOpenAI(inputMessage, conversationContext);
+      
+      // Update conversation history with AI response
+      setConversationHistory(prev => [...prev, { role: 'assistant', content: aiResponse }]);
+
+      const botResponse = {
+        id: messages.length + 2,
+        type: 'bot',
+        content: aiResponse
+      };
+
+      // Add generate button after sufficient conversation
+      if (newConversationHistory.length >= 6) {
+        botResponse.showGenerateButton = true;
+      }
+
       setMessages(prev => [...prev, botResponse]);
       setIsTyping(false);
-    }, 1500);
+    } catch (error) {
+      console.error('Error getting AI response:', error);
+      setIsTyping(false);
+      
+      const errorResponse = {
+        id: messages.length + 2,
+        type: 'bot',
+        content: "I apologize for the technical issue. Let me help you continue building your resume. What would you like to focus on next?"
+      };
+      
+      setMessages(prev => [...prev, errorResponse]);
+    }
   };
 
-  const generateBotResponse = (userInput, messageCount) => {
-    const responses = [
-      {
-        content: "Great! I understand you're looking to create a resume. Could you tell me more about your professional background? For example:",
-        suggestions: [
-          "What's your current or most recent job title?",
-          "How many years of experience do you have?",
-          "What industry do you work in?",
-          "What are your key skills or specializations?"
-        ]
-      },
-      {
-        content: "Excellent! Now I'm getting a better picture. To create the most effective resume, I'd like to know:",
-        suggestions: [
-          "What type of positions are you targeting?",
-          "What are your biggest professional achievements?",
-          "What education background do you have?",
-          "Any specific companies or roles you're interested in?"
-        ]
-      },
-      {
-        content: "Perfect! I have enough information to start building your resume. Based on our conversation, I'll create a professional resume that highlights your strengths. Ready to generate your personalized resume?",
-        suggestions: [
-          "Tell me about any specific skills to highlight",
-          "What achievements should I emphasize?",
-          "Any particular format preferences?",
-          "Include volunteer work or certifications?"
-        ],
-        showGenerateButton: true
-      }
-    ];
-
-    const responseIndex = Math.min(Math.floor(messageCount / 2), responses.length - 1);
-    return {
-      id: messages.length + 2,
-      type: 'bot',
-      ...responses[responseIndex]
-    };
-  };
-
-  const generateResume = () => {
-    const extractedInputs = extractUserInputs();
+  const generateResume = async () => {
     setActiveTab('resume');
     
-    setTimeout(() => {
-      setGeneratedResume(extractedInputs);
-      setMessages(prev => [...prev, {
-        id: prev.length + 1,
-        type: 'bot',
-        content: `🎉 Your personalized resume has been generated! I've analyzed our conversation and created a professional resume tailored to your background. You can now edit any section, choose different templates, or download your resume.`,
-        hasResume: true
-      }]);
-    }, 3000);
+    const generatingMessage = {
+      id: messages.length + 1,
+      type: 'bot',
+      content: "🎉 Excellent! I'm now generating your personalized resume based on our conversation. This will take just a moment...",
+      isGenerating: true
+    };
+    
+    setMessages(prev => [...prev, generatingMessage]);
+
+    try {
+      const extractedInputs = await extractUserInputs();
+      
+      setTimeout(() => {
+        setGeneratedResume(extractedInputs);
+        setMessages(prev => [...prev, {
+          id: prev.length + 1,
+          type: 'bot',
+          content: `🎉 Your personalized resume has been generated! I've analyzed our conversation and created a professional resume tailored to your background. You can now edit any section, choose different templates, or download your resume.`,
+          hasResume: true
+        }]);
+      }, 2000);
+    } catch (error) {
+      console.error('Error generating resume:', error);
+      
+      setTimeout(() => {
+        const fallbackData = generateFallbackResume(conversationHistory.map(msg => msg.content).join(' '));
+        setGeneratedResume(fallbackData);
+        setMessages(prev => [...prev, {
+          id: prev.length + 1,
+          type: 'bot',
+          content: `Your resume has been generated based on our conversation. You can edit any section or choose different templates.`,
+          hasResume: true
+        }]);
+      }, 2000);
+    }
   };
 
   const handleSuggestionClick = (suggestion) => {
@@ -841,6 +808,7 @@ const AIResumeChat = () => {
               </div>
               <div>
                 <h1 className="font-semibold text-gray-800">AI Resume Builder</h1>
+                <p className="text-xs text-gray-500">Powered by ChatGPT</p>
               </div>
             </div>
           </div>
@@ -901,7 +869,7 @@ const AIResumeChat = () => {
                         ? 'bg-blue-500 text-white' 
                         : 'bg-gray-100 text-gray-800'
                     }`}>
-                      <p className="text-sm leading-relaxed">{message.content}</p>
+                      <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.content}</p>
                       
                       {message.suggestions && (
                         <div className="mt-3 space-y-2">
@@ -926,17 +894,7 @@ const AIResumeChat = () => {
                               content: "Yes, please generate my resume now!"
                             };
                             setMessages(prev => [...prev, userMessage]);
-                            
-                            setTimeout(() => {
-                              const generatingMessage = {
-                                id: messages.length + 2,
-                                type: 'bot',
-                                content: "🎉 Excellent! I'm now generating your personalized resume based on our conversation. This will take just a moment...",
-                                isGenerating: true
-                              };
-                              setMessages(prev => [...prev, generatingMessage]);
-                              generateResume();
-                            }, 500);
+                            generateResume();
                           }}
                           className="mt-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all text-sm font-medium shadow-lg transform hover:scale-105"
                         >
