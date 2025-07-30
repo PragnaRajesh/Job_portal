@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import stepIcon from "../../assets/step0.png";
-import profileImg from "../../assets/Create Profile.jpeg";
+import profileImg from "../../assets/Create profile.jpeg";
 
 const CreateProfile = () => {
   const navigate = useNavigate();
