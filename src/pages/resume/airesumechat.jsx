@@ -1090,6 +1090,152 @@ Make it professional, accurate, and based on the conversation. If information is
     }
   };
 
+  // AI Modern Layout - Futuristic card-based design
+  const getAIModernLayout = (data, templateColor) => (
+    <div className="bg-gradient-to-br from-gray-900 to-gray-800 text-white rounded-lg overflow-hidden">
+      <div className={`bg-gradient-to-r ${templateColor} p-6 relative`}>
+        <div className="absolute top-0 right-0 w-32 h-32 opacity-10">
+          <div className="w-full h-full border-4 border-white rounded-full animate-pulse"></div>
+        </div>
+        <h1 className="text-3xl font-bold mb-2">{data.personalInfo.name}</h1>
+        <p className="text-xl opacity-90">{data.personalInfo.title}</p>
+        <div className="flex gap-4 mt-4 text-sm">
+          <span>📧 {data.personalInfo.email}</span>
+          <span>📱 {data.personalInfo.phone}</span>
+        </div>
+      </div>
+      <div className="p-6 grid grid-cols-3 gap-6">
+        <div className="col-span-2 space-y-4">
+          <div className="bg-gray-800 p-4 rounded-lg">
+            <h2 className="text-lg font-bold text-blue-400 mb-2">SUMMARY</h2>
+            <p className="text-sm text-gray-300">{data.summary}</p>
+          </div>
+          <div className="bg-gray-800 p-4 rounded-lg">
+            <h2 className="text-lg font-bold text-blue-400 mb-2">EXPERIENCE</h2>
+            {data.experience.slice(0, 1).map((exp) => (
+              <div key={exp.id}>
+                <h3 className="font-bold text-white">{exp.title}</h3>
+                <p className="text-blue-300">{exp.company}</p>
+                <p className="text-xs text-gray-400 mb-2">{exp.duration}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="space-y-4">
+          <div className="bg-gray-800 p-4 rounded-lg">
+            <h2 className="text-lg font-bold text-green-400 mb-2">SKILLS</h2>
+            <div className="space-y-2">
+              {data.skills.slice(0, 6).map((skill, index) => (
+                <div key={index} className="bg-gray-700 px-2 py-1 rounded text-xs">{skill}</div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  // AI Professional Layout - Clean tech-inspired design
+  const getAIProfessionalLayout = (data, templateColor) => (
+    <div className="bg-white border-l-8 border-indigo-500 shadow-lg">
+      <div className="flex">
+        <div className="w-1/3 bg-gray-50 p-6">
+          <div className="text-center mb-6">
+            <div className="w-24 h-24 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+              <span className="text-white font-bold text-xl">{data.personalInfo.name.charAt(0)}</span>
+            </div>
+            <h1 className="text-xl font-bold text-gray-800">{data.personalInfo.name}</h1>
+            <p className="text-indigo-600 font-medium">{data.personalInfo.title}</p>
+          </div>
+          <div className="space-y-4">
+            <div>
+              <h3 className="font-bold text-gray-800 border-b border-gray-300 pb-1">CONTACT</h3>
+              <div className="mt-2 space-y-1 text-sm text-gray-600">
+                <p>📧 {data.personalInfo.email}</p>
+                <p>📱 {data.personalInfo.phone}</p>
+                <p>📍 {data.personalInfo.location}</p>
+              </div>
+            </div>
+            <div>
+              <h3 className="font-bold text-gray-800 border-b border-gray-300 pb-1">SKILLS</h3>
+              <div className="mt-2 space-y-1">
+                {data.skills.slice(0, 8).map((skill, index) => (
+                  <div key={index} className="flex items-center">
+                    <div className="w-2 h-2 bg-indigo-500 rounded-full mr-2"></div>
+                    <span className="text-sm text-gray-700">{skill}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="w-2/3 p-6">
+          <div className="mb-6">
+            <h2 className="text-2xl font-bold text-gray-800 mb-3">Professional Summary</h2>
+            <p className="text-gray-700 leading-relaxed">{data.summary}</p>
+          </div>
+          <div>
+            <h2 className="text-2xl font-bold text-gray-800 mb-3">Experience</h2>
+            {data.experience.slice(0, 1).map((exp) => (
+              <div key={exp.id} className="border-l-4 border-indigo-500 pl-4 mb-4">
+                <h3 className="text-xl font-bold text-gray-800">{exp.title}</h3>
+                <p className="text-indigo-600 font-medium">{exp.company}</p>
+                <p className="text-sm text-gray-500 mb-2">{exp.duration}</p>
+                <ul className="list-disc list-inside text-gray-700 text-sm space-y-1">
+                  {exp.responsibilities.slice(0, 2).map((resp, idx) => (
+                    <li key={idx}>{resp}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  // AI Creative Layout - Dynamic asymmetric design
+  const getAICreativeLayout = (data, templateColor) => (
+    <div className="bg-white overflow-hidden relative">
+      <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-purple-200 to-transparent rounded-full -translate-y-32 translate-x-32"></div>
+      <div className="relative z-10">
+        <div className={`bg-gradient-to-r ${templateColor} text-white p-8 clip-path-polygon`}>
+          <h1 className="text-4xl font-bold mb-2">{data.personalInfo.name}</h1>
+          <p className="text-xl opacity-90">{data.personalInfo.title}</p>
+        </div>
+        <div className="p-8 grid grid-cols-12 gap-6">
+          <div className="col-span-8">
+            <div className="bg-purple-50 p-6 rounded-2xl mb-6 transform -rotate-1">
+              <h2 className="text-2xl font-bold text-purple-800 mb-3">About Me</h2>
+              <p className="text-gray-700">{data.summary}</p>
+            </div>
+            <div className="bg-blue-50 p-6 rounded-2xl transform rotate-1">
+              <h2 className="text-2xl font-bold text-blue-800 mb-3">Experience</h2>
+              {data.experience.slice(0, 1).map((exp) => (
+                <div key={exp.id}>
+                  <h3 className="text-xl font-bold text-gray-800">{exp.title}</h3>
+                  <p className="text-blue-600 font-medium">{exp.company}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="col-span-4">
+            <div className="bg-green-50 p-6 rounded-2xl">
+              <h2 className="text-xl font-bold text-green-800 mb-4">Skills</h2>
+              <div className="space-y-2">
+                {data.skills.slice(0, 6).map((skill, index) => (
+                  <div key={index} className="bg-white px-3 py-2 rounded-lg shadow-sm border-l-4 border-green-500">
+                    <span className="text-sm font-medium text-gray-700">{skill}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
   // Default resume preview for templates without specific components
   const getDefaultPreview = (data) => {
     const template = templateOptions.find(t => t.id === currentTemplate);
