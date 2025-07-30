@@ -512,7 +512,7 @@ Make it professional, accurate, and based on the conversation. If information is
   // Fallback resume generation if API fails
   const generateFallbackResume = (conversationText) => {
     const text = conversationText.toLowerCase();
-    
+
     return {
       personalInfo: {
         name: extractName(conversationText) || 'Professional Name',
@@ -525,7 +525,11 @@ Make it professional, accurate, and based on the conversation. If information is
       summary: generateProfessionalSummary(conversationText),
       experience: extractExperience(conversationText),
       education: extractEducation(conversationText),
-      skills: extractSkills(conversationText)
+      skills: extractSkills(conversationText),
+      projects: extractProjects(conversationText),
+      certifications: extractCertifications(conversationText),
+      languages: extractLanguages(conversationText),
+      achievements: extractAchievements(conversationText)
     };
   };
 
