@@ -1545,10 +1545,19 @@ Make it professional, accurate, and based on the conversation. If information is
                 <p>📍 {data.personalInfo.location}</p>
               </div>
             </div>
+
             <div>
-              <h3 className="font-bold text-gray-800 border-b border-gray-300 pb-1">SKILLS</h3>
+              <div className="flex items-center justify-between">
+                <h3 className="font-bold text-gray-800 border-b border-gray-300 pb-1">SKILLS</h3>
+                <button
+                  onClick={() => handleEditSection('skills')}
+                  className="p-1 hover:bg-gray-200 rounded"
+                >
+                  <Edit3 className="w-3 h-3 text-gray-500" />
+                </button>
+              </div>
               <div className="mt-2 space-y-1">
-                {data.skills.slice(0, 8).map((skill, index) => (
+                {data.skills?.slice(0, 8).map((skill, index) => (
                   <div key={index} className="flex items-center">
                     <div className="w-2 h-2 bg-indigo-500 rounded-full mr-2"></div>
                     <span className="text-sm text-gray-700">{skill}</span>
@@ -1556,28 +1565,147 @@ Make it professional, accurate, and based on the conversation. If information is
                 ))}
               </div>
             </div>
+
+            {data.languages && data.languages.length > 0 && (
+              <div>
+                <h3 className="font-bold text-gray-800 border-b border-gray-300 pb-1">LANGUAGES</h3>
+                <div className="mt-2 space-y-1">
+                  {data.languages.map((lang, index) => (
+                    <div key={index} className="flex items-center justify-between text-sm">
+                      <span className="text-gray-700">{lang.name}</span>
+                      <span className="text-indigo-600 text-xs">{lang.proficiency}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {data.certifications && data.certifications.length > 0 && (
+              <div>
+                <div className="flex items-center justify-between">
+                  <h3 className="font-bold text-gray-800 border-b border-gray-300 pb-1">CERTIFICATIONS</h3>
+                  <button
+                    onClick={() => handleEditSection('certifications', 0)}
+                    className="p-1 hover:bg-gray-200 rounded"
+                  >
+                    <Edit3 className="w-3 h-3 text-gray-500" />
+                  </button>
+                </div>
+                <div className="mt-2 space-y-2">
+                  {data.certifications.slice(0, 3).map((cert, index) => (
+                    <div key={index} className="text-sm">
+                      <p className="font-medium text-gray-800">{cert.name}</p>
+                      <p className="text-gray-600">{cert.issuer}</p>
+                      <p className="text-gray-500 text-xs">{cert.date}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
+
         <div className="w-2/3 p-6">
           <div className="mb-6">
-            <h2 className="text-2xl font-bold text-gray-800 mb-3">Professional Summary</h2>
+            <div className="flex items-center justify-between mb-3">
+              <h2 className="text-2xl font-bold text-gray-800">Professional Summary</h2>
+              <button
+                onClick={() => handleEditSection('summary')}
+                className="p-1 hover:bg-gray-100 rounded"
+              >
+                <Edit3 className="w-4 h-4 text-gray-500" />
+              </button>
+            </div>
             <p className="text-gray-700 leading-relaxed">{data.summary}</p>
           </div>
-          <div>
-            <h2 className="text-2xl font-bold text-gray-800 mb-3">Experience</h2>
-            {data.experience.slice(0, 1).map((exp) => (
+
+          <div className="mb-6">
+            <div className="flex items-center justify-between mb-3">
+              <h2 className="text-2xl font-bold text-gray-800">Experience</h2>
+              <button
+                onClick={() => handleEditSection('experience', 0)}
+                className="p-1 hover:bg-gray-100 rounded"
+              >
+                <Edit3 className="w-4 h-4 text-gray-500" />
+              </button>
+            </div>
+            {data.experience?.slice(0, 2).map((exp) => (
               <div key={exp.id} className="border-l-4 border-indigo-500 pl-4 mb-4">
                 <h3 className="text-xl font-bold text-gray-800">{exp.title}</h3>
                 <p className="text-indigo-600 font-medium">{exp.company}</p>
                 <p className="text-sm text-gray-500 mb-2">{exp.duration}</p>
                 <ul className="list-disc list-inside text-gray-700 text-sm space-y-1">
-                  {exp.responsibilities.slice(0, 2).map((resp, idx) => (
+                  {exp.responsibilities?.slice(0, 3).map((resp, idx) => (
                     <li key={idx}>{resp}</li>
                   ))}
                 </ul>
               </div>
             ))}
           </div>
+
+          <div className="mb-6">
+            <div className="flex items-center justify-between mb-3">
+              <h2 className="text-2xl font-bold text-gray-800">Education</h2>
+              <button
+                onClick={() => handleEditSection('education', 0)}
+                className="p-1 hover:bg-gray-100 rounded"
+              >
+                <Edit3 className="w-4 h-4 text-gray-500" />
+              </button>
+            </div>
+            {data.education?.map((edu) => (
+              <div key={edu.id} className="mb-3">
+                <h3 className="text-lg font-bold text-gray-800">{edu.degree}</h3>
+                <p className="text-indigo-600 font-medium">{edu.school}</p>
+                <p className="text-sm text-gray-500">{edu.year} {edu.gpa && `• GPA: ${edu.gpa}`}</p>
+              </div>
+            ))}
+          </div>
+
+          {data.projects && data.projects.length > 0 && (
+            <div className="mb-6">
+              <div className="flex items-center justify-between mb-3">
+                <h2 className="text-2xl font-bold text-gray-800">Projects</h2>
+                <button
+                  onClick={() => handleEditSection('projects', 0)}
+                  className="p-1 hover:bg-gray-100 rounded"
+                >
+                  <Edit3 className="w-4 h-4 text-gray-500" />
+                </button>
+              </div>
+              {data.projects.slice(0, 2).map((project) => (
+                <div key={project.id} className="mb-4">
+                  <h3 className="text-lg font-bold text-gray-800">{project.name}</h3>
+                  <p className="text-gray-700 text-sm mb-2">{project.description}</p>
+                  <div className="flex flex-wrap gap-1 mb-2">
+                    {project.technologies?.map((tech, idx) => (
+                      <span key={idx} className="bg-indigo-100 text-indigo-800 px-2 py-1 rounded text-xs">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  {project.link && (
+                    <a href={project.link} className="text-indigo-600 text-sm hover:underline">
+                      View Project →
+                    </a>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+
+          {data.achievements && data.achievements.length > 0 && (
+            <div>
+              <h2 className="text-2xl font-bold text-gray-800 mb-3">Achievements</h2>
+              {data.achievements.slice(0, 3).map((achievement) => (
+                <div key={achievement.id} className="mb-3">
+                  <h3 className="text-lg font-bold text-gray-800">{achievement.title}</h3>
+                  <p className="text-gray-700 text-sm">{achievement.description}</p>
+                  <p className="text-gray-500 text-xs">{achievement.date}</p>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>
