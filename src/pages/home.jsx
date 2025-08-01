@@ -11,9 +11,9 @@ import {
   Briefcase,
   FileText
 } from "lucide-react";
-// import resumeVideo from "../assets/resume.mp4";
-// import chatVideo from "../assets/chat.mp4";
-// import robotVideo from "../assets/robot.mp4";
+import resumeImg from "../assets/resume-builder.png";
+import chatImg from "../assets/chat.png";
+import robotImg from "../assets/mock-interview.png";
 
 
 import telegramLogo from "../assets/telegram.png";
@@ -286,14 +286,15 @@ const Home = () => {
   <button
     onClick={() => {
       setShowPopup(false);
-      navigate("/resume/ai-chat");
+      navigate("/resume/resumebuilder");
     }}
     className="w-full bg-gradient-to-r from-purple-100 to-blue-100 text-purple-800 py-6 sm:py-8 rounded-2xl font-semibold text-lg sm:text-xl shadow-md border border-purple-200 hover:from-purple-200 hover:to-blue-200 transition-all flex items-center justify-center gap-3 relative overflow-hidden"
   >
    <span className="absolute top-1 right-2 bg-gradient-to-r from-purple-500 to-blue-500 text-white px-2 py-0.5 rounded-full text-xs font-medium">
      ✨ AI
    </span>
-   📝 AI Resume Builder
+   <img src={resumeImg} alt="Resume" className="w-6 h-6 sm:w-8 sm:h-8" />
+Resume Builder
   </button>
   
 
@@ -304,8 +305,8 @@ const Home = () => {
       navigate("/messages");
     }}
     className="w-full bg-[#E8F9ED] text-[#2E7D32] py-6 sm:py-8 rounded-2xl font-semibold text-lg sm:text-xl shadow-md border border-[#BEE7C9] hover:bg-[#d3f3db] transition-all flex items-center justify-center gap-3"
-  >
-   💬  Chats
+  ><img src={chatImg} alt="Chat" className="w-6 h-6 sm:w-8 sm:h-8" />
+Chats
   </button>
 
   {/* AI Job Prep Button */}
@@ -316,7 +317,8 @@ const Home = () => {
     }}
     className="w-full bg-[#F3E9FF] text-[#6A1B9A] py-6 sm:py-8 rounded-2xl font-semibold text-lg sm:text-xl shadow-md border border-[#D8C5ED] hover:bg-[#ebdbff] transition-all flex items-center justify-center gap-3"
   >
-    🤖 AI Job Prep
+    <img src={robotImg} alt="AI Prep" className="w-6 h-6 sm:w-8 sm:h-8" />
+AI Job Prep
   </button>
 
 </div>

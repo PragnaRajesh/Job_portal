@@ -19,6 +19,8 @@ const EducationDetails = () => {
 
   return (
     <div className="h-screen bg-white px-4 pt-6 pb-24 flex flex-col justify-between overflow-hidden pt-safe pb-safe">
+                  <ArrowLeft className="w-6 h-6 sm:w-7 sm:h-7" onClick={() => navigate(-1)}/>
+
       
       {/* Step Image */}
       <div className="w-full flex justify-center -mt-0 mb-6">

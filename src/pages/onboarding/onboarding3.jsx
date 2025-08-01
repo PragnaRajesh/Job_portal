@@ -23,55 +23,57 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
   };
 
   return (
-    <div className="w-full h-screen flex justify-center items-center bg-white overflow-hidden">
-      {/* Fixed Container to emulate phone screen */}
-      <div className="w-[390px] h-[844px] relative overflow-hidden bg-white">
-        {/* Top Rectangle with Text */}
-        <div className="absolute z-10 flex items-center justify-start text-left px-6 top-12 left-4 w-[91%] max-w-sm h-72 md:h-80 bg-[#799EFF] border border-[#CB9D73] rounded-2xl font-montserrat font-medium text-3xl md:text-4xl leading-tight text-gray-900">
-          <p>
-            Build a graphic-<br />
-            rich animated<br />
-            resume to make<br />
-            your profile stand<br />
-            out.
-          </p>
-        </div>
+    <div className="h-screen w-full bg-white overflow-hidden relative">
+      
+      {/* Top Rectangle with Text */}
+      <div className="absolute top-6 left-6 right-6 bg-[#799EFF] border border-[#CB9D73] rounded-3xl p-6 z-10 h-80">
+        <h1 className="font-montserrat font-semibold text-3xl leading-tight text-gray-900">
+          Build a graphic-<br />
+          rich animated<br />
+          resume to make<br />
+          your profile stand<br />
+          out.
+        </h1>
+      </div>
 
-        {/* Full-Width Image */}
-        <div className="absolute z-20 w-full flex justify-center top-56">
-          <img
-            src={resumeImg}
-            alt="Resume Illustration"
-            className="w-full max-w-2xl h-auto max-h-[38rem]"
-          />
-        </div>
+      {/* Resume Image positioned to overlap with text box */}
+      <div className="absolute top-40 left-0 right-0 flex justify-center z-20 h-96">
+        <img
+          src={resumeImg}
+          alt="Resume Illustration"
+          className="w-full max-w-2xl h-full object-contain"
+        />
+      </div>
 
-        {/* Bottom Rectangle */}
-        <div className="absolute z-10 bottom-16 left-3 w-[95%] max-w-sm h-36 bg-[#799EFF] rounded-[2rem] border border-[#CB9D73]" />
-
-        {/* Dots */}
-        <div className="absolute z-30 flex gap-2 bottom-[7.5rem] left-9">
-          <div className="w-6 h-2 bg-white/50 rounded-full" />
-          <div className="w-2 h-2 bg-white/50 rounded-full" />
-          <div className="w-2 h-2 bg-white rounded-full" />
-          <div className="w-2 h-2 bg-white/50 rounded-full" />
-        </div>
-
+      {/* Bottom Rectangle */}
+      <div className="absolute bottom-6 left-6 right-6 bg-[#799EFF] rounded-3xl border border-[#CB9D73] p-6 z-30">
+        
         {/* Skip Button */}
         <button
           onClick={handleSkip}
-          className="absolute z-30 text-white text-base font-semibold font-poppins bottom-[8.5rem] left-9"
+          className="text-white text-lg font-semibold font-poppins mb-4"
         >
           Skip
         </button>
 
-        {/* Get Started Button */}
-        <button
-          onClick={handleGetStarted}
-          className="absolute z-30 bg-white text-blue-600 border border-[#CB9D73] text-lg font-semibold font-poppins shadow-md bottom-[7.5rem] left-56 w-36 h-10 rounded-md"
-        >
-          Get Started
-        </button>
+        {/* Bottom row with dots and Get Started button */}
+        <div className="flex justify-between items-center">
+          {/* Dots */}
+          <div className="flex gap-2">
+            <div className="w-3 h-3 bg-white/60 rounded-full" />
+            <div className="w-3 h-3 bg-white/60 rounded-full" />
+            <div className="w-6 h-3 bg-white rounded-full" />
+            <div className="w-3 h-3 bg-white/60 rounded-full" />
+          </div>
+
+          {/* Get Started Button */}
+          <button
+            onClick={handleGetStarted}
+            className="bg-white text-blue-600 border border-[#CB9D73] text-base font-semibold font-poppins shadow-md rounded-lg px-6 py-3"
+          >
+            Get Started
+          </button>
+        </div>
       </div>
     </div>
   );

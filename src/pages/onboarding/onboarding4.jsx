@@ -22,11 +22,12 @@ const OnboardingScreen4 = ({ onSignUp, onLogIn }) => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-white flex flex-col items-center justify-between overflow-y-auto pb-safe">
+    <div className="h-screen w-full bg-white flex flex-col items-center overflow-hidden relative">
+      
       {/* Text Content */}
-      <div className="pt-[10vh] text-center px-6 z-10 w-full">
+      <div className="text-center px-6 z-10 w-full mt-16">
         <h1
-          className="text-[8vw] sm:text-[7vw] md:text-[6vw] lg:text-4xl font-semibold leading-snug text-black"
+          className="text-4xl font-semibold leading-tight text-black"
           style={{
             fontFamily: 'Montserrat, sans-serif',
             letterSpacing: '0.5px'
@@ -36,38 +37,40 @@ const OnboardingScreen4 = ({ onSignUp, onLogIn }) => {
         </h1>
 
         <p
-          className="mt-4 text-[4vw] sm:text-[3.5vw] md:text-[3vw] lg:text-xl text-[#A7A7A7] font-medium max-w-[90%] mx-auto leading-relaxed"
+          className="mt-6 text-lg text-[#A7A7A7] font-medium max-w-sm mx-auto leading-relaxed"
           style={{
             fontFamily: 'Poppins, sans-serif'
           }}
         >
-          Finding the right job can feel like a daunting task, but it’s also an exciting opportunity for personal.
+          Finding the right job can feel like a daunting task, but it's also an exciting opportunity for personal.
         </p>
       </div>
 
-      {/* Bigger Character Illustration */}
-      <div className="relative w-full flex justify-center z-0 mt-[-5vh] mb-[-10vh]">
+      {/* Character Illustration */}
+      <div className="flex-1 w-full flex justify-center items-center z-0">
         <img
           src="https://cdn.builder.io/api/v1/image/assets%2F066a49ebd63d4888b50b2ed95c4b0a2d%2F1fce1cfe00ad43b39d0f0e156be3f338?format=webp&width=800"
           alt="Professional character"
-          className="w-[105vw] max-w-lg object-contain"
+          className="w-full max-w-md h-auto object-contain"
         />
       </div>
 
       {/* Buttons */}
-      <div className="relative z-10 w-full flex flex-col items-center gap-4 px-6 pb-[5vh]">
+      <div className="w-full flex flex-col items-center gap-4 px-6 pb-12 z-10">
         <button
           onClick={handleSignUp}
-          className="w-full max-w-sm h-[12vw] max-h-12 text-white font-semibold rounded-[1.25rem] text-[4vw] sm:text-base border shadow-md"
+          className="w-full max-w-sm text-white font-semibold rounded-2xl text-lg border shadow-md py-4"
           style={{
             backgroundColor: '#2563EB',
-            borderColor: '#CB9D73'}}>
+            borderColor: '#CB9D73'
+          }}
+        >
           Sign up
         </button>
 
         <button
           onClick={handleLogIn}
-          className="w-full max-w-sm h-[12vw] max-h-12 text-black font-semibold rounded-[1.25rem] text-[4vw] sm:text-base border"
+          className="w-full max-w-sm text-black font-semibold rounded-2xl text-lg border py-4"
           style={{ borderColor: '#2563EB' }}
         >
           Log in

@@ -253,7 +253,7 @@ function ResumeBuilder() {
         {/* Header */}
         <div className="px-6 sm:px-8 md:px-12 lg:px-16 py-4 sm:py-6">
           <button className="flex items-center text-gray-600 hover:text-gray-800 transition-colors">
-            <ArrowLeft className="w-6 h-6 sm:w-7 sm:h-7" />
+            <ArrowLeft className="w-6 h-6 sm:w-7 sm:h-7" onClick={() => navigate(-1)}/>
           </button>
         </div>
 
