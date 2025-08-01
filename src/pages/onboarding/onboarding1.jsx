@@ -24,67 +24,81 @@ const OnboardingScreen1 = ({ onNext, onSkip }) => {
 
   return (
     <div className="h-screen w-full bg-white flex flex-col relative overflow-hidden">
+      {/* Main Content - Takes up most space */}
+      <div className="flex-1 flex flex-col px-4 pt-4">
+        
+        {/* Top Text Box - Fixed height */}
+        <div className="relative bg-gradient-to-br from-[#7551FF] to-[#7551FF99] rounded-3xl p-4 border-2 border-[#CB9D73] shadow-lg h-[28vh] flex items-center">
+          <div className="relative z-10">
+            <h1 className="font-montserrat font-bold text-[clamp(1.2rem,5.5vw,2rem)] leading-tight text-white">
+              Worried about<br />
+              job feedback!<br />
+              <span className="text-white/90">No hassle get it</span><br />
+              <span className="text-white/90">here..</span>
+            </h1>
+          </div>
 
-      {/* Top Text Box - positioned exactly as in reference */}
-      <div className="absolute top-8 left-4 right-4 bg-gradient-to-br from-[#7551FF] to-[#7551FF99] rounded-3xl p-6 border-2 border-[#CB9D73] shadow-lg z-10" style={{height: '11rem'}}>
-        <h1 className="font-montserrat font-semibold text-2xl leading-7 tracking-normal text-black w-full text-left">
-          Worried about<br />
-          job feedback!<br />
-          No hassle get it<br />
-          here..
-        </h1>
+          {/* Question Bubble - positioned to match design */}
+          <div className="absolute -top-1 -right-1 w-[clamp(60px,15vw,85px)] h-[clamp(40px,10vw,60px)] z-20">
+            <img
+              src={questionIcon}
+              alt="Question Bubble"
+              className="w-full h-full object-contain transform rotate-[15deg]"
+            />
+          </div>
+        </div>
 
-        {/* Question Icon - positioned as in reference */}
-        <div className="absolute top-3 right-3 w-14 h-10 z-20">
-          <img
-            src={questionIcon}
-            alt="Question Bubble"
-            className="w-full h-full object-contain transform rotate-[15deg]"
-          />
+        {/* Character Image - Flexible space */}
+        <div className="flex-1 flex items-center justify-center relative min-h-0">
+          <div className="w-[clamp(250px,65vw,350px)] h-full max-h-[35vh] flex items-center justify-center">
+            <img
+              src={sadBoyImage}
+              alt="Worried Character"
+              className="w-full h-auto object-contain max-h-full"
+            />
+          </div>
+        </div>
+
+        {/* Description Text - Fixed space */}
+        <div className="text-center px-2 h-[10vh] flex items-center justify-center">
+          <p className="font-poppins font-medium text-[clamp(0.9rem,3.8vw,1.1rem)] leading-tight text-gray-800">
+            Secure your dream job<br />
+            with our trusted<br />
+            companies..
+          </p>
         </div>
       </div>
 
-      {/* Character Image - positioned to start from text box area as in reference */}
-      <div className="absolute top-24 left-0 right-0 z-20 pointer-events-none" style={{height: '26rem'}}>
-        <img
-          src={sadBoyImage}
-          alt="Worried Character"
-          className="w-full h-full object-contain object-bottom"
-        />
-      </div>
+      {/* Bottom Navigation Section - Fixed height */}
+      <div className="bg-gradient-to-r from-[#9E85FF] to-[#7551FF] rounded-t-[2rem] p-4 border-t-2 border-[#CB9D73] h-[18vh] flex flex-col justify-center">
+        {/* Navigation Dots */}
+        <div className="flex justify-center gap-2 mb-3">
+          <div className="w-6 h-2.5 bg-white rounded-full shadow-sm" />
+          <div className="w-2.5 h-2.5 bg-white/60 rounded-full" />
+          <div className="w-2.5 h-2.5 bg-white/60 rounded-full" />
+          <div className="w-2.5 h-2.5 bg-white/60 rounded-full" />
+        </div>
 
-      {/* Text below Character - positioned exactly as in reference */}
-      <div className="absolute left-6 z-30" style={{bottom: '10.5rem'}}>
-        <p className="font-poppins text-base text-gray-800 leading-5 font-normal">
-          Secure your dream job<br />
-          with our trusted<br />
-          companies..
-        </p>
-      </div>
-
-      {/* Bottom Navigation - styled exactly as in reference */}
-      <div className="absolute bottom-4 left-4 right-4 bg-gradient-to-r from-[#9E85FF] to-[#7551FF] rounded-3xl border-2 border-[#CB9D73] p-4 z-40" style={{height: '8.5rem'}}>
-        
-        {/* Skip Button */}
-        <div className="flex justify-between items-start mb-6">
+        {/* Skip and Next Button Container */}
+        <div className="flex justify-between items-center">
           <button
             onClick={handleSkip}
-            className="text-white text-base font-semibold font-poppins"
+            className="text-white text-[clamp(0.9rem,3.5vw,1.1rem)] font-semibold font-poppins hover:text-white/80 transition-colors"
           >
             Skip
           </button>
-          
+
           {/* Circular Next Button */}
-          <div className="w-14 h-14">
-            <div className="flex items-center justify-center rounded-full w-full h-full border-2 border-white bg-white/10">
+          <div className="w-[clamp(55px,14vw,70px)] h-[clamp(55px,14vw,70px)]">
+            <div className="flex items-center justify-center rounded-full w-full h-full border-2 border-white bg-white/10 backdrop-blur-sm">
               <button
                 onClick={handleNext}
-                className="flex items-center justify-center rounded-full shadow-lg w-10 h-10 bg-white hover:bg-gray-50 transition-colors"
+                className="flex items-center justify-center rounded-full shadow-lg w-[85%] h-[85%] bg-white hover:bg-gray-50 transition-colors"
               >
                 <svg
-                  width="20"
-                  height="20"
-                  className="w-5 h-5"
+                  width="24"
+                  height="24"
+                  className="w-[clamp(18px,4.5vw,24px)] h-[clamp(18px,4.5vw,24px)]"
                   fill="none"
                   stroke="#9E85FF"
                   strokeWidth="3"
@@ -97,16 +111,7 @@ const OnboardingScreen1 = ({ onNext, onSkip }) => {
             </div>
           </div>
         </div>
-
-        {/* Dots - positioned at bottom as in reference */}
-        <div className="flex gap-2">
-          <div className="w-6 h-2 bg-white rounded-full" />
-          <div className="w-2 h-2 bg-white/60 rounded-full" />
-          <div className="w-2 h-2 bg-white/60 rounded-full" />
-          <div className="w-2 h-2 bg-white/60 rounded-full" />
-        </div>
       </div>
-
     </div>
   );
 };

@@ -2,7 +2,6 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import resumeImg from '../../assets/onboarding3.png';
 
-
 const OnboardingScreen3 = ({ onNext, onSkip }) => {
   const navigate = useNavigate();
 
@@ -23,53 +22,56 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
   };
 
   return (
-    <div className="h-screen w-full bg-white overflow-hidden relative">
-      
-      {/* Top Rectangle with Text */}
-      <div className="absolute top-6 left-6 right-6 bg-[#799EFF] border border-[#CB9D73] rounded-3xl p-6 z-10 h-80">
-        <h1 className="font-montserrat font-semibold text-3xl leading-tight text-gray-900">
-          Build a graphic-<br />
-          rich animated<br />
-          resume to make<br />
-          your profile stand<br />
-          out.
-        </h1>
-      </div>
-
-      {/* Resume Image positioned to overlap with text box */}
-      <div className="absolute top-40 left-0 right-0 flex justify-center z-20 h-96">
-        <img
-          src={resumeImg}
-          alt="Resume Illustration"
-          className="w-full max-w-2xl h-full object-contain"
-        />
-      </div>
-
-      {/* Bottom Rectangle */}
-      <div className="absolute bottom-6 left-6 right-6 bg-[#799EFF] rounded-3xl border border-[#CB9D73] p-6 z-30">
+    <div className="h-screen w-full bg-white flex flex-col relative overflow-hidden">
+      {/* Main Content - Takes up most space */}
+      <div className="flex-1 flex flex-col px-4 pt-4">
         
-        {/* Skip Button */}
-        <button
-          onClick={handleSkip}
-          className="text-white text-lg font-semibold font-poppins mb-4"
-        >
-          Skip
-        </button>
+        {/* Top Text Box - Fixed height */}
+        <div className="bg-gradient-to-br from-[#799EFF] to-[#6B8AFF] rounded-3xl p-4 border-2 border-[#CB9D73] shadow-lg h-[25vh] flex items-center">
+          <h1 className="font-montserrat font-bold text-[clamp(1.1rem,4.8vw,1.7rem)] leading-tight text-white">
+            Build a graphic-<br />
+            rich animated<br />
+            resume to make<br />
+            your profile stand<br />
+            out.
+          </h1>
+        </div>
 
-        {/* Bottom row with dots and Get Started button */}
-        <div className="flex justify-between items-center">
-          {/* Dots */}
-          <div className="flex gap-2">
-            <div className="w-3 h-3 bg-white/60 rounded-full" />
-            <div className="w-3 h-3 bg-white/60 rounded-full" />
-            <div className="w-6 h-3 bg-white rounded-full" />
-            <div className="w-3 h-3 bg-white/60 rounded-full" />
+        {/* Resume Illustration - Flexible space */}
+        <div className="flex-1 flex items-center justify-center min-h-0 py-2">
+          <div className="w-[clamp(280px,75vw,380px)] h-full max-h-[40vh] flex items-center justify-center">
+            <img
+              src={resumeImg}
+              alt="Resume Building Illustration"
+              className="w-full h-auto object-contain max-h-full"
+            />
           </div>
+        </div>
+      </div>
+
+      {/* Bottom Navigation Section - Fixed height */}
+      <div className="bg-gradient-to-r from-[#799EFF] to-[#6B8AFF] rounded-t-[2rem] p-4 border-t-2 border-[#CB9D73] h-[18vh] flex flex-col justify-center">
+        {/* Navigation Dots */}
+        <div className="flex justify-center gap-2 mb-3">
+          <div className="w-2.5 h-2.5 bg-white/60 rounded-full" />
+          <div className="w-2.5 h-2.5 bg-white/60 rounded-full" />
+          <div className="w-6 h-2.5 bg-white rounded-full shadow-sm" />
+          <div className="w-2.5 h-2.5 bg-white/60 rounded-full" />
+        </div>
+
+        {/* Skip and Get Started Button Container */}
+        <div className="flex justify-between items-center">
+          <button
+            onClick={handleSkip}
+            className="text-white text-[clamp(0.9rem,3.5vw,1.1rem)] font-semibold font-poppins hover:text-white/80 transition-colors"
+          >
+            Skip
+          </button>
 
           {/* Get Started Button */}
           <button
             onClick={handleGetStarted}
-            className="bg-white text-blue-600 border border-[#CB9D73] text-base font-semibold font-poppins shadow-md rounded-lg px-6 py-3"
+            className="bg-white text-[#799EFF] border-2 border-white text-[clamp(0.9rem,3.5vw,1rem)] font-bold font-poppins shadow-lg px-5 py-2.5 rounded-xl hover:bg-gray-50 transition-colors"
           >
             Get Started
           </button>

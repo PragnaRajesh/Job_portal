@@ -22,63 +22,67 @@ const OnboardingScreen2 = ({ onNext, onSkip }) => {
   };
 
   return (
-    <div className="h-screen w-full bg-white overflow-hidden relative">
+    <div className="h-screen w-full bg-white flex flex-col relative overflow-hidden">
+      {/* Main Content - Takes up most space */}
+      <div className="flex-1 flex flex-col px-4 pt-4">
+        
+        {/* Top Content Box - Fixed height */}
+        <div className="relative bg-gradient-to-br from-[#94E082] to-[#7BC96B] rounded-3xl p-4 border-2 border-[#CB9D73] shadow-lg h-[65vh] flex flex-col justify-start overflow-hidden">
+          {/* Text Content */}
+          <div className="relative z-10 mb-4">
+            <h1 className="font-montserrat font-bold text-[clamp(1.3rem,5.5vw,2rem)] leading-tight text-gray-900 mb-3">
+              Track your<br />
+              application on<br />
+              real time!
+            </h1>
 
-      {/* Main Rectangle */}
-      <div className="absolute top-6 left-6 right-6 bg-[#94E082] border border-[#CB9D73] rounded-3xl p-6 z-10" style={{height: '32rem'}}>
-        <h1 className="font-montserrat font-semibold text-3xl leading-tight text-gray-900">
-          Track your<br />
-          application on<br />
-          real time!
-        </h1>
+            <p className="font-poppins text-[clamp(0.8rem,3.2vw,1rem)] leading-relaxed text-gray-700 max-w-[250px]">
+              Our team of professionals will guide you through the process and help
+              you find the best career for your goals. Get started today...
+            </p>
+          </div>
 
-        <p className="font-poppins text-sm leading-relaxed text-gray-700 mt-4 max-w-xs">
-          Our team of professionals will guide you through the process and help
-          you find the best career for your goals. Get started today...
-        </p>
-
-        {/* Rocket Image positioned within the main rectangle */}
-        <div className="absolute bottom-0 left-0 right-0 flex items-end justify-center h-64">
-          <img
-            src={rocketImage}
-            alt="Rocket Illustration"
-            className="w-full max-w-sm h-full object-contain"
-          />
+          {/* Rocket Image - positioned according to design */}
+          <div className="absolute bottom-0 right-0 w-[clamp(120px,35vw,180px)] h-[clamp(120px,35vw,180px)] translate-x-4 translate-y-4">
+            <img
+              src={rocketImage}
+              alt="Rocket Illustration"
+              className="w-full h-full object-contain"
+            />
+          </div>
         </div>
       </div>
 
-      {/* Bottom Rectangle */}
-      <div className="absolute bottom-6 left-6 right-6 bg-[#94E082] rounded-3xl border border-[#CB9D73] p-6 z-20">
-        
-        {/* Skip Button */}
-        <button
-          onClick={handleSkip}
-          className="text-white text-lg font-semibold font-poppins mb-4"
-        >
-          Skip
-        </button>
+      {/* Bottom Navigation Section - Fixed height */}
+      <div className="bg-gradient-to-r from-[#94E082] to-[#7BC96B] rounded-t-[2rem] p-4 border-t-2 border-[#CB9D73] h-[18vh] flex flex-col justify-center">
+        {/* Navigation Dots */}
+        <div className="flex justify-center gap-2 mb-3">
+          <div className="w-2.5 h-2.5 bg-white/60 rounded-full" />
+          <div className="w-6 h-2.5 bg-white rounded-full shadow-sm" />
+          <div className="w-2.5 h-2.5 bg-white/60 rounded-full" />
+          <div className="w-2.5 h-2.5 bg-white/60 rounded-full" />
+        </div>
 
-        {/* Bottom row with dots and next button */}
+        {/* Skip and Next Button Container */}
         <div className="flex justify-between items-center">
-          {/* Dots */}
-          <div className="flex gap-2">
-            <div className="w-3 h-3 bg-white/60 rounded-full" />
-            <div className="w-6 h-3 bg-white rounded-full" />
-            <div className="w-3 h-3 bg-white/60 rounded-full" />
-            <div className="w-3 h-3 bg-white/60 rounded-full" />
-          </div>
+          <button
+            onClick={handleSkip}
+            className="text-white text-[clamp(0.9rem,3.5vw,1.1rem)] font-semibold font-poppins hover:text-white/80 transition-colors"
+          >
+            Skip
+          </button>
 
           {/* Circular Next Button */}
-          <div className="w-16 h-16">
-            <div className="flex items-center justify-center rounded-full w-full h-full border-2 border-white bg-transparent">
+          <div className="w-[clamp(55px,14vw,70px)] h-[clamp(55px,14vw,70px)]">
+            <div className="flex items-center justify-center rounded-full w-full h-full border-2 border-white bg-white/10 backdrop-blur-sm">
               <button
                 onClick={handleNext}
-                className="flex items-center justify-center rounded-full shadow-md bg-white w-12 h-12"
+                className="flex items-center justify-center rounded-full shadow-lg w-[85%] h-[85%] bg-white hover:bg-gray-50 transition-colors"
               >
                 <svg
                   width="24"
                   height="24"
-                  className="w-6 h-6"
+                  className="w-[clamp(18px,4.5vw,24px)] h-[clamp(18px,4.5vw,24px)]"
                   fill="none"
                   stroke="#94E082"
                   strokeWidth="3"
@@ -92,7 +96,6 @@ const OnboardingScreen2 = ({ onNext, onSkip }) => {
           </div>
         </div>
       </div>
-
     </div>
   );
 };
