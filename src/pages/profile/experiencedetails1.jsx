@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import stepIcon from "../../assets/step4.png";
+import { ArrowLeft } from "lucide-react";
 
 const jobRolesData = {
   "IT & Software": [
     "Software Developer",
     "Web Developer",
-    "Mobile App Developer",
     "QA Tester",
     "DevOps Engineer"
   ],
@@ -53,10 +53,10 @@ const ExperienceDetails1 = () => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-end justify-center z-50">
-      <div className="w-full max-w-md bg-white rounded-t-2xl p-4 shadow-lg overflow-y-auto max-h-[90vh]">
+      <div className="w-full max-w-md bg-white rounded-t-2xl p-4 shadow-lg overflow-visible max-h-[90vh]">
         {/* Drag bar */}
         <div className="w-12 h-1.5 bg-gray-300 rounded-full mx-auto mb-4" />
-
+        <ArrowLeft className="w-6 h-6 sm:w-7 sm:h-7 mb-2" onClick={() => navigate(-1)} />
         <h2 className="text-center text-lg font-semibold mb-2">
           Experience Details
         </h2>

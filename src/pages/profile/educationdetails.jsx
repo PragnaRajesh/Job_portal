@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import stepIcon from "../../assets/step2.png";
 import graduationImg from "../../assets/education.jpeg";
+import { ArrowLeft } from "lucide-react";
 
 const EducationDetails = () => {
   const navigate = useNavigate();
@@ -19,9 +20,12 @@ const EducationDetails = () => {
 
   return (
     <div className="h-screen bg-white px-4 pt-6 pb-24 flex flex-col justify-between overflow-hidden pt-safe pb-safe">
-                  <ArrowLeft className="w-6 h-6 sm:w-7 sm:h-7" onClick={() => navigate(-1)}/>
 
-      
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col justify-start">
+              <ArrowLeft className="w-6 h-6 sm:w-7 sm:h-7" onClick={() => navigate(-1)}/>
+
+        <h2 className="text-xl font-bold text-center mb-4">Education Details</h2>
       {/* Step Image */}
       <div className="w-full flex justify-center -mt-0 mb-6">
         <img
@@ -31,9 +35,7 @@ const EducationDetails = () => {
         />
       </div>
 
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col justify-start">
-        <h2 className="text-xl font-bold text-center mb-4">Education Details</h2>
+      
 
         <img
           src={graduationImg}

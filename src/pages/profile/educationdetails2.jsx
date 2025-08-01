@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import stepIcon from "../../assets/step2.png";
+import { ArrowLeft } from "lucide-react";
 
 
 const degreeOptions = {
@@ -74,8 +75,8 @@ const EducationDetails2 = () => {
   return (
     <div className="min-h-screen bg-white p-4 flex flex-col justify-between pt-safe pb-safe">
       <div>
-                    <ArrowLeft className="w-6 h-6 sm:w-7 sm:h-7" onClick={() => navigate(-1)}/>
-<h2 className="text-base font-semibold mt-8 mb-4">Education Details</h2>
+        <ArrowLeft className="w-6 h-6 sm:w-7 sm:h-7" onClick={() => navigate(-1)}/>
+                  <h2 className="text-xl font-bold text-center mb-4">Education Details</h2>
         {/* Step Image */}
               <div className="w-full flex justify-center -mt-0 mb-6">
                 <img

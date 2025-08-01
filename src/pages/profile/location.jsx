@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import stepIcon from "../../assets/step5.png";
+import { ArrowLeft } from "lucide-react";
 
 const containerStyle = {
   width: "100%",
@@ -24,6 +25,10 @@ const LocationScreen = () => {
 
   return (
     <div className="h-screen p-4 bg-white pt-6 pb-24 flex flex-col justify-between overflow-hidden pt-safe pb-safe">
+      {/* Main Content */}
+      <div className="flex-1">
+        <ArrowLeft className="w-6 h-6 sm:w-7 sm:h-7 mb-2" onClick={() => navigate(-1)} />
+        <h2 className="text-center text-lg font-bold mb-4">Location</h2>
 
       {/* Step Image */}
       <div className="w-full flex justify-center -mt-0 mb-6">
@@ -34,9 +39,7 @@ const LocationScreen = () => {
         />
       </div>
 
-      {/* Main Content */}
-      <div className="flex-1">
-        <h2 className="text-center text-lg font-bold mb-4">Location</h2>
+      
 
         <h3 className="text-md font-semibold mb-2">Discover the best jobs near you!</h3>
         <p className="text-sm text-gray-500 mb-4">

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import stepIcon from "../../assets/step6.png";
+import { ArrowLeft } from "lucide-react";
 
 const UploadResume = () => {
   const navigate = useNavigate();
@@ -40,7 +41,12 @@ const UploadResume = () => {
 
   return (
     <div className="h-screen p-4 bg-white pt-6 pb-24 flex flex-col justify-between overflow-hidden pt-safe pb-safe">
-      
+      <ArrowLeft className="w-6 h-6 sm:w-7 sm:h-7 mb-2" onClick={() => navigate(-1)} />
+
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col justify-start">
+        <h2 className="text-xl font-bold text-center mb-4">Upload Resume</h2>
+
       {/* Step Image */}
       <div className="w-full flex justify-center -mt-0 mb-6">
         <img
@@ -50,9 +56,7 @@ const UploadResume = () => {
         />
       </div>
 
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col justify-start">
-        <h2 className="text-xl font-bold text-center mb-4">Upload Resume</h2>
+      
 
         <h3 className="text-md font-semibold mb-3">Add Resume</h3>
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ArrowLeft } from 'lucide-react';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -23,6 +24,8 @@ const Login = () => {
 
   return (
     <div className="p-6 sm:p-8 md:p-12 lg:max-w-md lg:mx-auto lg:mt-12">
+      <ArrowLeft className="w-6 h-6 sm:w-7 sm:h-7 mb-2" onClick={() => navigate(-1)} />
+
       <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4 sm:mb-6 text-center lg:text-left">Login</h2>
       <input
         type="text"

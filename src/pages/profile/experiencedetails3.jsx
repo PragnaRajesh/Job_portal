@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import stepIcon from "../../assets/step4.png";
+import { ArrowLeft } from "lucide-react";
 
 const ExperienceDetails3 = () => {
   const navigate = useNavigate();
@@ -36,6 +37,7 @@ const ExperienceDetails3 = () => {
   return (
     <div className="min-h-screen bg-white p-4 flex flex-col justify-between pt-safe pb-safe">
       <div>
+        <ArrowLeft className="w-6 h-6 sm:w-7 sm:h-7 mb-2" onClick={() => navigate(-1)} />
         <h2 className="text-center text-base font-semibold mb-3">Experience Details</h2>
 
         {/* Step Image */}

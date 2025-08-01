@@ -40,7 +40,7 @@ const SuccessScreen = () => {
   <img
     src={successIcon}
     alt="Success"
-    className="w-80 h-80 object-contain mb-4"
+    className="w-80 h-80 object-contain mt-20 mb-4"
   />
 
   <h2 className="text-2xl font-extrabold text-gray-800 mb-1">Hi {name}</h2>
