@@ -47,6 +47,13 @@ const FaceToFaceInterview = () => {
       let latitude, longitude;
 
       if (isWeb()) {
+        // Check if geolocation is available
+        if (!navigator.geolocation) {
+          console.warn("Geolocation is not supported by this browser");
+          setShowMapSection(true); // Show map section without current location
+          return;
+        }
+
         navigator.geolocation.getCurrentPosition(
           async (position) => {
             latitude = position.coords.latitude;
@@ -54,20 +61,44 @@ const FaceToFaceInterview = () => {
             await fetchRouteAndShowMap(latitude, longitude);
           },
           (error) => {
-            console.error("Geolocation error (Web)", error);
-            alert("Please enable location access from your browser settings.");
+            console.warn("Geolocation error (Web)", error);
+            // Handle different types of geolocation errors gracefully
+            let errorMessage = "Location access is not available.";
+            switch (error.code) {
+              case error.PERMISSION_DENIED:
+                errorMessage = "Location access was denied. You can still view the interview location.";
+                break;
+              case error.POSITION_UNAVAILABLE:
+                errorMessage = "Location information is unavailable. You can still view the interview location.";
+                break;
+              case error.TIMEOUT:
+                errorMessage = "Location request timed out. You can still view the interview location.";
+                break;
+            }
+            console.info(errorMessage);
+            setShowMapSection(true); // Show map section without current location
+          },
+          {
+            enableHighAccuracy: false,
+            timeout: 10000,
+            maximumAge: 300000 // 5 minutes
           }
         );
       } else {
-        await Geolocation.requestPermissions();
-        const position = await Geolocation.getCurrentPosition();
-        latitude = position.coords.latitude;
-        longitude = position.coords.longitude;
-        await fetchRouteAndShowMap(latitude, longitude);
+        try {
+          await Geolocation.requestPermissions();
+          const position = await Geolocation.getCurrentPosition();
+          latitude = position.coords.latitude;
+          longitude = position.coords.longitude;
+          await fetchRouteAndShowMap(latitude, longitude);
+        } catch (capacitorError) {
+          console.warn("Capacitor geolocation error", capacitorError);
+          setShowMapSection(true); // Show map section without current location
+        }
       }
     } catch (err) {
-      console.error("Geolocation error", err);
-      alert("Unable to access location. Please enable permissions from your phone settings.");
+      console.warn("General geolocation error", err);
+      setShowMapSection(true); // Show map section without current location
     }
   };
 
