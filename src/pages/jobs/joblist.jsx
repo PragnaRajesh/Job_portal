@@ -98,7 +98,7 @@ const JobList = () => {
                 >
                   {job.title}
                 </h2>
-                <img src={verifiedIcon} alt="verified" className="w-4 h-4 sm:w-5 sm:h-5" />
+                <img src="https://cdn.builder.io/api/v1/image/assets%2Fdae83ceaebfd45afaf9f5cd3ba8d137b%2Fc8e6f13d20a74f46a751f2fd2466c72d?format=webp&width=800" alt="verified" className="w-4 h-4 sm:w-5 sm:h-5" />
               </div>
               <p className="text-sm sm:text-base md:text-lg font-bold text-green-600">{job.salary}</p>
             </div>
