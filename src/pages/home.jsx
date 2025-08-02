@@ -161,7 +161,7 @@ const Home = () => {
           {recommendedJobs.map((job, idx) => (
             <div
               key={idx}
-              className="min-w-[17rem] sm:min-w-[20rem] md:min-w-0 rounded-2xl p-4 sm:p-6 relative border border-gray-200 bg-white shadow-xl"
+              className="min-w-[17rem] sm:min-w-[20rem] md:min-w-0 rounded-2xl p-4 sm:p-6 relative border border-gray-200 shadow-xl"
             >
               <Bookmark
                 size={18}
