@@ -55,14 +55,153 @@ const JobList = () => {
       benefit: "Insurance provided",
       time: "1 day ago",
     },
+    {
+      title: "Backend Developer",
+      salary: "₹20,000",
+      company: "Netflix Inc.",
+      location: "Electronic City, Bengaluru",
+      tags: ["New Job", "1 Vacancy", "⚡ High Demand", "Face 2 Face Interview"],
+      benefit: "Health insurance provided",
+      time: "2 days ago",
+    },
+    {
+      title: "Full Stack Developer",
+      salary: "₹25,000",
+      company: "Amazon Inc.",
+      location: "Whitefield, Bengaluru",
+      tags: ["New Job", "5 Vacancy", "⚡ High Demand", "Virtual Interview"],
+      benefit: "PF and insurance provided",
+      time: "3 days ago",
+    },
   ];
 
-  const metroFilters = ["Within 10Km", "10–15 Km away", "10–15 Km away"];
+  const metroFilters = ["Within 10Km", "10–15 Km away", "15–20 Km away"];
+
+  const renderJobCard = (job, index, keyPrefix = '') => (
+    <div
+      key={`${keyPrefix}${index}`}
+      className="bg-white rounded-2xl p-4 sm:p-6 shadow-[0_8px_20px_rgba(59,130,246,0.2)] transition duration-300"
+    >
+      <div className="relative z-10">
+        <div className="flex justify-between items-start">
+          <div className="flex gap-3 sm:gap-4">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
+              alt="logo"
+              className="w-8 h-8 sm:w-10 sm:h-10"
+            />
+            <div>
+              <div className="flex items-center gap-1">
+                <h2
+                  className="text-base sm:text-lg md:text-xl font-semibold cursor-pointer"
+                  onClick={() => navigate("/jobs/jobdetails")}
+                >
+                  {job.title}
+                </h2>
+                <img src={verifiedIcon} alt="verified" className="w-4 h-4 sm:w-5 sm:h-5" />
+              </div>
+              <p className="text-sm sm:text-base md:text-lg font-bold text-green-600">{job.salary}</p>
+            </div>
+          </div>
+          <div className="flex flex-col items-end gap-1">
+            <div className="text-xs sm:text-sm font-semibold text-orange-600 bg-orange-100 px-2 py-1 sm:px-3 sm:py-1 rounded-full">
+              URGENT HIRING
+            </div>
+            <Bookmark className="text-blue-600 w-4 h-4 sm:w-5 sm:h-5" />
+          </div>
+        </div>
+
+        <p className="text-sm sm:text-base mt-2 text-gray-700">{job.company}</p>
+        <p className="text-sm sm:text-base text-gray-500 flex items-center gap-1">
+          <MapPin className="w-3 h-3 sm:w-4 sm:h-4" />
+          {job.location}
+        </p>
+
+        <div className="flex flex-wrap gap-2 mt-3 sm:mt-4">
+          {job.tags.map((tag, tagIndex) => {
+            const isInterview = tag.includes("Interview");
+            const isHighDemand = tag.includes("High Demand");
+            const isNewJob = tag.includes("New Job");
+            const isVacancy = tag.includes("Vacancy");
+            let bg = "bg-gray-100 text-gray-700";
+            let icon = null;
+            if (isInterview) {
+              bg = "bg-orange-200 text-black font-semibold";
+              return (
+                <span
+                  key={tagIndex}
+                  className={`text-xs sm:text-sm px-2 py-0.5 sm:px-3 sm:py-1 rounded-xl flex items-center gap-1 ${bg}`}
+                >
+                  {tag}
+                </span>
+              );
+            } else if (isHighDemand) {
+              bg = "bg-yellow-100 text-blue-800 font-medium";
+              icon = <span className="text-yellow-500">⚡</span>;
+            } else if (isNewJob || isVacancy) {
+              bg = "bg-gray-100 text-blue-700 font-medium";
+            }
+            return (
+              <span
+                key={tagIndex}
+                className={`text-xs sm:text-sm px-3 py-1 sm:px-4 sm:py-1 rounded-xl flex items-center gap-1 ${bg}`}
+              >
+                {icon}
+                {tag}
+              </span>
+            );
+          })}
+        </div>
+        
+        <div className="flex justify-end mt-2 pr-2">
+          <div
+            className="flex flex-col items-center text-xs sm:text-sm text-blue-600 cursor-pointer hover:bg-blue-50 p-2 rounded-lg transition-colors"
+            onClick={(e) => {
+              e.stopPropagation();
+              const videoId = `${keyPrefix}${index}`;
+              setActiveVideoIndex(activeVideoIndex === videoId ? null : videoId);
+            }}
+          >
+            <img src={videoIcon} alt="prep" className="w-6 h-6 sm:w-8 sm:h-8" />
+            <span>Job Prep.</span>
+          </div>
+        </div>
+
+        {/* Video Section - Card Extension */}
+        {activeVideoIndex === `${keyPrefix}${index}` && (
+          <div className="mt-4 pt-4 border-t border-gray-200">
+            <div className="flex justify-between items-center mb-3">
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-800">Job Preparation Video</h3>
+              <button
+                onClick={() => setActiveVideoIndex(null)}
+                className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <video
+              controls
+              className="w-full h-auto max-h-64 rounded-lg"
+              preload="metadata"
+            >
+              <source src={jobPrepVideo} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        )}
+
+        <div className="flex justify-between items-center mt-4 pt-2 border-t text-xs sm:text-sm text-gray-600">
+          <span className="text-green-600">{job.benefit}</span>
+          <span>{job.time}</span>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
-    <div className="h-screen overflow-y-auto bg-gray-100 pb-24 pt-safe pb-safe">
+    <div className="h-screen overflow-y-auto bg-gray-100">
       {/* Header */}
-      <div className="bg-gradient-to-r from-[#2b2b76] to-[#412c84] text-white px-4 sm:px-6 md:px-8 py-5 sm:py-6 md:py-8 rounded-b-3xl">
+      <div className="bg-gradient-to-r from-[#2b2b76] to-[#412c84] text-white px-4 sm:px-6 md:px-8 py-5 sm:py-6 md:py-8 rounded-b-3xl" style={{ paddingTop: 'max(env(safe-area-inset-top), 1.25rem)' }}>
         <div className="flex justify-between items-center lg:max-w-6xl lg:mx-auto">
           <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate(-1)}>
             <ChevronLeft className="w-6 h-6 sm:w-7 sm:h-7" />
@@ -104,125 +243,7 @@ const JobList = () => {
 
         {/* Job Cards */}
         <div className="px-4 sm:px-6 md:px-8 space-y-6 sm:space-y-8 md:grid md:grid-cols-2 lg:grid-cols-1 md:gap-6 md:space-y-0">
-          {jobData.map((job, i) => (
-            <div
-              key={i}
-              className="bg-white rounded-2xl p-4 sm:p-6 shadow-[0_8px_20px_rgba(59,130,246,0.2)] transition duration-300"
-            >
-              <div className="relative z-10">
-                <div className="flex justify-between items-start">
-                  <div className="flex gap-3 sm:gap-4">
-                    <img
-                      src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
-                      alt="logo"
-                      className="w-8 h-8 sm:w-10 sm:h-10"
-                    />
-                    <div>
-                      <div className="flex items-center gap-1">
-                        <h2
-                          className="text-base sm:text-lg md:text-xl font-semibold cursor-pointer"
-                          onClick={() => navigate("/jobs/jobdetails")}
-                        >
-                          {job.title}
-                        </h2>
-                        <img src={verifiedIcon} alt="verified" className="w-4 h-4 sm:w-5 sm:h-5" />
-                      </div>
-                      <p className="text-sm sm:text-base md:text-lg font-bold text-green-600">{job.salary}</p>
-                    </div>
-                  </div>
-                  <div className="flex flex-col items-end gap-1">
-                    <div className="text-xs sm:text-sm font-semibold text-orange-600 bg-orange-100 px-2 py-1 sm:px-3 sm:py-1 rounded-full">
-                      URGENT HIRING
-                    </div>
-                    <Bookmark className="text-blue-600 w-4 h-4 sm:w-5 sm:h-5" />
-                  </div>
-                </div>
-
-                <p className="text-sm sm:text-base mt-2 text-gray-700">{job.company}</p>
-                <p className="text-sm sm:text-base text-gray-500 flex items-center gap-1">
-                  <MapPin className="w-3 h-3 sm:w-4 sm:h-4" />
-                  {job.location}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mt-3 sm:mt-4">
-                  {job.tags.map((tag, tagIndex) => {
-                    const isInterview = tag.includes("Interview");
-                    const isHighDemand = tag.includes("High Demand");
-                    const isNewJob = tag.includes("New Job");
-                    const isVacancy = tag.includes("Vacancy");
-                    let bg = "bg-gray-100 text-gray-700";
-                    let icon = null;
-                    if (isInterview) {
-                      bg = "bg-orange-200 text-black font-semibold";
-                      return (
-                        <span
-                          key={tagIndex}
-                          className={`text-xs sm:text-sm px-2 py-0.5 sm:px-3 sm:py-1 rounded-xl flex items-center gap-1 ${bg}`}
-                        >
-                          {tag}
-                        </span>
-                      );
-                    } else if (isHighDemand) {
-                      bg = "bg-yellow-100 text-blue-800 font-medium";
-                      icon = <span className="text-yellow-500">⚡</span>;
-                    } else if (isNewJob || isVacancy) {
-                      bg = "bg-gray-100 text-blue-700 font-medium";
-                    }
-                    return (
-                      <span
-                        key={tagIndex}
-                        className={`text-xs sm:text-sm px-3 py-1 sm:px-4 sm:py-1 rounded-xl flex items-center gap-1 ${bg}`}
-                      >
-                        {icon}
-                        {tag}
-                      </span>
-                    );
-                  })}
-                </div>
-                
-                <div className="flex justify-end mt-2 pr-2">
-                  <div
-                    className="flex flex-col items-center text-xs sm:text-sm text-blue-600 cursor-pointer"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setActiveVideoIndex(activeVideoIndex === i ? null : i);
-                    }}
-                  >
-                    <img src={videoIcon} alt="prep" className="w-6 h-6 sm:w-8 sm:h-8" />
-                    <span>Job Prep.</span>
-                  </div>
-                </div>
-
-                <div className="flex justify-between items-center mt-4 pt-2 border-t text-xs sm:text-sm text-gray-600">
-                  <span className="text-green-600">{job.benefit}</span>
-                  <span>{job.time}</span>
-                </div>
-                
-                {/* Video Section - Card Extension */}
-                {activeVideoIndex === i && (
-                  <div className="mt-4 pt-4 border-t border-gray-200">
-                    <div className="flex justify-between items-center mb-3">
-                      <h3 className="text-lg sm:text-xl font-semibold text-gray-800">Job Preparation Video</h3>
-                      <button
-                        onClick={() => setActiveVideoIndex(null)}
-                        className="p-1 hover:bg-gray-100 rounded-full"
-                      >
-                        <X className="w-5 h-5" />
-                      </button>
-                    </div>
-                    <video
-                      controls
-                      className="w-full h-auto max-h-75 rounded-lg"
-                      autoPlay
-                    >
-                      <source src={jobPrepVideo} type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
-                  </div>
-                )}
-              </div>
-            </div>
-          ))}
+          {jobData.map((job, i) => renderJobCard(job, i, 'main-'))}
         </div>
 
         {/* Metro Filter */}
@@ -243,132 +264,17 @@ const JobList = () => {
           </div>
         </div>
 
-        {/* Duplicate Job Cards Section */}
+        {/* Additional Job Cards */}
         <div className="px-4 sm:px-6 md:px-8 space-y-6 sm:space-y-8 mt-6 sm:mt-8 md:grid md:grid-cols-2 lg:grid-cols-1 md:gap-6 md:space-y-0">
-          {jobData.map((job, i) => (
-            <div
-              key={i + 'duplicate'}
-              className="bg-white rounded-2xl p-4 sm:p-6 shadow-[0_8px_20px_rgba(59,130,246,0.2)] transition duration-300"
-            >
-              <div className="relative z-10">
-                <div className="flex justify-between items-start">
-                  <div className="flex gap-3 sm:gap-4">
-                    <img
-                      src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
-                      alt="logo"
-                      className="w-8 h-8 sm:w-10 sm:h-10"
-                    />
-                    <div>
-                      <div className="flex items-center gap-1">
-                        <h2
-                          className="text-base sm:text-lg md:text-xl font-semibold cursor-pointer"
-                          onClick={() => navigate("/jobs/jobdetails")}
-                        >
-                          {job.title}
-                        </h2>
-                        <img src={verifiedIcon} alt="verified" className="w-4 h-4 sm:w-5 sm:h-5" />
-                      </div>
-                      <p className="text-sm sm:text-base md:text-lg font-bold text-green-600">{job.salary}</p>
-                    </div>
-                  </div>
-                  <div className="flex flex-col items-end gap-1">
-                    <div className="text-xs sm:text-sm font-semibold text-orange-600 bg-orange-100 px-2 py-1 sm:px-3 sm:py-1 rounded-full">
-                      URGENT HIRING
-                    </div>
-                    <Bookmark className="text-blue-600 w-4 h-4 sm:w-5 sm:h-5" />
-                  </div>
-                </div>
-
-                <p className="text-sm sm:text-base mt-2 text-gray-700">{job.company}</p>
-                <p className="text-sm sm:text-base text-gray-500 flex items-center gap-1">
-                  <MapPin className="w-3 h-3 sm:w-4 sm:h-4" />
-                  {job.location}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mt-3 sm:mt-4">
-                  {job.tags.map((tag, tagIndex) => {
-                    const isInterview = tag.includes("Interview");
-                    const isHighDemand = tag.includes("High Demand");
-                    const isNewJob = tag.includes("New Job");
-                    const isVacancy = tag.includes("Vacancy");
-                    let bg = "bg-gray-100 text-gray-700";
-                    let icon = null;
-                    if (isInterview) {
-                      bg = "bg-orange-200 text-black font-semibold";
-                      return (
-                        <span
-                          key={tagIndex}
-                          className={`text-xs sm:text-sm px-2 py-0.5 sm:px-3 sm:py-1 rounded-xl flex items-center gap-1 ${bg}`}
-                        >
-                          {tag}
-                        </span>
-                      );
-                    } else if (isHighDemand) {
-                      bg = "bg-yellow-100 text-blue-800 font-medium";
-                      icon = <span className="text-yellow-500">⚡</span>;
-                    } else if (isNewJob || isVacancy) {
-                      bg = "bg-gray-100 text-blue-700 font-medium";
-                    }
-                    return (
-                      <span
-                        key={tagIndex}
-                        className={`text-xs sm:text-sm px-3 py-1 sm:px-4 sm:py-1 rounded-xl flex items-center gap-1 ${bg}`}
-                      >
-                        {icon}
-                        {tag}
-                      </span>
-                    );
-                  })}
-                </div>
-                
-                <div className="flex justify-end mt-2 pr-2">
-                  <div
-                    className="flex flex-col items-center text-xs sm:text-sm text-blue-600 cursor-pointer"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setActiveVideoIndex(activeVideoIndex === i ? null : i);
-                    }}
-                  >
-                    <img src={videoIcon} alt="prep" className="w-6 h-6 sm:w-8 sm:h-8" />
-                    <span>Job Prep.</span>
-                  </div>
-                </div>
-
-                <div className="flex justify-between items-center mt-4 pt-2 border-t text-xs sm:text-sm text-gray-600">
-                  <span className="text-green-600">{job.benefit}</span>
-                  <span>{job.time}</span>
-                </div>
-                
-                {/* Video Section - Card Extension */}
-                {activeVideoIndex === i && (
-                  <div className="mt-4 pt-4 border-t border-gray-200">
-                    <div className="flex justify-between items-center mb-3">
-                      <h3 className="text-lg sm:text-xl font-semibold text-gray-800">Job Preparation Video</h3>
-                      <button
-                        onClick={() => setActiveVideoIndex(null)}
-                        className="p-1 hover:bg-gray-100 rounded-full"
-                      >
-                        <X className="w-5 h-5" />
-                      </button>
-                    </div>
-                    <video
-                      controls
-                      className="w-full h-auto max-h-75 rounded-lg"
-                      autoPlay
-                    >
-                      <source src={jobPrepVideo} type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
-                  </div>
-                )}
-              </div>
-            </div>
-          ))}
+          {jobData.map((job, i) => renderJobCard(job, i, 'additional-'))}
         </div>
+
+        {/* Bottom spacing to prevent content from being hidden behind navigation */}
+        <div style={{ height: 'calc(env(safe-area-inset-bottom) + 5rem)' }}></div>
       </div>
 
       {/* ✅ Fixed Bottom Navigation */}
-      <div className="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around py-3 sm:py-4 border-t border-gray-200 bg-white/95 backdrop-blur-sm pb-safe">
+      <div className="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around py-2 sm:py-3 border-t border-gray-200 bg-white/95 backdrop-blur-sm" style={{ paddingBottom: 'max(env(safe-area-inset-bottom), 0.5rem)' }}>
         <button onClick={() => navigate("/home")}>
           <HomeIcon className="w-6 h-6 sm:w-7 sm:h-7 text-gray-400" />
         </button>
