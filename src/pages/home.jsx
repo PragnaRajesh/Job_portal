@@ -102,7 +102,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-24 pt-safe pb-safe">
+    <div className="min-h-screen pb-24 pt-safe pb-safe">
       <div className="p-4 sm:p-6 md:p-8 lg:max-w-6xl lg:mx-auto">
         {/* Header */}
         <div className="flex justify-between items-center mb-4 sm:mb-6">
@@ -161,22 +161,20 @@ const Home = () => {
           {recommendedJobs.map((job, idx) => (
             <div
               key={idx}
-              className="min-w-[17rem] sm:min-w-[20rem] md:min-w-0 rounded-2xl p-4 sm:p-6 relative border border-gray-200 bg-white shadow-xl"
+              className="min-w-[17rem] sm:min-w-[20rem] md:min-w-0 rounded-2xl p-4 sm:p-6 relative border border-gray-200 shadow-xl"
             >
               <Bookmark
                 size={18}
                 className="absolute top-4 right-4 text-blue-700 sm:w-5 sm:h-5"
               />
-              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center bg-gray-100 mb-3">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center mb-3">
                 <img
                   src={job.logo}
                   alt={job.company}
                   className="w-6 h-6 sm:w-8 sm:h-8 object-contain"
                 />
               </div>
-              <p className="text-xs sm:text-sm font-semibold text-gray-600 mb-1">
-                {job.company}
-              </p>
+
               <h4 className="text-base sm:text-lg font-bold text-gray-900 mb-1">
                 {job.role}
               </h4>
