@@ -67,10 +67,10 @@ const App = () => {
         <Routes>
           {/* Onboarding and Auth */}
           <Route path="/" element={<OnboardingFlow />} />
-          <Route path="/onboarding1" element={<OnboardingScreen1 />} />
-          <Route path="/onboarding2" element={<OnboardingScreen2 />} />
-          <Route path="/onboarding3" element={<OnboardingScreen3 />} />
-          <Route path="/onboarding4" element={<OnboardingScreen4 />} />
+          <Route path="/onboarding1" element={<OnboardingFlow />} />
+          <Route path="/onboarding2" element={<OnboardingFlow />} />
+          <Route path="/onboarding3" element={<OnboardingFlow />} />
+          <Route path="/onboarding4" element={<OnboardingFlow />} />
 
 
           {/* Sign Up Flow */}
