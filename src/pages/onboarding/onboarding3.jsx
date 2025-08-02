@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import resumeImg from '../../assets/onboarding3.png';
 
 
-const OnboardingScreen3 = ({ onNext, onSkip }) => {
+const OnboardingScreen3 = ({ onNext, onSkip, onBack }) => {
   const navigate = useNavigate();
 
   const handleSkip = () => {
@@ -19,6 +19,14 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
       onNext();
     } else {
       navigate('/onboarding4');
+    }
+  };
+
+  const handleBack = () => {
+    if (onBack) {
+      onBack();
+    } else {
+      navigate('/onboarding2');
     }
   };
 
