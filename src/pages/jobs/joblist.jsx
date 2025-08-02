@@ -14,8 +14,8 @@ import {
   X,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import verifiedIcon from "../../assets/verified.jpeg";
-import videoIcon from "../../assets/job prep.jpeg";
+import verifiedIcon from "../../assets/verified.png";
+import videoIcon from "../../assets/job prep.png";
 import jobPrepVideo from "../../assets/job prep vedio.mp4";
 import InterviewPrep from "../../components/InterviewPrep";
 import resumeImg from "../../assets/resume-builder.png";
