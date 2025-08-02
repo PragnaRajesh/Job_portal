@@ -259,7 +259,11 @@ const FaceToFaceInterview = () => {
               title="Map"
               className="w-full h-64 rounded-lg mb-2"
               frameBorder="0"
-              src={`https://www.google.com/maps/embed/v1/directions?key=AIzaSyB2NP7lSemQeJ0fPfFnfyCxs_X0kg137F4&origin=${currentLocation}&destination=${encodeURIComponent(job.location)}&mode=driving`}
+              src={
+                currentLocation
+                  ? `https://www.google.com/maps/embed/v1/directions?key=AIzaSyB2NP7lSemQeJ0fPfFnfyCxs_X0kg137F4&origin=${currentLocation}&destination=${encodeURIComponent(job.location)}&mode=driving`
+                  : `https://www.google.com/maps/embed/v1/place?key=AIzaSyB2NP7lSemQeJ0fPfFnfyCxs_X0kg137F4&q=${encodeURIComponent(job.location)}`
+              }
               allowFullScreen
             ></iframe>
 
