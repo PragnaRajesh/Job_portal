@@ -192,7 +192,7 @@ const Application = () => {
       </div>
 
      {/* ✅ Fixed Bottom Navigation */}
-               <div className="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around py-3 sm:py-4 border-t border-gray-200 bg-white/95 backdrop-blur-sm pb-safe">
+               <div className="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around py-[10px] pb-[15px] sm:py-3 sm:pb-6 border-t border-gray-200 bg-white/95 backdrop-blur-sm pb-safe">
                  <button onClick={() => navigate("/home")}>
                    <HomeIcon className="w-6 h-6 sm:w-7 sm:h-7 text-gray-400" />
                  </button>
