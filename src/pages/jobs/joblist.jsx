@@ -151,19 +151,16 @@ const JobList = () => {
               </span>
             );
           })}
-        </div>
-        
-        <div className="flex justify-end mt-2 pr-2">
-          <div
-            className="flex flex-col items-center text-xs sm:text-sm text-blue-600 cursor-pointer hover:bg-blue-50 p-2 rounded-lg transition-colors"
+          <img
+            src="https://cdn.builder.io/api/v1/image/assets%2Fdae83ceaebfd45afaf9f5cd3ba8d137b%2Fc587bd76b14549b9a4061be307232954?format=webp&width=800"
+            alt="prep"
+            className="w-6 h-6 cursor-pointer hover:bg-blue-50 p-1 rounded transition-colors ml-2"
             onClick={(e) => {
               e.stopPropagation();
               const videoId = `${keyPrefix}${index}`;
               setActiveVideoIndex(activeVideoIndex === videoId ? null : videoId);
             }}
-          >
-            <img src="https://cdn.builder.io/api/v1/image/assets%2Fdae83ceaebfd45afaf9f5cd3ba8d137b%2Fc587bd76b14549b9a4061be307232954?format=webp&width=800" alt="prep" className="w-6 h-6 sm:w-8 sm:h-8" />
-          </div>
+          />
         </div>
 
         {/* Video Section - Card Extension */}
@@ -307,7 +304,7 @@ const JobList = () => {
                   className="w-full bg-gradient-to-r from-purple-100 to-blue-100 text-purple-800 py-3 sm:py-4 rounded-xl font-medium text-base sm:text-lg shadow-sm border border-purple-200 hover:from-purple-200 hover:to-blue-200 transition relative overflow-hidden"
                 >
                   <span className="absolute top-0.5 right-1 bg-gradient-to-r from-purple-500 to-blue-500 text-white px-1.5 py-0.5 rounded-full text-xs font-medium">
-                    ✨ AI
+                    ��� AI
                   </span>
                   📝 AI Resume Builder
                 </button>
