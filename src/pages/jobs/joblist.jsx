@@ -163,7 +163,6 @@ const JobList = () => {
             }}
           >
             <img src={videoIcon} alt="prep" className="w-6 h-6 sm:w-8 sm:h-8" />
-            <span>Job Prep.</span>
           </div>
         </div>
 
