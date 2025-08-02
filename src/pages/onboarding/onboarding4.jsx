@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
-const OnboardingScreen4 = ({ onSignUp, onLogIn }) => {
+const OnboardingScreen4 = ({ onSignUp, onLogIn, onBack }) => {
   const navigate = useNavigate();
 
   const handleSignUp = () => {
@@ -18,6 +18,14 @@ const OnboardingScreen4 = ({ onSignUp, onLogIn }) => {
       onLogIn();
     } else {
       navigate('/login');
+    }
+  };
+
+  const handleBack = () => {
+    if (onBack) {
+      onBack();
+    } else {
+      navigate('/onboarding3');
     }
   };
 
