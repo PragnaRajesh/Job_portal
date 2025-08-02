@@ -103,25 +103,28 @@ const FaceToFaceInterview = () => {
   };
 
   const fetchRouteAndShowMap = async (latitude, longitude) => {
-    const origin = `${latitude},${longitude}`;
+    const origin = latitude && longitude ? `${latitude},${longitude}` : null;
     setCurrentLocation(origin);
     setShowMapSection(true);
 
     const destination = encodeURIComponent(job.location);
     const apiKey = "AIzaSyB2NP7lSemQeJ0fPfFnfyCxs_X0kg137F4";
 
-    try {
-      const res = await fetch(
-        `https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${destination}&key=${apiKey}`
-      );
-      const data = await res.json();
-      if (data.routes?.[0]) {
-        const leg = data.routes[0].legs[0];
-        setDistance(leg.distance.text);
-        setDuration(leg.duration.text);
+    // Only fetch directions if we have current location
+    if (origin) {
+      try {
+        const res = await fetch(
+          `https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${destination}&key=${apiKey}`
+        );
+        const data = await res.json();
+        if (data.routes?.[0]) {
+          const leg = data.routes[0].legs[0];
+          setDistance(leg.distance.text);
+          setDuration(leg.duration.text);
+        }
+      } catch (error) {
+        console.error("Failed to fetch directions", error);
       }
-    } catch (error) {
-      console.error("Failed to fetch directions", error);
     }
   };
 
