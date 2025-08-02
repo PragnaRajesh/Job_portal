@@ -174,9 +174,7 @@ const Home = () => {
                   className="w-6 h-6 sm:w-8 sm:h-8 object-contain"
                 />
               </div>
-              <p className="text-xs sm:text-sm font-semibold text-gray-600 mb-1">
-                {job.company}
-              </p>
+
               <h4 className="text-base sm:text-lg font-bold text-gray-900 mb-1">
                 {job.role}
               </h4>
