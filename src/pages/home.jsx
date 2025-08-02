@@ -102,6 +102,7 @@ const Home = () => {
   }, []);
 
   return (
+    <div className="min-h-screen overflow-y-auto pb-[80px] pt-safe pb-safe">
     <div className="min-h-screen pb-24 pt-safe pb-safe">
       <div className="p-4 sm:p-6 md:p-8 lg:max-w-6xl lg:mx-auto">
         {/* Header */}
@@ -261,21 +262,21 @@ const Home = () => {
       </div>
 
       {/* ✅ Fixed Bottom Navigation */}
-      <div className="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around py-3 sm:py-4 border-t border-gray-200 bg-white/95 backdrop-blur-sm pb-safe">
+      <div className="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around py-1 sm:py-1 border-t border-gray-200 bg-white/95 backdrop-blur-sm pb-safe">
         <button onClick={() => navigate("/home")}>
-          <HomeIcon className="w-6 h-6 sm:w-7 sm:h-7 text-blue-600" />
+          <HomeIcon className="w-6 h-6 sm:w-7 sm:h-7 mt-2 text-blue-600" />
         </button>
         <button onClick={() => navigate("/jobs/joblist")}>
-          <Briefcase className="w-6 h-6 sm:w-7 sm:h-7 text-gray-400" />
+          <Briefcase className="w-6 h-6 sm:w-7 sm:h-7 mt-2 text-gray-400" />
         </button>
 
         {/* Plus Icon with Popup */}
                           <div className="relative">
                             <button
                               onClick={() => setShowPopup(!showPopup)}
-                              className="w-12 h-12 sm:w-14 sm:h-14 bg-blue-600 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 transition-all duration-300 hover:scale-105"
+                              className="w-8 h-8 sm:w-14 sm:h-14 bg-blue-600 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 transition-all duration-300 hover:scale-105 mt-2"
                             >
-                              <Plus className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+                              <Plus className="w-4 h-4 sm:w-7 sm:h-7  text-white" />
                             </button>
                   
                             {showPopup && (
@@ -335,13 +336,14 @@ const Home = () => {
                           </div>
 
         <button onClick={() => navigate("/applications/application")}>
-          <FileText className="w-6 h-6 sm:w-7 sm:h-7 text-gray-400" />
+          <FileText className="w-6 h-6 sm:w-7 sm:h-7 mt-2 text-gray-400" />
         </button>
         <button onClick={() => navigate("/myprofilesection/myprofile")}>
-          <User className="w-6 h-6 sm:w-7 sm:h-7 text-gray-400" />
+          <User className="w-6 h-6 sm:w-7 sm:h-7 mt-2 text-gray-400" />
         </button>
       </div>
 
+    </div>
     </div>
   );
 };

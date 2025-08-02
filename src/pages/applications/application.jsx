@@ -61,6 +61,7 @@ const Application = () => {
   }, []);
 
   return (
+    <div className="min-h-screen overflow-y-auto pb-[80px] pt-safe pb-safe">
     <div className="min-h-screen bg-white px-4 pt-6 pb-40 font-sans text-base pt-safe pb-safe">
       {/* Top Bar */}
       <div className="flex items-center justify-between mb-4">
@@ -118,7 +119,7 @@ const Application = () => {
               </>
             ) : (
               <>
-                <button className="w-full bg-blue-500 text-white text-sm py-2 rounded-md">Attend Interview</button>
+                <button className="w-full bg-blue-500 text-white text-sm py-2 rounded-md">Attend</button>
                 <button className="w-full bg-yellow-400 text-white text-sm py-2 rounded-md">Route</button>
                 <button className="w-full bg-sky-400 text-white text-sm py-2 rounded-md">Reschedule</button>
               </>
@@ -154,125 +155,118 @@ const Application = () => {
           <span className="text-black text-sm font-medium">HR Rates</span>
           {[...Array(5)].map((_, i) => (
             <svg
-              key={i}
-              onClick={() => setRating(i + 1)}
-              onMouseEnter={() => setHovered(i + 1)}
-              onMouseLeave={() => setHovered(null)}
-              xmlns="http://www.w3.org/2000/svg"
-              width="48"
-              height="40"
-              viewBox="0 0 48 40"
-              fill={
-                hovered !== null
-                  ? i + 1 <= hovered
-                    ? "#FFD700"
-                    : "lightgray"
-                  : i + 1 <= Math.floor(rating)
-                  ? "#FFD700"
-                  : i + 0.5 === rating
-                  ? "url(#halfGradient)"
-                  : "lightgray"
-              }
-              className="cursor-pointer"
-            >
-              <defs>
-                <linearGradient id="halfGradient">
-                  <stop offset="50%" stopColor="#FFD700" />
-                  <stop offset="50%" stopColor="lightgray" />
-                </linearGradient>
-              </defs>
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M34.425 17.1209C34.2393 16.5486 33.7296 16.1427 33.1303 16.0897L27.5625 15.6097L25.38 10.4197C25.1476 9.86283 24.6034 9.50019 24 9.50019C23.3966 9.50019 22.8524 9.86283 22.62 10.4197L20.4441 15.6097L14.8697 16.0925C14.2679 16.1431 13.7551 16.5496 13.5686 17.124C13.3821 17.6985 13.5583 18.3287 14.0156 18.7231L18.2447 22.4187L16.9772 27.9069C16.8402 28.494 17.068 29.1062 17.5556 29.4608C18.0432 29.8155 18.6958 29.8437 19.2122 29.5325L23.9934 26.6262L28.785 29.5325C29.3014 29.8437 29.954 29.8155 30.4416 29.4608C30.9292 29.1062 31.157 28.494 31.02 27.9069L29.7534 22.4131L33.9816 18.7231C34.4389 18.3273 34.6137 17.6956 34.425 17.1209Z"
-              />
-            </svg>
+  key={i}
+  onClick={() => {
+  if (rating === i + 1) {
+    setRating(i); // remove rating
+  } else {
+    setRating(i + 1); // set new rating
+  }
+}}
+  xmlns="http://www.w3.org/2000/svg"
+  width="36"
+  height="36"
+  viewBox="0 0 48 48"
+  fill={i + 1 <= (hovered || rating) ? "#FFD700" : "none"}
+  stroke="#FFD700"
+  strokeWidth="2"
+  className="cursor-pointer transition duration-150"
+>
+  <path
+    d="M34.425 17.1209C34.2393 16.5486 33.7296 16.1427 33.1303 16.0897L27.5625 15.6097L25.38 10.4197C25.1476 9.86283 24.6034 9.50019 24 9.50019C23.3966 9.50019 22.8524 9.86283 22.62 10.4197L20.4441 15.6097L14.8697 16.0925C14.2679 16.1431 13.7551 16.5496 13.5686 17.124C13.3821 17.6985 13.5583 18.3287 14.0156 18.7231L18.2447 22.4187L16.9772 27.9069C16.8402 28.494 17.068 29.1062 17.5556 29.4608C18.0432 29.8155 18.6958 29.8437 19.2122 29.5325L23.9934 26.6262L28.785 29.5325C29.3014 29.8437 29.954 29.8155 30.4416 29.4608C30.9292 29.1062 31.157 28.494 31.02 27.9069L29.7534 22.4131L33.9816 18.7231C34.4389 18.3273 34.6137 17.6956 34.425 17.1209Z"
+    fillRule="evenodd"
+    clipRule="evenodd"
+  />
+</svg>
+
           ))}
         </div>
       </div>
 
      {/* ✅ Fixed Bottom Navigation */}
-               <div className="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around py-[10px] pb-[15px] sm:py-3 sm:pb-6 border-t border-gray-200 bg-white/95 backdrop-blur-sm pb-safe">
-                 <button onClick={() => navigate("/home")}>
-                   <HomeIcon className="w-6 h-6 sm:w-7 sm:h-7 text-gray-400" />
-                 </button>
-                 <button onClick={() => navigate("/jobs/joblist")}>
-                   <Briefcase className="w-6 h-6 sm:w-7 sm:h-7 text-gray-400" />
-                 </button>
-         
-                 {/* Plus Icon with Popup */}
-                 <div className="relative">
-                   <button
-                     onClick={() => setShowPopup(!showPopup)}
-                     className="w-12 h-12 sm:w-14 sm:h-14 bg-blue-600 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 transition-all duration-300 hover:scale-105"
-                   >
-                     <Plus className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
-                   </button>
-         
-                   {showPopup && (
-           <div
-             ref={popupRef}
-             className="fixed bottom-16 sm:bottom-20 left-0 w-full h-[50vh] sm:h-[45vh] md:h-[40vh] bg-gradient-to-t from-blue-100 via-white to-white z-50 rounded-t-3xl shadow-2xl flex flex-col items-center pt-6 pb-4 animate-slideUp"
-           >
-             <div className="w-16 h-1 bg-blue-200 rounded-full mb-6 mt-2" />
-             <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 text-gray-800">Quick Actions</h3>
-         
-             <div className="flex flex-col gap-4 w-4/5 sm:w-3/5 md:w-2/5">
-         
-           {/* Resume Button */}
-           <button
-             onClick={() => {
-               setShowPopup(false);
-               navigate("/resume/resumebuilder");
-             }}
-             className="w-full bg-gradient-to-r from-purple-100 to-blue-100 text-purple-800 py-6 sm:py-8 rounded-2xl font-semibold text-lg sm:text-xl shadow-md border border-purple-200 hover:from-purple-200 hover:to-blue-200 transition-all flex items-center justify-center gap-3 relative overflow-hidden"
-           >
-            <span className="absolute top-1 right-2 bg-gradient-to-r from-purple-500 to-blue-500 text-white px-2 py-0.5 rounded-full text-xs font-medium">
-              ✨ AI
-            </span>
-            <img src={resumeImg} alt="Resume" className="w-6 h-6 sm:w-8 sm:h-8" />
-         Resume Builder
-           </button>
-           
-         
-           {/* Chats Button */}
-           <button
-             onClick={() => {
-               setShowPopup(false);
-               navigate("/messages");
-             }}
-             className="w-full bg-[#E8F9ED] text-[#2E7D32] py-6 sm:py-8 rounded-2xl font-semibold text-lg sm:text-xl shadow-md border border-[#BEE7C9] hover:bg-[#d3f3db] transition-all flex items-center justify-center gap-3"
-           ><img src={chatImg} alt="Chat" className="w-6 h-6 sm:w-8 sm:h-8" />
-         Chats
-           </button>
-         
-           {/* AI Job Prep Button */}
-           <button
-             onClick={() => {
-               setShowPopup(false);
-               navigate("/InterviewPrep");
-             }}
-             className="w-full bg-[#F3E9FF] text-[#6A1B9A] py-6 sm:py-8 rounded-2xl font-semibold text-lg sm:text-xl shadow-md border border-[#D8C5ED] hover:bg-[#ebdbff] transition-all flex items-center justify-center gap-3"
-           >
-             <img src={robotImg} alt="AI Prep" className="w-6 h-6 sm:w-8 sm:h-8" />
-         AI Job Prep
-           </button>
-         
-         </div>
-         
+           <div className="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around py-1 sm:py-1 border-t border-gray-200 bg-white/95 backdrop-blur-sm pb-safe">
+             <button onClick={() => navigate("/home")}>
+               <HomeIcon className="w-6 h-6 sm:w-7 sm:h-7 mt-2 text-gray-400" />
+             </button>
+             <button onClick={() => navigate("/jobs/joblist")}>
+               <Briefcase className="w-6 h-6 sm:w-7 sm:h-7 mt-2 text-gray-400" />
+             </button>
+     
+             {/* Plus Icon with Popup */}
+                               <div className="relative">
+                                 <button
+                                   onClick={() => setShowPopup(!showPopup)}
+                                   className="w-8 h-8 sm:w-14 sm:h-14 bg-blue-600 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 transition-all duration-300 hover:scale-105 mt-2"
+                                 >
+                                   <Plus className="w-4 h-4 sm:w-7 sm:h-7  text-white" />
+                                 </button>
+                       
+                                 {showPopup && (
+                         <div
+                           ref={popupRef}
+                           className="fixed bottom-16 sm:bottom-20 left-0 w-full h-[50vh] sm:h-[45vh] md:h-[40vh] bg-gradient-to-t from-blue-100 via-white to-white z-50 rounded-t-3xl shadow-2xl flex flex-col items-center pt-6 pb-4 animate-slideUp"
+                         >
+                           <div className="w-16 h-1 bg-blue-200 rounded-full mb-6 mt-2" />
+                           <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 text-gray-800">Quick Actions</h3>
+                       
+                           <div className="flex flex-col gap-4 w-4/5 sm:w-3/5 md:w-2/5">
+                       
+                         {/* Resume Button */}
+                         <button
+                           onClick={() => {
+                             setShowPopup(false);
+                             navigate("/resume/resumebuilder");
+                           }}
+                           className="w-full bg-gradient-to-r from-purple-100 to-blue-100 text-purple-800 py-6 sm:py-8 rounded-2xl font-semibold text-lg sm:text-xl shadow-md border border-purple-200 hover:from-purple-200 hover:to-blue-200 transition-all flex items-center justify-center gap-3 relative overflow-hidden"
+                         >
+                          <span className="absolute top-1 right-2 bg-gradient-to-r from-purple-500 to-blue-500 text-white px-2 py-0.5 rounded-full text-xs font-medium">
+                            ✨ AI
+                          </span>
+                          <img src={resumeImg} alt="Resume" className="w-6 h-6 sm:w-8 sm:h-8" />
+                       Resume Builder
+                         </button>
+                         
+                       
+                         {/* Chats Button */}
+                         <button
+                           onClick={() => {
+                             setShowPopup(false);
+                             navigate("/messages");
+                           }}
+                           className="w-full bg-[#E8F9ED] text-[#2E7D32] py-6 sm:py-8 rounded-2xl font-semibold text-lg sm:text-xl shadow-md border border-[#BEE7C9] hover:bg-[#d3f3db] transition-all flex items-center justify-center gap-3"
+                         ><img src={chatImg} alt="Chat" className="w-6 h-6 sm:w-8 sm:h-8" />
+                       Chats
+                         </button>
+                       
+                         {/* AI Job Prep Button */}
+                         <button
+                           onClick={() => {
+                             setShowPopup(false);
+                             navigate("/InterviewPrep");
+                           }}
+                           className="w-full bg-[#F3E9FF] text-[#6A1B9A] py-6 sm:py-8 rounded-2xl font-semibold text-lg sm:text-xl shadow-md border border-[#D8C5ED] hover:bg-[#ebdbff] transition-all flex items-center justify-center gap-3"
+                         >
+                           <img src={robotImg} alt="AI Prep" className="w-6 h-6 sm:w-8 sm:h-8" />
+                       AI Job Prep
+                         </button>
+                       
+                       </div>
+                       
+                         </div>
+                       )}
+                       
+                               </div>
+     
+             <button onClick={() => navigate("/application")}>
+               <FileText className="w-6 h-6 sm:w-7 sm:h-7 mt-2 text-blue-600" />
+             </button>
+             <button onClick={() => navigate("/myprofilesection/myprofile")}>
+               <User className="w-6 h-6 sm:w-7 sm:h-7 mt-2 text-gray-400" />
+             </button>
            </div>
-         )}
-         
-                 </div>
-         
-                 <button onClick={() => navigate("/applications/application")}>
-                   <FileText className="w-6 h-6 sm:w-7 sm:h-7 text-blue-600" />
-                 </button>
-                 <button onClick={() => navigate("/myprofilesection/myprofile")}>
-                   <User className="w-6 h-6 sm:w-7 sm:h-7 text-gray-400" />
-                 </button>
-               </div>
+     
       </div>
+    </div>
        );
      };
 
