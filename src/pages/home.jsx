@@ -167,7 +167,7 @@ const Home = () => {
                 size={18}
                 className="absolute top-4 right-4 text-blue-700 sm:w-5 sm:h-5"
               />
-              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center bg-gray-100 mb-3">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center mb-3">
                 <img
                   src={job.logo}
                   alt={job.company}
