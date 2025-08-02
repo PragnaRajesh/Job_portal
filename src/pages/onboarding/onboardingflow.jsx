@@ -35,6 +35,17 @@ const OnboardingFlow = () => {
     }
   }, [location.pathname, navigate]);
 
+  // Add browser back/forward button support
+  useEffect(() => {
+    const handlePopState = () => {
+      // Browser navigation is already handled by React Router
+      // This ensures the component re-renders with the correct screen
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
   const handleNext = () => {
     if (currentScreen < 4) {
       navigate(`/onboarding${currentScreen + 1}`);
