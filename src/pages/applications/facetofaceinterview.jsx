@@ -131,11 +131,11 @@ const FaceToFaceInterview = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white px-4 pt-6 pb-32 font-sans">
+    <div className="min-h-screen bg-white px-4 pt-6 pb-32 font-sans pt-safe pb-safe">
       {/* Top Bar */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <ChevronLeft onClick={() => navigate(-1)} className="cursor-pointer" />
+          <ChevronLeft onClick={() => navigate(-1)} className="cursor-pointer hover:text-gray-600 transition-colors" />
           <h1 className="text-xl font-semibold">Application</h1>
         </div>
         <Bell size={22} className="text-blue-600" />
@@ -293,7 +293,7 @@ const FaceToFaceInterview = () => {
             {showPopup && (
               <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                 <div className="bg-white rounded-xl p-6 text-center shadow-xl max-w-xs w-full">
-                  <h2 className="text-xl font-bold mb-2">You're Here! 🎉</h2>
+                  <h2 className="text-xl font-bold mb-2">You're Here! ����</h2>
                   <p className="text-sm text-gray-600 mb-4">
                     Good luck with your interview at <strong>{job.title}</strong>.
                   </p>

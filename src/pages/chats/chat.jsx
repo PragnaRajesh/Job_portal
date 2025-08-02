@@ -50,14 +50,14 @@ const Chat = () => {
   }
 
   return (
-    <div className="bg-gray-100 min-h-screen flex flex-col">
+    <div className="bg-gray-100 min-h-screen flex flex-col pt-safe pb-safe">
       {/* Header - Clean design matching second photo */}
       <div className="bg-white px-4 py-4 shadow-sm">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <ArrowLeft
-              className="w-6 h-6 text-gray-800 cursor-pointer mr-3"
-              onClick={() => navigate('/messages')}
+              className="w-6 h-6 text-gray-800 cursor-pointer mr-3 hover:text-gray-600 transition-colors"
+              onClick={() => navigate(-1)}
             />
             <img
               src={conversation.avatar}

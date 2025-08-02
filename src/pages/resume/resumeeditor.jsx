@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowLeft, Download, Save, Edit3, Plus, Trash2, ChevronDown, MoreVertical } from 'lucide-react';
+import html2pdf from 'html2pdf.js';
 import GraphicsTemplate from './graphictemplate';
 import GraphicsTemplate2 from './graphictemplate2';
 import GraphicsTemplate3 from './graphictemplate3';
@@ -244,9 +245,66 @@ const ResumeEditor = ({ template, onBack, onSave, onDownload }) => {
       'basic-2': BasicTemplate2,
       'basic-3': BasicTemplate3,
     };
-    
+
     const TemplateComponent = templateMap[template?.id] || BasicTemplate;
     return <TemplateComponent data={resumeData} />;
+  };
+
+  const downloadAsPDF = async () => {
+    try {
+      // Create a temporary container for PDF generation
+      const tempDiv = document.createElement('div');
+      tempDiv.style.position = 'absolute';
+      tempDiv.style.left = '-9999px';
+      tempDiv.style.top = '0';
+      tempDiv.style.width = '794px';
+      tempDiv.style.height = '1123px';
+      tempDiv.style.background = 'white';
+      tempDiv.style.padding = '0';
+      tempDiv.style.margin = '0';
+
+      // Get template component
+      const TemplateComponent = getTemplateComponent().type;
+
+      // Create template HTML string
+      const templateHTML = `
+        <div style="width: 794px; height: 1123px; background: white; padding: 24px; box-sizing: border-box; font-family: system-ui, -apple-system, sans-serif;">
+          ${document.querySelector('.resume-editor-preview').innerHTML}
+        </div>
+      `;
+
+      tempDiv.innerHTML = templateHTML;
+      document.body.appendChild(tempDiv);
+
+      // PDF options
+      const opt = {
+        margin: 0,
+        filename: `${resumeData.personalInfo.name.replace(/\s+/g, '_')}_Resume.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: {
+          scale: 2,
+          useCORS: true,
+          letterRendering: true,
+          allowTaint: false
+        },
+        jsPDF: {
+          unit: 'px',
+          format: [794, 1123],
+          orientation: 'portrait',
+          compress: true
+        }
+      };
+
+      // Generate and download PDF
+      await html2pdf().set(opt).from(tempDiv).save();
+
+      // Clean up
+      document.body.removeChild(tempDiv);
+
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+      alert('Failed to generate PDF. Please try again.');
+    }
   };
 
   return (
@@ -293,11 +351,11 @@ const ResumeEditor = ({ template, onBack, onSave, onDownload }) => {
               </button>
               
               <button
-                onClick={() => onDownload(resumeData)}
+                onClick={downloadAsPDF}
                 className="flex items-center space-x-2 bg-green-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-green-700 transition-colors"
               >
                 <Download className="w-4 h-4" />
-                <span>Download</span>
+                <span>Download PDF</span>
               </button>
             </div>
           </div>
@@ -328,11 +386,11 @@ const ResumeEditor = ({ template, onBack, onSave, onDownload }) => {
           </button>
           
           <button
-            onClick={() => onDownload(resumeData)}
+            onClick={downloadAsPDF}
             className="flex-1 flex items-center justify-center space-x-2 bg-green-600 text-white py-3 rounded-lg font-medium hover:bg-green-700 transition-colors"
           >
             <Download className="w-4 h-4" />
-            <span className="text-sm">Download</span>
+            <span className="text-sm">Download PDF</span>
           </button>
         </div>
       </div>
@@ -668,7 +726,7 @@ const ResumeEditor = ({ template, onBack, onSave, onDownload }) => {
                      height: isEditing ? '31.25rem' : '37.5rem',
                      transformOrigin: 'top center'
                    }}>
-                <div className="w-full h-full flex items-start justify-center p-2">
+                <div className="w-full h-full flex items-start justify-center p-2 mb-0 sm:mb-0">
                   <div 
                     className="origin-top-center bg-white shadow-lg resume-editor-preview"
                     style={{

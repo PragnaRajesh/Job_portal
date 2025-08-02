@@ -27,7 +27,7 @@ const BasicDetails = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-between bg-white p-4">
+    <div className="min-h-screen flex flex-col items-center justify-between bg-white p-4 pt-safe pb-safe">
       <h1 className="text-xl font-semibold text-center text-[#1B1443] mb-6">Basic Details</h1>
 
       <div className="w-full max-w-sm space-y-4">

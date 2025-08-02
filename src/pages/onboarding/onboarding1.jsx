@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import sadBoyImage from '../../assets/onboarding1.png';
 import questionIcon from '../../assets/question-bubble.png';
@@ -22,13 +22,29 @@ const OnboardingScreen1 = ({ onNext, onSkip }) => {
     }
   };
 
+  // Prevent app closure on back button
+  useEffect(() => {
+    const handleBackButton = (e) => {
+      e.preventDefault();
+      // Stay on first onboarding screen, don't close app
+      window.history.pushState(null, '', window.location.href);
+    };
+
+    window.history.pushState(null, '', window.location.href);
+    window.addEventListener('popstate', handleBackButton);
+
+    return () => {
+      window.removeEventListener('popstate', handleBackButton);
+    };
+  }, []);
+
   return (
-    <div className="h-screen w-full bg-white flex flex-col relative overflow-hidden">
+    <div className="h-screen w-full bg-white flex flex-col relative overflow-hidden pt-safe pb-safe">
       {/* Main Content - Takes up most space */}
       <div className="flex-1 flex flex-col px-4 pt-4">
-        
+
         {/* Top Text Box - Fixed height */}
-        <div className="relative bg-gradient-to-br from-[#7551FF] to-[#7551FF99] rounded-3xl p-4 border-2 border-[#CB9D73] shadow-lg h-[28vh] flex items-center">
+        <div className="relative bg-gradient-to-br from-[#7551FF] to-[#7551FF99] rounded-3xl p-4 border-2 border-[#CB9D73] shadow-lg h-[25vh] flex items-center">
           <div className="relative z-10">
             <h1 className="font-montserrat font-bold text-[clamp(1.2rem,5.5vw,2rem)] leading-tight text-white">
               Worried about<br />
@@ -50,7 +66,7 @@ const OnboardingScreen1 = ({ onNext, onSkip }) => {
 
         {/* Character Image - Flexible space */}
         <div className="flex-1 flex items-center justify-center relative min-h-0">
-          <div className="w-[clamp(250px,65vw,350px)] h-full max-h-[35vh] flex items-center justify-center">
+          <div className="w-[clamp(250px,65vw,350px)] h-full max-h-[30vh] flex items-center justify-center">
             <img
               src={sadBoyImage}
               alt="Worried Character"
@@ -60,7 +76,7 @@ const OnboardingScreen1 = ({ onNext, onSkip }) => {
         </div>
 
         {/* Description Text - Fixed space */}
-        <div className="text-center px-2 h-[10vh] flex items-center justify-center">
+        <div className="text-center px-2 h-[8vh] flex items-center justify-center">
           <p className="font-poppins font-medium text-[clamp(0.9rem,3.8vw,1.1rem)] leading-tight text-gray-800">
             Secure your dream job<br />
             with our trusted<br />
@@ -70,7 +86,7 @@ const OnboardingScreen1 = ({ onNext, onSkip }) => {
       </div>
 
       {/* Bottom Navigation Section - Fixed height */}
-      <div className="bg-gradient-to-r from-[#9E85FF] to-[#7551FF] rounded-t-[2rem] p-4 border-t-2 border-[#CB9D73] h-[18vh] flex flex-col justify-center">
+      <div className="bg-gradient-to-r from-[#9E85FF] to-[#7551FF] rounded-3xl p-4 border-2 border-[#CB9D73] h-[15vh] flex flex-col justify-center mx-4">
         {/* Navigation Dots */}
         <div className="flex justify-center gap-2 mb-3">
           <div className="w-6 h-2.5 bg-white rounded-full shadow-sm" />

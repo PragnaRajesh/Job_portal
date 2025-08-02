@@ -22,7 +22,7 @@ const OnboardingScreen2 = ({ onNext, onSkip }) => {
   };
 
   return (
-    <div className="h-screen w-full bg-white flex flex-col relative overflow-hidden">
+    <div className="min-h-screen w-full bg-white flex flex-col relative overflow-hidden pt-safe pb-safe">
       {/* Main Content - Takes up most space */}
       <div className="flex-1 flex flex-col px-4 pt-4">
         
@@ -54,7 +54,7 @@ const OnboardingScreen2 = ({ onNext, onSkip }) => {
       </div>
 
       {/* Bottom Navigation Section - Fixed height */}
-      <div className="bg-gradient-to-r from-[#94E082] to-[#7BC96B] rounded-t-[2rem] p-4 border-t-2 border-[#CB9D73] h-[18vh] flex flex-col justify-center">
+      <div className="bg-gradient-to-r from-[#94E082] to-[#7BC96B] rounded-3xl p-4 border-2 border-[#CB9D73] h-[18vh] flex flex-col justify-center mx-4 mb-4">
         {/* Navigation Dots */}
         <div className="flex justify-center gap-2 mb-3">
           <div className="w-2.5 h-2.5 bg-white/60 rounded-full" />

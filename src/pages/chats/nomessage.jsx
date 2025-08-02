@@ -9,9 +9,9 @@ const NoMessage = () => {
     <div className="bg-white min-h-screen flex flex-col w-full">
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-gray-100">
-        <ArrowLeft 
-          className="w-6 h-6 text-gray-600 cursor-pointer" 
-          onClick={() => navigate('/messages')}
+        <ArrowLeft
+          className="w-6 h-6 text-gray-600 cursor-pointer hover:text-gray-800 transition-colors"
+          onClick={() => navigate(-1)}
         />
         <h1 className="text-lg font-semibold text-gray-900">No Message</h1>
         <MoreHorizontal className="w-6 h-6 text-gray-600" />

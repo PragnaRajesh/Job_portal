@@ -21,7 +21,7 @@ const OnboardingScreen4 = ({ onSignUp, onLogIn }) => {
   };
 
   return (
-    <div className="h-screen w-full bg-gradient-to-b from-white to-gray-50 flex flex-col overflow-hidden">
+    <div className="min-h-screen w-full bg-gradient-to-b from-white to-gray-50 flex flex-col overflow-hidden pt-safe pb-safe">
       
       {/* Header Text Section - Fixed height */}
       <div className="px-6 py-4 text-center h-[22vh] flex flex-col justify-center">

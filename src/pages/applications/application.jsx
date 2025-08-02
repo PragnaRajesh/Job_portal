@@ -61,11 +61,11 @@ const Application = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white px-4 pt-6 pb-32 font-sans text-base">
+    <div className="min-h-screen bg-white px-4 pt-6 pb-32 font-sans text-base pt-safe pb-safe">
       {/* Top Bar */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <ChevronLeft onClick={() => navigate(-1)} className="cursor-pointer" />
+          <ChevronLeft onClick={() => navigate(-1)} className="cursor-pointer hover:text-gray-600 transition-colors" />
           <h1 className="text-xl font-semibold">Application</h1>
         </div>
         <Bell size={22} className="text-blue-600" />
@@ -196,7 +196,7 @@ const Application = () => {
                  <button onClick={() => navigate("/home")}>
                    <HomeIcon className="w-6 h-6 sm:w-7 sm:h-7 text-gray-400" />
                  </button>
-                 <button onClick={() => navigate("/joblist")}>
+                 <button onClick={() => navigate("/jobs/joblist")}>
                    <Briefcase className="w-6 h-6 sm:w-7 sm:h-7 text-gray-400" />
                  </button>
          

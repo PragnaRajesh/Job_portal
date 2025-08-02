@@ -2,7 +2,7 @@ import React from 'react';
 
 const AITemplate = ({ data }) => {
   return (
-    <div className="bg-white shadow-lg min-h-screen font-sans overflow-hidden max-w-4xl mx-auto" style={{ aspectRatio: '210/297', minHeight: '297mm', width: '210mm' }}>
+    <div className="bg-white p-6 font-sans" style={{ width: '595px', height: '842px', minHeight: '842px' }}>
       {/* Mobile Header - Only visible on small screens */}
       <div className="lg:hidden bg-gradient-to-r from-indigo-600 to-purple-700 text-white p-4 sm:p-6">
         <div className="flex items-center space-x-4">

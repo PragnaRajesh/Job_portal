@@ -41,7 +41,7 @@ const UploadResume = () => {
 
   return (
     <div className="h-screen p-4 bg-white pt-6 pb-24 flex flex-col justify-between overflow-hidden pt-safe pb-safe">
-      <ArrowLeft className="w-6 h-6 sm:w-7 sm:h-7 mb-2" onClick={() => navigate(-1)} />
+      <ArrowLeft className="w-6 h-6 sm:w-7 sm:h-7 mb-2 cursor-pointer hover:text-gray-600 transition-colors" onClick={() => navigate(-1)} />
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col justify-start">

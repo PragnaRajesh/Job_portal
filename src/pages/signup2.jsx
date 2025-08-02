@@ -61,7 +61,7 @@ const Signup2 = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white p-6 sm:p-8 md:p-12 lg:max-w-md lg:mx-auto flex flex-col justify-between rounded-3xl">
+    <div className="min-h-screen bg-white p-6 sm:p-8 md:p-12 lg:max-w-md lg:mx-auto flex flex-col justify-between rounded-3xl pt-safe pb-safe">
       <div>
         <button onClick={() => navigate(-1)} className="mb-4 sm:mb-6">
           <ArrowLeft className="w-6 h-6 sm:w-7 sm:h-7" />

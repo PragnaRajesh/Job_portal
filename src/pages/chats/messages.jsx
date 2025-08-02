@@ -16,7 +16,7 @@ const Messages = () => {
 
   return (
     <>
-      <div className="bg-white min-h-screen flex flex-col w-full lg:max-w-2xl lg:mx-auto">
+      <div className="bg-white min-h-screen flex flex-col w-full lg:max-w-2xl lg:mx-auto pt-safe pb-safe">
       {/* Header */}
       <div className="flex items-center justify-between p-4 sm:p-6 border-b border-gray-100">
         <ArrowLeft className="w-6 h-6 sm:w-7 sm:h-7 text-gray-600 cursor-pointer hover:text-gray-800 transition-colors" onClick={() => navigate(-1)} />

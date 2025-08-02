@@ -203,7 +203,7 @@ const MyProfile = () => {
       }, []);
 
   return (
-     <div className="min-h-screen bg-gray-100 pb-24 font-sans">
+     <div className="min-h-screen bg-gray-100 pb-24 font-sans pt-safe pb-safe">
       {/* Profile Header Card */}
       <div className="relative rounded-b-3xl p-4 text-white overflow-hidden mb-4" style={{ background: 'none', minHeight: '11.25rem' }}>
         {/* Custom SVG Background */}

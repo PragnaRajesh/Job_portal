@@ -11,10 +11,6 @@ import {
   Briefcase,
   FileText
 } from "lucide-react";
-import resumeImg from "../assets/resume-builder.png";
-import chatImg from "../assets/chat.png";
-import robotImg from "../assets/mock-interview.png";
-
 
 import telegramLogo from "../assets/telegram.png";
 import netflixLogo from "../assets/netflix.jpeg";
@@ -22,6 +18,9 @@ import invisionLogo from "../assets/invision.png";
 import financeIcon from "../assets/finance.png";
 import techIcon from "../assets/technology.png";
 import marketingIcon from "../assets/marketing.png";
+import resumeImg from "../assets/resume-builder.png";
+import chatImg from "../assets/chat.png";
+import robotImg from "../assets/mock-interview.png";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -47,11 +46,20 @@ const Home = () => {
   useEffect(() => {
     // Handle hardware back button for mobile browsers
     const handlePopState = (e) => {
-      setShowPopup(false); // Always close popup on back
+      e.preventDefault();
+      if (showPopup) {
+        setShowPopup(false); // Close popup if open
+      } else {
+        // Prevent app closure by staying on home
+        window.history.pushState(null, '', window.location.href);
+      }
     };
+
+    // Add history entry to prevent app closure
+    window.history.pushState(null, '', window.location.href);
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
-  }, []);
+  }, [showPopup]);
 
   const jobCategories = ["Chef", "Marketing", "Technology", "Finance", "Design"];
   const [selectedCategory, setSelectedCategory] = useState("Chef");
@@ -264,69 +272,69 @@ const Home = () => {
         </button>
 
         {/* Plus Icon with Popup */}
-        <div className="relative">
-          <button
-            onClick={() => setShowPopup(!showPopup)}
-            className="w-12 h-12 sm:w-14 sm:h-14 bg-blue-600 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 transition-all duration-300 hover:scale-105"
-          >
-            <Plus className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
-          </button>
-
-          {showPopup && (
-  <div
-    ref={popupRef}
-    className="fixed bottom-16 sm:bottom-20 left-0 w-full h-[50vh] sm:h-[45vh] md:h-[40vh] bg-gradient-to-t from-blue-100 via-white to-white z-50 rounded-t-3xl shadow-2xl flex flex-col items-center pt-6 pb-4 animate-slideUp"
-  >
-    <div className="w-16 h-1 bg-blue-200 rounded-full mb-6 mt-2" />
-    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 text-gray-800">Quick Actions</h3>
-
-    <div className="flex flex-col gap-4 w-4/5 sm:w-3/5 md:w-2/5">
-
-  {/* Resume Button */}
-  <button
-    onClick={() => {
-      setShowPopup(false);
-      navigate("/resume/resumebuilder");
-    }}
-    className="w-full bg-gradient-to-r from-purple-100 to-blue-100 text-purple-800 py-6 sm:py-8 rounded-2xl font-semibold text-lg sm:text-xl shadow-md border border-purple-200 hover:from-purple-200 hover:to-blue-200 transition-all flex items-center justify-center gap-3 relative overflow-hidden"
-  >
-   <span className="absolute top-1 right-2 bg-gradient-to-r from-purple-500 to-blue-500 text-white px-2 py-0.5 rounded-full text-xs font-medium">
-     ✨ AI
-   </span>
-   <img src={resumeImg} alt="Resume" className="w-6 h-6 sm:w-8 sm:h-8" />
-Resume Builder
-  </button>
-  
-
-  {/* Chats Button */}
-  <button
-    onClick={() => {
-      setShowPopup(false);
-      navigate("/messages");
-    }}
-    className="w-full bg-[#E8F9ED] text-[#2E7D32] py-6 sm:py-8 rounded-2xl font-semibold text-lg sm:text-xl shadow-md border border-[#BEE7C9] hover:bg-[#d3f3db] transition-all flex items-center justify-center gap-3"
-  ><img src={chatImg} alt="Chat" className="w-6 h-6 sm:w-8 sm:h-8" />
-Chats
-  </button>
-
-  {/* AI Job Prep Button */}
-  <button
-    onClick={() => {
-      setShowPopup(false);
-      navigate("/InterviewPrep");
-    }}
-    className="w-full bg-[#F3E9FF] text-[#6A1B9A] py-6 sm:py-8 rounded-2xl font-semibold text-lg sm:text-xl shadow-md border border-[#D8C5ED] hover:bg-[#ebdbff] transition-all flex items-center justify-center gap-3"
-  >
-    <img src={robotImg} alt="AI Prep" className="w-6 h-6 sm:w-8 sm:h-8" />
-AI Job Prep
-  </button>
-
-</div>
-
-  </div>
-)}
-
-        </div>
+                          <div className="relative">
+                            <button
+                              onClick={() => setShowPopup(!showPopup)}
+                              className="w-12 h-12 sm:w-14 sm:h-14 bg-blue-600 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 transition-all duration-300 hover:scale-105"
+                            >
+                              <Plus className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+                            </button>
+                  
+                            {showPopup && (
+                    <div
+                      ref={popupRef}
+                      className="fixed bottom-16 sm:bottom-20 left-0 w-full h-[50vh] sm:h-[45vh] md:h-[40vh] bg-gradient-to-t from-blue-100 via-white to-white z-50 rounded-t-3xl shadow-2xl flex flex-col items-center pt-6 pb-4 animate-slideUp"
+                    >
+                      <div className="w-16 h-1 bg-blue-200 rounded-full mb-6 mt-2" />
+                      <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 text-gray-800">Quick Actions</h3>
+                  
+                      <div className="flex flex-col gap-4 w-4/5 sm:w-3/5 md:w-2/5">
+                  
+                    {/* Resume Button */}
+                    <button
+                      onClick={() => {
+                        setShowPopup(false);
+                        navigate("/resume/resumebuilder");
+                      }}
+                      className="w-full bg-gradient-to-r from-purple-100 to-blue-100 text-purple-800 py-6 sm:py-8 rounded-2xl font-semibold text-lg sm:text-xl shadow-md border border-purple-200 hover:from-purple-200 hover:to-blue-200 transition-all flex items-center justify-center gap-3 relative overflow-hidden"
+                    >
+                     <span className="absolute top-1 right-2 bg-gradient-to-r from-purple-500 to-blue-500 text-white px-2 py-0.5 rounded-full text-xs font-medium">
+                       ✨ AI
+                     </span>
+                     <img src={resumeImg} alt="Resume" className="w-6 h-6 sm:w-8 sm:h-8" />
+                  Resume Builder
+                    </button>
+                    
+                  
+                    {/* Chats Button */}
+                    <button
+                      onClick={() => {
+                        setShowPopup(false);
+                        navigate("/messages");
+                      }}
+                      className="w-full bg-[#E8F9ED] text-[#2E7D32] py-6 sm:py-8 rounded-2xl font-semibold text-lg sm:text-xl shadow-md border border-[#BEE7C9] hover:bg-[#d3f3db] transition-all flex items-center justify-center gap-3"
+                    ><img src={chatImg} alt="Chat" className="w-6 h-6 sm:w-8 sm:h-8" />
+                  Chats
+                    </button>
+                  
+                    {/* AI Job Prep Button */}
+                    <button
+                      onClick={() => {
+                        setShowPopup(false);
+                        navigate("/InterviewPrep");
+                      }}
+                      className="w-full bg-[#F3E9FF] text-[#6A1B9A] py-6 sm:py-8 rounded-2xl font-semibold text-lg sm:text-xl shadow-md border border-[#D8C5ED] hover:bg-[#ebdbff] transition-all flex items-center justify-center gap-3"
+                    >
+                      <img src={robotImg} alt="AI Prep" className="w-6 h-6 sm:w-8 sm:h-8" />
+                  AI Job Prep
+                    </button>
+                  
+                  </div>
+                  
+                    </div>
+                  )}
+                  
+                          </div>
 
         <button onClick={() => navigate("/applications/application")}>
           <FileText className="w-6 h-6 sm:w-7 sm:h-7 text-gray-400" />

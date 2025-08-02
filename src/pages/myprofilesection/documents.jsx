@@ -22,7 +22,7 @@ const Documents = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white text-gray-800 flex flex-col">
+    <div className="min-h-screen bg-white text-gray-800 flex flex-col pt-safe pb-safe">
       <div className="text-center py-5 border-b">
         <h2 className="text-xl font-semibold text-indigo-900">Category Details</h2>
       </div>
