@@ -88,7 +88,7 @@ const OnboardingFlow = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen onboarding-container">
       {renderScreen()}
     </div>
   );
