@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import rocketImage from '../../assets/onboarding2.png';
 
-const OnboardingScreen2 = ({ onNext, onSkip }) => {
+const OnboardingScreen2 = ({ onNext, onSkip, onBack }) => {
   const navigate = useNavigate();
 
   const handleSkip = () => {
@@ -18,6 +18,14 @@ const OnboardingScreen2 = ({ onNext, onSkip }) => {
       onNext();
     } else {
       navigate('/onboarding3');
+    }
+  };
+
+  const handleBack = () => {
+    if (onBack) {
+      onBack();
+    } else {
+      navigate('/onboarding1');
     }
   };
 
