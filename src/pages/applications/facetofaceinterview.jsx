@@ -280,9 +280,21 @@ const FaceToFaceInterview = () => {
               allowFullScreen
             ></iframe>
 
-            {distance && duration && (
-              <p className="text-sm text-gray-700 mt-1 mb-3">
-                Estimated time: <strong>{duration}</strong> • Distance: <strong>{distance}</strong>
+            {currentLocation ? (
+              distance && duration ? (
+                <p className="text-sm text-gray-700 mt-1 mb-3">
+                  Estimated time: <strong>{duration}</strong> • Distance: <strong>{distance}</strong>
+                </p>
+              ) : (
+                <p className="text-sm text-gray-500 mt-1 mb-3">
+                  Calculating route...
+                </p>
+              )
+            ) : (
+              <p className="text-sm text-gray-500 mt-1 mb-3">
+                📍 Interview location: <strong>{job.location}</strong>
+                <br />
+                <span className="text-xs">Click "Attend Interview" or "Route" to get directions from your location</span>
               </p>
             )}
 
