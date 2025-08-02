@@ -201,9 +201,24 @@ const FaceToFaceInterview = () => {
 
         <div className="text-xs text-gray-500 mt-2">Time: {job.time}</div>
         <div className="grid grid-cols-3 gap-2 mt-4">
-          <button className="w-full bg-blue-500 text-white text-sm py-2 rounded-md">Attend Interview</button>
-          <button className="w-full bg-yellow-400 text-white text-sm py-2 rounded-md">Route</button>
-          <button className="w-full bg-sky-400 text-white text-sm py-2 rounded-md">Reschedule</button>
+          <button
+            onClick={handleComingForInterview}
+            className="w-full bg-blue-500 text-white text-sm py-2 rounded-md"
+          >
+            Attend Interview
+          </button>
+          <button
+            onClick={handleComingForInterview}
+            className="w-full bg-yellow-400 text-white text-sm py-2 rounded-md"
+          >
+            Route
+          </button>
+          <button
+            onClick={() => setShowReasonDropdown(!showReasonDropdown)}
+            className="w-full bg-sky-400 text-white text-sm py-2 rounded-md"
+          >
+            Reschedule
+          </button>
         </div>
 
         {showReasonDropdown && (
