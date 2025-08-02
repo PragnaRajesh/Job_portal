@@ -94,8 +94,8 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-24 pt-safe pb-safe">
-      <div className="p-4 sm:p-6 md:p-8 lg:max-w-6xl lg:mx-auto">
+    <div className="min-h-screen bg-gray-50">
+      <div className="p-4 pt-2 sm:p-6 sm:pt-3 md:p-8 md:pt-4 lg:max-w-6xl lg:mx-auto" style={{ paddingTop: 'max(env(safe-area-inset-top), 0.5rem)' }}>
         {/* Header */}
         <div className="flex justify-between items-center mb-4 sm:mb-6">
           <div>
