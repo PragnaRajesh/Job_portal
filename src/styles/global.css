@@ -35,6 +35,9 @@ body, html {
   min-height: 100vh;
   height: auto;
   overflow-y: auto;
+  /* Enable smooth back/forward navigation */
+  overscroll-behavior: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Hide horizontal scrollbar for specific elements */
