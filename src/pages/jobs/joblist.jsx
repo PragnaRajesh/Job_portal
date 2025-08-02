@@ -162,7 +162,7 @@ const JobList = () => {
               setActiveVideoIndex(activeVideoIndex === videoId ? null : videoId);
             }}
           >
-            <img src={videoIcon} alt="prep" className="w-6 h-6 sm:w-8 sm:h-8" />
+            <img src="https://cdn.builder.io/o/assets%2Fdae83ceaebfd45afaf9f5cd3ba8d137b%2F826f545b9c104f32b957d5e6ea769fd5?alt=media&token=c382dd28-c000-4d20-aa56-f13de5609abb&apiKey=dae83ceaebfd45afaf9f5cd3ba8d137b" alt="prep" className="w-6 h-6 sm:w-8 sm:h-8" />
           </div>
         </div>
 
