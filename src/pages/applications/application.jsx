@@ -61,7 +61,7 @@ const Application = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white px-4 pt-6 pb-32 font-sans text-base pt-safe pb-safe">
+    <div className="min-h-screen bg-white px-4 pt-6 pb-40 font-sans text-base pt-safe pb-safe">
       {/* Top Bar */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
@@ -192,7 +192,7 @@ const Application = () => {
       </div>
 
      {/* ✅ Fixed Bottom Navigation */}
-               <div className="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around py-3 sm:py-4 border-t border-gray-200 bg-white/95 backdrop-blur-sm pb-safe sm:-top-8">
+               <div className="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around py-3 sm:py-4 border-t border-gray-200 bg-white/95 backdrop-blur-sm pb-safe">
                  <button onClick={() => navigate("/home")}>
                    <HomeIcon className="w-6 h-6 sm:w-7 sm:h-7 text-gray-400" />
                  </button>
