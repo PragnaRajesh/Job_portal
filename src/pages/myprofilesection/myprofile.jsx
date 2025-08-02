@@ -1064,7 +1064,7 @@ const MyProfile = () => {
         </div>
       </div>
       {/* ✅ Fixed Bottom Navigation */}
-            <div className="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around py-3 border-t border-gray-200 bg-white/95 backdrop-blur-sm pb-safe">
+            <div className="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around py-2 border-t border-gray-200 bg-white/95 backdrop-blur-sm" style={{ paddingBottom: 'max(env(safe-area-inset-bottom), 0.5rem)' }}>
               <button onClick={() => navigate("/home")}>
                 <HomeIcon className="w-6 h-6 text-gray-400" />
               </button>
