@@ -160,9 +160,7 @@ const FaceToFaceInterview = () => {
     };
   }, []);
 
-  useEffect(() => {
-    handleComingForInterview();
-  }, []);
+  // Remove automatic geolocation call - let user trigger it manually
 
   return (
     <div className="min-h-screen bg-white px-4 pt-6 pb-32 font-sans">
