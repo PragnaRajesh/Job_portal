@@ -9,7 +9,12 @@ import {
   Plus,
   User,
   Briefcase,
-  FileText
+  FileText,
+  ChevronDown,
+  X,
+  TrendingUp,
+  Code,
+  Megaphone
 } from "lucide-react";
 
 import telegramLogo from "../assets/telegram.png";
@@ -25,13 +30,15 @@ import robotImg from "../assets/mock-interview.png";
 const Home = () => {
   const navigate = useNavigate();
   
-
   const [user, setUser] = useState({
     name: "User",
     role: "Job Seeker",
     location: "Koramangala",
+    profilePicture: null
   });
   const [showPopup, setShowPopup] = useState(false);
+  const [showBanner, setShowBanner] = useState(true);
+  const [showDropdown, setShowDropdown] = useState(false);
   const popupRef = useRef(null);
   
   useEffect(() => {
@@ -66,30 +73,146 @@ const Home = () => {
     };
   }, [showPopup]);
 
-  const jobCategories = ["Chef", "Marketing", "Technology", "Finance", "Design"];
+  const jobCategories = ["Chef", "Mechanic", "Marketing", "Technology"];
   const [selectedCategory, setSelectedCategory] = useState("Chef");
 
+  const filterOptions = ["Most Relevant", "Newest", "Salary High to Low", "Salary Low to High"];
+  const [selectedFilter, setSelectedFilter] = useState("Most Relevant");
+
   const specializations = [
-    { name: "Finance", icon: financeIcon, bg: "#FFF8F1" },
-    { name: "Technology", icon: techIcon, bg: "#FAF5FF" },
-    { name: "Marketing", icon: marketingIcon, bg: "#FFF2F2" },
+    { name: "Finance", icon: TrendingUp, bg: "#FFF8F1", color: "#F59E0B" },
+    { name: "Technology", icon: Code, bg: "#FAF5FF", color: "#8B5CF6" },
+    { name: "Marketing", icon: Megaphone, bg: "#FFF2F2", color: "#EF4444" },
   ];
 
+  const jobCardsByCategory = {
+    Chef: [
+      {
+        company: "Hotel Marriott",
+        role: "Head Chef",
+        location: "Koramangala - Onsite",
+        tags: ["Full-time", "Senior"],
+        logo: invisionLogo,
+      },
+      {
+        company: "Cafe Coffee Day",
+        role: "Kitchen Chef",
+        location: "HSR Layout - Onsite",
+        tags: ["Part-time", "Junior"],
+        logo: telegramLogo,
+      },
+      {
+        company: "McDonald's",
+        role: "Sous Chef",
+        location: "Whitefield - Onsite",
+        tags: ["Full-time", "Mid-level"],
+        logo: netflixLogo,
+      },
+      {
+        company: "Pizza Hut",
+        role: "Line Cook",
+        location: "Indiranagar - Onsite",
+        tags: ["Part-time", "Entry"],
+        logo: invisionLogo,
+      },
+    ],
+    Mechanic: [
+      {
+        company: "Mahindra Service",
+        role: "Auto Mechanic",
+        location: "Whitefield - Onsite",
+        tags: ["Full-time", "Experienced"],
+        logo: netflixLogo,
+      },
+      {
+        company: "Honda Service",
+        role: "Bike Mechanic",
+        location: "Koramangala - Onsite",
+        tags: ["Full-time", "Junior"],
+        logo: invisionLogo,
+      },
+      {
+        company: "Toyota Service",
+        role: "Car Technician",
+        location: "HSR Layout - Onsite",
+        tags: ["Full-time", "Senior"],
+        logo: telegramLogo,
+      },
+      {
+        company: "Hero MotoCorp",
+        role: "Service Advisor",
+        location: "Indiranagar - Onsite",
+        tags: ["Full-time", "Mid-level"],
+        logo: netflixLogo,
+      },
+    ],
+    Marketing: [
+      {
+        company: "Invision",
+        role: "Digital Marketing",
+        location: "HSR Layout - Remote",
+        tags: ["Remote", "Junior"],
+        logo: invisionLogo,
+      },
+      {
+        company: "Telegram",
+        role: "Marketing Manager",
+        location: "Koramangala - Onsite",
+        tags: ["Full-time", "Senior"],
+        logo: telegramLogo,
+      },
+      {
+        company: "Netflix",
+        role: "Content Marketing",
+        location: "Whitefield - Hybrid",
+        tags: ["Hybrid", "Mid-level"],
+        logo: netflixLogo,
+      },
+      {
+        company: "Meta",
+        role: "Social Media Manager",
+        location: "HSR Layout - Remote",
+        tags: ["Remote", "Junior"],
+        logo: invisionLogo,
+      },
+    ],
+    Technology: [
+      {
+        company: "Netflix",
+        role: "Software Engineer",
+        location: "HSR Layout - Remote",
+        tags: ["Remote", "Junior"],
+        logo: netflixLogo,
+      },
+      {
+        company: "Telegram",
+        role: "Frontend Developer",
+        location: "Koramangala - Hybrid",
+        tags: ["Hybrid", "Mid-level"],
+        logo: telegramLogo,
+      },
+      {
+        company: "Google",
+        role: "Full Stack Developer",
+        location: "Whitefield - Onsite",
+        tags: ["Full-time", "Senior"],
+        logo: invisionLogo,
+      },
+      {
+        company: "Microsoft",
+        role: "DevOps Engineer",
+        location: "HSR Layout - Remote",
+        tags: ["Remote", "Experienced"],
+        logo: netflixLogo,
+      },
+    ],
+  };
+
+  const getCurrentJobCards = () => {
+    return jobCardsByCategory[selectedCategory] || [];
+  };
+
   const recommendedJobs = [
-    {
-      company: "Invision",
-      role: "UI Designer",
-      location: "HSR Layout - Onsite",
-      tags: ["Remote", "Junior"],
-      logo: invisionLogo,
-    },
-    {
-      company: "Telegram",
-      role: "Digital Marketing",
-      location: "HSR Layout - Onsite",
-      tags: ["Remote", "Junior"],
-      logo: telegramLogo,
-    },
     {
       company: "Netflix",
       role: "Accounting",
@@ -97,63 +220,156 @@ const Home = () => {
       tags: ["Remote", "Junior"],
       logo: netflixLogo,
     },
+    {
+      company: "Telegram",
+      role: "UI designer",
+      location: "HSR Layout - Onsite",
+      tags: ["Remote", "Junior"],
+      logo: telegramLogo,
+    },
+    {
+      company: "Telegram",
+      role: "Human Resources",
+      location: "HSR Layout - Onsite",
+      tags: ["Remote", "Junior"],
+      logo: telegramLogo,
+    },
   ];
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
+    // Get user data from localStorage
+    const userName = localStorage.getItem("userName") || localStorage.getItem("fullName") || "Sumona";
+    const jobRoles = JSON.parse(localStorage.getItem("jobRoles") || "[]");
+    const userRole = jobRoles.length > 0 ? jobRoles[0] : "UI/UX Designer";
+    const userLocation = localStorage.getItem("location") || "Koramangala";
+    
+    setUser({
+      name: userName,
+      role: userRole,
+      location: userLocation,
+      profilePicture: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop"
+    });
   }, []);
 
   return (
-    <div className="pb-[80px] pt-safe pb-safe">
-      <div className="p-4 sm:p-6 md:p-8 lg:max-w-6xl lg:mx-auto">
+    <div className="min-h-screen pt-safe">
+      <div className="p-4 sm:p-6 md:p-8 lg:max-w-6xl lg:mx-auto pb-[100px]">
         {/* Header */}
-        <div className="flex justify-between items-center mb-4 sm:mb-6">
-          <div>
-            <h2 className="font-semibold text-lg sm:text-xl md:text-2xl">{user.name}</h2>
-            <p className="text-sm sm:text-base text-gray-600">{user.role}</p>
+        <div className="flex justify-between items-center mb-6">
+          <div className="flex items-center space-x-3">
+            <div className="w-12 h-12 rounded-full overflow-hidden">
+              <img 
+                src={user.profilePicture} 
+                alt={user.name}
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div>
+              <div className="flex items-center space-x-1">
+                <h2 className="font-semibold text-lg">{user.name}</h2>
+                <ChevronDown size={16} className="text-gray-500" />
+              </div>
+              <p className="text-sm text-gray-600">{user.role}</p>
+            </div>
           </div>
-          <div className="bg-gray-200 p-2 sm:p-3 rounded-full">
-            <Bell size={20} className="sm:w-6 sm:h-6" />
+          <div className="bg-gray-100 p-2 rounded-full">
+            <Bell size={20} className="text-gray-600" />
           </div>
         </div>
 
         {/* Search */}
-        <div className="flex items-center gap-2 bg-white px-3 py-2 sm:px-4 sm:py-3 rounded-full shadow-sm mb-2">
-          <Search size={18} className="text-gray-500 sm:w-5 sm:h-5" />
+        <div className="flex items-center gap-3 bg-gray-50 px-4 py-3 rounded-xl mb-3">
+          <Search size={20} className="text-gray-500" />
           <input
             placeholder="Search Job"
-            className="flex-1 outline-none text-sm sm:text-base"
+            className="flex-1 outline-none bg-transparent text-sm"
           />
         </div>
-        <div className="flex justify-between text-xs sm:text-sm text-gray-500 mb-4 sm:mb-6 px-1">
-          <span>Most Relevant</span>
-          <span className="flex items-center gap-1">
-            <MapPin size={14} className="sm:w-4 sm:h-4" /> {user.location}
-          </span>
+
+        {/* Filter Row */}
+        <div className="flex justify-between items-center mb-6">
+          <div className="relative">
+            <button 
+              onClick={() => setShowDropdown(!showDropdown)}
+              className="flex items-center space-x-1 text-blue-600 text-sm font-medium"
+            >
+              <span>{selectedFilter}</span>
+              <ChevronDown size={16} />
+            </button>
+            {showDropdown && (
+              <div className="absolute top-8 left-0 bg-white border rounded-lg shadow-lg p-2 min-w-[150px] z-10">
+                {filterOptions.map((option) => (
+                  <button
+                    key={option}
+                    onClick={() => {
+                      setSelectedFilter(option);
+                      setShowDropdown(false);
+                    }}
+                    className="block w-full text-left px-3 py-2 text-sm hover:bg-gray-50 rounded"
+                  >
+                    {option}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+          <div className="flex items-center space-x-1 text-sm text-gray-600">
+            <MapPin size={16} className="text-blue-600" />
+            <span className="text-blue-600 font-medium">{user.location}</span>
+          </div>
         </div>
 
         {/* Banner */}
-        <div className="bg-gradient-to-r from-cyan-600 to-teal-500 text-white rounded-xl p-4 sm:p-6 mb-6 sm:mb-8 shadow-md">
-          <p className="text-sm sm:text-base font-semibold mb-2">
-            Reply quickly to get the job!
-          </p>
-          <button className="text-sm sm:text-base underline">View Response</button>
-        </div>
+        {showBanner && (
+          <div className="relative rounded-xl p-4 mb-6 overflow-hidden">
+            {/* Background with sophisticated gradient pattern */}
+            <div className="absolute inset-0 bg-gradient-to-r from-teal-500 to-teal-600"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-teal-400/30 via-transparent to-teal-700/40"></div>
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-teal-600/20 via-transparent to-teal-400/10"></div>
+
+            {/* Geometric pattern overlays */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-teal-300/20 to-transparent rounded-full transform translate-x-8 -translate-y-8"></div>
+            <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-teal-700/30 to-transparent rounded-full transform -translate-x-4 translate-y-4"></div>
+            <div className="absolute top-1/2 left-1/3 w-16 h-16 bg-teal-400/10 rounded-full transform -translate-y-1/2"></div>
+
+            {/* Content */}
+            <div className="relative z-10 text-white">
+              <button
+                onClick={() => setShowBanner(false)}
+                className="absolute top-[-8px] right-[-8px] bg-white/20 rounded-full p-1 backdrop-blur-sm"
+              >
+                <X size={16} />
+              </button>
+              <div className="flex items-center space-x-3">
+                <div className="bg-white/20 rounded-full p-2 backdrop-blur-sm">
+                  <Bell size={20} />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold mb-1">
+                    Reply quickly to get the job!
+                  </p>
+                  <p className="text-sm opacity-90">1 HR call</p>
+                </div>
+              </div>
+              <button className="mt-3 bg-black/20 backdrop-blur-sm px-4 py-2 rounded-lg text-sm font-medium flex items-center space-x-2 hover:bg-black/30 transition-colors">
+                <span>View Response</span>
+                <span>→</span>
+              </button>
+            </div>
+          </div>
+        )}
 
         {/* Find Your Job */}
-        <h3 className="font-bold text-lg sm:text-xl md:text-2xl mb-3 sm:mb-4">Find Your Job</h3>
-        <div className="flex overflow-x-auto gap-3 sm:gap-4 no-scrollbar mb-6 sm:mb-8 px-1 md:flex-wrap md:overflow-visible">
+        <h3 className="font-bold text-lg mb-4">Find Your Job</h3>
+        <div className="flex overflow-x-auto gap-3 no-scrollbar mb-6">
           {jobCategories.map((cat, idx) => (
             <button
               key={idx}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 sm:px-6 sm:py-3 rounded-full border text-sm sm:text-base whitespace-nowrap shadow-sm transition ${
+              className={`px-4 py-2 rounded-full text-sm whitespace-nowrap transition ${
                 selectedCategory === cat
-                  ? "bg-blue-700 text-white"
-                  : "bg-white text-gray-800 border-gray-300"
+                  ? "bg-blue-600 text-white"
+                  : "bg-gray-100 text-gray-700"
               }`}
             >
               {cat}
@@ -161,42 +377,42 @@ const Home = () => {
           ))}
         </div>
 
-        {/* Horizontal Job Cards */}
-        <div className="flex overflow-x-auto space-x-4 sm:space-x-6 no-scrollbar mb-8 sm:mb-12 px-1 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 md:space-x-0 md:overflow-visible">
-          {recommendedJobs.map((job, idx) => (
+        {/* Job Cards Horizontal Scroll */}
+        <div className="flex overflow-x-auto gap-4 mb-8 no-scrollbar">
+          {getCurrentJobCards().map((job, idx) => (
             <div
               key={idx}
-              className="min-w-[17rem] sm:min-w-[20rem] md:min-w-0 rounded-2xl p-4 sm:p-6 relative border border-gray-200 shadow-xl"
+              className="bg-white rounded-xl p-4 border border-gray-100 shadow-lg relative min-w-[280px] flex-shrink-0"
             >
               <Bookmark
-                size={18}
-                className="absolute top-4 right-4 text-blue-700 sm:w-5 sm:h-5"
+                size={16}
+                className="absolute top-4 right-4 text-blue-600"
               />
-              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center mb-3">
+              <div className="w-10 h-10 rounded-lg bg-gray-50 flex items-center justify-center mb-3">
                 <img
                   src={job.logo}
                   alt={job.company}
-                  className="w-6 h-6 sm:w-8 sm:h-8 object-contain"
+                  className="w-6 h-6 object-contain"
                 />
               </div>
-
-              <h4 className="text-base sm:text-lg font-bold text-gray-900 mb-1">
+              <p className="text-xs text-gray-500 mb-1">{job.company}</p>
+              <h4 className="text-sm font-semibold text-gray-900 mb-2">
                 {job.role}
               </h4>
-              <p className="text-xs sm:text-sm text-gray-500 mb-2">{job.location}</p>
-              <div className="flex gap-2 mb-3 flex-wrap">
+              <p className="text-xs text-gray-500 mb-3">{job.location}</p>
+              <div className="flex gap-1 mb-3 flex-wrap">
                 {job.tags.map((tag, i) => (
                   <span
                     key={i}
-                    className="text-xs sm:text-sm border border-gray-300 px-2 py-1 sm:px-3 sm:py-1 rounded-full text-gray-600"
+                    className="text-xs border border-gray-200 px-2 py-1 rounded-full text-gray-600"
                   >
                     {tag}
                   </span>
                 ))}
               </div>
-              <div className="flex justify-between items-center text-xs sm:text-sm text-gray-400">
-                <span>3 days ago</span>
-                <button className="text-blue-600 font-medium text-xs sm:text-sm">
+              <div className="flex justify-between items-center text-xs">
+                <span className="text-gray-400">3 days ago</span>
+                <button className="text-blue-600 font-medium">
                   View Details
                 </button>
               </div>
@@ -205,67 +421,72 @@ const Home = () => {
         </div>
 
         {/* Specialization */}
-        <h3 className="font-bold text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6">Specialization</h3>
-        <div className="flex justify-between items-center gap-4 sm:gap-6 md:justify-center md:gap-8">
-          {specializations.map((spec, idx) => (
-            <div
-              key={idx}
-              className="w-full flex flex-col items-center py-6 sm:py-8 md:py-10 rounded-3xl shadow-md md:max-w-xs"
-              style={{ backgroundColor: spec.bg }}
-            >
-              <p className="text-md sm:text-lg md:text-xl font-normal text-gray-800 mb-3 sm:mb-4">{spec.name}</p>
-              <img src={spec.icon} alt={spec.name} className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12" />
-            </div>
-          ))}
+        <h3 className="font-bold text-lg mb-4">Specialization</h3>
+        <div className="flex justify-between gap-4 mb-8">
+          {specializations.map((spec, idx) => {
+            const IconComponent = spec.icon;
+            return (
+              <div
+                key={idx}
+                className="flex-1 flex flex-col items-center py-6 rounded-2xl shadow-lg"
+                style={{ backgroundColor: spec.bg }}
+              >
+                <p className="text-sm font-medium text-gray-800 mb-3">{spec.name}</p>
+                <IconComponent size={24} color={spec.color} />
+              </div>
+            );
+          })}
         </div>
 
         {/* Recommendation */}
-        <h3 className="font-semibold text-base sm:text-lg md:text-xl my-4 sm:my-6 px-1">Recommendation</h3>
-        <div className="space-y-4 sm:space-y-6 px-1 md:grid md:grid-cols-2 lg:grid-cols-1 md:gap-6 md:space-y-0">
+        <h3 className="font-bold text-lg mb-4">Recommendation</h3>
+        <div className="space-y-4">
           {recommendedJobs.map((job, idx) => (
             <div
               key={idx}
-              className="bg-white p-4 sm:p-6 rounded-2xl border border-gray-200 shadow-sm flex items-start gap-4 sm:gap-6 relative"
+              className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start gap-4 relative"
             >
-              <img
-                src={job.logo}
-                alt={`${job.company} logo`}
-                className="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover"
-              />
+              <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
+                <img
+                  src={job.logo}
+                  alt={`${job.company} logo`}
+                  className="w-6 h-6 object-contain"
+                />
+              </div>
               <div className="flex-1">
-                <h4 className="text-sm sm:text-base font-semibold text-gray-900">
+                <h4 className="text-sm font-semibold text-gray-900">
                   {job.role}
                 </h4>
-                <p className="text-xs sm:text-sm text-gray-500">
-                  {job.company} • {job.location}
+                <p className="text-xs text-gray-500 mb-2">
+                  {job.location}
                 </p>
-                <div className="flex gap-2 mt-2 flex-wrap">
+                <div className="flex gap-2 mb-2 flex-wrap">
                   {job.tags.map((tag, i) => (
                     <span
                       key={i}
-                      className="text-xs sm:text-sm px-2 py-1 sm:px-3 bg-blue-100 text-blue-700 rounded-full font-medium"
+                      className="text-xs px-2 py-1 bg-blue-50 text-blue-600 rounded-full"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
-                <div className="flex justify-between items-center mt-3">
-                  <p className="text-xs sm:text-sm text-gray-400">3 days ago</p>
-                  <button className="text-blue-600 text-xs sm:text-sm font-semibold">
+                <div className="flex justify-between items-center">
+                  <p className="text-xs text-gray-400">3 days ago</p>
+                  <button className="text-blue-600 text-xs font-medium">
                     View Details
                   </button>
                 </div>
               </div>
               <Bookmark
                 size={16}
-                className="text-gray-400 absolute top-4 right-4 sm:w-5 sm:h-5"
+                className="text-blue-600 absolute top-4 right-4"
               />
             </div>
           ))}
         </div>
       </div>
 
-      {/* ✅ Fixed Bottom Navigation */}
+      {/* Bottom Navigation - keeping existing implementation */}
       <div className="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around py-1 sm:py-1 border-t border-gray-200 bg-white/95 backdrop-blur-sm pb-safe">
         <button onClick={() => navigate("/home")}>
           <HomeIcon className="w-6 h-6 sm:w-7 sm:h-7 mt-2 text-blue-600" />
