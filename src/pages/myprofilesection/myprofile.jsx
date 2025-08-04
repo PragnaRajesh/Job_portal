@@ -1029,7 +1029,7 @@ const MyProfile = () => {
                             : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-100'
                         }`}
                       >
-                        {gender} {basicDetails.gender === gender ? '●' : '○'}
+                        {gender} {basicDetails.gender === gender }
                       </button>
                     ))}
                   </div>

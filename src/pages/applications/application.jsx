@@ -61,16 +61,20 @@ const Application = () => {
   }, []);
 
   return (
-    <div className="min-h-screen overflow-y-auto pb-[80px] pt-safe pb-safe">
-    <div className="min-h-screen bg-white px-4 pt-6 pb-40 font-sans text-base pt-safe pb-safe">
-      {/* Top Bar */}
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-2">
-          <ChevronLeft onClick={() => navigate(-1)} className="cursor-pointer hover:text-gray-600 transition-colors" />
-          <h1 className="text-xl font-semibold">Application</h1>
-        </div>
-        <Bell size={22} className="text-blue-600" />
+  <div className="min-h-screen overflow-y-auto pb-[80px] pt-safe pb-safe bg-white px-4 pt-6 font-sans text-base mt-8 rounded-t-2xl shadow">
+    {/* Top Bar */}
+    <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center gap-2">
+        <ChevronLeft
+          onClick={() => navigate(-1)}
+          className="cursor-pointer hover:text-gray-600 transition-colors"
+        />
+        <h1 className="text-xl font-semibold">Application</h1>
       </div>
+      <Bell size={22} className="text-blue-600" />
+    </div>
+
+
 
       {/* Search Input */}
       <div className="mb-6 relative">
@@ -266,7 +270,6 @@ const Application = () => {
            </div>
      
       </div>
-    </div>
        );
      };
 

@@ -14,6 +14,7 @@ import {
   X,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import BackButtonHandler from "../../components/BackButtonHandler";
 import verifiedIcon from "../../assets/verified.png";
 import videoIcon from "../../assets/job prep.png";
 import jobPrepVideo from "../../assets/job prep vedio.mp4";
@@ -64,6 +65,20 @@ const JobList = () => {
 
   return (
     <div className="min-h-screen overflow-y-auto pb-[80px] pt-safe pb-safe">
+      <BackButtonHandler
+        onBackPress={() => {
+          if (showInterviewPrep) {
+            setShowInterviewPrep(false);
+          } else if (showPopup) {
+            setShowPopup(false);
+          } else if (activeVideoIndex !== null) {
+            setActiveVideoIndex(null);
+          } else {
+            navigate('/home');
+          }
+        }}
+        preventAppClosure={false}
+      />
 
     <div className="h-screen overflow-y-auto bg-gray-100 pb-24 pt-safe pb-safe">
       {/* Header */}

@@ -1,6 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ArrowLeft, Send, Bot, User, Download, FileText, Eye, Sparkles, MessageCircle, Edit3, Save, X } from 'lucide-react';
+import { ArrowLeft, Send, Bot, User, Download, FileText, Eye, Sparkles, MessageCircle, Edit3, Save, X, HomeIcon, Briefcase, Plus } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import resumeImg from '../../assets/resume-builder.png';
+import chatImg from '../../assets/chat.png';
+import robotImg from '../../assets/mock-interview.png';
 import OnboardingStyleTemplate from './OnboardingStyleTemplate';
 import CreativeGeometricTemplate from './CreativeGeometricTemplate';
 import MinimalBrownTemplate from './MinimalBrownTemplate';
@@ -11,6 +14,8 @@ import { getChatResponse, generateResumeContent } from '../../services/openaiSer
 
 const AIResumeChat = () => {
   const navigate = useNavigate();
+  const [showPopup, setShowPopup] = useState(false);
+  const popupRef = useRef(null);
   const [messages, setMessages] = useState([
     {
       id: 1,
@@ -1021,13 +1026,13 @@ const AIResumeChat = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="min-h-screen bg-gray-50 flex flex-col pb-24">
       {/* Header */}
       <div className="bg-white shadow-sm border-b border-gray-200 px-4 py-3">
         <div className="flex items-center justify-between max-w-6xl mx-auto">
           <div className="flex items-center space-x-3">
-            <button 
-              onClick={() => navigate('/resume/resumebuilder')}
+            <button
+              onClick={() => navigate(-1)}
               className="p-2 hover:bg-gray-100 rounded-full transition-colors"
             >
               <ArrowLeft className="w-5 h-5 text-gray-600" />
@@ -1252,6 +1257,78 @@ const AIResumeChat = () => {
         isOpen={showApiKeySettings}
         onClose={() => setShowApiKeySettings(false)}
       />
+
+      {/* ✅ Fixed Bottom Navigation */}
+      <div className="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around py-1 sm:py-1 border-t border-gray-200 bg-white/95 backdrop-blur-sm pb-safe">
+        <button onClick={() => navigate("/home")}>
+          <HomeIcon className="w-6 h-6 sm:w-7 sm:h-7 mt-2 text-gray-400" />
+        </button>
+        <button onClick={() => navigate("/jobs/joblist")}>
+          <Briefcase className="w-6 h-6 sm:w-7 sm:h-7 mt-2 text-gray-400" />
+        </button>
+
+        {/* Plus Icon with Popup */}
+        <div className="relative">
+          <button
+            onClick={() => setShowPopup(!showPopup)}
+            className="w-8 h-8 sm:w-14 sm:h-14 bg-blue-600 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 transition-all duration-300 hover:scale-105 mt-2"
+          >
+            <Plus className="w-4 h-4 sm:w-7 sm:h-7 text-white" />
+          </button>
+
+          {showPopup && (
+            <div
+              ref={popupRef}
+              className="fixed bottom-16 sm:bottom-20 left-0 w-full h-[50vh] sm:h-[45vh] md:h-[40vh] bg-gradient-to-t from-blue-100 via-white to-white z-50 rounded-t-3xl shadow-2xl flex flex-col items-center pt-6 pb-4 animate-slideUp"
+            >
+              <div className="w-16 h-1 bg-blue-200 rounded-full mb-6 mt-2" />
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 text-gray-800">Quick Actions</h3>
+
+              <div className="flex flex-col gap-4 sm:gap-6 w-full max-w-sm px-6">
+                <button
+                  onClick={() => {
+                    setShowPopup(false);
+                    navigate("/resume/resumebuilder");
+                  }}
+                  className="w-full bg-[#E3F2FD] text-[#1976D2] py-6 sm:py-8 rounded-2xl font-semibold text-lg sm:text-xl shadow-md border border-[#BBDEFB] hover:bg-[#d1e7ff] transition-all flex items-center justify-center gap-3"
+                >
+                  <img src={resumeImg} alt="Resume Builder" className="w-6 h-6 sm:w-8 sm:h-8" />
+                  Resume Builder
+                </button>
+
+                <button
+                  onClick={() => {
+                    setShowPopup(false);
+                    // Already on AI Resume Chat, just close popup
+                  }}
+                  className="w-full bg-[#E8F5E8] text-[#2E7D32] py-6 sm:py-8 rounded-2xl font-semibold text-lg sm:text-xl shadow-md border border-[#C8E6C9] hover:bg-[#dcefdc] transition-all flex items-center justify-center gap-3"
+                >
+                  <img src={chatImg} alt="AI Chat" className="w-6 h-6 sm:w-8 sm:h-8" />
+                  AI Resume Chat
+                </button>
+
+                <button
+                  onClick={() => {
+                    setShowPopup(false);
+                    // Navigate to AI Job Prep - this would need to be implemented if there's a route
+                  }}
+                  className="w-full bg-[#F3E9FF] text-[#6A1B9A] py-6 sm:py-8 rounded-2xl font-semibold text-lg sm:text-xl shadow-md border border-[#D8C5ED] hover:bg-[#ebdbff] transition-all flex items-center justify-center gap-3"
+                >
+                  <img src={robotImg} alt="AI Prep" className="w-6 h-6 sm:w-8 sm:h-8" />
+                  AI Job Prep
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+
+        <button onClick={() => navigate("/applications/application")}>
+          <FileText className="w-6 h-6 sm:w-7 sm:h-7 mt-2 text-gray-400" />
+        </button>
+        <button onClick={() => navigate("/myprofilesection/myprofile")}>
+          <User className="w-6 h-6 sm:w-7 sm:h-7 mt-2 text-gray-400" />
+        </button>
+      </div>
     </div>
   );
 };

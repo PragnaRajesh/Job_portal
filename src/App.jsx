@@ -60,64 +60,12 @@ const SuccessScreenWrapper = () => {
   return <SuccessScreen name={name} />;
 };
 
-// Component to handle phone back button behavior
+// Import the improved back button hook
+import { useBackButton } from './hooks/useBackButton';
+
+// Component to handle phone back button behavior globally
 const BackButtonHandler = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  useEffect(() => {
-    const handleBackButton = (event) => {
-      const currentPath = location.pathname;
-
-      // Prevent default browser back behavior
-      event.preventDefault();
-
-      // Define navigation logic based on current path
-      if (currentPath === '/' || currentPath === '/onboarding1') {
-        // On first onboarding screen, go to onboarding flow instead of closing app
-        navigate('/', { replace: true });
-      } else if (currentPath === '/home') {
-        // On home screen, stay on home instead of going back
-        navigate('/home', { replace: true });
-      } else if (currentPath.startsWith('/onboarding')) {
-        // In onboarding flow, go to previous onboarding or stay on first
-        if (currentPath === '/onboarding2') {
-          navigate('/onboarding1');
-        } else if (currentPath === '/onboarding3') {
-          navigate('/onboarding2');
-        } else if (currentPath === '/onboarding4') {
-          navigate('/onboarding3');
-        } else {
-          navigate('/');
-        }
-      } else if (currentPath.startsWith('/signup') || currentPath.startsWith('/login')) {
-        // From auth screens, go back to onboarding
-        navigate('/');
-      } else if (currentPath.startsWith('/profile/')) {
-        // From profile setup, go to previous step or signup
-        navigate('/signup1');
-      } else {
-        // Default behavior - try to go back or go to home
-        if (window.history.length > 1) {
-          navigate(-1);
-        } else {
-          navigate('/home');
-        }
-      }
-    };
-
-    // Listen for browser back button and mobile back gesture
-    window.addEventListener('popstate', handleBackButton);
-
-    // For mobile apps, also listen for hardware back button
-    document.addEventListener('backbutton', handleBackButton, false);
-
-    return () => {
-      window.removeEventListener('popstate', handleBackButton);
-      document.removeEventListener('backbutton', handleBackButton, false);
-    };
-  }, [navigate, location]);
-
+  useBackButton();
   return null;
 };
 

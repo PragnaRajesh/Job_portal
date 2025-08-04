@@ -24,6 +24,7 @@ import robotImg from "../assets/mock-interview.png";
 
 const Home = () => {
   const navigate = useNavigate();
+  
 
   const [user, setUser] = useState({
     name: "User",
@@ -44,21 +45,25 @@ const Home = () => {
     }, []);
 
   useEffect(() => {
-    // Handle hardware back button for mobile browsers
+    // Handle back button when popup is open
     const handlePopState = (e) => {
-      e.preventDefault();
       if (showPopup) {
-        setShowPopup(false); // Close popup if open
-      } else {
-        // Prevent app closure by staying on home
+        e.preventDefault();
+        setShowPopup(false);
         window.history.pushState(null, '', window.location.href);
       }
     };
 
-    // Add history entry to prevent app closure
-    window.history.pushState(null, '', window.location.href);
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
+    if (showPopup) {
+      window.history.pushState(null, '', window.location.href);
+      window.addEventListener('popstate', handlePopState);
+    }
+
+    return () => {
+      if (showPopup) {
+        window.removeEventListener('popstate', handlePopState);
+      }
+    };
   }, [showPopup]);
 
   const jobCategories = ["Chef", "Marketing", "Technology", "Finance", "Design"];
