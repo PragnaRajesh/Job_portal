@@ -19,7 +19,6 @@
 }
 
 html, body {
-  height: 100%;
   margin: 0;
   padding: 0;
   overflow: auto;
@@ -45,13 +44,13 @@ html, body {
   height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
 }
 
-/* Prevent horizontal scrolling */
+/* Prevent horizontal scrolling and ensure proper vertical scrolling */
 body, html {
   overflow-x: hidden;
   max-width: 100vw;
-  min-height: 100vh;
-  height: auto;
   overflow-y: auto;
+  height: auto;
+  min-height: 100vh;
 }
 
 /* Hide horizontal scrollbar for specific elements */

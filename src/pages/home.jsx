@@ -107,8 +107,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="min-h-screen overflow-y-auto pb-[80px] pt-safe pb-safe">
-    <div className="min-h-screen pb-24 pt-safe pb-safe">
+    <div className="pb-[80px] pt-safe pb-safe">
       <div className="p-4 sm:p-6 md:p-8 lg:max-w-6xl lg:mx-auto">
         {/* Header */}
         <div className="flex justify-between items-center mb-4 sm:mb-6">
@@ -287,7 +286,7 @@ const Home = () => {
                             {showPopup && (
                     <div
                       ref={popupRef}
-                      className="fixed bottom-16 sm:bottom-20 left-0 w-full h-[50vh] sm:h-[45vh] md:h-[40vh] bg-gradient-to-t from-blue-100 via-white to-white z-50 rounded-t-3xl shadow-2xl flex flex-col items-center pt-6 pb-4 animate-slideUp"
+                      className="fixed bottom-16 sm:bottom-20 left-0 w-full bg-gradient-to-t from-blue-100 via-white to-white z-50 rounded-t-3xl shadow-2xl flex flex-col items-center pt-6 pb-4 animate-slideUp"
                     >
                       <div className="w-16 h-1 bg-blue-200 rounded-full mb-6 mt-2" />
                       <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 text-gray-800">Quick Actions</h3>
@@ -347,8 +346,6 @@ const Home = () => {
           <User className="w-6 h-6 sm:w-7 sm:h-7 mt-2 text-gray-400" />
         </button>
       </div>
-
-    </div>
     </div>
   );
 };

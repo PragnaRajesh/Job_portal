@@ -61,7 +61,7 @@ const Application = () => {
   }, []);
 
   return (
-  <div className="min-h-screen overflow-y-auto pb-[80px] pt-safe pb-safe bg-white px-4 pt-6 font-sans text-base mt-8 rounded-t-2xl shadow">
+  <div className="pb-[80px] pt-safe pb-safe bg-white px-4 pt-6 font-sans text-base mt-8 rounded-t-2xl shadow">
     {/* Top Bar */}
     <div className="flex items-center justify-between mb-4">
       <div className="flex items-center gap-2">
@@ -208,7 +208,7 @@ const Application = () => {
                                  {showPopup && (
                          <div
                            ref={popupRef}
-                           className="fixed bottom-16 sm:bottom-20 left-0 w-full h-[50vh] sm:h-[45vh] md:h-[40vh] bg-gradient-to-t from-blue-100 via-white to-white z-50 rounded-t-3xl shadow-2xl flex flex-col items-center pt-6 pb-4 animate-slideUp"
+                           className="fixed bottom-16 sm:bottom-20 left-0 w-full bg-gradient-to-t from-blue-100 via-white to-white z-50 rounded-t-3xl shadow-2xl flex flex-col items-center pt-6 pb-4 animate-slideUp"
                          >
                            <div className="w-16 h-1 bg-blue-200 rounded-full mb-6 mt-2" />
                            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 text-gray-800">Quick Actions</h3>

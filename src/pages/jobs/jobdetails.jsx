@@ -39,9 +39,7 @@ const JobDetails = () => {
   };
 
   return (
-    <div className="min-h-screen overflow-y-auto pb-[80px] pt-safe pb-safe">
-
-    <div className="min-h-screen bg-white pb-32 relative rounded-t-3xl overflow-hidden pt-safe pb-safe">
+    <div className="bg-white pb-32 relative rounded-t-3xl pt-safe pb-safe">
       {/* Banner Image */}
       <div className="relative">
         <img
@@ -238,7 +236,6 @@ const JobDetails = () => {
           {applying ? "Applying..." : "APPLY NOW"}
         </button>
       </div>
-    </div>
     </div>
   );
 };

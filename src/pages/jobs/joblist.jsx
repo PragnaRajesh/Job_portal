@@ -64,7 +64,7 @@ const JobList = () => {
   const metroFilters = ["Within 10Km", "10–15 Km away", "10–15 Km away"];
 
   return (
-    <div className="min-h-screen overflow-y-auto pb-[80px] pt-safe pb-safe">
+    <div className="bg-gray-100 pb-[80px] pt-safe pb-safe">
       <BackButtonHandler
         onBackPress={() => {
           if (showInterviewPrep) {
@@ -79,8 +79,6 @@ const JobList = () => {
         }}
         preventAppClosure={false}
       />
-
-    <div className="h-screen overflow-y-auto bg-gray-100 pb-24 pt-safe pb-safe">
       {/* Header */}
       <div className="bg-gradient-to-r from-[#2b2b76] to-[#412c84] text-white px-4 sm:px-6 md:px-8 py-5 sm:py-6 md:py-8 rounded-b-3xl">
         <div className="flex justify-between items-center lg:max-w-6xl lg:mx-auto">
@@ -140,7 +138,7 @@ const JobList = () => {
                     <div>
                       <div className="flex items-center gap-1">
                         <h2
-                          className="text-base sm:text-lg md:text-xl font-semibold cursor-pointer"
+                          className="text-base sm:text-lg md:text-xl font-semibold cursor-pointer truncate"
                           onClick={() => navigate("/jobs/jobdetails")}
                         >
                           {job.title}
@@ -151,7 +149,7 @@ const JobList = () => {
                     </div>
                   </div>
                   <div className="flex flex-col items-end gap-1">
-                    <div className="text-xs sm:text-sm font-semibold text-orange-600 bg-orange-100 px-2 py-1 sm:px-3 sm:py-1 rounded-full">
+                    <div className="text-xs sm:text-sm font-semibold text-orange-600 bg-orange-100 px-2 py-1 sm:px-3 sm:py-1 rounded-full truncate">
                       URGENT HIRING
                     </div>
                     <Bookmark className="text-blue-600 w-4 h-4 sm:w-5 sm:h-5" />
@@ -164,7 +162,7 @@ const JobList = () => {
                   {job.location}
                 </p>
 
-                <div className="flex flex-wrap gap-2 mt-3 sm:mt-4">
+                <div className="flex flex-wrap gap-2 mt-3 sm:mt-4 items-center">
                   {job.tags.map((tag, tagIndex) => {
                     const isInterview = tag.includes("Interview");
                     const isHighDemand = tag.includes("High Demand");
@@ -198,19 +196,15 @@ const JobList = () => {
                       </span>
                     );
                   })}
-                </div>
-                
-                <div className="flex justify-end mt-2 pr-2">
-                  <div
-                    className="flex flex-col items-center text-xs sm:text-sm text-blue-600 cursor-pointer"
+                  <img
+                    src={videoIcon}
+                    alt="prep"
+                    className="w-4 h-4 cursor-pointer ml-auto"
                     onClick={(e) => {
                       e.stopPropagation();
                       setActiveVideoIndex(activeVideoIndex === i ? null : i);
                     }}
-                  >
-                    <img src={videoIcon} alt="prep" className="w-6 h-6 sm:w-8 sm:h-8" />
-                    <span>Job Prep.</span>
-                  </div>
+                  />
                 </div>
 
                 <div className="flex justify-between items-center mt-4 pt-2 border-t text-xs sm:text-sm text-gray-600">
@@ -232,7 +226,7 @@ const JobList = () => {
                     </div>
                     <video
                       controls
-                      className="w-full h-auto max-h-75 rounded-lg"
+                      className="w-full h-auto rounded-lg"
                       autoPlay
                     >
                       <source src={jobPrepVideo} type="video/mp4" />
@@ -281,7 +275,7 @@ const JobList = () => {
                     <div>
                       <div className="flex items-center gap-1">
                         <h2
-                          className="text-base sm:text-lg md:text-xl font-semibold cursor-pointer"
+                          className="text-base sm:text-lg md:text-xl font-semibold cursor-pointer truncate"
                           onClick={() => navigate("/jobs/jobdetails")}
                         >
                           {job.title}
@@ -292,7 +286,7 @@ const JobList = () => {
                     </div>
                   </div>
                   <div className="flex flex-col items-end gap-1">
-                    <div className="text-xs sm:text-sm font-semibold text-orange-600 bg-orange-100 px-2 py-1 sm:px-3 sm:py-1 rounded-full">
+                    <div className="text-xs sm:text-sm font-semibold text-orange-600 bg-orange-100 px-2 py-1 sm:px-3 sm:py-1 rounded-full truncate">
                       URGENT HIRING
                     </div>
                     <Bookmark className="text-blue-600 w-4 h-4 sm:w-5 sm:h-5" />
@@ -305,7 +299,7 @@ const JobList = () => {
                   {job.location}
                 </p>
 
-                <div className="flex flex-wrap gap-2 mt-3 sm:mt-4">
+                <div className="flex flex-wrap gap-2 mt-3 sm:mt-4 items-center">
                   {job.tags.map((tag, tagIndex) => {
                     const isInterview = tag.includes("Interview");
                     const isHighDemand = tag.includes("High Demand");
@@ -339,19 +333,15 @@ const JobList = () => {
                       </span>
                     );
                   })}
-                </div>
-                
-                <div className="flex justify-end mt-2 pr-2">
-                  <div
-                    className="flex flex-col items-center text-xs sm:text-sm text-blue-600 cursor-pointer"
+                  <img
+                    src={videoIcon}
+                    alt="prep"
+                    className="w-4 h-4 cursor-pointer ml-auto"
                     onClick={(e) => {
                       e.stopPropagation();
                       setActiveVideoIndex(activeVideoIndex === i ? null : i);
                     }}
-                  >
-                    <img src={videoIcon} alt="prep" className="w-6 h-6 sm:w-8 sm:h-8" />
-                    <span>Job Prep.</span>
-                  </div>
+                  />
                 </div>
 
                 <div className="flex justify-between items-center mt-4 pt-2 border-t text-xs sm:text-sm text-gray-600">
@@ -373,7 +363,7 @@ const JobList = () => {
                     </div>
                     <video
                       controls
-                      className="w-full h-auto max-h-75 rounded-lg"
+                      className="w-full h-auto rounded-lg"
                       autoPlay
                     >
                       <source src={jobPrepVideo} type="video/mp4" />
@@ -408,7 +398,7 @@ const JobList = () => {
                                 {showPopup && (
                         <div
                           ref={popupRef}
-                          className="fixed bottom-16 sm:bottom-20 left-0 w-full h-[50vh] sm:h-[45vh] md:h-[40vh] bg-gradient-to-t from-blue-100 via-white to-white z-50 rounded-t-3xl shadow-2xl flex flex-col items-center pt-6 pb-4 animate-slideUp"
+                          className="fixed bottom-16 sm:bottom-20 left-0 w-full bg-gradient-to-t from-blue-100 via-white to-white z-50 rounded-t-3xl shadow-2xl flex flex-col items-center pt-6 pb-4 animate-slideUp"
                         >
                           <div className="w-16 h-1 bg-blue-200 rounded-full mb-6 mt-2" />
                           <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 text-gray-800">Quick Actions</h3>
@@ -475,7 +465,6 @@ const JobList = () => {
       {showInterviewPrep && (
         <InterviewPrep onClose={() => setShowInterviewPrep(false)} />
       )}
-    </div>
     </div>
   );
 };

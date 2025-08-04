@@ -203,10 +203,9 @@ const MyProfile = () => {
       }, []);
 
   return (
-    <div className="min-h-screen overflow-y-auto pb-[80px] pt-safe pb-safe">
-     <div className="min-h-screen bg-gray-100 pb-24 font-sans pt-safe pb-safe">
+     <div className="bg-gray-100 pb-[80px] font-sans pt-safe pb-safe">
       {/* Profile Header Card */}
-      <div className="relative rounded-b-3xl p-4 text-white overflow-hidden mb-4" style={{ background: 'none', minHeight: '11.25rem' }}>
+      <div className="relative rounded-b-3xl p-4 text-white mb-4" style={{ background: 'none' }}>
         {/* Custom SVG Background */}
         <div className="absolute inset-0 w-full h-full">
           <svg width="100%" height="100%" viewBox="0 0 375 180" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" className="w-full h-full">
@@ -305,7 +304,7 @@ const MyProfile = () => {
 
         {/* Row 1: Profile Picture */}
         <div className="relative mb-2">
-          <div className="w-16 h-16 rounded-full overflow-hidden border-3 border-white/30">
+          <div className="w-16 h-16 rounded-full border-3 border-white/30">
             <img
               src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200"
               alt="Profile"
@@ -627,7 +626,7 @@ const MyProfile = () => {
       {/* Sections */}
       <div className="space-y-4 mt-4 px-4">
         {/* Work Experience Section */}
-        <div className="bg-[#F6F7FB] rounded-xl overflow-hidden">
+        <div className="bg-[#F6F7FB] rounded-xl">
           <div className="flex items-center justify-between p-4">
             <div className="flex items-center gap-3">
               <img src={iconWork} alt="Work Experience" className="w-8 h-8" />
@@ -774,7 +773,7 @@ const MyProfile = () => {
         </div>
 
         {/* Skills Section */}
-        <div className="bg-[#F6F7FB] rounded-xl overflow-hidden">
+        <div className="bg-[#F6F7FB] rounded-xl">
           <div className="flex items-center justify-between p-4">
             <div className="flex items-center gap-3">
               <img src={iconSkills} alt="Skills" className="w-8 h-8" />
@@ -867,7 +866,7 @@ const MyProfile = () => {
         </div>
 
         {/* Documents Section */}
-        <div className="bg-[#F6F7FB] rounded-xl overflow-hidden">
+        <div className="bg-[#F6F7FB] rounded-xl">
           <div className="flex items-center justify-between p-4">
             <div className="flex items-center gap-3">
               <img src={iconCategory} alt="Category Details" className="w-8 h-8" />
@@ -942,7 +941,7 @@ const MyProfile = () => {
         </div>
 
         {/* Basic Details Section */}
-        <div className="bg-[#F6F7FB] rounded-xl overflow-hidden">
+        <div className="bg-[#F6F7FB] rounded-xl">
           <div className="flex items-center justify-between p-4">
             <div className="flex items-center gap-3">
               <img src={iconBasic} alt="Basic Details" className="w-8 h-8" />
@@ -1088,7 +1087,7 @@ const MyProfile = () => {
                                   {showPopup && (
                           <div
                             ref={popupRef}
-                            className="fixed bottom-16 sm:bottom-20 left-0 w-full h-[50vh] sm:h-[45vh] md:h-[40vh] bg-gradient-to-t from-blue-100 via-white to-white z-50 rounded-t-3xl shadow-2xl flex flex-col items-center pt-6 pb-4 animate-slideUp"
+                            className="fixed bottom-16 sm:bottom-20 left-0 w-full bg-gradient-to-t from-blue-100 via-white to-white z-50 rounded-t-3xl shadow-2xl flex flex-col items-center pt-6 pb-4 animate-slideUp"
                           >
                             <div className="w-16 h-1 bg-blue-200 rounded-full mb-6 mt-2" />
                             <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 text-gray-800">Quick Actions</h3>
@@ -1148,8 +1147,6 @@ const MyProfile = () => {
                 <User className="w-6 h-6 sm:w-7 sm:h-7 mt-2 text-blue-600" />
               </button>
             </div>
-      
-                </div>
                 </div>
         );
       };
