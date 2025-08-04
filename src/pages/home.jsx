@@ -321,28 +321,41 @@ const Home = () => {
 
         {/* Banner */}
         {showBanner && (
-          <div className="bg-gradient-to-r from-teal-500 to-teal-600 text-white rounded-xl p-4 mb-6 relative">
-            <button 
-              onClick={() => setShowBanner(false)}
-              className="absolute top-3 right-3 bg-white/20 rounded-full p-1"
-            >
-              <X size={16} />
-            </button>
-            <div className="flex items-center space-x-3">
-              <div className="bg-white/20 rounded-full p-2">
-                <Bell size={20} />
+          <div className="relative rounded-xl p-4 mb-6 overflow-hidden">
+            {/* Background with sophisticated gradient pattern */}
+            <div className="absolute inset-0 bg-gradient-to-r from-teal-500 to-teal-600"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-teal-400/30 via-transparent to-teal-700/40"></div>
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-teal-600/20 via-transparent to-teal-400/10"></div>
+
+            {/* Geometric pattern overlays */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-teal-300/20 to-transparent rounded-full transform translate-x-8 -translate-y-8"></div>
+            <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-teal-700/30 to-transparent rounded-full transform -translate-x-4 translate-y-4"></div>
+            <div className="absolute top-1/2 left-1/3 w-16 h-16 bg-teal-400/10 rounded-full transform -translate-y-1/2"></div>
+
+            {/* Content */}
+            <div className="relative z-10 text-white">
+              <button
+                onClick={() => setShowBanner(false)}
+                className="absolute top-[-8px] right-[-8px] bg-white/20 rounded-full p-1 backdrop-blur-sm"
+              >
+                <X size={16} />
+              </button>
+              <div className="flex items-center space-x-3">
+                <div className="bg-white/20 rounded-full p-2 backdrop-blur-sm">
+                  <Bell size={20} />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold mb-1">
+                    Reply quickly to get the job!
+                  </p>
+                  <p className="text-sm opacity-90">1 HR call</p>
+                </div>
               </div>
-              <div>
-                <p className="text-sm font-semibold mb-1">
-                  Reply quickly to get the job!
-                </p>
-                <p className="text-sm opacity-90">1 HR call</p>
-              </div>
+              <button className="mt-3 bg-black/20 backdrop-blur-sm px-4 py-2 rounded-lg text-sm font-medium flex items-center space-x-2 hover:bg-black/30 transition-colors">
+                <span>View Response</span>
+                <span>→</span>
+              </button>
             </div>
-            <button className="mt-3 bg-black/20 px-4 py-2 rounded-lg text-sm font-medium flex items-center space-x-2">
-              <span>View Response</span>
-              <span>→</span>
-            </button>
           </div>
         )}
 
