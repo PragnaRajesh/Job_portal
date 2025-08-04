@@ -308,12 +308,12 @@ const Home = () => {
           ))}
         </div>
 
-        {/* Job Cards Grid */}
-        <div className="grid grid-cols-2 gap-4 mb-8">
+        {/* Job Cards Horizontal Scroll */}
+        <div className="flex overflow-x-auto gap-4 mb-8 no-scrollbar">
           {getCurrentJobCards().map((job, idx) => (
             <div
               key={idx}
-              className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm relative"
+              className="bg-white rounded-xl p-4 border border-gray-100 shadow-lg relative min-w-[280px] flex-shrink-0"
             >
               <Bookmark
                 size={16}
