@@ -428,7 +428,7 @@ const Home = () => {
             return (
               <div
                 key={idx}
-                className="flex-1 flex flex-col items-center py-6 rounded-2xl"
+                className="flex-1 flex flex-col items-center py-6 rounded-2xl shadow-lg"
                 style={{ backgroundColor: spec.bg }}
               >
                 <p className="text-sm font-medium text-gray-800 mb-3">{spec.name}</p>
