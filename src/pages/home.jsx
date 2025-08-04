@@ -252,8 +252,8 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="pb-[80px] pt-safe pb-safe">
-      <div className="p-4 sm:p-6 md:p-8 lg:max-w-6xl lg:mx-auto">
+    <div className="min-h-screen pt-safe">
+      <div className="p-4 sm:p-6 md:p-8 lg:max-w-6xl lg:mx-auto pb-[100px]">
         {/* Header */}
         <div className="flex justify-between items-center mb-6">
           <div className="flex items-center space-x-3">
