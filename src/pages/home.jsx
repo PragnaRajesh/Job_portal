@@ -101,6 +101,20 @@ const Home = () => {
         tags: ["Part-time", "Junior"],
         logo: telegramLogo,
       },
+      {
+        company: "McDonald's",
+        role: "Sous Chef",
+        location: "Whitefield - Onsite",
+        tags: ["Full-time", "Mid-level"],
+        logo: netflixLogo,
+      },
+      {
+        company: "Pizza Hut",
+        role: "Line Cook",
+        location: "Indiranagar - Onsite",
+        tags: ["Part-time", "Entry"],
+        logo: invisionLogo,
+      },
     ],
     Mechanic: [
       {
@@ -116,6 +130,20 @@ const Home = () => {
         location: "Koramangala - Onsite",
         tags: ["Full-time", "Junior"],
         logo: invisionLogo,
+      },
+      {
+        company: "Toyota Service",
+        role: "Car Technician",
+        location: "HSR Layout - Onsite",
+        tags: ["Full-time", "Senior"],
+        logo: telegramLogo,
+      },
+      {
+        company: "Hero MotoCorp",
+        role: "Service Advisor",
+        location: "Indiranagar - Onsite",
+        tags: ["Full-time", "Mid-level"],
+        logo: netflixLogo,
       },
     ],
     Marketing: [
@@ -133,6 +161,20 @@ const Home = () => {
         tags: ["Full-time", "Senior"],
         logo: telegramLogo,
       },
+      {
+        company: "Netflix",
+        role: "Content Marketing",
+        location: "Whitefield - Hybrid",
+        tags: ["Hybrid", "Mid-level"],
+        logo: netflixLogo,
+      },
+      {
+        company: "Meta",
+        role: "Social Media Manager",
+        location: "HSR Layout - Remote",
+        tags: ["Remote", "Junior"],
+        logo: invisionLogo,
+      },
     ],
     Technology: [
       {
@@ -148,6 +190,20 @@ const Home = () => {
         location: "Koramangala - Hybrid",
         tags: ["Hybrid", "Mid-level"],
         logo: telegramLogo,
+      },
+      {
+        company: "Google",
+        role: "Full Stack Developer",
+        location: "Whitefield - Onsite",
+        tags: ["Full-time", "Senior"],
+        logo: invisionLogo,
+      },
+      {
+        company: "Microsoft",
+        role: "DevOps Engineer",
+        location: "HSR Layout - Remote",
+        tags: ["Remote", "Experienced"],
+        logo: netflixLogo,
       },
     ],
   };
