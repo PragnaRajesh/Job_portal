@@ -326,10 +326,11 @@ const Home = () => {
                   className="w-6 h-6 object-contain"
                 />
               </div>
-              <h4 className="text-sm font-semibold text-gray-900 mb-1">
+              <p className="text-xs text-gray-500 mb-1">{job.company}</p>
+              <h4 className="text-sm font-semibold text-gray-900 mb-2">
                 {job.role}
               </h4>
-              <p className="text-xs text-gray-500 mb-2">{job.location}</p>
+              <p className="text-xs text-gray-500 mb-3">{job.location}</p>
               <div className="flex gap-1 mb-3 flex-wrap">
                 {job.tags.map((tag, i) => (
                   <span
