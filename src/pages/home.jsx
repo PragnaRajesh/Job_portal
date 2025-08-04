@@ -310,7 +310,7 @@ const Home = () => {
 
         {/* Job Cards Grid */}
         <div className="grid grid-cols-2 gap-4 mb-8">
-          {jobCards.map((job, idx) => (
+          {getCurrentJobCards().map((job, idx) => (
             <div
               key={idx}
               className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm relative"
