@@ -85,22 +85,76 @@ const Home = () => {
     { name: "Marketing", icon: Megaphone, bg: "#FFF2F2", color: "#EF4444" },
   ];
 
-  const jobCards = [
-    {
-      company: "Invision",
-      role: "UI designer",
-      location: "HSR Layout - Onsite",
-      tags: ["Remote", "Junior"],
-      logo: invisionLogo,
-    },
-    {
-      company: "Telegram",
-      role: "Digital Market",
-      location: "HSR Layout - Onsite",
-      tags: ["Remote", "Junior"],
-      logo: telegramLogo,
-    },
-  ];
+  const jobCardsByCategory = {
+    Chef: [
+      {
+        company: "Hotel Marriott",
+        role: "Head Chef",
+        location: "Koramangala - Onsite",
+        tags: ["Full-time", "Senior"],
+        logo: invisionLogo,
+      },
+      {
+        company: "Cafe Coffee Day",
+        role: "Kitchen Chef",
+        location: "HSR Layout - Onsite",
+        tags: ["Part-time", "Junior"],
+        logo: telegramLogo,
+      },
+    ],
+    Mechanic: [
+      {
+        company: "Mahindra Service",
+        role: "Auto Mechanic",
+        location: "Whitefield - Onsite",
+        tags: ["Full-time", "Experienced"],
+        logo: netflixLogo,
+      },
+      {
+        company: "Honda Service",
+        role: "Bike Mechanic",
+        location: "Koramangala - Onsite",
+        tags: ["Full-time", "Junior"],
+        logo: invisionLogo,
+      },
+    ],
+    Marketing: [
+      {
+        company: "Invision",
+        role: "Digital Marketing",
+        location: "HSR Layout - Remote",
+        tags: ["Remote", "Junior"],
+        logo: invisionLogo,
+      },
+      {
+        company: "Telegram",
+        role: "Marketing Manager",
+        location: "Koramangala - Onsite",
+        tags: ["Full-time", "Senior"],
+        logo: telegramLogo,
+      },
+    ],
+    Technology: [
+      {
+        company: "Netflix",
+        role: "Software Engineer",
+        location: "HSR Layout - Remote",
+        tags: ["Remote", "Junior"],
+        logo: netflixLogo,
+      },
+      {
+        company: "Telegram",
+        role: "Frontend Developer",
+        location: "Koramangala - Hybrid",
+        tags: ["Hybrid", "Mid-level"],
+        logo: telegramLogo,
+      },
+    ],
+  };
+
+  const getCurrentJobCards = () => {
+    return jobCardsByCategory[selectedCategory] || [];
+  };
 
   const recommendedJobs = [
     {
