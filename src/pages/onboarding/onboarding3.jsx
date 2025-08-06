@@ -35,13 +35,7 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
         {/* Top Text Box - Fixed height with animated elements */}
         <div className="bg-gradient-to-br from-[#799EFF] to-[#799EFF99] animate-gradient-shift rounded-3xl p-4 border-2 border-[#CB9D73] shadow-lg h-[25vh] flex items-center relative overflow-hidden">
           
-          {/* Animated typing cursor and lines */}
-          <div className="absolute top-4 right-4 opacity-30">
-            <div className="w-16 h-0.5 bg-white rounded animate-rocket-trails"></div>
-            <div className="w-12 h-0.5 bg-white rounded mt-1 animate-rocket-trails" style={{animationDelay: '0.5s'}}></div>
-            <div className="w-20 h-0.5 bg-white rounded mt-1 animate-rocket-trails" style={{animationDelay: '1s'}}></div>
-            <div className="w-2 h-4 bg-white rounded ml-20 mt-1 animate-typing-cursor"></div>
-          </div>
+          {/* Animated typing cursor and lines - moved below */}
 
           {/* Document icons floating */}
           <div className="absolute bottom-4 left-4 opacity-40">
@@ -119,6 +113,16 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
               </div>
             </div> */}
           </div>
+        </div>
+      </div>
+
+      {/* Animated typing cursor positioned above bottom navigation */}
+      <div className="flex justify-center mb-4">
+        <div className="opacity-60">
+          <div className="w-16 h-0.5 bg-[#799EFF] rounded animate-rocket-trails"></div>
+          <div className="w-12 h-0.5 bg-[#799EFF] rounded mt-1 animate-rocket-trails" style={{animationDelay: '0.5s'}}></div>
+          <div className="w-20 h-0.5 bg-[#799EFF] rounded mt-1 animate-rocket-trails" style={{animationDelay: '1s'}}></div>
+          <div className="w-2 h-4 bg-[#799EFF] rounded ml-20 mt-1 animate-typing-cursor"></div>
         </div>
       </div>
 
