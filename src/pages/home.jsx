@@ -80,9 +80,9 @@ const Home = () => {
   const [selectedFilter, setSelectedFilter] = useState("Most Relevant");
 
   const specializations = [
-    { name: "Finance", icon: TrendingUp, bg: "#FFF8F1", color: "#F59E0B" },
-    { name: "Technology", icon: Code, bg: "#FAF5FF", color: "#8B5CF6" },
-    { name: "Marketing", icon: Megaphone, bg: "#FFF2F2", color: "#EF4444" },
+    { name: "Finance", icon: financeIcon, bg: "#FFF8F1", color: "#F59E0B" },
+    { name: "Technology", icon: techIcon, bg: "#FAF5FF", color: "#8B5CF6" },
+    { name: "Marketing", icon: marketingIcon, bg: "#FFF2F2", color: "#EF4444" },
   ];
 
   const jobCardsByCategory = {
