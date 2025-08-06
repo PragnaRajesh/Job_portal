@@ -48,7 +48,7 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
 
       {/* Bottom Navigation Card - Pinned to bottom */}
       <div className="absolute bottom-0 left-0 right-0 z-20">
-        <div className="bg-gradient-to-r from-[#7B9EFF] to-[#A8C5FF] rounded-t-3xl px-6 py-6 mx-2 mb-2 shadow-xl">
+        <div className="bg-gradient-to-r from-[#7B9EFF] to-[#A8C5FF] rounded-3xl px-6 py-6 m-2 shadow-xl">
           {/* Navigation Dots */}
           <div className="flex justify-center gap-2 mb-6">
             <div className="w-8 h-2 bg-white rounded-full opacity-60" />
