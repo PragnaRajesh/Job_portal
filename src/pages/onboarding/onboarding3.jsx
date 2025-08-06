@@ -42,7 +42,7 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
         <img
           src={resumeImg}
           alt="Resume Building Illustration"
-          className="w-[95vw] h-auto max-h-[75vh] object-contain"
+          className="w-[98vw] h-auto max-h-[80vh] object-contain"
         />
       </div>
 
