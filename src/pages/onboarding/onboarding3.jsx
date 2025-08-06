@@ -38,7 +38,7 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
       </div>
 
       {/* Large Resume Illustration - Overlapping */}
-      <div className="absolute top-32 left-0 right-0 bottom-20 flex items-center justify-center z-40">
+      <div className="absolute top-20 left-0 right-0 bottom-20 flex items-center justify-center z-40">
         <img
           src={resumeImg}
           alt="Resume Building Illustration"
