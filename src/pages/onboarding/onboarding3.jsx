@@ -82,7 +82,7 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
               src={resumeImg}
               alt="Resume Building Illustration"
               // className="w-full h-auto object-contain max-h-full animate-paper-stack relative z-10"
-              className="w-[80vw] h-[70vh] object-contain animate-paper-stack relative z-10 -mt-20"
+              className="w-[80vw] h-[70vh] sm:w-[366px] sm:h-[437px] object-contain animate-paper-stack relative z-10 -mt-20"
 
 
             />
