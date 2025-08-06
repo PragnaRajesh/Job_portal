@@ -33,7 +33,7 @@ const OnboardingScreen2 = ({ onNext, onSkip }) => {
       <div className="flex-1 flex flex-col px-4 pt-4">
         
         {/* Top Content Box - Fixed height with rocket launch scene */}
-        <div className="relative bg-gradient-to-br from-[#7551FF] to-[#7551FF99] animate-gradient-shift rounded-3xl p-4 border-2 border-[#CB9D73] shadow-lg h-[65vh] flex flex-col justify-start overflow-hidden">
+        <div className="relative bg-gradient-to-br from-[#94E082] to-[#94E08299] animate-gradient-shift rounded-3xl p-4 border-2 border-[#CB9D73] shadow-lg h-[65vh] flex flex-col justify-start overflow-hidden">
           
           {/* Animated stars/particles background */}
           <div className="absolute inset-0 opacity-30">

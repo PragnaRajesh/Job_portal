@@ -33,7 +33,7 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
       <div className="flex-1 flex flex-col px-4 pt-4">
         
         {/* Top Text Box - Fixed height with animated elements */}
-        <div className="bg-gradient-to-br from-[#7551FF] to-[#7551FF99] animate-gradient-shift rounded-3xl p-4 border-2 border-[#CB9D73] shadow-lg h-[25vh] flex items-center relative overflow-hidden">
+        <div className="bg-gradient-to-br from-[#799EFF] to-[#799EFF99] animate-gradient-shift rounded-3xl p-4 border-2 border-[#CB9D73] shadow-lg h-[25vh] flex items-center relative overflow-hidden">
           
           {/* Animated typing cursor and lines */}
           <div className="absolute top-4 right-4 opacity-30">
