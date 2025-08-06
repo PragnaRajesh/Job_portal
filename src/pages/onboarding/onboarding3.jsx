@@ -123,7 +123,7 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
       </div>
 
       {/* Bottom Navigation Section - Fixed height */}
-      <div className="bg-gradient-to-r from-[#799EFF] to-[#799EFF99] animate-gradient-shift rounded-3xl p-4 border-2 border-[#CB9D73] h-[18vh] sm:h-[130px] flex flex-col justify-center mx-4 mb-4 animate-slideUp" style={{animationDelay: '1.2s'}}>
+      <div className="bg-gradient-to-r from-[#799EFF] to-[#799EFF99] animate-gradient-shift rounded-3xl p-4 border-2 border-[#CB9D73] h-[18vh] sm:h-[125px] flex flex-col justify-center mx-4 mb-4 animate-slideUp" style={{animationDelay: '1.2s'}}>
         {/* Navigation Dots with enhanced animation */}
         <div className="flex justify-center gap-2 mb-3">
           <div className="w-2.5 h-2.5 bg-white/60 rounded-full animate-dot-pulse" />
