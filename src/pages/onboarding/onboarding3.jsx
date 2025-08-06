@@ -25,8 +25,8 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
   return (
     <div className="min-h-screen w-full bg-white flex flex-col relative overflow-hidden">
       {/* Top Blue Speech Box */}
-      <div className="px-6 pt-12 pb-8 relative z-20">
-        <div className="bg-gradient-to-br from-[#7B9EFF] to-[#A8C5FF] rounded-3xl p-6 mx-2 sm:-mr-px shadow-lg border border-[#CB9D73]/20">
+      <div className="px-4 pt-12 pb-8 relative z-20">
+        <div className="bg-gradient-to-br from-[#7B9EFF] to-[#A8C5FF] rounded-3xl p-6 shadow-lg border border-[#CB9D73]/20">
           <h1 className="font-bold text-[1.375rem] leading-[1.6] text-black tracking-tight">
             Build a graphic-<br />
             rich animated<br />
