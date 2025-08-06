@@ -54,16 +54,16 @@ const OnboardingScreen2 = ({ onNext, onSkip }) => {
 
           {/* Text Content with staggered animation */}
           <div className="relative z-10 mb-4">
-            <h1 className="font-montserrat font-bold text-[clamp(1.3rem,5.5vw,2rem)] leading-tight text-gray-900 mb-3">
-              <span className="inline-block animate-slideUp" style={{animationDelay: '0.2s'}}>
+            <h1 className="font-montserrat font-semibold text-[clamp(1.3rem,5.5vw,2rem)] leading-tight text-gray-900 mb-3">
+              {/* <span className="inline-block animate-slideUp" style={{animationDelay: '0.2s'}}> */}
                 Track your<br />
-              </span>
-              <span className="inline-block animate-slideUp" style={{animationDelay: '0.4s'}}>
+              {/* </span> */}
+              {/* <span className="inline-block animate-slideUp" style={{animationDelay: '0.4s'}}> */}
                 application on<br />
-              </span>
-              <span className="inline-block animate-slideUp" style={{animationDelay: '0.6s'}}>
+              {/* </span> */}
+              {/* <span className="inline-block animate-slideUp" style={{animationDelay: '0.6s'}}> */}
                 real time!
-              </span>
+              {/* </span> */}
             </h1>
 
             <p className="font-poppins text-[clamp(0.8rem,3.2vw,1rem)] leading-relaxed text-gray-700 max-w-[250px] animate-slideUp" style={{animationDelay: '0.8s'}}>
@@ -73,12 +73,14 @@ const OnboardingScreen2 = ({ onNext, onSkip }) => {
           </div>
 
           {/* Rocket Image with launch animation */}
-          <div className="absolute bottom-0 right-0 w-[clamp(150px,40vw,220px)] h-[clamp(150px,40vw,220px)] translate-x-4 translate-y-4">
-            <img
-              src={rocketImage}
-              alt="Rocket Illustration"
-              className="w-full h-full object-contain animate-rocket-launch"
-            />
+          <div className="absolute -bottom-10 right-0 w-[clamp(280px,110vw,380px)] h-[clamp(280px,110vw,380px)]">
+  <img
+    src={rocketImage}
+    alt="Rocket Illustration"
+    className="w-full h-full object-contain animate-rocket-launch"
+  />
+
+
             
             {/* Speed lines effect */}
             <div className="absolute -bottom-4 -right-4 opacity-50">
@@ -100,7 +102,7 @@ const OnboardingScreen2 = ({ onNext, onSkip }) => {
       </div>
 
       {/* Bottom Navigation Section - Fixed height */}
-      <div className="bg-gradient-to-r from-[#9E85FF] to-[#7551FF] animate-gradient-shift rounded-3xl p-4 border-2 border-[#CB9D73] h-[18vh] flex flex-col justify-center mx-4 mb-4 animate-slideUp" style={{animationDelay: '1s'}}>
+      <div className="bg-gradient-to-r from-[#94E082] to-[#94E08299] animate-gradient-shift rounded-3xl p-4 border-2 border-[#CB9D73] h-[18vh] flex flex-col justify-center mx-4 mb-4 animate-slideUp" style={{animationDelay: '1s'}}>
         {/* Navigation Dots with enhanced animation */}
         <div className="flex justify-center gap-2 mb-3">
           <div className="w-2.5 h-2.5 bg-white/60 rounded-full animate-dot-pulse" />
@@ -130,7 +132,7 @@ const OnboardingScreen2 = ({ onNext, onSkip }) => {
                   height="24"
                   className="w-[clamp(18px,4.5vw,24px)] h-[clamp(18px,4.5vw,24px)] animate-arrow-slide group-hover:animate-none group-hover:translate-x-1 transition-transform"
                   fill="none"
-                  stroke="#9E85FF"
+                  stroke="#94E082"
                   strokeWidth="3"
                   strokeLinecap="round"
                   strokeLinejoin="round"

@@ -136,17 +136,6 @@ const OnboardingScreen4 = ({ onSignUp, onLogIn }) => {
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-100/50 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
         </button>
       </div>
-
-      {/* Final completion indicator */}
-      <div className="absolute top-4 left-1/2 transform -translate-x-1/2">
-        <div className="flex items-center space-x-1 bg-white rounded-full px-3 py-1 shadow-lg border animate-slideUp" style={{animationDelay: '1.5s'}}>
-          <div className="w-2 h-2 bg-green-500 rounded-full animate-dot-pulse"></div>
-          <div className="w-2 h-2 bg-green-500 rounded-full animate-dot-pulse" style={{animationDelay: '0.2s'}}></div>
-          <div className="w-2 h-2 bg-green-500 rounded-full animate-dot-pulse" style={{animationDelay: '0.4s'}}></div>
-          <div className="w-2 h-2 bg-green-500 rounded-full animate-dot-pulse" style={{animationDelay: '0.6s'}}></div>
-          <span className="text-xs text-gray-600 font-medium ml-2">Complete!</span>
-        </div>
-      </div>
     </div>
   );
 };

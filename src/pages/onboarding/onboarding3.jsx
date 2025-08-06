@@ -52,39 +52,42 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
             </div>
           </div>
 
-          <h1 className="font-montserrat font-bold text-[clamp(1.1rem,4.8vw,1.7rem)] leading-tight text-white relative z-10">
-            <span className="inline-block animate-slideUp" style={{animationDelay: '0.2s'}}>
+          <h1 className="font-montserrat font-semibold text-[clamp(1.1rem,4.8vw,1.7rem)] leading-tight text-black relative z-10">
+            {/* <span className="inline-block animate-slideUp" style={{animationDelay: '0.2s'}}> */}
               Build a graphic-<br />
-            </span>
-            <span className="inline-block animate-slideUp" style={{animationDelay: '0.4s'}}>
+            {/* </span> */}
+            {/* <span className="inline-block animate-slideUp" style={{animationDelay: '0.4s'}}> */}
               rich animated<br />
-            </span>
-            <span className="inline-block animate-slideUp" style={{animationDelay: '0.6s'}}>
+            {/* </span> */}
+            {/* <span className="inline-block animate-slideUp" style={{animationDelay: '0.6s'}}> */}
               resume to make<br />
-            </span>
-            <span className="inline-block animate-slideUp" style={{animationDelay: '0.8s'}}>
+            {/* </span> */}
+            {/* <span className="inline-block animate-slideUp" style={{animationDelay: '0.8s'}}> */}
               your profile stand<br />
-            </span>
-            <span className="inline-block animate-slideUp" style={{animationDelay: '1s'}}>
+            {/* </span> */}
+            {/* <span className="inline-block animate-slideUp" style={{animationDelay: '1s'}}> */}
               out.
-            </span>
+            {/* </span> */}
           </h1>
         </div>
 
         {/* Resume Illustration - Flexible space with building animation */}
         <div className="flex-1 flex items-center justify-center min-h-0 py-2 relative">
-          <div className="w-[clamp(320px,80vw,420px)] h-full max-h-[55vh] flex items-center justify-center relative">
+          <div className="w-[clamp(320px,80vw,420px)] h-full max-h-[70vh] flex items-center justify-center relative">
             
             {/* Resume glow effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#7551FF]/20 to-[#9E85FF]/20 rounded-lg animate-resume-glow"></div>
+            {/* <div className="absolute inset-0 bg-gradient-to-r from-[#7551FF]/20 to-[#9E85FF]/20 rounded-lg animate-resume-glow"></div> */}
             
             <img
               src={resumeImg}
               alt="Resume Building Illustration"
-              className="w-full h-auto object-contain max-h-full animate-paper-stack relative z-10"
+              // className="w-full h-auto object-contain max-h-full animate-paper-stack relative z-10"
+              className="w-[80vw] h-[70vh] object-contain animate-paper-stack relative z-10 -mt-20"
+
+
             />
             
-            {/* Animated building elements */}
+            {/* Animated building elements
             <div className="absolute top-4 -left-8 opacity-60">
               <div className="flex flex-col space-y-1">
                 <div className="w-4 h-4 bg-blue-500 rounded animate-dot-pulse">📝</div>
@@ -98,10 +101,10 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
                 <div className="w-4 h-4 bg-orange-500 rounded animate-dot-pulse" style={{animationDelay: '0.3s'}}>⭐</div>
                 <div className="w-4 h-4 bg-red-500 rounded animate-dot-pulse" style={{animationDelay: '0.8s'}}>🏆</div>
                 <div className="w-4 h-4 bg-yellow-500 rounded animate-dot-pulse" style={{animationDelay: '1.3s'}}>💡</div>
-              </div>
-            </div>
+              </div> 
+            </div>*/}
 
-            {/* Progress bars simulation */}
+            {/* Progress bars simulation
             <div className="absolute bottom-4 left-4 opacity-50">
               <div className="space-y-1">
                 <div className="w-16 h-1 bg-gray-300 rounded">
@@ -114,13 +117,13 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
                   <div className="w-10 h-full bg-purple-500 rounded animate-rocket-trails" style={{animationDelay: '1s'}}></div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
 
       {/* Bottom Navigation Section - Fixed height */}
-      <div className="bg-gradient-to-r from-[#9E85FF] to-[#7551FF] animate-gradient-shift rounded-3xl p-4 border-2 border-[#CB9D73] h-[18vh] flex flex-col justify-center mx-4 mb-4 animate-slideUp" style={{animationDelay: '1.2s'}}>
+      <div className="bg-gradient-to-r from-[#799EFF] to-[#799EFF99] animate-gradient-shift rounded-3xl p-4 border-2 border-[#CB9D73] h-[18vh] flex flex-col justify-center mx-4 mb-4 animate-slideUp" style={{animationDelay: '1.2s'}}>
         {/* Navigation Dots with enhanced animation */}
         <div className="flex justify-center gap-2 mb-3">
           <div className="w-2.5 h-2.5 bg-white/60 rounded-full animate-dot-pulse" />
