@@ -76,7 +76,7 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
               src={resumeImg}
               alt="Resume Building Illustration"
               // className="w-full h-auto object-contain max-h-full animate-paper-stack relative z-10"
-              className="w-[80vw] h-[70vh] sm:w-[366px] sm:h-[437px] object-contain animate-paper-stack relative z-10 -mt-20"
+              className="w-[80vw] h-[70vh] sm:w-[366px] sm:h-[466px] object-contain animate-paper-stack relative z-10 -mt-20"
 
 
             />
@@ -113,16 +113,6 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
               </div>
             </div> */}
           </div>
-        </div>
-      </div>
-
-      {/* Animated typing cursor positioned above bottom navigation */}
-      <div className="flex justify-center mb-4">
-        <div className="opacity-60">
-          <div className="w-16 h-0.5 bg-[#799EFF] rounded animate-rocket-trails"></div>
-          <div className="w-12 h-0.5 bg-[#799EFF] rounded mt-1 animate-rocket-trails" style={{animationDelay: '0.5s'}}></div>
-          <div className="w-20 h-0.5 bg-[#799EFF] rounded mt-1 animate-rocket-trails" style={{animationDelay: '1s'}}></div>
-          <div className="w-2 h-4 bg-[#799EFF] rounded ml-20 mt-1 animate-typing-cursor"></div>
         </div>
       </div>
 
