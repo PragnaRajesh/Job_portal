@@ -38,7 +38,7 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
       </div>
 
       {/* Large Resume Illustration - Overlapping */}
-      <div className="absolute top-32 left-0 right-0 bottom-20 flex items-center justify-center z-10">
+      <div className="absolute top-32 left-0 right-0 bottom-20 flex items-center justify-center z-40">
         <img
           src={resumeImg}
           alt="Resume Building Illustration"
@@ -47,7 +47,7 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
       </div>
 
       {/* Bottom Navigation Card - Pinned to bottom */}
-      <div className="absolute bottom-0 left-0 right-0 z-20">
+      <div className="absolute bottom-20 left-0 right-0 z-20">
         <div className="bg-gradient-to-r from-[#7B9EFF] to-[#A8C5FF] rounded-3xl px-6 py-6 m-2 shadow-xl">
           {/* Navigation Dots */}
           <div className="flex justify-center gap-2 mb-6">
