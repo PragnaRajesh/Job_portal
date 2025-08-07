@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import stepIcon from "../../assets/step2.png";
 import { ArrowLeft } from "lucide-react";
 import StepImage from "../../components/StepImage";
+import EnhancedProgressBar from "../../components/EnhancedProgressBar";
 
 
 const degreeOptions = {
@@ -74,9 +75,13 @@ const EducationDetails2 = () => {
   const currentSpecializations = specializationOptions[degree] || [];
 
   return (
-    <div className="min-h-screen bg-white p-4 flex flex-col justify-between pt-safe pb-safe">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50 p-4 flex flex-col justify-between pt-safe pb-safe">
       <div>
         <ArrowLeft className="w-6 h-6 sm:w-7 sm:h-7" onClick={() => navigate(-1)}/>
+
+        {/* Enhanced Progress Bar */}
+        <EnhancedProgressBar currentStep={3} totalSteps={7} />
+
                   <h2 className="text-xl font-bold text-center mb-4">Education Details</h2>
         {/* Step Image */}
               <div className="w-full flex justify-center -mt-0 mb-6">
