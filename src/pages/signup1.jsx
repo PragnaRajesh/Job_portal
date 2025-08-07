@@ -79,8 +79,7 @@ const Signup1 = () => {
         <div className={`transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'}`}>
           <SignupProgressBar
             currentStep={1}
-            totalSteps={3}
-            labels={['Phone', 'Verify', 'Profile']}
+            totalSteps={7}
           />
         </div>
 
