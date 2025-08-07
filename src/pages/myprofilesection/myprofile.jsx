@@ -1,6 +1,7 @@
 import {useRef, useEffect, React, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../../contexts/UserContext';
+import ProfilePictureUpload from '../../components/ProfilePictureUpload';
 import {
   Edit3,
   Share2,
