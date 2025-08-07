@@ -70,6 +70,18 @@ const BackButtonHandler = () => {
   return null;
 };
 
+// Route guard to check onboarding completion
+const OnboardingGuard = () => {
+  const hasCompletedOnboarding = localStorage.getItem('hasCompletedOnboarding');
+  const isAuthenticated = localStorage.getItem('isAuthenticated');
+
+  if (hasCompletedOnboarding === 'true' && isAuthenticated === 'true') {
+    return <Navigate to="/home" replace />;
+  }
+
+  return <OnboardingFlow />;
+};
+
 const App = () => {
   return (
     <BrowserRouter>
