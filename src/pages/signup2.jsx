@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Eye, EyeOff } from 'lucide-react';
 import SignupProgressBar from '../components/SignupProgressBar';
+import { useUser } from '../contexts/UserContext';
 import '../styles/signup-animations.css';
 
 const Signup2 = () => {
+  const { user, updateBasicInfo, updateSignupStep, completeOnboarding } = useUser();
   const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
+    fullName: user.fullName || '',
+    email: user.email || '',
     password: '',
     confirmPassword: ''
   });
@@ -67,6 +69,15 @@ const Signup2 = () => {
   const handleNext = () => {
     if (validateForm()) {
       setIsSubmitting(true);
+
+      // Save form data to user context
+      updateBasicInfo({
+        fullName: formData.fullName,
+        email: formData.email
+      });
+      updateSignupStep(3);
+      completeOnboarding();
+
       // Simulate API call
       setTimeout(() => {
         navigate('/profile/createprofile');
