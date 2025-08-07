@@ -1,25 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
-import SignupProgressBar from '../components/SignupProgressBar';
+import EnhancedProgressBar from '../components/EnhancedProgressBar';
 
 const ProgressBarDemo = () => {
   const [currentStep, setCurrentStep] = useState(1);
-  const [autoPlay, setAutoPlay] = useState(false);
-
-  useEffect(() => {
-    if (autoPlay) {
-      const interval = setInterval(() => {
-        setCurrentStep(prev => {
-          if (prev >= 7) {
-            return 1;
-          }
-          return prev + 1;
-        });
-      }, 2000);
-
-      return () => clearInterval(interval);
-    }
-  }, [autoPlay]);
 
   const nextStep = () => {
     if (currentStep < 7) {
@@ -33,177 +17,147 @@ const ProgressBarDemo = () => {
     }
   };
 
-  const goToStep = (step) => {
+  const setStep = (step) => {
     setCurrentStep(step);
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 p-6">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50 p-4 sm:p-6 md:p-8">
+      <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">
-            🎯 Signup Progress Bar Demo
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-2">
+            Enhanced Progress Bar Demo
           </h1>
-          <p className="text-gray-600">
-            Interactive demo of the 7-step animated progress bar component
+          <p className="text-gray-600 text-lg">
+            Interactive demonstration of the new 7-step progress bar with 3D emojis and animations
           </p>
         </div>
 
-        {/* Progress Bar Component */}
+        {/* Enhanced Progress Bar */}
         <div className="mb-12">
-          <SignupProgressBar currentStep={currentStep} totalSteps={7} />
+          <EnhancedProgressBar currentStep={currentStep} totalSteps={7} />
         </div>
 
         {/* Controls */}
-        <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
-          <h3 className="text-lg font-semibold text-gray-800 mb-4">Demo Controls</h3>
-          
-          {/* Navigation Buttons */}
-          <div className="flex justify-center space-x-4 mb-6">
-            <button
-              onClick={prevStep}
-              disabled={currentStep === 1}
-              className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-300 ${
-                currentStep === 1
-                  ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                  : 'bg-blue-500 text-white hover:bg-blue-600 hover:scale-105 shadow-md'
-              }`}
-            >
-              <ArrowLeft size={16} />
-              <span>Previous</span>
-            </button>
-            
-            <button
-              onClick={nextStep}
-              disabled={currentStep === 7}
-              className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-300 ${
-                currentStep === 7
-                  ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                  : 'bg-blue-500 text-white hover:bg-blue-600 hover:scale-105 shadow-md'
-              }`}
-            >
-              <span>Next</span>
-              <ArrowRight size={16} />
-            </button>
-          </div>
+        <div className="flex flex-wrap gap-4 justify-center mb-8">
+          <button
+            onClick={prevStep}
+            disabled={currentStep === 1}
+            className={`flex items-center space-x-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
+              currentStep === 1
+                ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                : 'bg-gradient-to-r from-purple-500 to-blue-500 text-white hover:from-purple-600 hover:to-blue-600 hover:scale-105 shadow-lg'
+            }`}
+          >
+            <ArrowLeft className="w-5 h-5" />
+            <span>Previous</span>
+          </button>
 
-          {/* Step Selector */}
-          <div className="flex justify-center space-x-2 mb-6">
-            {[1, 2, 3, 4, 5, 6, 7].map(step => (
+          <button
+            onClick={nextStep}
+            disabled={currentStep === 7}
+            className={`flex items-center space-x-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
+              currentStep === 7
+                ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                : 'bg-gradient-to-r from-blue-500 to-indigo-500 text-white hover:from-blue-600 hover:to-indigo-600 hover:scale-105 shadow-lg'
+            }`}
+          >
+            <span>Next</span>
+            <ArrowRight className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Quick Step Selection */}
+        <div className="text-center mb-8">
+          <h3 className="text-lg font-semibold text-gray-700 mb-4">Quick Step Selection</h3>
+          <div className="flex flex-wrap gap-3 justify-center">
+            {[1, 2, 3, 4, 5, 6, 7].map((step) => (
               <button
                 key={step}
-                onClick={() => goToStep(step)}
-                className={`w-10 h-10 rounded-full font-semibold transition-all duration-300 ${
+                onClick={() => setStep(step)}
+                className={`w-12 h-12 rounded-full font-bold text-lg transition-all duration-300 border-2 ${
                   currentStep === step
-                    ? 'bg-blue-500 text-white shadow-lg scale-110'
-                    : 'bg-gray-200 text-gray-600 hover:bg-gray-300 hover:scale-105'
+                    ? 'bg-gradient-to-br from-blue-500 to-purple-600 text-white border-blue-500 scale-110 shadow-lg'
+                    : 'bg-white text-gray-600 border-gray-300 hover:border-blue-400 hover:text-blue-600 hover:scale-105'
                 }`}
               >
                 {step}
               </button>
             ))}
           </div>
-
-          {/* Auto Play Toggle */}
-          <div className="flex justify-center items-center space-x-3">
-            <span className="text-gray-700 font-medium">Auto Play Demo</span>
-            <button
-              onClick={() => setAutoPlay(!autoPlay)}
-              className={`relative inline-flex w-12 h-6 rounded-full transition-colors duration-300 ${
-                autoPlay ? 'bg-blue-500' : 'bg-gray-300'
-              }`}
-            >
-              <span
-                className={`inline-block w-5 h-5 bg-white rounded-full shadow transform transition-transform duration-300 ${
-                  autoPlay ? 'translate-x-6' : 'translate-x-0.5'
-                } mt-0.5`}
-              />
-            </button>
-          </div>
         </div>
 
-        {/* Current Step Info */}
-        <div className="bg-white rounded-2xl shadow-lg p-6">
-          <h3 className="text-lg font-semibold text-gray-800 mb-4">Current Step Information</h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-3">
-              <div className="flex justify-between">
-                <span className="text-gray-600">Current Step:</span>
-                <span className="font-semibold text-blue-600">{currentStep} of 7</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-600">Progress:</span>
-                <span className="font-semibold text-blue-600">
-                  {Math.round((currentStep / 7) * 100)}%
-                </span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-600">Status:</span>
-                <span className="font-semibold text-green-600">
-                  {currentStep === 7 ? 'Complete!' : 'In Progress'}
-                </span>
-              </div>
-            </div>
+        {/* Step Information */}
+        <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8 border border-gray-200">
+          <div className="text-center">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4">
+              {currentStep === 1 && "Create Profile 👤"}
+              {currentStep === 2 && "Basic Details 🗂️"}
+              {currentStep === 3 && "Education 🎓"}
+              {currentStep === 4 && "Preferred Job Type 💼"}
+              {currentStep === 5 && "Experience 🧳"}
+              {currentStep === 6 && "Location 📍"}
+              {currentStep === 7 && "Resume 📄"}
+            </h2>
             
-            <div className="space-y-2">
-              <h4 className="font-semibold text-gray-700">Step Details:</h4>
-              <div className="text-sm text-gray-600">
-                {currentStep === 1 && "👤 Create Profile - Set up your basic profile information"}
-                {currentStep === 2 && "🗂️ Basic Details - Add your personal details and contact info"}
-                {currentStep === 3 && "🎓 Education - Share your educational background"}
-                {currentStep === 4 && "💼 Preferred Job Type - Tell us what kind of job you're looking for"}
-                {currentStep === 5 && "🧳 Experience - Add your work experience and skills"}
-                {currentStep === 6 && "📍 Location - Set your preferred work location"}
-                {currentStep === 7 && "📄 Resume - Upload your resume and complete your profile"}
-              </div>
+            <div className="text-gray-600 text-lg mb-6">
+              {currentStep === 1 && "Start your journey by setting up your professional profile with language preferences and notification settings."}
+              {currentStep === 2 && "Add your personal information including name, date of birth, gender, and contact details."}
+              {currentStep === 3 && "Share your educational background, degrees, specializations, and academic achievements."}
+              {currentStep === 4 && "Select your preferred work arrangements, shift timings, and employment types."}
+              {currentStep === 5 && "Detail your work experience, skills, and professional accomplishments."}
+              {currentStep === 6 && "Choose your preferred work location and explore opportunities near you."}
+              {currentStep === 7 && "Upload your resume and complete your professional profile setup."}
+            </div>
+
+            <div className="flex justify-center items-center space-x-4 text-sm text-gray-500">
+              <span className="flex items-center space-x-2">
+                <div className="w-3 h-3 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full"></div>
+                <span>Step {currentStep} of 7</span>
+              </span>
+              <span>•</span>
+              <span>{Math.round((currentStep / 7) * 100)}% Complete</span>
             </div>
           </div>
         </div>
 
-        {/* Features List */}
-        <div className="mt-8 bg-white rounded-2xl shadow-lg p-6">
-          <h3 className="text-lg font-semibold text-gray-800 mb-4">✨ Component Features</h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-            <ul className="space-y-2">
-              <li className="flex items-center space-x-2">
-                <span className="text-green-500">✓</span>
-                <span>7-step progress tracking</span>
-              </li>
-              <li className="flex items-center space-x-2">
-                <span className="text-green-500">✓</span>
-                <span>3D-style emoji icons</span>
-              </li>
-              <li className="flex items-center space-x-2">
-                <span className="text-green-500">✓</span>
-                <span>Bounce/pulse animations</span>
-              </li>
-              <li className="flex items-center space-x-2">
-                <span className="text-green-500">✓</span>
-                <span>Colorful gradient progress line</span>
-              </li>
-            </ul>
-            
-            <ul className="space-y-2">
-              <li className="flex items-center space-x-2">
-                <span className="text-green-500">✓</span>
-                <span>White stripe animation</span>
-              </li>
-              <li className="flex items-center space-x-2">
-                <span className="text-green-500">✓</span>
-                <span>Smooth transitions</span>
-              </li>
-              <li className="flex items-center space-x-2">
-                <span className="text-green-500">✓</span>
-                <span>Fully responsive design</span>
-              </li>
-              <li className="flex items-center space-x-2">
-                <span className="text-green-500">✓</span>
-                <span>Hover and active states</span>
-              </li>
-            </ul>
+        {/* Features Showcase */}
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+            <div className="text-3xl mb-3">🎨</div>
+            <h3 className="text-lg font-semibold text-gray-800 mb-2">3D Animated Emojis</h3>
+            <p className="text-gray-600 text-sm">Each step features a unique 3D emoji with bounce and pulse animations when active.</p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+            <div className="text-3xl mb-3">🌈</div>
+            <h3 className="text-lg font-semibold text-gray-800 mb-2">Gradient Progress Bar</h3>
+            <p className="text-gray-600 text-sm">Colorful animated gradient with flowing white stripes to indicate progress.</p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+            <div className="text-3xl mb-3">📱</div>
+            <h3 className="text-lg font-semibold text-gray-800 mb-2">Fully Responsive</h3>
+            <p className="text-gray-600 text-sm">Adapts perfectly to all mobile screen sizes with smooth transitions.</p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+            <div className="text-3xl mb-3">✨</div>
+            <h3 className="text-lg font-semibold text-gray-800 mb-2">Hover Effects</h3>
+            <p className="text-gray-600 text-sm">Interactive hover states with scale transforms and shadow effects.</p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+            <div className="text-3xl mb-3">🔄</div>
+            <h3 className="text-lg font-semibold text-gray-800 mb-2">Smooth Transitions</h3>
+            <p className="text-gray-600 text-sm">Fluid animations between steps with easing functions.</p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+            <div className="text-3xl mb-3">🎯</div>
+            <h3 className="text-lg font-semibold text-gray-800 mb-2">Status Indicators</h3>
+            <p className="text-gray-600 text-sm">Clear visual feedback for completed, active, and upcoming steps.</p>
           </div>
         </div>
       </div>
