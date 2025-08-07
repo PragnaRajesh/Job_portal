@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import StepImage from "../../components/StepImage";
 import { useUser } from "../../contexts/UserContext";
+import EnhancedProgressBar from "../../components/EnhancedProgressBar";
 
 const ProfileSetup2 = () => {
   const navigate = useNavigate();
@@ -31,12 +32,15 @@ const ProfileSetup2 = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col justify-between p-4 pt-safe pb-safe">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50 flex flex-col justify-between p-4 pt-safe pb-safe">
       <div>
         <div className="flex items-center mt-6 mb-4">
           <ArrowLeft className="w-6 h-6 sm:w-7 sm:h-7 cursor-pointer hover:text-gray-600 transition-colors" onClick={() => navigate(-1)} />
           <h2 className="text-base font-semibold text-center flex-1">Basic Details</h2>
         </div>
+
+        {/* Enhanced Progress Bar */}
+        <EnhancedProgressBar currentStep={2} totalSteps={7} />
 
         {/* Step Image */}
               <div className="w-full flex justify-center -mt-0 mb-6">
