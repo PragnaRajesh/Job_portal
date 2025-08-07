@@ -1,6 +1,9 @@
 /* Import onboarding animations */
 @import './onboarding-animations.css';
 
+/* Import signup animations */
+@import './signup-animations.css';
+
 /* Hides scrollbar but preserves scroll behavior */
 .no-scrollbar::-webkit-scrollbar {
   display: none;

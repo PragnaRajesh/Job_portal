@@ -1,5 +1,6 @@
 import {useRef, useEffect, React, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useUser } from '../../contexts/UserContext';
 import {
   Edit3,
   Share2,
@@ -23,6 +24,7 @@ import robotImg from "../../assets/mock-interview.png";
 
 const MyProfile = () => {
   const navigate = useNavigate();
+  const { user, updateProfile, getDisplayName, getProfileCompletionPercentage } = useUser();
   const [showPopup, setShowPopup] = useState(false);
   const [showWorkExperience, setShowWorkExperience] = useState(false);
   const [showSkills, setShowSkills] = useState(false);
@@ -38,7 +40,7 @@ const MyProfile = () => {
     salary: '',
     currentlyWorking: false
   }]);
-  const [skills, setSkills] = useState(['Figma', 'Illustrator', 'Adobe XD', 'Wireframing', 'Flow-map', 'HTML/CSS']);
+  const [skills, setSkills] = useState(user.skills.length > 0 ? user.skills : ['Figma', 'Illustrator', 'Adobe XD', 'Wireframing', 'Flow-map', 'HTML/CSS']);
   const [newSkill, setNewSkill] = useState('');
   const [selectedDocuments, setSelectedDocuments] = useState(['PAN Card', 'Aadhar Card', 'Bank Account']);
   const [basicDetails, setBasicDetails] = useState({
@@ -52,10 +54,10 @@ const MyProfile = () => {
   const [showEditBio, setShowEditBio] = useState(false);
   const [showEditContact, setShowEditContact] = useState(false);
   const [profileData, setProfileData] = useState({
-    name: 'John D',
-    location: 'HSR,Layout, KA',
-    phone: '9136479870',
-    bio: 'Looking for jobs in UI/UX Designer/ Web Designer'
+    name: user.fullName || getDisplayName() || 'John D',
+    location: user.location || 'HSR,Layout, KA',
+    phone: user.mobile || '9136479870',
+    bio: user.bio || 'Looking for jobs in UI/UX Designer/ Web Designer'
   });
   const [tempProfileData, setTempProfileData] = useState(profileData);
   const popupRef = useRef(null);
@@ -205,7 +207,7 @@ const MyProfile = () => {
   return (
      <div className="bg-gray-100 pb-[80px] font-sans pt-safe pb-safe">
       {/* Profile Header Card */}
-      <div className="relative rounded-b-3xl p-4 text-white mb-4" style={{ background: 'none' }}>
+      <div className="relative rounded-b-3xl p-4 text-white mb-4 overflow-hidden" style={{ background: 'linear-gradient(135deg, #130160 0%, #36353C 100%)' }}>
         {/* Custom SVG Background */}
         <div className="absolute inset-0 w-full h-full">
           <svg width="100%" height="100%" viewBox="0 0 375 180" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" className="w-full h-full">
@@ -306,9 +308,12 @@ const MyProfile = () => {
         <div className="relative mb-2">
           <div className="w-16 h-16 rounded-full border-3 border-white/30">
             <img
-              src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200"
+              src={user.profilePicture || "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200"}
               alt="Profile"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover rounded-full"
+              onError={(e) => {
+                e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(profileData.name)}&background=3b82f6&color=fff&size=64`;
+              }}
             />
           </div>
         </div>

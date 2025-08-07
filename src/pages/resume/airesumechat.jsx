@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ArrowLeft, Send, Bot, User, Download, FileText, Eye, Sparkles, MessageCircle, Edit3, Save, X, HomeIcon, Briefcase, Plus } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useUser } from '../../contexts/UserContext';
 import resumeImg from '../../assets/resume-builder.png';
 import chatImg from '../../assets/chat.png';
 import robotImg from '../../assets/mock-interview.png';
@@ -14,18 +15,19 @@ import { getChatResponse, generateResumeContent } from '../../services/openaiSer
 
 const AIResumeChat = () => {
   const navigate = useNavigate();
+  const { user, getAIContext, getDisplayName } = useUser();
   const [showPopup, setShowPopup] = useState(false);
   const popupRef = useRef(null);
   const [messages, setMessages] = useState([
     {
       id: 1,
       type: 'bot',
-      content: "Hi! I'm your AI Resume Assistant. I'll help you create a professional, personalized resume by understanding your unique background and experience. Let's start building your perfect resume together! Tell me about:",
+      content: `Hi ${getDisplayName()}! I'm your AI Resume Assistant. I can see you're interested in ${user.jobRoles.length > 0 ? user.jobRoles.join(', ') : 'finding great opportunities'}${user.skills.length > 0 ? ` and have skills in ${user.skills.slice(0, 3).join(', ')}` : ''}. Let me help you create a professional, personalized resume that highlights your unique background and experience!`,
       suggestions: [
-        "Your current job title or target position",
-        "Your industry and years of experience",
-        "Key skills and achievements you want to highlight",
-        "The type of job you're applying for"
+        user.jobRoles.length === 0 ? "Tell me your target job title" : `Update my ${user.jobRoles[0]} experience`,
+        user.experience.level ? `Add more about my ${user.experience.level} experience` : "Describe your work experience",
+        user.skills.length === 0 ? "List your key skills" : "Add more skills to my resume",
+        "Generate a resume with my current information"
       ]
     }
   ]);
@@ -116,18 +118,19 @@ const AIResumeChat = () => {
     }
   ];
 
-  // Extract user inputs from conversation
+  // Extract user inputs from conversation combined with user context
   const extractUserInputs = () => {
     const userMessages = messages.filter(msg => msg.type === 'user').map(msg => msg.content);
     const conversationText = userMessages.join(' ');
-    
+    const aiContext = getAIContext();
+
     const extractedData = {
       personalInfo: {
-        name: extractName(conversationText) || 'Your Name',
-        title: extractJobTitle(conversationText) || 'Professional',
-        email: 'your.email@example.com',
-        phone: '+1 (555) 123-4567',
-        location: extractLocation(conversationText) || 'Your City, State'
+        name: aiContext.name || extractName(conversationText) || 'Your Name',
+        title: aiContext.jobRoles[0] || extractJobTitle(conversationText) || 'Professional',
+        email: user.email || 'your.email@example.com',
+        phone: user.mobile || '+1 (555) 123-4567',
+        location: aiContext.location || extractLocation(conversationText) || 'Your City, State'
       },
       experience: extractExperience(conversationText),
       education: extractEducation(conversationText),
