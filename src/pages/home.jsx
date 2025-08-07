@@ -29,7 +29,9 @@ import robotImg from "../assets/mock-interview.png";
 
 const Home = () => {
   const navigate = useNavigate();
-  
+  const [isLoading, setIsLoading] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
+
   const [user, setUser] = useState({
     name: "User",
     role: "Job Seeker",
@@ -237,43 +239,76 @@ const Home = () => {
   ];
 
   useEffect(() => {
-    // Get user data from localStorage
-    const userName = localStorage.getItem("userName") || localStorage.getItem("fullName") || "Sumona";
-    const jobRoles = JSON.parse(localStorage.getItem("jobRoles") || "[]");
-    const userRole = jobRoles.length > 0 ? jobRoles[0] : "UI/UX Designer";
-    const userLocation = localStorage.getItem("location") || "Koramangala";
-    
-    setUser({
-      name: userName,
-      role: userRole,
-      location: userLocation,
-      profilePicture: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop"
-    });
+    // Simulate loading time for better UX
+    const loadData = async () => {
+      try {
+        // Get user data from localStorage
+        const userName = localStorage.getItem("userName") || localStorage.getItem("fullName") || "Sumona";
+        const jobRoles = JSON.parse(localStorage.getItem("jobRoles") || "[]");
+        const userRole = jobRoles.length > 0 ? jobRoles[0] : "UI/UX Designer";
+        const userLocation = localStorage.getItem("location") || "Koramangala";
+
+        // Simulate API delay
+        await new Promise(resolve => setTimeout(resolve, 800));
+
+        setUser({
+          name: userName,
+          role: userRole,
+          location: userLocation,
+          profilePicture: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop"
+        });
+
+        setIsLoading(false);
+        setTimeout(() => setIsVisible(true), 100);
+      } catch (error) {
+        console.error('Error loading user data:', error);
+        setIsLoading(false);
+        setIsVisible(true);
+      }
+    };
+
+    loadData();
   }, []);
 
+  // Loading screen
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center pt-safe pb-safe">
+        <div className="text-center">
+          <div className="w-20 h-20 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mx-auto mb-6"></div>
+          <h2 className="text-xl font-semibold text-gray-700 mb-2">Welcome Back!</h2>
+          <p className="text-gray-500">Loading your dashboard...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="min-h-screen pt-safe">
+    <div className={`min-h-screen pt-safe transition-all duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
       <div className="p-4 sm:p-6 md:p-8 lg:max-w-6xl lg:mx-auto pb-[100px]">
         {/* Header */}
-        <div className="flex justify-between items-center mb-6">
+        <div className={`flex justify-between items-center mb-6 transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'}`}>
           <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 rounded-full overflow-hidden">
-              <img 
-                src={user.profilePicture} 
+            <div className="w-12 h-12 rounded-full overflow-hidden ring-2 ring-blue-200 shadow-lg">
+              <img
+                src={user.profilePicture}
                 alt={user.name}
                 className="w-full h-full object-cover"
+                onError={(e) => {
+                  e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=3b82f6&color=fff&size=48`;
+                }}
               />
             </div>
             <div>
               <div className="flex items-center space-x-1">
-                <h2 className="font-semibold text-lg">{user.name}</h2>
+                <h2 className="font-semibold text-lg text-gray-800">{user.name}</h2>
                 <ChevronDown size={16} className="text-gray-500" />
               </div>
               <p className="text-sm text-gray-600">{user.role}</p>
             </div>
           </div>
-          <div className="bg-gray-100 p-2 rounded-full">
-            <Bell size={20} className="text-gray-600" />
+          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-3 rounded-full border border-blue-200 shadow-sm">
+            <Bell size={20} className="text-blue-600" />
           </div>
         </div>
 
