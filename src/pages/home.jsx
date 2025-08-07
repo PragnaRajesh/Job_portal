@@ -278,7 +278,7 @@ const Home = () => {
     };
 
     loadData();
-  }, [user, isAuthenticated, navigate, getDisplayName, updateLastActive]);
+  }, [user, isAuthenticated, navigate]);
 
   // Loading screen
   if (isLoading) {
