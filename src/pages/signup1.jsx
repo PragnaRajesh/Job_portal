@@ -155,7 +155,7 @@ const Signup1 = () => {
         </div>
       </div>
 
-      <div className={`transform transition-all duration-1000 delay-600 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+      <div className={`transform transition-all duration-1000 delay-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
         <button
           onClick={handleNext}
           disabled={!agreed || mobile.length !== 10 || isSubmitting}
