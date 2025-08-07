@@ -307,7 +307,12 @@ const Home = () => {
             <div>
               <div className="flex items-center space-x-1">
                 <h2 className="font-semibold text-lg text-gray-800">{homeData.name}</h2>
-                <ChevronDown size={16} className="text-gray-500" />
+                <button
+                  onClick={() => navigate('/myprofilesection/myprofile')}
+                  className="hover:bg-gray-100 p-1 rounded-full transition-colors"
+                >
+                  <ChevronDown size={16} className="text-gray-500" />
+                </button>
               </div>
               <p className="text-sm text-gray-600">{homeData.role}</p>
             </div>
