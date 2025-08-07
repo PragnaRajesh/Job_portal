@@ -34,6 +34,40 @@ const Signup1 = () => {
     }, 1000);
   };
 
+  const handleGoogleSignup = async () => {
+    if (!agreed) {
+      alert('Please accept the terms and conditions to continue');
+      return;
+    }
+
+    setIsGoogleLoading(true);
+
+    try {
+      const result = await authService.signInWithGoogle();
+
+      if (result.success) {
+        // Save user data
+        authService.saveUserData(result.user, result.token);
+
+        // Update user context
+        updateBasicInfo({
+          fullName: result.user.name,
+          email: result.user.email,
+          profilePicture: result.user.picture
+        });
+
+        // Complete onboarding and redirect to home
+        completeOnboarding();
+        navigate('/home');
+      }
+    } catch (error) {
+      console.error('Google signup error:', error);
+      alert('Google signup failed. Please try again.');
+    } finally {
+      setIsGoogleLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 p-6 sm:p-8 md:p-12 lg:max-w-md lg:mx-auto flex flex-col justify-between rounded-3xl pt-safe pb-safe">
       <div>
