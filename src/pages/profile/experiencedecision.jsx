@@ -4,6 +4,7 @@ import stepIcon from "../../assets/step4.png";
 import experienceImg from "../../assets/experience.jpeg";
 import { ArrowLeft, X } from "lucide-react";
 import ExperienceDetails1 from "./experiencedetails1";
+import StepImage from "../../components/StepImage";
 
 const ExperienceDecision = () => {
   const navigate = useNavigate();
@@ -30,7 +31,15 @@ const ExperienceDecision = () => {
       {/* Main Content */}
       <div className={`relative z-0 px-4 pb-32 ${showPopup ? "blur-sm" : ""}`}>
         <div className="w-full flex justify-center mb-6">
-          <img src={stepIcon} alt="Progress Step 4" className="object-contain" />
+          <StepImage
+            stepNumber={4}
+            src={stepIcon}
+            alt="Progress Step 4"
+            className="object-contain"
+            animationType="progressive"
+            threshold={0.2}
+            delay={100}
+          />
         </div>
 
         <div className="flex flex-col justify-start">
