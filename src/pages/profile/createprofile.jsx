@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import stepIcon from "../../assets/step0.png";
+// import stepIcon from "../../assets/step0.png";
 import profileImg from "../../assets/Create profile.jpeg";
 import { ArrowLeft } from "lucide-react";
 import StepImage from "../../components/StepImage";
@@ -36,7 +36,7 @@ const CreateProfile = () => {
         <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-2 sm:mb-4">Create Profile</h1>
 
       {/* Step Image */}
-      <div className="w-full flex justify-center -mt-0 mb-6 sm:mb-8">
+      {/* <div className="w-full flex justify-center -mt-0 mb-6 sm:mb-8">
         <StepImage
           stepNumber={0}
           src={stepIcon}
@@ -46,7 +46,7 @@ const CreateProfile = () => {
           triggerOnMount={true}
           delay={300}
         />
-      </div>
+      </div> */}
 
         <img
           src={profileImg}

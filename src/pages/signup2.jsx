@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Eye, EyeOff } from 'lucide-react';
-import SignupProgressBar from '../components/SignupProgressBar';
+// import SignupProgressBar from '../components/SignupProgressBar';
 import { useUser } from '../contexts/UserContext';
 import '../styles/signup-animations.css';
 
@@ -83,7 +83,7 @@ const Signup2 = () => {
         // Mark onboarding as completed for new users
         localStorage.setItem('hasCompletedOnboarding', 'true');
         localStorage.setItem('isAuthenticated', 'true');
-        navigate('/home');
+        navigate('/profile/createprofile');
       }, 1500);
     }
   };
@@ -96,13 +96,13 @@ const Signup2 = () => {
         </button>
 
         {/* Progress Bar */}
-        <div className={`transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'}`}>
+        {/* <div className={`transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'}`}>
           <SignupProgressBar
             currentStep={3}
             totalSteps={3}
             labels={['Phone', 'Verify', 'Profile']}
           />
-        </div>
+        </div> */}
 
         <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800 transform transition-all duration-1000 delay-200 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>Complete Your Profile</h2>
         <p className={`text-center text-gray-600 mb-8 sm:mb-12 transform transition-all duration-1000 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>Just a few more details to get started</p>
@@ -201,7 +201,7 @@ const Signup2 = () => {
             </div>
           ) : (
             <span className="flex items-center justify-center space-x-2">
-              <span>Continue</span>
+              <span>Continue onClick={() => navigate('/profile/createprofile')}</span>
               <span className="group-hover:translate-x-1 transition-transform">→</span>
             </span>
           )}

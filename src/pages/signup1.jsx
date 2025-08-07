@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
-import SignupProgressBar from '../components/SignupProgressBar';
+// import SignupProgressBar from '../components/SignupProgressBar';
 import { useUser } from '../contexts/UserContext';
 import authService from '../services/authService';
 import '../styles/signup-animations.css';
@@ -75,13 +75,13 @@ const Signup1 = () => {
           <ArrowLeft className="w-6 h-6 sm:w-7 sm:h-7 text-gray-600" />
         </button>
 
-        {/* Progress Bar */}
+        {/* Progress Bar
         <div className={`transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'}`}>
           <SignupProgressBar
             currentStep={1}
             totalSteps={7}
           />
-        </div>
+        </div> */}
 
         <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold text-center text-gray-800 mb-2 transform transition-all duration-1000 delay-200 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>Sign Up</h2>
         <p className={`text-center text-gray-600 mb-6 transform transition-all duration-1000 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>Choose your preferred signup method</p>

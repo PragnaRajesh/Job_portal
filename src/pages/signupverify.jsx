@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import OTPInput from '../components/otpinput';
-import SignupProgressBar from '../components/SignupProgressBar';
+// import SignupProgressBar from '../components/SignupProgressBar';
 import { useUser } from '../contexts/UserContext';
 import '../styles/signup-animations.css';
 
@@ -82,13 +82,13 @@ const SignupVerify = () => {
         </button>
 
         {/* Progress Bar */}
-        <div className={`transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'}`}>
+        {/* <div className={`transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'}`}>
           <SignupProgressBar
             currentStep={2}
             totalSteps={3}
             labels={['Phone', 'Verify', 'Profile']}
           />
-        </div>
+        </div> */}
 
         <div className="text-center mb-8 sm:mb-12">
           <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 text-gray-800 transform transition-all duration-1000 delay-200 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>Verify Phone Number</h2>
