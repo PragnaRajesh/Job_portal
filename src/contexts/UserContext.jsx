@@ -268,6 +268,12 @@ export const UserProvider = ({ children }) => {
         if (oldUserData) {
           localStorage.removeItem('user'); // Remove old format
         }
+
+        // Clear any phone number data from userName field as well
+        const phoneUserName = localStorage.getItem('userName');
+        if (phoneUserName && /^\+?[\d\s\-\(\)]{10,}$/.test(phoneUserName)) {
+          localStorage.removeItem('userName');
+        }
         
         if (savedUserData) {
           const userData = JSON.parse(savedUserData);
