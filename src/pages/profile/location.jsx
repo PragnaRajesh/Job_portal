@@ -4,6 +4,7 @@ import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import stepIcon from "../../assets/step5.png";
 import { ArrowLeft } from "lucide-react";
 import StepImage from "../../components/StepImage";
+import EnhancedProgressBar from "../../components/EnhancedProgressBar";
 
 const containerStyle = {
   width: "100%",
@@ -25,10 +26,14 @@ const LocationScreen = () => {
   });
 
   return (
-    <div className="h-screen p-4 bg-white pt-6 pb-24 flex flex-col justify-between overflow-hidden pt-safe pb-safe">
+    <div className="min-h-screen p-4 bg-gradient-to-br from-purple-50 via-white to-indigo-50 pt-6 pb-24 flex flex-col justify-between overflow-hidden pt-safe pb-safe">
       {/* Main Content */}
       <div className="flex-1">
         <ArrowLeft className="w-6 h-6 sm:w-7 sm:h-7 mb-2" onClick={() => navigate(-1)} />
+
+        {/* Enhanced Progress Bar */}
+        <EnhancedProgressBar currentStep={6} totalSteps={7} />
+
         <h2 className="text-center text-lg font-bold mb-4">Location</h2>
 
       {/* Step Image */}
