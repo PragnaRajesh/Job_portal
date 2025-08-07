@@ -12,6 +12,7 @@ const Signup1 = () => {
   const [agreed, setAgreed] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
