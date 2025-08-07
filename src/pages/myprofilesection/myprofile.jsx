@@ -55,7 +55,7 @@ const MyProfile = () => {
   const [showEditBio, setShowEditBio] = useState(false);
   const [showEditContact, setShowEditContact] = useState(false);
   const [profileData, setProfileData] = useState({
-    name: user.fullName || getDisplayName() || 'John D',
+    name: getDisplayName() || 'John D',
     location: user.location || 'HSR,Layout, KA',
     phone: user.mobile || '9136479870',
     bio: user.bio || 'Looking for jobs in UI/UX Designer/ Web Designer'
