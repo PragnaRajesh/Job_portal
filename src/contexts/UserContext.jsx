@@ -271,6 +271,13 @@ export const UserProvider = ({ children }) => {
         
         if (savedUserData) {
           const userData = JSON.parse(savedUserData);
+
+          // Migration: Clear fullName if it's a phone number
+          const isPhoneNumber = (str) => /^\+?[\d\s\-\(\)]{10,}$/.test(str?.toString());
+          if (userData.fullName && isPhoneNumber(userData.fullName)) {
+            userData.fullName = ''; // Clear phone number from name field
+          }
+
           dispatch({
             type: USER_ACTIONS.SET_USER_DATA,
             payload: {
