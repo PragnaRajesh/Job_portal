@@ -90,7 +90,7 @@ const App = () => {
           <BackButtonHandler />
         <Routes>
           {/* Onboarding and Auth */}
-          <Route path="/" element={<OnboardingFlow />} />
+          <Route path="/" element={<OnboardingGuard />} />
           <Route path="/onboarding1" element={<OnboardingScreen1 />} />
           <Route path="/onboarding2" element={<OnboardingScreen2 />} />
           <Route path="/onboarding3" element={<OnboardingScreen3 />} />
