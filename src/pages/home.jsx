@@ -459,7 +459,6 @@ const Home = () => {
         <h3 className="font-bold text-lg mb-4">Specialization</h3>
         <div className="flex justify-between gap-4 mb-8">
           {specializations.map((spec, idx) => {
-            const IconComponent = spec.icon;
             return (
               <div
                 key={idx}
@@ -467,7 +466,12 @@ const Home = () => {
                 style={{ backgroundColor: spec.bg }}
               >
                 <p className="text-sm font-medium text-gray-800 mb-3">{spec.name}</p>
-                <IconComponent size={24} color={spec.color} />
+                <img
+                  src={spec.icon}
+                  alt={spec.name}
+                  className="w-6 h-6 object-contain"
+                  style={{ filter: `hue-rotate(${spec.color === '#F59E0B' ? '30deg' : spec.color === '#8B5CF6' ? '270deg' : '0deg'})` }}
+                />
               </div>
             );
           })}
