@@ -294,7 +294,10 @@ const Home = () => {
         {/* Header */}
         <div className={`flex justify-between items-center mb-6 transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'}`}>
           <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 rounded-full overflow-hidden ring-2 ring-blue-200 shadow-lg">
+            <button
+              onClick={() => navigate('/myprofilesection/myprofile')}
+              className="w-12 h-12 rounded-full overflow-hidden ring-2 ring-blue-200 shadow-lg hover:ring-blue-300 transition-all duration-200"
+            >
               <img
                 src={homeData.profilePicture}
                 alt={homeData.name}
@@ -303,7 +306,7 @@ const Home = () => {
                   e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(homeData.name)}&background=3b82f6&color=fff&size=48`;
                 }}
               />
-            </div>
+            </button>
             <div>
               <div className="flex items-center space-x-1">
                 <h2 className="font-semibold text-lg text-gray-800">{homeData.name}</h2>
