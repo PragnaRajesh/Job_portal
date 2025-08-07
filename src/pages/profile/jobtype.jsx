@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import stepIcon from "../../assets/step3.png";
 import { ArrowLeft } from "lucide-react";
 import StepImage from "../../components/StepImage";
+import EnhancedProgressBar from "../../components/EnhancedProgressBar";
 
 const JobType = () => {
   const navigate = useNavigate();
@@ -37,10 +38,14 @@ const JobType = () => {
   };
 
   return (
-    <div className="h-screen bg-white px-4 pt-6 pb-24 flex flex-col justify-between overflow-hidden pt-safe pb-safe">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50 px-4 pt-6 pb-24 flex flex-col justify-between overflow-hidden pt-safe pb-safe">
        {/* Main Content */}
       <div className="flex-1 flex flex-col justify-start">
         <ArrowLeft className="w-6 h-6 sm:w-7 sm:h-7" onClick={() => navigate(-1)}/>
+
+        {/* Enhanced Progress Bar */}
+        <EnhancedProgressBar currentStep={4} totalSteps={7} />
+
         <h2 className="text-xl font-bold text-center mb-4">Preferred Job Type</h2>
       {/* Step Image */}
       <div className="w-full flex justify-center -mt-0 mb-6">
