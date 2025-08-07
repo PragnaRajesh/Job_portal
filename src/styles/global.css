@@ -4,6 +4,9 @@
 /* Import signup animations */
 @import './signup-animations.css';
 
+/* Import step image animations */
+@import './step-animations.css';
+
 /* Hides scrollbar but preserves scroll behavior */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
