@@ -63,6 +63,14 @@ const MyProfile = () => {
   const [tempProfileData, setTempProfileData] = useState(profileData);
   const popupRef = useRef(null);
 
+  const handleProfilePictureUpdate = (imageUrl, imageBlob) => {
+    // Update user context with new profile picture
+    updateProfile({ profilePicture: imageUrl });
+
+    // Optionally, you could upload the blob to your server here
+    console.log('Profile picture updated:', { imageUrl, imageBlob });
+  };
+
   const addNewWorkExperience = () => {
     const newExperience = {
       id: workExperiences.length + 1,
