@@ -536,20 +536,20 @@ export const UserProvider = ({ children }) => {
     }
   };
 
-  const contextValue = {
+  const contextValue = useMemo(() => ({
     // State
     user: userState,
-    
+
     // Actions
     ...actions,
-    
+
     // Helpers
     ...helpers,
-    
+
     // Direct state access for convenience
     isAuthenticated: userState.isAuthenticated,
     isLoading: false // Can be enhanced with loading states
-  };
+  }), [userState, actions, helpers]);
 
   return (
     <UserContext.Provider value={contextValue}>
