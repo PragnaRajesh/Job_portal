@@ -269,11 +269,14 @@ export const UserProvider = ({ children }) => {
           localStorage.removeItem('user'); // Remove old format
         }
 
-        // Clear any phone number data from userName field as well
-        const phoneUserName = localStorage.getItem('userName');
-        if (phoneUserName && /^\+?[\d\s\-\(\)]{10,}$/.test(phoneUserName)) {
-          localStorage.removeItem('userName');
-        }
+        // Clear any phone number data from localStorage entries
+        const phoneEntries = ['userName', 'fullName'];
+        phoneEntries.forEach(key => {
+          const value = localStorage.getItem(key);
+          if (value && /^\+?[\d\s\-\(\)]{10,}$/.test(value)) {
+            localStorage.removeItem(key);
+          }
+        });
         
         if (savedUserData) {
           const userData = JSON.parse(savedUserData);
