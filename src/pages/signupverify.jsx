@@ -3,10 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import OTPInput from '../components/otpinput';
 import SignupProgressBar from '../components/SignupProgressBar';
+import { useUser } from '../contexts/UserContext';
 import '../styles/signup-animations.css';
 
 const SignupVerify = () => {
   const navigate = useNavigate();
+  const { user, updateSignupStep, login } = useUser();
   const [isVerifying, setIsVerifying] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [resendTimer, setResendTimer] = useState(30);
@@ -36,6 +38,10 @@ const SignupVerify = () => {
     // Simulate API call
     setTimeout(() => {
       if (otp === '1234') { // Mock verification
+        // Update signup step and set as authenticated
+        updateSignupStep(2);
+        login('mock-token', { isAuthenticated: true });
+
         // Show success animation before navigation
         setTimeout(() => {
           navigate('/signup2');
@@ -93,7 +99,7 @@ const SignupVerify = () => {
             <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 inline-block">
               <p className="text-blue-700 font-semibold text-lg flex items-center">
                 <span className="mr-2">📱</span>
-                +91 ****-****-90
+                +91 {user.mobile ? `${user.mobile.slice(0, 2)}**-****-${user.mobile.slice(-2)}` : '****-****-90'}
               </p>
             </div>
           </div>
