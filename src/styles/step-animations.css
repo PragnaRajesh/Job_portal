@@ -1,0 +1,263 @@
+/* Step Image Line Animation Styles */
+
+.step-image-container {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.step-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Base step image animations */
+.step-image-animated {
+  position: relative;
+  overflow: hidden;
+}
+
+.step-image-animated::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.8) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  animation: none;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Animation classes for different step images */
+.step-image-animated.animate-step-0::before {
+  animation: stepLine0 1.2s ease-out forwards;
+}
+
+.step-image-animated.animate-step-1::before {
+  animation: stepLine1 1.2s ease-out forwards;
+}
+
+.step-image-animated.animate-step-2::before {
+  animation: stepLine2 1.2s ease-out forwards;
+}
+
+.step-image-animated.animate-step-3::before {
+  animation: stepLine3 1.2s ease-out forwards;
+}
+
+.step-image-animated.animate-step-4::before {
+  animation: stepLine4 1.2s ease-out forwards;
+}
+
+.step-image-animated.animate-step-5::before {
+  animation: stepLine5 1.2s ease-out forwards;
+}
+
+.step-image-animated.animate-step-6::before {
+  animation: stepLine6 1.2s ease-out forwards;
+}
+
+/* Individual step line animations - each progresses differently */
+@keyframes stepLine0 {
+  0% {
+    clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
+  }
+  100% {
+    clip-path: polygon(0% 0%, 25% 0%, 25% 100%, 0% 100%);
+  }
+}
+
+@keyframes stepLine1 {
+  0% {
+    clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
+  }
+  100% {
+    clip-path: polygon(0% 0%, 50% 0%, 50% 100%, 0% 100%);
+  }
+}
+
+@keyframes stepLine2 {
+  0% {
+    clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
+  }
+  100% {
+    clip-path: polygon(0% 0%, 60% 0%, 60% 100%, 0% 100%);
+  }
+}
+
+@keyframes stepLine3 {
+  0% {
+    clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
+  }
+  100% {
+    clip-path: polygon(0% 0%, 75% 0%, 75% 100%, 0% 100%);
+  }
+}
+
+@keyframes stepLine4 {
+  0% {
+    clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
+  }
+  100% {
+    clip-path: polygon(0% 0%, 85% 0%, 85% 100%, 0% 100%);
+  }
+}
+
+@keyframes stepLine5 {
+  0% {
+    clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
+  }
+  100% {
+    clip-path: polygon(0% 0%, 95% 0%, 95% 100%, 0% 100%);
+  }
+}
+
+@keyframes stepLine6 {
+  0% {
+    clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
+  }
+  100% {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+}
+
+/* Progressive line reveal animation - alternative approach using stroke-dasharray simulation */
+.step-image-progressive {
+  position: relative;
+  overflow: hidden;
+}
+
+.step-image-progressive::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.9) 20%,
+    rgba(255, 255, 255, 0.9) 80%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  mask: linear-gradient(to right, transparent, white);
+  -webkit-mask: linear-gradient(to right, transparent, white);
+  transform: scaleX(0);
+  transform-origin: left center;
+  animation: none;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.step-image-progressive.animate::after {
+  animation: progressiveLine 1.3s ease-out forwards;
+}
+
+@keyframes progressiveLine {
+  0% {
+    transform: scaleX(0);
+    opacity: 1;
+  }
+  70% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 0;
+  }
+}
+
+/* Enhanced line drawing effect */
+.step-image-draw {
+  position: relative;
+  overflow: hidden;
+}
+
+.step-image-draw::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><path d="M0,10 Q25,5 50,10 T100,10" stroke="white" stroke-width="2" fill="none" stroke-dasharray="2,2"/></svg>') repeat-x;
+  background-size: 100% 100%;
+  opacity: 0;
+  animation: none;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.step-image-draw.animate::before {
+  animation: drawLine 1.4s ease-in-out forwards;
+}
+
+@keyframes drawLine {
+  0% {
+    opacity: 0;
+    clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .step-image-animated::before,
+  .step-image-progressive::after,
+  .step-image-draw::before {
+    animation-duration: 1s;
+  }
+}
+
+@media (min-width: 768px) {
+  .step-image-animated::before,
+  .step-image-progressive::after,
+  .step-image-draw::before {
+    animation-duration: 1.5s;
+  }
+}
+
+/* Performance optimizations */
+.step-image-animated,
+.step-image-progressive,
+.step-image-draw {
+  will-change: auto;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.step-image-animated.animate-step-0,
+.step-image-animated.animate-step-1,
+.step-image-animated.animate-step-2,
+.step-image-animated.animate-step-3,
+.step-image-animated.animate-step-4,
+.step-image-animated.animate-step-5,
+.step-image-animated.animate-step-6,
+.step-image-progressive.animate,
+.step-image-draw.animate {
+  will-change: transform, opacity, clip-path;
+}
+
+/* Remove will-change after animation completes */
+.step-image-animated::before,
+.step-image-progressive::after,
+.step-image-draw::before {
+  animation-fill-mode: forwards;
+}
