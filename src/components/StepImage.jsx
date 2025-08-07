@@ -20,6 +20,12 @@ const StepImage = ({
       setTimeout(() => {
         setIsAnimating(true);
         setHasAnimated(true);
+        // Clean up will-change after animation
+        setTimeout(() => {
+          if (imageRef.current) {
+            imageRef.current.style.willChange = 'auto';
+          }
+        }, 1500);
       }, delay);
       return;
     }
