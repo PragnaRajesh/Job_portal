@@ -262,7 +262,7 @@ const Home = () => {
         await new Promise(resolve => setTimeout(resolve, 800));
 
         setHomeData({
-          name: user.fullName || getDisplayName(),
+          name: getDisplayName(),
           role: user.role || (user.jobRoles && user.jobRoles[0]) || "UI/UX Designer",
           location: user.location || "Koramangala",
           profilePicture: user.profilePicture || "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop"
