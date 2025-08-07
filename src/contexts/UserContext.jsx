@@ -453,7 +453,18 @@ export const UserProvider = ({ children }) => {
   const helpers = {
     // Get user's display name
     getDisplayName: () => {
-      return userState.fullName || userState.email?.split('@')[0] || 'User';
+      // Don't show phone numbers as names
+      const isPhoneNumber = (str) => /^\+?[\d\s\-\(\)]{10,}$/.test(str?.toString());
+
+      if (userState.fullName && !isPhoneNumber(userState.fullName)) {
+        return userState.fullName;
+      }
+
+      if (userState.email && !isPhoneNumber(userState.email)) {
+        return userState.email.split('@')[0];
+      }
+
+      return 'User';
     },
     
     // Get user's initials
