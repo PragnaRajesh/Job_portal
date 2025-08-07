@@ -549,7 +549,7 @@ export const UserProvider = ({ children }) => {
     // Direct state access for convenience
     isAuthenticated: userState.isAuthenticated,
     isLoading: false // Can be enhanced with loading states
-  }), [userState, actions, helpers]);
+  }), [userState]);
 
   return (
     <UserContext.Provider value={contextValue}>
