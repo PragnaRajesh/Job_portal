@@ -1,7 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import resumeImg from '../../assets/onboarding3.png';
+// import resumeImg from '../../assets/onboarding3.png';
 import '../../styles/onboarding-animations.css';
+import onboarding33Img from '../../assets/onboarding33.png';
 
 const OnboardingScreen3 = ({ onNext, onSkip }) => {
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
       {/* Large Resume Illustration - Takes remaining space */}
       <div className="flex-1 flex items-center justify-center px-4 relative z-10 min-h-0">
         <img
-          src={resumeImg}
+          src={onboarding33Img}
           alt="Resume Building Illustration"
           className="w-full h-full max-w-xs sm:max-w-sm object-contain"
         />
