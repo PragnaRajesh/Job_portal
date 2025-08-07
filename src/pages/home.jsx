@@ -654,7 +654,18 @@ const Home = () => {
                       <img src={robotImg} alt="AI Prep" className="w-6 h-6 sm:w-8 sm:h-8" />
                   AI Job Prep
                     </button>
-                  
+
+                    {/* Test Profile Creation */}
+                    <button
+                      onClick={() => {
+                        setShowPopup(false);
+                        navigate("/profile/createprofile");
+                      }}
+                      className="w-full bg-green-100 text-green-800 py-4 rounded-2xl font-semibold text-lg shadow-md border border-green-200 hover:bg-green-200 transition-all"
+                    >
+                      Test Profile Creation
+                    </button>
+
                   </div>
                   
                     </div>
