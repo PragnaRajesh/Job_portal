@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import stepIcon from "../../assets/step1.png";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import StepImage from "../../components/StepImage";
 
 const ProfileSetup2 = () => {
   const navigate = useNavigate();
@@ -40,10 +41,14 @@ const ProfileSetup2 = () => {
 
         {/* Step Image */}
               <div className="w-full flex justify-center -mt-0 mb-6">
-                <img
+                <StepImage
+                  stepNumber={1}
                   src={stepIcon}
                   alt="Progress Step 1"
                   className="object-contain"
+                  animationType="progressive"
+                  threshold={0.2}
+                  delay={200}
                 />
               </div>
 
