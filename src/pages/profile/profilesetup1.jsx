@@ -3,14 +3,16 @@ import { useNavigate } from "react-router-dom";
 import stepIcon from "../../assets/step1.png";
 import { ArrowLeft } from "lucide-react";
 import StepImage from "../../components/StepImage";
+import { useUser } from "../../contexts/UserContext";
 
 const ProfileSetup1 = () => {
   const navigate = useNavigate();
-  const [fullName, setFullName] = useState("");
+  const { user, updateBasicInfo } = useUser();
+  const [fullName, setFullName] = useState(user.fullName || "");
 
   const handleContinue = () => {
     if (!fullName.trim()) return alert("Please enter your name");
-    localStorage.setItem("fullName", fullName);
+    updateBasicInfo({ fullName: fullName.trim() });
     navigate("/profile/profilesetup2");
   };
 
