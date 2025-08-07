@@ -11,6 +11,16 @@ const OnboardingFlow = () => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [transitionDirection, setTransitionDirection] = useState('');
   const navigate = useNavigate();
+
+  // Check if user has already completed onboarding
+  useEffect(() => {
+    const hasCompletedOnboarding = localStorage.getItem('hasCompletedOnboarding');
+    const isAuthenticated = localStorage.getItem('isAuthenticated');
+
+    if (hasCompletedOnboarding === 'true' && isAuthenticated === 'true') {
+      navigate('/home', { replace: true });
+    }
+  }, [navigate]);
   const touchStartX = useRef(null);
   const touchEndX = useRef(null);
   const touchStartY = useRef(null);
