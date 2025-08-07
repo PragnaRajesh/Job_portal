@@ -89,7 +89,7 @@ const StepImage = ({
   };
 
   return (
-    <div 
+    <div
       ref={imageRef}
       className={`step-image-container ${getContainerClass()} ${getAnimationClass()} ${className}`}
     >
@@ -104,7 +104,11 @@ const StepImage = ({
             imageRef.current.style.opacity = '1';
           }
         }}
-        style={{ opacity: 0, transition: 'opacity 0.2s ease-in-out' }}
+        style={{
+          opacity: 0,
+          transition: 'opacity 0.2s ease-in-out',
+          willChange: isAnimating ? 'transform, opacity' : 'auto'
+        }}
       />
     </div>
   );
