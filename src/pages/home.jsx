@@ -51,10 +51,14 @@ const Home = () => {
         if (popupRef.current && !popupRef.current.contains(e.target)) {
           setShowPopup(false);
         }
+        // Close profile dropdown when clicking outside
+        if (showProfileDropdown && !e.target.closest('.relative')) {
+          setShowProfileDropdown(false);
+        }
       };
       document.addEventListener("mousedown", handleClickOutside);
       return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, []);
+    }, [showProfileDropdown]);
 
   useEffect(() => {
     // Handle back button when popup is open
