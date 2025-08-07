@@ -52,6 +52,7 @@ import GraphicTemplate from "./pages/resume/graphictemplate";
 import BasicTemplate from "./pages/resume/basictemplate";
 import AITemplate from "./pages/resume/AItemplate";
 import AIResumeChat from "./pages/resume/airesumechat";
+import ProgressBarDemo from "./pages/ProgressBarDemo";
 
 // Wrapper to pass state to SuccessScreen
 const SuccessScreenWrapper = () => {
