@@ -43,6 +43,7 @@ const Home = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [showBanner, setShowBanner] = useState(true);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const popupRef = useRef(null);
   
   useEffect(() => {
