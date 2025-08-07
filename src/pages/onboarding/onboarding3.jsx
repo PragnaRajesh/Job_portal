@@ -1,7 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import resumeImg from '../../assets/onboarding3.png';
+// import resumeImg from '../../assets/onboarding3.png';
 import '../../styles/onboarding-animations.css';
+import onboarding33Img from '../../assets/onboarding33.png';
 
 const OnboardingScreen3 = ({ onNext, onSkip }) => {
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
       {/* Large Resume Illustration - Overlapping */}
       <div className="absolute top-32 left-0 right-0 bottom-20 flex items-center justify-center z-40">
         <img
-          src={resumeImg}
+          src={onboarding33Img}
           alt="Resume Building Illustration"
           className="w-[95vw] h-auto max-h-[75vh] object-contain"
         />
