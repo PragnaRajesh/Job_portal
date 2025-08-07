@@ -7,7 +7,7 @@ import authService from '../services/authService';
 import '../styles/signup-animations.css';
 
 const Signup1 = () => {
-  const { user, updateBasicInfo, updateSignupStep } = useUser();
+  const { user, updateBasicInfo, updateSignupStep, completeOnboarding } = useUser();
   const [mobile, setMobile] = useState(user.mobile || '');
   const [agreed, setAgreed] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
