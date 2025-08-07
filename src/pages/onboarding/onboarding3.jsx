@@ -44,9 +44,11 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
         <div className="absolute bottom-48 right-8 text-lg animate-float" style={{animationDelay: '5s'}}>⭐</div>
       </div>
 
-      {/* Top Blue Speech Box (ORIGINAL DIMENSIONS) */}
-      <div className="px-4 pt-8 pb-4 relative z-20 flex-shrink-0">
-        <div className={`relative bg-gradient-to-br from-[#7B9EFF] to-[#A8C5FF] animate-gradient-shift rounded-3xl p-4 shadow-lg border border-[#CB9D73]/20 overflow-hidden transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'}`}>
+      {/* Main Content - Takes up most space */}
+      <div className="flex-1 flex flex-col px-4 pt-4">
+
+        {/* Top Blue Speech Box - Increased size to match other screens */}
+        <div className={`relative bg-gradient-to-br from-[#7B9EFF] to-[#A8C5FF] animate-gradient-shift rounded-3xl p-6 border-2 border-[#CB9D73] shadow-lg h-[30vh] flex items-center overflow-hidden transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'}`}>
           
           {/* Background decoration */}
           <div className="absolute inset-0 opacity-20">
@@ -57,7 +59,7 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
           </div>
 
           <div className="relative z-10">
-            <h1 className="font-bold text-base sm:text-lg leading-[1.3] text-black tracking-tight">
+            <h1 className="font-bold text-[clamp(1.2rem,5.5vw,1.8rem)] leading-tight text-black tracking-tight">
               <span className="inline-block animate-slideUp" style={{animationDelay: '0.3s'}}>
                 Build a{" "}
               </span>
@@ -89,9 +91,9 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
         </div>
       </div>
 
-      {/* Large Resume Illustration - Takes remaining space */}
-      <div className="flex-1 flex items-center justify-center px-4 relative z-10 min-h-0">
-        <div className={`w-full h-full max-w-xs sm:max-w-sm relative transform transition-all duration-1000 delay-300 ${isVisible ? 'scale-100 opacity-100' : 'scale-90 opacity-0'}`}>
+        {/* Large Resume Illustration - Stretched to fill space */}
+        <div className="flex-1 flex items-center justify-center relative z-10 min-h-0 -mt-8">
+          <div className={`w-full h-full max-w-sm sm:max-w-md relative transform transition-all duration-1000 delay-300 ${isVisible ? 'scale-100 opacity-100' : 'scale-90 opacity-0'}`}>
           
           {/* Glow effect behind illustration */}
           <div className="absolute inset-0 bg-gradient-to-r from-blue-200/50 to-purple-200/50 rounded-2xl blur-xl animate-glow"></div>
@@ -130,58 +132,60 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
               </div>
             </div>
           </div>
+          </div>
+
+          {/* Inspirational Text - Moved inside main content area */}
+          <div className={`text-center py-4 transform transition-all duration-1000 delay-500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'}`}>
+            <p className="font-medium text-[clamp(0.9rem,3.8vw,1.1rem)] leading-relaxed text-gray-600 max-w-sm mx-auto">
+              <span className="inline-block animate-slideUp" style={{animationDelay: '2.2s'}}>
+                Create a resume that{" "}
+              </span>
+              <span className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent font-bold animate-slideUp" style={{animationDelay: '2.5s'}}>
+                wow's recruiters{" "}
+              </span>
+              <span className="inline-block animate-slideUp" style={{animationDelay: '2.8s'}}>
+                and lands you interviews! 🎨
+              </span>
+            </p>
+          </div>
         </div>
-      </div>
 
-      {/* Inspirational Text */}
-      <div className={`text-center px-4 py-3 transform transition-all duration-1000 delay-500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'}`}>
-        <p className="font-medium text-[clamp(0.85rem,3.5vw,1rem)] leading-relaxed text-gray-600 max-w-sm mx-auto">
-          <span className="inline-block animate-slideUp" style={{animationDelay: '2.2s'}}>
-            Create a resume that{" "}
-          </span>
-          <span className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent font-bold animate-slideUp" style={{animationDelay: '2.5s'}}>
-            wow's recruiters{" "}
-          </span>
-          <span className="inline-block animate-slideUp" style={{animationDelay: '2.8s'}}>
-            and lands you interviews! 🎨
-          </span>
-        </p>
-      </div>
-
-      {/* Bottom Navigation Card - Fixed height (ORIGINAL DIMENSIONS) */}
+      {/* Bottom Navigation Card - Increased size to match other screens */}
       <div className="px-4 pb-6 relative z-20 flex-shrink-0">
-        <div className={`bg-gradient-to-r from-[#7B9EFF] to-[#A8C5FF] animate-gradient-shift rounded-3xl px-4 py-4 shadow-xl border border-blue-200 transform transition-all duration-1000 delay-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+        <div className={`bg-gradient-to-r from-[#7B9EFF] to-[#A8C5FF] animate-gradient-shift rounded-3xl p-6 border-2 border-[#CB9D73] shadow-xl h-[20vh] flex flex-col justify-center transform transition-all duration-1000 delay-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
           
-          {/* Navigation Dots */}
-          <div className="flex justify-center gap-2 mb-4">
-            <div className="w-2 h-2 bg-white/60 rounded-full animate-dot-pulse" />
-            <div className="w-2 h-2 bg-white/60 rounded-full animate-dot-pulse" style={{animationDelay: '0.2s'}} />
-            <div className="w-6 h-2 bg-white rounded-full shadow-sm animate-glow" style={{animationDelay: '0.4s'}} />
-            <div className="w-2 h-2 bg-white/60 rounded-full animate-dot-pulse" style={{animationDelay: '0.6s'}} />
+          {/* Navigation Dots - Enhanced size */}
+          <div className="flex justify-center gap-2 mb-6">
+            <div className="w-2.5 h-2.5 bg-white/60 rounded-full animate-dot-pulse" />
+            <div className="w-2.5 h-2.5 bg-white/60 rounded-full animate-dot-pulse" style={{animationDelay: '0.2s'}} />
+            <div className="w-8 h-2.5 bg-white rounded-full shadow-sm animate-glow" style={{animationDelay: '0.4s'}} />
+            <div className="w-2.5 h-2.5 bg-white/60 rounded-full animate-dot-pulse" style={{animationDelay: '0.6s'}} />
           </div>
 
           {/* Skip and Get Started Buttons */}
           <div className="flex justify-between items-center gap-4">
             <button
               onClick={handleSkip}
-              className="text-white text-base font-bold hover:text-white/80 transition-all duration-300 hover:scale-105 animate-button-hover relative group flex-shrink-0"
+              className="text-white text-[clamp(0.9rem,3.5vw,1.1rem)] font-bold hover:text-white/80 transition-all duration-300 hover:scale-105 animate-button-hover relative group flex-shrink-0"
             >
               <span className="relative z-10">Skip</span>
               <div className="absolute inset-0 bg-white/20 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
             </button>
 
-            <button
-              onClick={handleGetStarted}
-              className="bg-white text-[#7B9EFF] text-sm font-bold px-4 py-2 rounded-xl hover:bg-gray-50 transition-all duration-300 shadow-xl hover:scale-105 animate-button-hover relative group overflow-hidden flex-shrink-0"
-            >
-              <span className="relative z-10 flex items-center space-x-2">
-                <span>Get Started</span>
-                <span className="group-hover:animate-bounce">🚀</span>
-              </span>
-              
-              {/* Button shine effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-100/50 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-            </button>
+            {/* Enhanced Circular Next Button */}
+            <div className="w-[clamp(60px,15vw,75px)] h-[clamp(60px,15vw,75px)]">
+              <div className="flex items-center justify-center rounded-full w-full h-full border-2 border-white bg-white/10 backdrop-blur-sm animate-success-pulse">
+                <button
+                  onClick={handleGetStarted}
+                  className="flex items-center justify-center rounded-full shadow-xl w-[85%] h-[85%] bg-white hover:bg-gray-50 transition-all duration-300 hover:scale-110 animate-button-hover group relative overflow-hidden"
+                >
+                  <span className="text-[#7B9EFF] text-[clamp(0.8rem,3.2vw,1rem)] font-bold relative z-10">🚀</span>
+
+                  {/* Button shine effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-100/50 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
