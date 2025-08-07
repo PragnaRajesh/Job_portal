@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer, useEffect } from 'react';
+import React, { createContext, useContext, useReducer, useEffect, useMemo } from 'react';
 
 // Initial user state
 const initialUserState = {
@@ -262,9 +262,31 @@ export const UserProvider = ({ children }) => {
       try {
         const savedUserData = localStorage.getItem('userData');
         const authToken = localStorage.getItem('userToken');
+
+        // Migration: Clear old user data that might have phone number as name
+        const oldUserData = localStorage.getItem('user');
+        if (oldUserData) {
+          localStorage.removeItem('user'); // Remove old format
+        }
+
+        // Clear any phone number data from localStorage entries
+        const phoneEntries = ['userName', 'fullName'];
+        phoneEntries.forEach(key => {
+          const value = localStorage.getItem(key);
+          if (value && /^\+?[\d\s\-\(\)]{10,}$/.test(value)) {
+            localStorage.removeItem(key);
+          }
+        });
         
         if (savedUserData) {
           const userData = JSON.parse(savedUserData);
+
+          // Migration: Clear fullName if it's a phone number
+          const isPhoneNumber = (str) => /^\+?[\d\s\-\(\)]{10,}$/.test(str?.toString());
+          if (userData.fullName && isPhoneNumber(userData.fullName)) {
+            userData.fullName = ''; // Clear phone number from name field
+          }
+
           dispatch({
             type: USER_ACTIONS.SET_USER_DATA,
             payload: {
@@ -447,7 +469,18 @@ export const UserProvider = ({ children }) => {
   const helpers = {
     // Get user's display name
     getDisplayName: () => {
-      return userState.fullName || userState.email?.split('@')[0] || 'User';
+      // Don't show phone numbers as names
+      const isPhoneNumber = (str) => /^\+?[\d\s\-\(\)]{10,}$/.test(str?.toString());
+
+      if (userState.fullName && !isPhoneNumber(userState.fullName)) {
+        return userState.fullName;
+      }
+
+      if (userState.email && !isPhoneNumber(userState.email)) {
+        return userState.email.split('@')[0];
+      }
+
+      return 'User';
     },
     
     // Get user's initials
@@ -519,20 +552,20 @@ export const UserProvider = ({ children }) => {
     }
   };
 
-  const contextValue = {
+  const contextValue = useMemo(() => ({
     // State
     user: userState,
-    
+
     // Actions
     ...actions,
-    
+
     // Helpers
     ...helpers,
-    
+
     // Direct state access for convenience
     isAuthenticated: userState.isAuthenticated,
     isLoading: false // Can be enhanced with loading states
-  };
+  }), [userState]);
 
   return (
     <UserContext.Provider value={contextValue}>

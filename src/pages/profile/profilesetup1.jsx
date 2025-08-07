@@ -2,14 +2,17 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import stepIcon from "../../assets/step1.png";
 import { ArrowLeft } from "lucide-react";
+import StepImage from "../../components/StepImage";
+import { useUser } from "../../contexts/UserContext";
 
 const ProfileSetup1 = () => {
   const navigate = useNavigate();
-  const [fullName, setFullName] = useState("");
+  const { user, updateBasicInfo } = useUser();
+  const [fullName, setFullName] = useState(user.fullName || "");
 
   const handleContinue = () => {
     if (!fullName.trim()) return alert("Please enter your name");
-    localStorage.setItem("fullName", fullName);
+    updateBasicInfo({ fullName: fullName.trim() });
     navigate("/profile/profilesetup2");
   };
 
@@ -22,10 +25,14 @@ const ProfileSetup1 = () => {
         <h2 className="text-xl font-bold text-center mb-4">Basic Details</h2>
       {/* Step Image */}
       <div className="w-full flex justify-center -mt-0 mb-6">
-        <img
+        <StepImage
+          stepNumber={1}
           src={stepIcon}
           alt="Progress Step 1"
           className="object-contain"
+          animationType="progressive"
+          threshold={0.2}
+          delay={200}
         />
       </div>
 

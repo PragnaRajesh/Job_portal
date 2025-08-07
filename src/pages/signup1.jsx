@@ -3,14 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import SignupProgressBar from '../components/SignupProgressBar';
 import { useUser } from '../contexts/UserContext';
+import authService from '../services/authService';
 import '../styles/signup-animations.css';
 
 const Signup1 = () => {
-  const { user, updateBasicInfo, updateSignupStep } = useUser();
+  const { user, updateBasicInfo, updateSignupStep, completeOnboarding } = useUser();
   const [mobile, setMobile] = useState(user.mobile || '');
   const [agreed, setAgreed] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -32,6 +34,40 @@ const Signup1 = () => {
     }, 1000);
   };
 
+  const handleGoogleSignup = async () => {
+    if (!agreed) {
+      alert('Please accept the terms and conditions to continue');
+      return;
+    }
+
+    setIsGoogleLoading(true);
+
+    try {
+      const result = await authService.signInWithGoogle();
+
+      if (result.success) {
+        // Save user data
+        authService.saveUserData(result.user, result.token);
+
+        // Update user context
+        updateBasicInfo({
+          fullName: result.user.name,
+          email: result.user.email,
+          profilePicture: result.user.picture
+        });
+
+        // Complete onboarding and redirect to home
+        completeOnboarding();
+        navigate('/home');
+      }
+    } catch (error) {
+      console.error('Google signup error:', error);
+      alert('Google signup failed. Please try again.');
+    } finally {
+      setIsGoogleLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 p-6 sm:p-8 md:p-12 lg:max-w-md lg:mx-auto flex flex-col justify-between rounded-3xl pt-safe pb-safe">
       <div>
@@ -49,10 +85,38 @@ const Signup1 = () => {
         </div>
 
         <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold text-center text-gray-800 mb-2 transform transition-all duration-1000 delay-200 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>Sign Up</h2>
-        <p className={`text-center text-gray-600 mb-8 transform transition-all duration-1000 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>Enter your phone number to get started</p>
+        <p className={`text-center text-gray-600 mb-6 transform transition-all duration-1000 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>Choose your preferred signup method</p>
 
-        <div className={`transform transition-all duration-1000 delay-400 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-          <label className="block mt-6 sm:mt-8 text-gray-700 font-medium text-sm sm:text-base mb-3">Enter your mobile number</label>
+        {/* Third-party signup options */}
+        <div className={`space-y-3 mb-6 transform transition-all duration-1000 delay-400 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+          <button
+            onClick={handleGoogleSignup}
+            disabled={!agreed || isGoogleLoading}
+            className={`w-full flex items-center justify-center space-x-3 py-3 sm:py-4 rounded-xl border-2 transition-all duration-300 ${
+              agreed && !isGoogleLoading
+                ? 'border-red-300 bg-white hover:bg-red-50 hover:border-red-400 shadow-sm hover:shadow-md'
+                : 'border-gray-300 bg-gray-100 cursor-not-allowed'
+            }`}
+          >
+            {isGoogleLoading ? (
+              <div className="w-5 h-5 border-2 border-red-500 border-t-transparent rounded-full animate-spin"></div>
+            ) : (
+              <img src="/src/assets/google.png" alt="Google" className="w-5 h-5" />
+            )}
+            <span className={`font-medium ${agreed ? 'text-gray-700' : 'text-gray-400'}`}>
+              {isGoogleLoading ? 'Signing up...' : 'Sign up with Google'}
+            </span>
+          </button>
+        </div>
+
+        <div className={`flex items-center mb-6 transform transition-all duration-1000 delay-450 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+          <div className="flex-1 h-px bg-gray-300"></div>
+          <span className="px-3 text-sm text-gray-500">or continue with phone</span>
+          <div className="flex-1 h-px bg-gray-300"></div>
+        </div>
+
+        <div className={`transform transition-all duration-1000 delay-500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+          <label className="block text-gray-700 font-medium text-sm sm:text-base mb-3">Enter your mobile number</label>
           <div className="flex gap-2 sm:gap-3">
             <div className="border-2 border-blue-500 px-4 py-3 sm:px-6 sm:py-4 rounded-xl text-blue-600 font-semibold text-sm sm:text-base bg-blue-50 shadow-sm">+91</div>
             <input
@@ -91,7 +155,7 @@ const Signup1 = () => {
         </div>
       </div>
 
-      <div className={`transform transition-all duration-1000 delay-600 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+      <div className={`transform transition-all duration-1000 delay-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
         <button
           onClick={handleNext}
           disabled={!agreed || mobile.length !== 10 || isSubmitting}

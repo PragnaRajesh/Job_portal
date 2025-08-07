@@ -80,7 +80,10 @@ const Signup2 = () => {
 
       // Simulate API call
       setTimeout(() => {
-        navigate('/profile/createprofile');
+        // Mark onboarding as completed for new users
+        localStorage.setItem('hasCompletedOnboarding', 'true');
+        localStorage.setItem('isAuthenticated', 'true');
+        navigate('/home');
       }, 1500);
     }
   };

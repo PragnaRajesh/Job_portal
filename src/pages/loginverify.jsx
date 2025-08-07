@@ -9,10 +9,13 @@ const LoginVerify = () => {
 
   const handleOTPComplete = (otp) => {
     setIsVerifying(true);
-    
+
     // Simulate API call
     setTimeout(() => {
       if (otp === '1234') { // Mock verification
+        // Mark onboarding as completed for returning users
+        localStorage.setItem('hasCompletedOnboarding', 'true');
+        localStorage.setItem('isAuthenticated', 'true');
         navigate('/home');
       } else {
         alert('Invalid OTP. Please try again.');

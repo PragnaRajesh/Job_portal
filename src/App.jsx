@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation, useNavigate, Navigate } from 'react-router-dom';
 
 // 🔹 Pages
 import OnboardingScreen1 from './pages/onboarding/onboarding1';
@@ -70,6 +70,18 @@ const BackButtonHandler = () => {
   return null;
 };
 
+// Route guard to check onboarding completion
+const OnboardingGuard = () => {
+  const hasCompletedOnboarding = localStorage.getItem('hasCompletedOnboarding');
+  const isAuthenticated = localStorage.getItem('isAuthenticated');
+
+  if (hasCompletedOnboarding === 'true' && isAuthenticated === 'true') {
+    return <Navigate to="/home" replace />;
+  }
+
+  return <OnboardingFlow />;
+};
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -78,7 +90,7 @@ const App = () => {
           <BackButtonHandler />
         <Routes>
           {/* Onboarding and Auth */}
-          <Route path="/" element={<OnboardingFlow />} />
+          <Route path="/" element={<OnboardingGuard />} />
           <Route path="/onboarding1" element={<OnboardingScreen1 />} />
           <Route path="/onboarding2" element={<OnboardingScreen2 />} />
           <Route path="/onboarding3" element={<OnboardingScreen3 />} />

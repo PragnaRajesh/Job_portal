@@ -2,19 +2,17 @@ import React, { useState, useEffect } from "react";
 import stepIcon from "../../assets/step1.png";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import StepImage from "../../components/StepImage";
+import { useUser } from "../../contexts/UserContext";
 
 const ProfileSetup2 = () => {
   const navigate = useNavigate();
+  const { user, updateBasicInfo } = useUser();
 
-  const [fullName, setFullName] = useState("");
+  const [fullName, setFullName] = useState(user.fullName || "");
   const [dob, setDob] = useState("");
   const [gender, setGender] = useState("");
-  const [email, setEmail] = useState("");
-
-  useEffect(() => {
-    const storedName = localStorage.getItem("fullName");
-    if (storedName) setFullName(storedName);
-  }, []);
+  const [email, setEmail] = useState(user.email || "");
 
   const handleContinue = () => {
     if (!dob || !gender || !email.trim()) {
@@ -22,11 +20,13 @@ const ProfileSetup2 = () => {
       return;
     }
 
-    // Save details to localStorage
-    localStorage.setItem("dob", dob);
-    localStorage.setItem("gender", gender);
-    localStorage.setItem("email", email);
-    localStorage.setItem("userName", fullName);
+    // Save details to UserContext
+    updateBasicInfo({
+      fullName: fullName.trim(),
+      email: email.trim(),
+      // You can add dob and gender to the user state if needed
+    });
+
     navigate("/profile/educationdetails");
   };
 
@@ -40,10 +40,14 @@ const ProfileSetup2 = () => {
 
         {/* Step Image */}
               <div className="w-full flex justify-center -mt-0 mb-6">
-                <img
+                <StepImage
+                  stepNumber={1}
                   src={stepIcon}
                   alt="Progress Step 1"
                   className="object-contain"
+                  animationType="progressive"
+                  threshold={0.2}
+                  delay={200}
                 />
               </div>
 

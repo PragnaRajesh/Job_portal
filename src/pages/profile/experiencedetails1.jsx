@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import stepIcon from "../../assets/step4.png";
 import { ArrowLeft } from "lucide-react";
+import StepImage from "../../components/StepImage";
 
 const jobRolesData = {
   "IT & Software": [
@@ -62,10 +63,14 @@ const ExperienceDetails1 = () => {
         </h2>
         {/* Step Image */}
               <div className="w-full flex justify-center -mt-0 mb-6">
-                <img
+                <StepImage
+                  stepNumber={4}
                   src={stepIcon}
                   alt="Progress Step 4"
                   className="object-contain"
+                  animationType="progressive"
+                  threshold={0.2}
+                  delay={100}
                 />
               </div>
 

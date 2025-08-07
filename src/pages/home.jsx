@@ -36,13 +36,14 @@ const Home = () => {
 
   const [homeData, setHomeData] = useState({
     name: getDisplayName(),
-    role: user.role || user.jobRoles[0] || "Job Seeker",
+    role: user.role || (user.jobRoles && user.jobRoles[0]) || "Job Seeker",
     location: user.location || "Koramangala",
     profilePicture: user.profilePicture
   });
   const [showPopup, setShowPopup] = useState(false);
   const [showBanner, setShowBanner] = useState(true);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const popupRef = useRef(null);
   
   useEffect(() => {
@@ -50,10 +51,14 @@ const Home = () => {
         if (popupRef.current && !popupRef.current.contains(e.target)) {
           setShowPopup(false);
         }
+        // Close profile dropdown when clicking outside
+        if (showProfileDropdown && !e.target.closest('.relative')) {
+          setShowProfileDropdown(false);
+        }
       };
       document.addEventListener("mousedown", handleClickOutside);
       return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, []);
+    }, [showProfileDropdown]);
 
   useEffect(() => {
     // Handle back button when popup is open
@@ -247,10 +252,16 @@ const Home = () => {
       return;
     }
 
-    // Update user activity
+    // Debug current user data
+    console.log('Current user data:', user);
+    console.log('Display name:', getDisplayName());
+    console.log('LocalStorage userName:', localStorage.getItem('userName'));
+    console.log('LocalStorage fullName:', localStorage.getItem('fullName'));
+
+    // Update user activity only once
     updateLastActive();
 
-    // Simulate loading time for better UX
+    // Load data only once when component mounts
     const loadData = async () => {
       try {
         // Simulate API delay
@@ -258,7 +269,7 @@ const Home = () => {
 
         setHomeData({
           name: getDisplayName(),
-          role: user.role || user.jobRoles[0] || "UI/UX Designer",
+          role: user.role || (user.jobRoles && user.jobRoles[0]) || "UI/UX Designer",
           location: user.location || "Koramangala",
           profilePicture: user.profilePicture || "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop"
         });
@@ -273,7 +284,8 @@ const Home = () => {
     };
 
     loadData();
-  }, [user, isAuthenticated, navigate, getDisplayName, updateLastActive]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuthenticated, navigate]);
 
   // Loading screen
   if (isLoading) {
@@ -294,7 +306,10 @@ const Home = () => {
         {/* Header */}
         <div className={`flex justify-between items-center mb-6 transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'}`}>
           <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 rounded-full overflow-hidden ring-2 ring-blue-200 shadow-lg">
+            <button
+              onClick={() => navigate('/myprofilesection/myprofile')}
+              className="w-12 h-12 rounded-full overflow-hidden ring-2 ring-blue-200 shadow-lg hover:ring-blue-300 transition-all duration-200"
+            >
               <img
                 src={homeData.profilePicture}
                 alt={homeData.name}
@@ -303,11 +318,54 @@ const Home = () => {
                   e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(homeData.name)}&background=3b82f6&color=fff&size=48`;
                 }}
               />
-            </div>
+            </button>
             <div>
               <div className="flex items-center space-x-1">
                 <h2 className="font-semibold text-lg text-gray-800">{homeData.name}</h2>
-                <ChevronDown size={16} className="text-gray-500" />
+                <div className="relative">
+                  <button
+                    onClick={() => setShowProfileDropdown(!showProfileDropdown)}
+                    className="hover:bg-gray-100 p-1 rounded-full transition-colors"
+                  >
+                    <ChevronDown size={16} className="text-gray-500" />
+                  </button>
+
+                  {showProfileDropdown && (
+                    <div className="absolute top-8 left-0 bg-white border rounded-lg shadow-lg py-2 min-w-[200px] z-20">
+                      <button
+                        onClick={() => {
+                          navigate('/myprofilesection/myprofile');
+                          setShowProfileDropdown(false);
+                        }}
+                        className="w-full text-left px-4 py-2 hover:bg-gray-50 transition-colors flex items-center gap-2"
+                      >
+                        <User size={16} className="text-gray-500" />
+                        View Profile
+                      </button>
+                      <button
+                        onClick={() => {
+                          navigate('/myprofilesection/basicdetails');
+                          setShowProfileDropdown(false);
+                        }}
+                        className="w-full text-left px-4 py-2 hover:bg-gray-50 transition-colors flex items-center gap-2"
+                      >
+                        <User size={16} className="text-gray-500" />
+                        Edit Profile
+                      </button>
+                      <div className="border-t border-gray-100 my-1"></div>
+                      <button
+                        onClick={() => {
+                          localStorage.clear();
+                          navigate('/');
+                          setShowProfileDropdown(false);
+                        }}
+                        className="w-full text-left px-4 py-2 hover:bg-gray-50 transition-colors text-red-600"
+                      >
+                        Sign Out
+                      </button>
+                    </div>
+                  )}
+                </div>
               </div>
               <p className="text-sm text-gray-600">{homeData.role}</p>
             </div>
@@ -596,7 +654,18 @@ const Home = () => {
                       <img src={robotImg} alt="AI Prep" className="w-6 h-6 sm:w-8 sm:h-8" />
                   AI Job Prep
                     </button>
-                  
+
+                    {/* Test Profile Creation */}
+                    <button
+                      onClick={() => {
+                        setShowPopup(false);
+                        navigate("/profile/createprofile");
+                      }}
+                      className="w-full bg-green-100 text-green-800 py-4 rounded-2xl font-semibold text-lg shadow-md border border-green-200 hover:bg-green-200 transition-all"
+                    >
+                      Test Profile Creation
+                    </button>
+
                   </div>
                   
                     </div>

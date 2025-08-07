@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import stepIcon from "../../assets/step6.png";
 import { ArrowLeft } from "lucide-react";
+import StepImage from "../../components/StepImage";
 
 const UploadResume = () => {
   const navigate = useNavigate();
@@ -49,10 +50,14 @@ const UploadResume = () => {
 
       {/* Step Image */}
       <div className="w-full flex justify-center -mt-0 mb-6">
-        <img
+        <StepImage
+          stepNumber={6}
           src={stepIcon}
           alt="Progress Step 6"
           className="object-contain"
+          animationType="progressive"
+          threshold={0.2}
+          delay={100}
         />
       </div>
 
