@@ -252,35 +252,34 @@ const Home = () => {
       return;
     }
 
-    // Update user activity
+    // Update user activity only once
     updateLastActive();
 
-    // Only load data once when component mounts or user authentication status changes
-    if (isLoading) {
-      const loadData = async () => {
-        try {
-          // Simulate API delay
-          await new Promise(resolve => setTimeout(resolve, 800));
+    // Load data only once when component mounts
+    const loadData = async () => {
+      try {
+        // Simulate API delay
+        await new Promise(resolve => setTimeout(resolve, 800));
 
-          setHomeData({
-            name: user.fullName || getDisplayName(),
-            role: user.role || (user.jobRoles && user.jobRoles[0]) || "UI/UX Designer",
-            location: user.location || "Koramangala",
-            profilePicture: user.profilePicture || "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop"
-          });
+        setHomeData({
+          name: user.fullName || getDisplayName(),
+          role: user.role || (user.jobRoles && user.jobRoles[0]) || "UI/UX Designer",
+          location: user.location || "Koramangala",
+          profilePicture: user.profilePicture || "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop"
+        });
 
-          setIsLoading(false);
-          setTimeout(() => setIsVisible(true), 100);
-        } catch (error) {
-          console.error('Error loading user data:', error);
-          setIsLoading(false);
-          setIsVisible(true);
-        }
-      };
+        setIsLoading(false);
+        setTimeout(() => setIsVisible(true), 100);
+      } catch (error) {
+        console.error('Error loading user data:', error);
+        setIsLoading(false);
+        setIsVisible(true);
+      }
+    };
 
-      loadData();
-    }
-  }, [isAuthenticated, navigate, isLoading]);
+    loadData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuthenticated, navigate]);
 
   // Loading screen
   if (isLoading) {
