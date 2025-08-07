@@ -52,6 +52,7 @@ import GraphicTemplate from "./pages/resume/graphictemplate";
 import BasicTemplate from "./pages/resume/basictemplate";
 import AITemplate from "./pages/resume/AItemplate";
 import AIResumeChat from "./pages/resume/airesumechat";
+import ProgressBarDemo from "./pages/ProgressBarDemo";
 
 // Wrapper to pass state to SuccessScreen
 const SuccessScreenWrapper = () => {
@@ -156,6 +157,9 @@ const App = () => {
           <Route path="/resume/template/graphic" element={<GraphicTemplate />} />
           <Route path="/resume/template/basic" element={<BasicTemplate />} />
           <Route path="/resume/template/ai" element={<AITemplate />} />
+
+          {/* Demo Routes */}
+          <Route path="/demo/progress" element={<ProgressBarDemo />} />
         </Routes>
         </ConversationProvider>
       </UserProvider>

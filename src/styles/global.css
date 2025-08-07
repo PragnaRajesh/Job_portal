@@ -27,6 +27,19 @@
   }
 }
 
+@keyframes stripe-slide {
+  0% {
+    transform: translateX(-100%) skewX(-45deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-45deg);
+  }
+}
+
+.animate-stripe-slide {
+  animation: stripe-slide 2s ease-in-out infinite;
+}
+
 html, body {
   margin: 0;
   padding: 0;
