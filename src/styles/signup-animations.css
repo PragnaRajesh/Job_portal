@@ -1,0 +1,186 @@
+/* Signup Flow Animations */
+
+/* Shimmer effect for progress bar */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+/* Step transition animations */
+@keyframes stepComplete {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+.animate-step-complete {
+  animation: stepComplete 0.6s ease-out;
+}
+
+/* Form slide animations */
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-right {
+  animation: slideInFromRight 0.6s ease-out;
+}
+
+.animate-slide-in-left {
+  animation: slideInFromLeft 0.6s ease-out;
+}
+
+/* Success checkmark animation */
+@keyframes checkmarkDraw {
+  0% {
+    stroke-dasharray: 0 50;
+  }
+  100% {
+    stroke-dasharray: 50 50;
+  }
+}
+
+.animate-checkmark {
+  animation: checkmarkDraw 0.8s ease-out;
+}
+
+/* Button press effect */
+@keyframes buttonPress {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-button-press {
+  animation: buttonPress 0.2s ease-out;
+}
+
+/* Loading spinner for form submission */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Form field focus effect */
+@keyframes fieldFocus {
+  0% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+  }
+}
+
+.animate-field-focus {
+  animation: fieldFocus 0.3s ease-out;
+}
+
+/* Step indicator pulse */
+@keyframes stepPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-step-pulse {
+  animation: stepPulse 2s ease-in-out infinite;
+}
+
+/* Progress fill animation */
+@keyframes progressFill {
+  0% {
+    width: 0%;
+  }
+}
+
+.animate-progress-fill {
+  animation: progressFill 0.8s ease-out forwards;
+}
+
+/* Success celebration */
+@keyframes celebrate {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.1) rotate(-5deg);
+  }
+  75% {
+    transform: scale(1.1) rotate(5deg);
+  }
+}
+
+.animate-celebrate {
+  animation: celebrate 0.6s ease-in-out;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 640px) {
+  .animate-slide-in-right,
+  .animate-slide-in-left {
+    animation-duration: 0.4s;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .animate-shimmer,
+  .animate-step-complete,
+  .animate-slide-in-right,
+  .animate-slide-in-left,
+  .animate-checkmark,
+  .animate-button-press,
+  .animate-spin,
+  .animate-field-focus,
+  .animate-step-pulse,
+  .animate-progress-fill,
+  .animate-celebrate {
+    animation: none;
+  }
+}
