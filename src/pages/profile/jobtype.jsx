@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import stepIcon from "../../assets/step3.png";
 import { ArrowLeft } from "lucide-react";
+import StepImage from "../../components/StepImage";
 
 const JobType = () => {
   const navigate = useNavigate();
@@ -43,10 +44,14 @@ const JobType = () => {
         <h2 className="text-xl font-bold text-center mb-4">Preferred Job Type</h2>
       {/* Step Image */}
       <div className="w-full flex justify-center -mt-0 mb-6">
-        <img
+        <StepImage
+          stepNumber={3}
           src={stepIcon}
           alt="Progress Step 3"
           className="object-contain"
+          animationType="progressive"
+          threshold={0.2}
+          delay={100}
         />
       </div>
         {/* Preferred Shifts */}
