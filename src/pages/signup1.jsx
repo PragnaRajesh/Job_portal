@@ -115,8 +115,8 @@ const Signup1 = () => {
           <div className="flex-1 h-px bg-gray-300"></div>
         </div>
 
-        <div className={`transform transition-all duration-1000 delay-400 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-          <label className="block mt-6 sm:mt-8 text-gray-700 font-medium text-sm sm:text-base mb-3">Enter your mobile number</label>
+        <div className={`transform transition-all duration-1000 delay-500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+          <label className="block text-gray-700 font-medium text-sm sm:text-base mb-3">Enter your mobile number</label>
           <div className="flex gap-2 sm:gap-3">
             <div className="border-2 border-blue-500 px-4 py-3 sm:px-6 sm:py-4 rounded-xl text-blue-600 font-semibold text-sm sm:text-base bg-blue-50 shadow-sm">+91</div>
             <input
