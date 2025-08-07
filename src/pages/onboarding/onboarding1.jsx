@@ -129,13 +129,15 @@ const OnboardingScreen1 = ({ onNext, onSkip }) => {
               Secure your dream job{" "}
             </span>
             <br />
-            <span className="inline-block animate-slideUp" style={{animationDelay: '2.1s'}}>
-              with our trusted{" "}
-            </span>
+            <div className="flex flex-row sm:mr-auto">
+              <span className="inline-block animate-slideUp" style={{animationDelay: '2.1s'}}>
+                with our trusted{" "}
+              </span>
+              <span className="inline-block animate-slideUp" style={{animationDelay: '2.4s'}}>
+                companies..
+              </span>
+            </div>
             <br />
-            <span className="inline-block animate-slideUp" style={{animationDelay: '2.4s'}}>
-              companies..
-            </span>
           </p>
         </div>
       </div> 
