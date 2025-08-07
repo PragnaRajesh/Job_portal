@@ -262,6 +262,12 @@ export const UserProvider = ({ children }) => {
       try {
         const savedUserData = localStorage.getItem('userData');
         const authToken = localStorage.getItem('userToken');
+
+        // Migration: Clear old user data that might have phone number as name
+        const oldUserData = localStorage.getItem('user');
+        if (oldUserData) {
+          localStorage.removeItem('user'); // Remove old format
+        }
         
         if (savedUserData) {
           const userData = JSON.parse(savedUserData);
