@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import SignupProgressBar from '../components/SignupProgressBar';
 import { useUser } from '../contexts/UserContext';
+import authService from '../services/authService';
 import '../styles/signup-animations.css';
 
 const Signup1 = () => {
