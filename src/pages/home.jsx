@@ -35,8 +35,8 @@ const Home = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   const [homeData, setHomeData] = useState({
-    name: getDisplayName(),
-    role: user.role || user.jobRoles[0] || "Job Seeker",
+    name: user.fullName || getDisplayName(),
+    role: user.role || (user.jobRoles && user.jobRoles[0]) || "Job Seeker",
     location: user.location || "Koramangala",
     profilePicture: user.profilePicture
   });
