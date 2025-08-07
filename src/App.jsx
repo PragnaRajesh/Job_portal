@@ -157,6 +157,9 @@ const App = () => {
           <Route path="/resume/template/graphic" element={<GraphicTemplate />} />
           <Route path="/resume/template/basic" element={<BasicTemplate />} />
           <Route path="/resume/template/ai" element={<AITemplate />} />
+
+          {/* Demo Routes */}
+          <Route path="/demo/progress" element={<ProgressBarDemo />} />
         </Routes>
         </ConversationProvider>
       </UserProvider>
