@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import SignupProgressBar from '../components/SignupProgressBar';
+import { useUser } from '../contexts/UserContext';
 import '../styles/signup-animations.css';
 
 const Signup1 = () => {
-  const [mobile, setMobile] = useState('');
+  const { user, updateBasicInfo, updateSignupStep } = useUser();
+  const [mobile, setMobile] = useState(user.mobile || '');
   const [agreed, setAgreed] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -19,6 +21,11 @@ const Signup1 = () => {
     if (!agreed || mobile.length !== 10) return;
 
     setIsSubmitting(true);
+
+    // Save mobile number to user context
+    updateBasicInfo({ mobile: mobile });
+    updateSignupStep(1);
+
     // Simulate API call
     setTimeout(() => {
       navigate('/signupverify');
