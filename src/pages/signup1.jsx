@@ -85,7 +85,35 @@ const Signup1 = () => {
         </div>
 
         <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold text-center text-gray-800 mb-2 transform transition-all duration-1000 delay-200 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>Sign Up</h2>
-        <p className={`text-center text-gray-600 mb-8 transform transition-all duration-1000 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>Enter your phone number to get started</p>
+        <p className={`text-center text-gray-600 mb-6 transform transition-all duration-1000 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>Choose your preferred signup method</p>
+
+        {/* Third-party signup options */}
+        <div className={`space-y-3 mb-6 transform transition-all duration-1000 delay-400 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+          <button
+            onClick={handleGoogleSignup}
+            disabled={!agreed || isGoogleLoading}
+            className={`w-full flex items-center justify-center space-x-3 py-3 sm:py-4 rounded-xl border-2 transition-all duration-300 ${
+              agreed && !isGoogleLoading
+                ? 'border-red-300 bg-white hover:bg-red-50 hover:border-red-400 shadow-sm hover:shadow-md'
+                : 'border-gray-300 bg-gray-100 cursor-not-allowed'
+            }`}
+          >
+            {isGoogleLoading ? (
+              <div className="w-5 h-5 border-2 border-red-500 border-t-transparent rounded-full animate-spin"></div>
+            ) : (
+              <img src="/src/assets/google.png" alt="Google" className="w-5 h-5" />
+            )}
+            <span className={`font-medium ${agreed ? 'text-gray-700' : 'text-gray-400'}`}>
+              {isGoogleLoading ? 'Signing up...' : 'Sign up with Google'}
+            </span>
+          </button>
+        </div>
+
+        <div className={`flex items-center mb-6 transform transition-all duration-1000 delay-450 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+          <div className="flex-1 h-px bg-gray-300"></div>
+          <span className="px-3 text-sm text-gray-500">or continue with phone</span>
+          <div className="flex-1 h-px bg-gray-300"></div>
+        </div>
 
         <div className={`transform transition-all duration-1000 delay-400 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
           <label className="block mt-6 sm:mt-8 text-gray-700 font-medium text-sm sm:text-base mb-3">Enter your mobile number</label>
