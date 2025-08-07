@@ -5,6 +5,7 @@ import experienceImg from "../../assets/experience.jpeg";
 import { ArrowLeft, X } from "lucide-react";
 import ExperienceDetails1 from "./experiencedetails1";
 import StepImage from "../../components/StepImage";
+import EnhancedProgressBar from "../../components/EnhancedProgressBar";
 
 const ExperienceDecision = () => {
   const navigate = useNavigate();
@@ -27,9 +28,14 @@ const ExperienceDecision = () => {
   };
 
   return (
-    <div className="relative h-screen bg-white pt-6 pb-24 flex flex-col justify-start overflow-hidden pt-safe pb-safe">
+    <div className="relative min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50 pt-6 pb-24 flex flex-col justify-start overflow-hidden pt-safe pb-safe">
       {/* Main Content */}
       <div className={`relative z-0 px-4 pb-32 ${showPopup ? "blur-sm" : ""}`}>
+        <ArrowLeft className="w-6 h-6 sm:w-7 sm:h-7 mb-2" onClick={() => navigate(-1)} />
+
+        {/* Enhanced Progress Bar */}
+        <EnhancedProgressBar currentStep={5} totalSteps={7} />
+
         <div className="w-full flex justify-center mb-6">
           <StepImage
             stepNumber={4}
@@ -43,7 +49,6 @@ const ExperienceDecision = () => {
         </div>
 
         <div className="flex flex-col justify-start">
-          <ArrowLeft className="w-6 h-6 sm:w-7 sm:h-7 mb-2" onClick={() => navigate(-1)} />
           <h2 className="text-xl font-bold text-center mb-4">Experience Details</h2>
 
           <img
