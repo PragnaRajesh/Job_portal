@@ -123,21 +123,15 @@ const OnboardingScreen1 = ({ onNext, onSkip }) => {
         </div>
 
         {/* Description Text */}
-        <div className={`text-center px-2 py-4 transform transition-all duration-1000 delay-500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'}`}>
+        <div className={`text-center px-2 py-2 transform transition-all duration-1000 delay-500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'}`}>
           <p className="font-medium text-[clamp(0.9rem,3.8vw,1.1rem)] leading-relaxed text-gray-700 max-w-xs mx-auto">
             <span className="inline-block animate-slideUp" style={{animationDelay: '1.8s'}}>
-              Secure your dream job{" "}
+              Secure your dream job
             </span>
             <br />
-            <div className="flex flex-row sm:mr-auto">
-              <span className="inline-block animate-slideUp" style={{animationDelay: '2.1s'}}>
-                with our trusted{" "}
-              </span>
-              <span className="inline-block animate-slideUp" style={{animationDelay: '2.4s'}}>
-                companies..
-              </span>
-            </div>
-            <br />
+            <span className="inline-block animate-slideUp" style={{animationDelay: '2.1s'}}>
+              with our trusted companies..
+            </span>
           </p>
         </div>
       </div> 
