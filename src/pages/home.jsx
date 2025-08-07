@@ -252,6 +252,12 @@ const Home = () => {
       return;
     }
 
+    // Debug current user data
+    console.log('Current user data:', user);
+    console.log('Display name:', getDisplayName());
+    console.log('LocalStorage userName:', localStorage.getItem('userName'));
+    console.log('LocalStorage fullName:', localStorage.getItem('fullName'));
+
     // Update user activity only once
     updateLastActive();
 
