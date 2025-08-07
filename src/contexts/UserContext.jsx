@@ -447,7 +447,7 @@ export const UserProvider = ({ children }) => {
   const helpers = {
     // Get user's display name
     getDisplayName: () => {
-      return userState.fullName || userState.email?.split('@')[0] || (userState.mobile ? `User ${userState.mobile.slice(-4)}` : 'User');
+      return userState.fullName || userState.email?.split('@')[0] || 'User';
     },
     
     // Get user's initials
