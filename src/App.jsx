@@ -62,6 +62,7 @@ const SuccessScreenWrapper = () => {
 
 // Import the improved back button hook
 import { useBackButton } from './hooks/useBackButton';
+import { UserProvider } from './contexts/UserContext';
 
 // Component to handle phone back button behavior globally
 const BackButtonHandler = () => {
@@ -72,8 +73,9 @@ const BackButtonHandler = () => {
 const App = () => {
   return (
     <BrowserRouter>
-      <ConversationProvider>
-        <BackButtonHandler />
+      <UserProvider>
+        <ConversationProvider>
+          <BackButtonHandler />
         <Routes>
           {/* Onboarding and Auth */}
           <Route path="/" element={<OnboardingFlow />} />
@@ -143,7 +145,8 @@ const App = () => {
           <Route path="/resume/template/basic" element={<BasicTemplate />} />
           <Route path="/resume/template/ai" element={<AITemplate />} />
         </Routes>
-      </ConversationProvider>
+        </ConversationProvider>
+      </UserProvider>
     </BrowserRouter>
   );
 };
