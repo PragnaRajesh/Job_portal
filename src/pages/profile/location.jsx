@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import stepIcon from "../../assets/step5.png";
 import { ArrowLeft } from "lucide-react";
+import StepImage from "../../components/StepImage";
 
 const containerStyle = {
   width: "100%",
@@ -32,10 +33,14 @@ const LocationScreen = () => {
 
       {/* Step Image */}
       <div className="w-full flex justify-center -mt-0 mb-6">
-        <img
+        <StepImage
+          stepNumber={5}
           src={stepIcon}
           alt="Progress Step 5"
           className="object-contain"
+          animationType="progressive"
+          threshold={0.2}
+          delay={100}
         />
       </div>
 
