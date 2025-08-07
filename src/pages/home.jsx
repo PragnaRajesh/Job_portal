@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { useUser } from '../contexts/UserContext';
 import {
   Bell,
   Search,
@@ -29,14 +30,15 @@ import robotImg from "../assets/mock-interview.png";
 
 const Home = () => {
   const navigate = useNavigate();
+  const { user, getDisplayName, updateLastActive, isAuthenticated } = useUser();
   const [isLoading, setIsLoading] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
 
-  const [user, setUser] = useState({
-    name: "User",
-    role: "Job Seeker",
-    location: "Koramangala",
-    profilePicture: null
+  const [homeData, setHomeData] = useState({
+    name: getDisplayName(),
+    role: user.role || user.jobRoles[0] || "Job Seeker",
+    location: user.location || "Koramangala",
+    profilePicture: user.profilePicture
   });
   const [showPopup, setShowPopup] = useState(false);
   const [showBanner, setShowBanner] = useState(true);
@@ -239,23 +241,26 @@ const Home = () => {
   ];
 
   useEffect(() => {
+    // Check if user is authenticated
+    if (!isAuthenticated) {
+      navigate('/onboarding1');
+      return;
+    }
+
+    // Update user activity
+    updateLastActive();
+
     // Simulate loading time for better UX
     const loadData = async () => {
       try {
-        // Get user data from localStorage
-        const userName = localStorage.getItem("userName") || localStorage.getItem("fullName") || "Sumona";
-        const jobRoles = JSON.parse(localStorage.getItem("jobRoles") || "[]");
-        const userRole = jobRoles.length > 0 ? jobRoles[0] : "UI/UX Designer";
-        const userLocation = localStorage.getItem("location") || "Koramangala";
-
         // Simulate API delay
         await new Promise(resolve => setTimeout(resolve, 800));
 
-        setUser({
-          name: userName,
-          role: userRole,
-          location: userLocation,
-          profilePicture: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop"
+        setHomeData({
+          name: getDisplayName(),
+          role: user.role || user.jobRoles[0] || "UI/UX Designer",
+          location: user.location || "Koramangala",
+          profilePicture: user.profilePicture || "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop"
         });
 
         setIsLoading(false);
@@ -268,7 +273,7 @@ const Home = () => {
     };
 
     loadData();
-  }, []);
+  }, [user, isAuthenticated, navigate, getDisplayName, updateLastActive]);
 
   // Loading screen
   if (isLoading) {
@@ -291,20 +296,20 @@ const Home = () => {
           <div className="flex items-center space-x-3">
             <div className="w-12 h-12 rounded-full overflow-hidden ring-2 ring-blue-200 shadow-lg">
               <img
-                src={user.profilePicture}
-                alt={user.name}
+                src={homeData.profilePicture}
+                alt={homeData.name}
                 className="w-full h-full object-cover"
                 onError={(e) => {
-                  e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=3b82f6&color=fff&size=48`;
+                  e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(homeData.name)}&background=3b82f6&color=fff&size=48`;
                 }}
               />
             </div>
             <div>
               <div className="flex items-center space-x-1">
-                <h2 className="font-semibold text-lg text-gray-800">{user.name}</h2>
+                <h2 className="font-semibold text-lg text-gray-800">{homeData.name}</h2>
                 <ChevronDown size={16} className="text-gray-500" />
               </div>
-              <p className="text-sm text-gray-600">{user.role}</p>
+              <p className="text-sm text-gray-600">{homeData.role}</p>
             </div>
           </div>
           <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-3 rounded-full border border-blue-200 shadow-sm">
@@ -350,7 +355,7 @@ const Home = () => {
           </div>
           <div className="flex items-center space-x-1 text-sm text-gray-600">
             <MapPin size={16} className="text-blue-600" />
-            <span className="text-blue-600 font-medium">{user.location}</span>
+            <span className="text-blue-600 font-medium">{homeData.location}</span>
           </div>
         </div>
 
