@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import stepIcon from "../../assets/step2.png";
 import { ArrowLeft } from "lucide-react";
+import StepImage from "../../components/StepImage";
 
 
 const degreeOptions = {
@@ -79,10 +80,14 @@ const EducationDetails2 = () => {
                   <h2 className="text-xl font-bold text-center mb-4">Education Details</h2>
         {/* Step Image */}
               <div className="w-full flex justify-center -mt-0 mb-6">
-                <img
+                <StepImage
+                  stepNumber={2}
                   src={stepIcon}
                   alt="Progress Step 2"
                   className="object-contain"
+                  animationType="progressive"
+                  threshold={0.2}
+                  delay={150}
                 />
               </div>
         <h3 className="font-semibold mb-2">Select your highest education level</h3>
