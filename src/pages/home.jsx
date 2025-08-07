@@ -311,12 +311,50 @@ const Home = () => {
             <div>
               <div className="flex items-center space-x-1">
                 <h2 className="font-semibold text-lg text-gray-800">{homeData.name}</h2>
-                <button
-                  onClick={() => navigate('/myprofilesection/myprofile')}
-                  className="hover:bg-gray-100 p-1 rounded-full transition-colors"
-                >
-                  <ChevronDown size={16} className="text-gray-500" />
-                </button>
+                <div className="relative">
+                  <button
+                    onClick={() => setShowProfileDropdown(!showProfileDropdown)}
+                    className="hover:bg-gray-100 p-1 rounded-full transition-colors"
+                  >
+                    <ChevronDown size={16} className="text-gray-500" />
+                  </button>
+
+                  {showProfileDropdown && (
+                    <div className="absolute top-8 left-0 bg-white border rounded-lg shadow-lg py-2 min-w-[200px] z-20">
+                      <button
+                        onClick={() => {
+                          navigate('/myprofilesection/myprofile');
+                          setShowProfileDropdown(false);
+                        }}
+                        className="w-full text-left px-4 py-2 hover:bg-gray-50 transition-colors flex items-center gap-2"
+                      >
+                        <User size={16} className="text-gray-500" />
+                        View Profile
+                      </button>
+                      <button
+                        onClick={() => {
+                          navigate('/myprofilesection/basicdetails');
+                          setShowProfileDropdown(false);
+                        }}
+                        className="w-full text-left px-4 py-2 hover:bg-gray-50 transition-colors flex items-center gap-2"
+                      >
+                        <User size={16} className="text-gray-500" />
+                        Edit Profile
+                      </button>
+                      <div className="border-t border-gray-100 my-1"></div>
+                      <button
+                        onClick={() => {
+                          localStorage.clear();
+                          navigate('/');
+                          setShowProfileDropdown(false);
+                        }}
+                        className="w-full text-left px-4 py-2 hover:bg-gray-50 transition-colors text-red-600"
+                      >
+                        Sign Out
+                      </button>
+                    </div>
+                  )}
+                </div>
               </div>
               <p className="text-sm text-gray-600">{homeData.role}</p>
             </div>
