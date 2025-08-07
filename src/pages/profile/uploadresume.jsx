@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import stepIcon from "../../assets/step6.png";
 import { ArrowLeft } from "lucide-react";
 import StepImage from "../../components/StepImage";
+import EnhancedProgressBar from "../../components/EnhancedProgressBar";
 
 const UploadResume = () => {
   const navigate = useNavigate();
@@ -41,8 +42,11 @@ const UploadResume = () => {
   };
 
   return (
-    <div className="h-screen p-4 bg-white pt-6 pb-24 flex flex-col justify-between overflow-hidden pt-safe pb-safe">
+    <div className="min-h-screen p-4 bg-gradient-to-br from-purple-50 via-white to-indigo-50 pt-6 pb-24 flex flex-col justify-between overflow-hidden pt-safe pb-safe">
       <ArrowLeft className="w-6 h-6 sm:w-7 sm:h-7 mb-2 cursor-pointer hover:text-gray-600 transition-colors" onClick={() => navigate(-1)} />
+
+      {/* Enhanced Progress Bar */}
+      <EnhancedProgressBar currentStep={7} totalSteps={7} />
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col justify-start">

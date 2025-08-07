@@ -40,6 +40,130 @@
   animation: stripe-slide 2s ease-in-out infinite;
 }
 
+/* Enhanced Progress Bar Animations */
+@keyframes active-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.8);
+  }
+}
+
+@keyframes completed-bounce {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.1) rotate(-5deg);
+  }
+  75% {
+    transform: scale(1.1) rotate(5deg);
+  }
+}
+
+@keyframes check-bounce {
+  0% {
+    transform: scale(0) rotate(-45deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.3) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes emoji-3d {
+  0%, 100% {
+    transform: perspective(200px) rotateY(0deg) rotateX(0deg);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+  }
+  25% {
+    transform: perspective(200px) rotateY(-10deg) rotateX(5deg);
+    filter: drop-shadow(2px 6px 12px rgba(0, 0, 0, 0.3));
+  }
+  75% {
+    transform: perspective(200px) rotateY(10deg) rotateX(-5deg);
+    filter: drop-shadow(-2px 6px 12px rgba(0, 0, 0, 0.3));
+  }
+}
+
+@keyframes text-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes badge-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px rgba(59, 130, 246, 0.8);
+  }
+}
+
+@keyframes slow-pulse {
+  0%, 100% {
+    opacity: 0.1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(1.05);
+  }
+}
+
+.animate-active-pulse {
+  animation: active-pulse 2s ease-in-out infinite;
+}
+
+.animate-completed-bounce {
+  animation: completed-bounce 1s ease-out;
+}
+
+.animate-check-bounce {
+  animation: check-bounce 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.animate-emoji-3d {
+  animation: emoji-3d 3s ease-in-out infinite;
+}
+
+.animate-text-pulse {
+  animation: text-pulse 2s ease-in-out infinite;
+}
+
+.animate-badge-pulse {
+  animation: badge-pulse 2s ease-in-out infinite;
+}
+
+.animate-slow-pulse {
+  animation: slow-pulse 3s ease-in-out infinite;
+}
+
+/* Utility classes for enhanced styling */
+.border-3 {
+  border-width: 3px;
+}
+
+.hover\:scale-115:hover {
+  transform: scale(1.15);
+}
+
 html, body {
   margin: 0;
   padding: 0;

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import stepIcon from "../../assets/step4.png";
 import { ArrowLeft } from "lucide-react";
 import StepImage from "../../components/StepImage";
+import EnhancedProgressBar from "../../components/EnhancedProgressBar";
 
 const jobRolesData = {
   "IT & Software": [
