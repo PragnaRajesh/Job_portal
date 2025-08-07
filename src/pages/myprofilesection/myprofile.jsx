@@ -315,16 +315,12 @@ const MyProfile = () => {
 
         {/* Row 1: Profile Picture */}
         <div className="relative mb-2">
-          <div className="w-16 h-16 rounded-full border-3 border-white/30">
-            <img
-              src={user.profilePicture || "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200"}
-              alt="Profile"
-              className="w-full h-full object-cover rounded-full"
-              onError={(e) => {
-                e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(profileData.name)}&background=3b82f6&color=fff&size=64`;
-              }}
-            />
-          </div>
+          <ProfilePictureUpload
+            currentImage={user.profilePicture}
+            onImageUpdate={handleProfilePictureUpdate}
+            size={64}
+            showEditIcon={true}
+          />
         </div>
 
         {/* Row 2: Name */}
