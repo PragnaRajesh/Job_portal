@@ -61,7 +61,7 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
           <div className="relative z-10">
             <h1 className="font-bold text-[clamp(1.2rem,5.5vw,1.8rem)] leading-tight text-black tracking-tight">
               <span className="inline-block animate-slideUp" style={{animationDelay: '0.3s'}}>
-                Build a{" "}
+                Build a &nbsp;
               </span>
               <span className="inline-block bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent animate-slideUp" style={{animationDelay: '0.6s'}}>
                 graphic-rich{" "}
