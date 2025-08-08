@@ -91,47 +91,51 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
         </div>
       </div>
 
-        {/* Large Resume Illustration - Stretched to fill space */}
-        <div className="flex-1 flex items-center justify-center relative z-10 min-h-0 -mt-8">
-          <div className={`w-full h-full max-w-sm sm:max-w-md relative transform transition-all duration-1000 delay-300 ${isVisible ? 'scale-100 opacity-100' : 'scale-90 opacity-0'}`}>
-          
-          {/* Glow effect behind illustration */}
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-200/50 to-purple-200/50 rounded-2xl blur-xl animate-glow"></div>
-          
-          <div className="relative">
-            <img
-              src={onboarding33Img}
-              alt="Resume Building Illustration"
-              className="w-full h-full object-contain relative z-10 animate-bounce-in"
-              style={{animationDelay: '0.8s'}}
-            />
-            
-            {/* Floating resume elements */}
-            <div className="absolute -top-4 -left-4 opacity-70">
-              <div className="bg-white rounded-lg p-2 shadow-lg animate-float" style={{animationDelay: '2s'}}>
-                <div className="w-8 h-1 bg-blue-300 rounded"></div>
-                <div className="w-6 h-1 bg-gray-300 rounded mt-1"></div>
+        {/* Large Resume Illustration - Full-height stretch like Onboarding 1 */}
+        <div className="flex-1 flex items-center justify-center relative">
+          <div className="w-full h-full flex items-center justify-center -mt-16 relative">
+            {/* Enhanced glow effect behind illustration */}
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-200/50 to-purple-200/50 rounded-full blur-xl animate-glow"></div>
+
+            {/* Apply diff changes with responsive layout */}
+            <div className="relative overflow-hidden p-2 sm:flex sm:flex-col">
+              <img
+                src={onboarding33Img}
+                alt="Resume Building Illustration"
+                className="w-full h-full object-cover relative z-10 animate-bounce-in sm:mx-auto"
+                style={{
+                  animationDelay: '0.8s',
+                  filter: 'drop-shadow(0 25px 25px rgba(0, 0, 0, 0.15))',
+                  transform: 'translateY(0px)'
+                }}
+              />
+
+              {/* Floating resume elements */}
+              <div className="absolute -top-4 -left-4 opacity-70">
+                <div className="bg-white rounded-lg p-2 shadow-lg animate-float" style={{animationDelay: '2s'}}>
+                  <div className="w-8 h-1 bg-blue-300 rounded"></div>
+                  <div className="w-6 h-1 bg-gray-300 rounded mt-1"></div>
+                </div>
               </div>
-            </div>
-            
-            <div className="absolute -top-2 -right-6 opacity-70">
-              <div className="bg-white rounded-lg p-2 shadow-lg animate-wobble" style={{animationDelay: '2.5s'}}>
-                <div className="w-6 h-6 bg-gradient-to-r from-green-400 to-blue-400 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                  ✓
+
+              <div className="absolute -top-2 -right-6 opacity-70">
+                <div className="bg-white rounded-lg p-2 shadow-lg animate-wobble" style={{animationDelay: '2.5s'}}>
+                  <div className="w-6 h-6 bg-gradient-to-r from-green-400 to-blue-400 rounded-full flex items-center justify-center text-white text-xs font-bold">
+                    ✓
+                  </div>
+                </div>
+              </div>
+
+              <div className="absolute -bottom-4 -right-4 opacity-70">
+                <div className="bg-white rounded-lg p-2 shadow-lg animate-float" style={{animationDelay: '3s'}}>
+                  <div className="flex space-x-1">
+                    <div className="w-2 h-4 bg-yellow-400 rounded"></div>
+                    <div className="w-2 h-6 bg-blue-400 rounded"></div>
+                    <div className="w-2 h-3 bg-green-400 rounded"></div>
+                  </div>
                 </div>
               </div>
             </div>
-            
-            <div className="absolute -bottom-4 -right-4 opacity-70">
-              <div className="bg-white rounded-lg p-2 shadow-lg animate-float" style={{animationDelay: '3s'}}>
-                <div className="flex space-x-1">
-                  <div className="w-2 h-4 bg-yellow-400 rounded"></div>
-                  <div className="w-2 h-6 bg-blue-400 rounded"></div>
-                  <div className="w-2 h-3 bg-green-400 rounded"></div>
-                </div>
-              </div>
-            </div>
-          </div>
           </div>
 
           {/* Inspirational Text - Moved inside main content area */}
