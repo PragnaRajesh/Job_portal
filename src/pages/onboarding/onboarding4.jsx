@@ -69,7 +69,7 @@ const OnboardingScreen4 = ({ onSignUp, onLogIn }) => {
           <img
             src="https://cdn.builder.io/api/v1/image/assets%2F066a49ebd63d4888b50b2ed95c4b0a2d%2F1fce1cfe00ad43b39d0f0e156be3f338?format=webp&width=800"
             alt="Professional Character"
-            className="w-full h-auto object-contain max-h-full animate-professional-wave relative z-10"
+            className="w-full h-auto object-contain animate-professional-wave relative z-10"
           />
           
           {/* Achievement badges floating around character */}
