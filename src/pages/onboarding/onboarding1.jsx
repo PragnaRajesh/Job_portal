@@ -19,6 +19,10 @@ const OnboardingScreen1 = ({ onNext, onSkip }) => {
     }
   };
 
+  const handleLogin = () => {
+    navigate('/login');
+  };
+
   const handleNext = () => {
     if (onNext) {
       onNext();
@@ -148,13 +152,22 @@ const OnboardingScreen1 = ({ onNext, onSkip }) => {
 
         {/* Navigation Buttons */}
         <div className="flex justify-between items-center">
-          <button
-            onClick={handleSkip}
-            className="text-white text-[clamp(0.9rem,3.5vw,1.1rem)] font-bold hover:text-white/80 transition-all duration-300 hover:scale-105 animate-button-hover relative group"
-          >
-            <span className="relative z-10">Skip</span>
-            <div className="absolute inset-0 bg-white/20 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
-          </button>
+          <div className="flex gap-3">
+            <button
+              onClick={handleLogin}
+              className="text-white text-[clamp(0.8rem,3.2vw,1rem)] font-bold hover:text-white/80 transition-all duration-300 hover:scale-105 animate-button-hover relative group"
+            >
+              <span className="relative z-10">Login</span>
+              <div className="absolute inset-0 bg-white/20 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
+            </button>
+            <button
+              onClick={handleSkip}
+              className="text-white text-[clamp(0.8rem,3.2vw,1rem)] font-bold hover:text-white/80 transition-all duration-300 hover:scale-105 animate-button-hover relative group"
+            >
+              <span className="relative z-10">Skip</span>
+              <div className="absolute inset-0 bg-white/20 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
+            </button>
+          </div>
 
           {/* Next Button with enhanced design */}
           <div className="relative">
