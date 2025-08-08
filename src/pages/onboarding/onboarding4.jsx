@@ -61,7 +61,7 @@ const OnboardingScreen4 = ({ onSignUp, onLogIn }) => {
 
       {/* Character Illustration - Takes remaining flexible space */}
       <div className="flex-1 flex items-center justify-center px-4 min-h-0 relative">
-        <div className="w-[clamp(300px,75vw,400px)] h-full max-h-[60vh] flex items-center justify-center relative">
+        <div className="w-[clamp(350px,85vw,500px)] h-full max-h-[75vh] flex items-center justify-center relative">
           
           {/* Professional aura effect */}
           <div className="absolute inset-0 bg-gradient-to-r from-blue-100/50 to-purple-100/50 rounded-full animate-success-pulse opacity-60"></div>
