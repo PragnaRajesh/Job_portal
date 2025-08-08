@@ -184,3 +184,22 @@
     animation: none;
   }
 }
+/* Pulse text animation */
+@keyframes text-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+.animate-text-pulse {
+  animation: text-pulse 2s infinite;
+}
+
+/* Subtle 3D bobbing for tracker */
+@keyframes tracker-bob {
+  0%, 100% { transform: translateY(0) translateZ(30px); }
+  50% { transform: translateY(-5px) translateZ(30px); }
+}
+.tracker-3d {
+  animation: tracker-bob 1.5s ease-in-out infinite;
+  transform-style: preserve-3d;
+}
+

@@ -1,6 +1,5 @@
 import React from "react";
-// import "../onboarding-animations.css"; // Ensure this file exists or remove the import if not used
-
+import "../styles/signup-animations.css";
 const steps = [
   { emoji: "👤", tip: "Start by creating your profile." },
   { emoji: "📝", tip: "Add basic personal details." },
@@ -17,25 +16,34 @@ const EnhancedProgressBar = ({ currentStep, totalSteps }) => {
 
   return (
     <div className="w-full px-4 py-6">
-      <div className="relative flex flex-col items-center h-24">
-        {/* Floating tracker box with emoji */}
+      <div
+        className="relative flex flex-col items-center h-28"
+        style={{ perspective: "1000px" }} // 3D depth
+      >
+        {/* Floating 3D tracker */}
         <div
-          className="absolute top-0 w-12 h-12 rounded-full bg-white border border-gray-300 shadow-lg flex items-center justify-center transition-all duration-700 ease-in-out"
-          style={{ left: `calc(${progressPercentage}% - 24px)` }}
+          className="absolute top-0 w-14 h-14 rounded-full bg-white border border-gray-300 shadow-lg flex items-center justify-center tracker-3d"
+          style={{
+            left: `calc(${progressPercentage}% - 28px)`,
+            transform: `translateZ(30px) rotateY(${progressPercentage / 10}deg)`,
+          }}
         >
-          <div className="text-2xl animate-emoji-3d">{currentStepData.emoji}</div>
+          <div className="text-3xl">{currentStepData.emoji}</div>
         </div>
 
-        {/* Animated Progress Bar */}
-        <div className="relative w-full h-3 bg-gray-200 rounded-full mt-10 overflow-hidden">
+        {/* 3D Progress Bar Track */}
+        <div className="relative w-full h-4 bg-gradient-to-b from-gray-300 to-gray-100 rounded-full mt-12 overflow-hidden shadow-inner">
           <div
-            className="h-full bg-blue-500 rounded-full transition-all duration-700 ease-in-out"
-            style={{ width: `${progressPercentage}%` }}
+            className="h-full bg-gradient-to-r from-blue-500 via-blue-400 to-blue-600 shadow-lg transition-all duration-700 ease-in-out"
+            style={{
+              width: `${progressPercentage}%`,
+              transform: "translateZ(10px)",
+            }}
           ></div>
         </div>
 
-        {/* Helpful tip below */}
-        <div className="mt-4 text-sm text-gray-600 animate-text-pulse text-center">
+        {/* Helpful Tip */}
+        <div className="mt-5 text-sm text-gray-600 animate-text-pulse text-center">
           {currentStepData.tip}
         </div>
       </div>
