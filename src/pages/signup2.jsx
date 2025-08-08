@@ -83,7 +83,7 @@ const Signup2 = () => {
         // Mark onboarding as completed for new users
         localStorage.setItem('hasCompletedOnboarding', 'true');
         localStorage.setItem('isAuthenticated', 'true');
-        navigate('/profile/createprofile');
+        navigate('/home');
       }, 1500);
     }
   };
@@ -201,7 +201,7 @@ const Signup2 = () => {
             </div>
           ) : (
             <span className="flex items-center justify-center space-x-2">
-              <span>Continue onClick={() => navigate('/profile/createprofile')}</span>
+              <span>Continue</span>
               <span className="group-hover:translate-x-1 transition-transform">→</span>
             </span>
           )}
