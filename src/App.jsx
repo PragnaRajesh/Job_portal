@@ -76,8 +76,7 @@ const OnboardingGuard = () => {
   const hasCompletedOnboarding = localStorage.getItem('hasCompletedOnboarding');
   const isAuthenticated = localStorage.getItem('isAuthenticated');
 
-  // If user is authenticated, redirect to home regardless of onboarding status
-  if (isAuthenticated === 'true') {
+  if (hasCompletedOnboarding === 'true' && isAuthenticated === 'true') {
     return <Navigate to="/home" replace />;
   }
 
