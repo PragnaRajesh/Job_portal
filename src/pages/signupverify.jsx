@@ -42,9 +42,13 @@ const SignupVerify = () => {
         updateSignupStep(2);
         login('mock-token', { isAuthenticated: true });
 
+        // Mark as authenticated and redirect to home
+        localStorage.setItem('hasCompletedOnboarding', 'true');
+        localStorage.setItem('isAuthenticated', 'true');
+
         // Show success animation before navigation
         setTimeout(() => {
-          navigate('/signup2');
+          navigate('/home');
         }, 500);
       } else {
         alert('Invalid OTP. Please try again.');

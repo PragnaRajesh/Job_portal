@@ -47,9 +47,9 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
       {/* Main Content - Takes up most space */}
       <div className="flex-1 flex flex-col px-4 pt-4">
 
-        {/* Top Blue Speech Box - Increased size to match other screens */}
-        <div className={`relative bg-gradient-to-br from-[#7B9EFF] to-[#A8C5FF] animate-gradient-shift rounded-3xl p-6 border-2 border-[#CB9D73] shadow-lg h-[30vh] flex items-center overflow-hidden transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'}`}>
-          
+        {/* Top Blue Speech Box - Fixed height with animated gradient (ORIGINAL DIMENSIONS) */}
+        <div className={`relative bg-gradient-to-br from-[#7B9EFF] to-[#A8C5FF] animate-gradient-shift rounded-3xl p-4 border-2 border-[#CB9D73] shadow-lg h-[25vh] flex items-center overflow-hidden transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'}`}>
+
           {/* Background decoration */}
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-4 left-8 w-2 h-2 bg-white rounded-full animate-dot-pulse" style={{animationDelay: '0.5s'}}></div>
@@ -59,7 +59,7 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
           </div>
 
           <div className="relative z-10">
-            <h1 className="font-bold text-[clamp(1.2rem,5.5vw,1.8rem)] leading-tight text-black tracking-tight">
+            <h1 className="font-montserrat font-semibold text-[clamp(1.2rem,5.5vw,2rem)] leading-tight text-black/70">
               <span className="inline-block animate-slideUp" style={{animationDelay: '0.3s'}}>
                 Build a &nbsp;
               </span>
@@ -71,84 +71,74 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
                 animated resume{" "}
               </span>
               <br />
-              <span className="inline-block animate-slideUp" style={{animationDelay: '1.2s'}}>
+              <span className="inline-block text-white/90 animate-slideUp" style={{animationDelay: '1.2s'}}>
                 to make your{" "}
               </span>
-              <br />
-              <span className="inline-block text-white animate-slideUp" style={{animationDelay: '1.5s'}}>
+              <span className="inline-block text-white/90 animate-slideUp" style={{animationDelay: '1.5s'}}>
                 profile stand out.
               </span>
             </h1>
           </div>
 
           {/* Floating design elements */}
-          <div className="absolute -top-2 -right-2 text-2xl animate-wobble" style={{animationDelay: '1.8s'}}>
+          <div className="absolute -top-2 -right-2 text-3xl animate-wobble" style={{animationDelay: '1.8s'}}>
             ✨
           </div>
-          <div className="absolute -bottom-2 -left-2 text-xl animate-float" style={{animationDelay: '2.1s'}}>
-            🎯
+
+          {/* Animated background particles */}
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute top-4 left-8 w-2 h-2 bg-white rounded-full animate-dot-pulse" style={{animationDelay: '1s'}}></div>
+            <div className="absolute bottom-6 left-12 w-1 h-1 bg-white rounded-full animate-dot-pulse" style={{animationDelay: '1.5s'}}></div>
+            <div className="absolute top-8 right-16 w-1.5 h-1.5 bg-white rounded-full animate-dot-pulse" style={{animationDelay: '2s'}}></div>
           </div>
+        </div>
+
+        {/* Character Image - Full-height stretch like Onboarding 1 */}
+        <div className="flex-1 flex items-center justify-center relative">
+          <div className="w-full h-full flex items-center justify-center -mt-16 relative">
+            {/* Glow effect behind character */}
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-200/50 to-purple-200/50 rounded-full blur-xl animate-glow"></div>
+
+            {/* Apply diff changes with responsive layout */}
+            <div className="relative overflow-hidden p-2 sm:flex sm:flex-col">
+              <img
+                src={onboarding33Img}
+                alt="Resume Building Illustration"
+                className="w-full h-full object-cover relative z-10 animate-bounce-in sm:mx-auto"
+                style={{
+                  animationDelay: '0.8s',
+                  filter: 'drop-shadow(0 25px 25px rgba(0, 0, 0, 0.15))',
+                  transform: 'translateY(0px)'
+                }}
+              />
+
+              {/* Floating thought bubbles */}
+              <div className="absolute -top-4 -left-4 text-xl opacity-70 animate-float" style={{animationDelay: '2s'}}>
+                💭
+              </div>
+              <div className="absolute -top-2 -right-8 text-lg opacity-60 animate-float" style={{animationDelay: '2.5s'}}>
+                ❓
+              </div>
+              <div className="absolute bottom-8 -left-6 text-sm opacity-50 animate-float" style={{animationDelay: '3s'}}>
+                😟
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Description Text */}
+        <div className={`text-center px-2 py-2 transform transition-all duration-1000 delay-500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'}`}>
+          <p className="font-medium text-[clamp(0.9rem,3.8vw,1.1rem)] leading-relaxed text-gray-700 max-w-xs mx-auto">
+            <span className="inline-block animate-slideUp" style={{animationDelay: '2.2s'}}>
+              Create a resume that{" "}
+            </span>
+            <br />
+            <span className="inline-block animate-slideUp" style={{animationDelay: '2.5s'}}>
+              wow's recruiters and lands interviews!
+            </span>
+          </p>
         </div>
       </div>
-
-        {/* Large Resume Illustration - Stretched to fill space */}
-        <div className="flex-1 flex items-center justify-center relative z-10 min-h-0 -mt-8">
-          <div className={`w-full h-full max-w-sm sm:max-w-md relative transform transition-all duration-1000 delay-300 ${isVisible ? 'scale-100 opacity-100' : 'scale-90 opacity-0'}`}>
-          
-          {/* Glow effect behind illustration */}
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-200/50 to-purple-200/50 rounded-2xl blur-xl animate-glow"></div>
-          
-          <div className="relative">
-            <img
-              src={onboarding33Img}
-              alt="Resume Building Illustration"
-              className="w-full h-full object-contain relative z-10 animate-bounce-in"
-              style={{animationDelay: '0.8s'}}
-            />
-            
-            {/* Floating resume elements */}
-            <div className="absolute -top-4 -left-4 opacity-70">
-              <div className="bg-white rounded-lg p-2 shadow-lg animate-float" style={{animationDelay: '2s'}}>
-                <div className="w-8 h-1 bg-blue-300 rounded"></div>
-                <div className="w-6 h-1 bg-gray-300 rounded mt-1"></div>
-              </div>
-            </div>
-            
-            <div className="absolute -top-2 -right-6 opacity-70">
-              <div className="bg-white rounded-lg p-2 shadow-lg animate-wobble" style={{animationDelay: '2.5s'}}>
-                <div className="w-6 h-6 bg-gradient-to-r from-green-400 to-blue-400 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                  ✓
-                </div>
-              </div>
-            </div>
-            
-            <div className="absolute -bottom-4 -right-4 opacity-70">
-              <div className="bg-white rounded-lg p-2 shadow-lg animate-float" style={{animationDelay: '3s'}}>
-                <div className="flex space-x-1">
-                  <div className="w-2 h-4 bg-yellow-400 rounded"></div>
-                  <div className="w-2 h-6 bg-blue-400 rounded"></div>
-                  <div className="w-2 h-3 bg-green-400 rounded"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          </div>
-
-          {/* Inspirational Text - Moved inside main content area */}
-          <div className={`text-center py-4 transform transition-all duration-1000 delay-500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'}`}>
-            <p className="font-medium text-[clamp(0.9rem,3.8vw,1.1rem)] leading-relaxed text-gray-600 max-w-sm mx-auto">
-              <span className="inline-block animate-slideUp" style={{animationDelay: '2.2s'}}>
-                Create a resume that{" "}
-              </span>
-              <span className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent font-bold animate-slideUp" style={{animationDelay: '2.5s'}}>
-                wow's recruiters{" "}
-              </span>
-              <span className="inline-block animate-slideUp" style={{animationDelay: '2.8s'}}>
-                and lands you interviews! 🎨
-              </span>
-            </p>
-          </div>
-        </div>
 
       {/* Bottom Navigation Card - Increased size to match other screens */}
       <div className="px-4 pb-6 relative z-20 flex-shrink-0">
