@@ -35,7 +35,7 @@ const VirtualInterview = () => {
 
   return (
     <div className="min-h-screen bg-white px-4 pt-6 pb-32 font-sans pt-safe pb-safe">
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-4 pt-6">
         <div className="flex items-center gap-2">
           <ChevronLeft onClick={() => navigate(-1)} className="cursor-pointer hover:text-gray-600 transition-colors" />
           <h1 className="text-xl font-semibold">Application</h1>

@@ -83,7 +83,7 @@ const Signup2 = () => {
         // Mark onboarding as completed for new users
         localStorage.setItem('hasCompletedOnboarding', 'true');
         localStorage.setItem('isAuthenticated', 'true');
-        navigate('/home');
+        navigate('/profile/createprofile');
       }, 1500);
     }
   };

@@ -61,9 +61,10 @@ const Application = () => {
   }, []);
 
   return (
-  <div className="pb-[80px] pt-safe pb-safe bg-white px-4 pt-6 font-sans text-base mt-8 rounded-t-2xl shadow">
+  //<div className="pb-[80px] pt-safe pb-safe bg-white px-4 pt-6 font-sans text-base mt-8 rounded-t-2xl shadow">
+  <div className="min-h-screen pt-safe pb-safe pb-[100px] bg-white px-4 pt-6 font-sans text-base rounded-t-2xl shadow">
     {/* Top Bar */}
-    <div className="flex items-center justify-between mb-4">
+    <div className="flex items-center justify-between mb-4 pt-6">
       <div className="flex items-center gap-2">
         <ChevronLeft
           onClick={() => navigate(-1)}

@@ -58,18 +58,24 @@ const OnboardingScreen4 = ({ onSignUp, onLogIn }) => {
           </div>
         </div>
       </div>
+      {/* Motivational tagline to fill white space */}
+<div className="text-center text-lg font-bold text-gray-500 font- mb-[-1.5rem] animate-slideUp" style={{ animationDelay: '0.5s' }}>
+  <br/>
+  Your journey to the perfect role starts here...
+</div>
 
       {/* Character Illustration - Takes remaining flexible space */}
       <div className="flex-1 flex items-center justify-center px-4 min-h-0 relative">
-        <div className="w-[clamp(300px,75vw,400px)] h-full max-h-[60vh] flex items-center justify-center relative">
+        <div className="w-[clamp(350px,85vw,500px)] h-full max-h-[75vh] flex items-center justify-center relative">
           
           {/* Professional aura effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-100/50 to-purple-100/50 rounded-full animate-success-pulse opacity-60"></div>
+          {/* <div className="absolute inset-0 bg-gradient-to-r from-blue-100/50 to-purple-100/50 rounded-full animate-success-pulse opacity-60"></div> */}
           
           <img
             src="https://cdn.builder.io/api/v1/image/assets%2F066a49ebd63d4888b50b2ed95c4b0a2d%2F1fce1cfe00ad43b39d0f0e156be3f338?format=webp&width=800"
             alt="Professional Character"
-            className="w-full h-auto object-contain max-h-full animate-professional-wave relative z-10"
+            className="w-full h-[200%] object-cover animate-professional-wave relative z-2 mb-[-25vh]"
+            style={{ objectPosition: 'center top' }}
           />
           
           {/* Achievement badges floating around character */}

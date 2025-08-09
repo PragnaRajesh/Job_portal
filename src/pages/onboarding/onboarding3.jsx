@@ -61,18 +61,18 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
           <div className="relative z-10">
             <h1 className="font-montserrat font-semibold text-[clamp(1.2rem,5.5vw,2rem)] leading-tight text-black/70">
               <span className="inline-block animate-slideUp" style={{animationDelay: '0.3s'}}>
-                Build a &nbsp;
+                Build a&nbsp;
               </span>
               <span className="inline-block bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent animate-slideUp" style={{animationDelay: '0.6s'}}>
-                graphic-rich{" "}
+                graphic-rich&nbsp;
               </span>
               <br />
               <span className="inline-block animate-slideUp" style={{animationDelay: '0.9s'}}>
-                animated resume{" "}
+                animated resume&nbsp;
               </span>
               <br />
               <span className="inline-block text-white/90 animate-slideUp" style={{animationDelay: '1.2s'}}>
-                to make your{" "}
+                to make your&nbsp;
               </span>
               <span className="inline-block text-white/90 animate-slideUp" style={{animationDelay: '1.5s'}}>
                 profile stand out.
@@ -133,8 +133,11 @@ const OnboardingScreen3 = ({ onNext, onSkip }) => {
               Create a resume that{" "}
             </span>
             <br />
-            <span className="inline-block animate-slideUp" style={{animationDelay: '2.5s'}}>
-              wow's recruiters and lands interviews!
+            <span className="inline-block bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent text-lg font-semibold animate-slideUp" style={{animationDelay: '2.5s'}}>
+              wow's recruiters&nbsp;
+            </span>
+            <span className="inline-block animate-slideUp" style={{animationDelay: '2.8s'}}>
+              and lands interviews!
             </span>
           </p>
         </div>

@@ -64,7 +64,9 @@ const JobList = () => {
   const metroFilters = ["Within 10Km", "10–15 Km away", "10–15 Km away"];
 
   return (
-    <div className="bg-gray-100 pb-[80px] pt-safe pb-safe">
+    // <div className="bg-gray-100 pb-[80px] overflow-y-auto pt-safe pb-safe">
+    //<div className="h-100% overflow-y-auto bg-gray-100 pb-24 pt-safe pb-safe">
+    <div className="min-h-screen bg-gray-100 pt-safe pb-safe pb-[100px]">
       <BackButtonHandler
         onBackPress={() => {
           if (showInterviewPrep) {

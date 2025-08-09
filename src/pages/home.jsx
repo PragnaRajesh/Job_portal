@@ -245,12 +245,22 @@ const Home = () => {
     },
   ];
 
+  // useEffect(() => {
+  //   // Check if user is authenticated
+  //   if (!isAuthenticated) {
+  //     navigate('/onboarding1');
+  //     return;
+  //   }
   useEffect(() => {
-    // Check if user is authenticated
-    if (!isAuthenticated) {
-      navigate('/onboarding1');
-      return;
-    }
+  const hasCompletedOnboarding = localStorage.getItem('hasCompletedOnboarding') === 'true';
+    if (!hasCompletedOnboarding) {
+    navigate('/onboarding1');
+    return;
+  }
+
+  updateLastActive();
+  loadData(); // whatever your data loading function is
+}, [navigate]);
 
     // Debug current user data
     console.log('Current user data:', user);
@@ -267,12 +277,17 @@ const Home = () => {
         // Simulate API delay
         await new Promise(resolve => setTimeout(resolve, 800));
 
-        setHomeData({
-          name: getDisplayName(),
-          role: user.role || (user.jobRoles && user.jobRoles[0]) || "UI/UX Designer",
-          location: user.location || "Koramangala",
-          profilePicture: user.profilePicture || "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop"
-        });
+       setHomeData({
+  name: getDisplayName(),
+  role: user.role || (user.jobRoles && user.jobRoles[0]) || "UI/UX Designer",
+  location: user.location || "Koramangala",
+  profilePicture:
+    user.profilePicture ||
+    (user.gender?.toLowerCase() === "female"
+      ? "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop"
+      : "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop")
+});
+
 
         setIsLoading(false);
         setTimeout(() => setIsVisible(true), 100);
@@ -284,8 +299,8 @@ const Home = () => {
     };
 
     loadData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAuthenticated, navigate]);
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [isAuthenticated, navigate]);
 
   // Loading screen
   if (isLoading) {
@@ -459,12 +474,12 @@ const Home = () => {
 
         {/* Find Your Job */}
         <h3 className="font-bold text-lg mb-4">Find Your Job</h3>
-        <div className="flex overflow-x-auto gap-3 no-scrollbar mb-6">
+        <div className="flex overflow-x-auto  gap-3 no-scrollbar mb-6">
           {jobCategories.map((cat, idx) => (
             <button
               key={idx}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 rounded-full text-sm whitespace-nowrap transition ${
+              className={`px-4 py-2 rounded-[5px] text-sm whitespace-nowrap transition ${
                 selectedCategory === cat
                   ? "bg-blue-600 text-white"
                   : "bg-gray-100 text-gray-700"
@@ -476,7 +491,7 @@ const Home = () => {
         </div>
 
         {/* Job Cards Horizontal Scroll */}
-        <div className="flex overflow-x-auto gap-4 mb-8 no-scrollbar">
+        <div className="flex flex-col gap-4 mb-8 no-scrollbar">
           {getCurrentJobCards().map((job, idx) => (
             <div
               key={idx}
@@ -587,8 +602,7 @@ const Home = () => {
           ))}
         </div>
       </div>
-
-      {/* Bottom Navigation - keeping existing implementation */}
+      {/* Bottom Navigation*/}
       <div className="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around py-1 sm:py-1 border-t border-gray-200 bg-white/95 backdrop-blur-sm pb-safe">
         <button onClick={() => navigate("/home")}>
           <HomeIcon className="w-6 h-6 sm:w-7 sm:h-7 mt-2 text-blue-600" />

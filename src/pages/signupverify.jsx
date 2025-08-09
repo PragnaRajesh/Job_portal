@@ -48,7 +48,7 @@ const SignupVerify = () => {
 
         // Show success animation before navigation
         setTimeout(() => {
-          navigate('/home');
+          navigate('/signup2');
         }, 500);
       } else {
         alert('Invalid OTP. Please try again.');

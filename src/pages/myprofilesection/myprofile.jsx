@@ -214,7 +214,8 @@ const MyProfile = () => {
       }, []);
 
   return (
-     <div className="bg-gray-100 pb-[80px] font-sans pt-safe pb-safe">
+     //<div className="bg-gray-100 pb-[80px] font-sans pt-safe pb-safe">
+     <div className="min-h-screen bg-gray-100 font-sans pt-safe pb-safe pb-[100px]">
       {/* Profile Header Card */}
       <div className="relative rounded-b-3xl p-4 text-white mb-4 overflow-hidden" style={{ background: 'linear-gradient(135deg, #130160 0%, #36353C 100%)' }}>
         {/* Custom SVG Background */}

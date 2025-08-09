@@ -208,15 +208,30 @@ body, html {
   display: none;
 }
 
-/* ✅ Updated to allow scrolling inside scaled-wrapper */
+/* ✅ Updated to allow scrolling inside scaled-wrapper
+.scaled-wrapper {
+  width: 390px;
+  /* ✅ Don't fix height to viewport here
+  height: auto;
+  
+  /* Let content grow naturally 
+  min-height: unset;
+
+  /* Keep your scaling */
+  /* transform: scale(calc(100vh / 844));
+  transform-origin: top left;
+
+  /* ✅ Allow full page scroll
+  overflow-x: hidden;
+  overflow-y: visible;
+} */
 .scaled-wrapper {
   width: 390px;
   height: auto;
-  min-height: 100vh;
-  transform: scale(calc(100vh / 844));
+  min-height: unset;
+
   transform-origin: top left;
-  margin: 0 auto;
-  overflow-y: auto;
+
   overflow-x: hidden;
-  position: relative;
+  overflow-y: visible;
 }
