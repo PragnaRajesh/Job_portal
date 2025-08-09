@@ -54,6 +54,9 @@ import AITemplate from "./pages/resume/AItemplate";
 import AIResumeChat from "./pages/resume/airesumechat";
 import ProgressBarDemo from "./pages/ProgressBarDemo";
 
+import BottomNavbar from './components/BottomNavbar';
+
+
 // Wrapper to pass state to SuccessScreen
 const SuccessScreenWrapper = () => {
   const { state } = useLocation();
@@ -83,6 +86,9 @@ const App = () => {
       <UserProvider>
         <ConversationProvider>
           <BackButtonHandler />
+
+          <div className="pb-20 overflow-auto min-h-screen">
+
         <Routes>
           {/* Onboarding and Auth */}
           <Route path="/" element={<OnboardingGuard />} />
@@ -155,6 +161,9 @@ const App = () => {
           {/* Demo Routes */}
           <Route path="/demo/progress" element={<ProgressBarDemo />} />
         </Routes>
+          </div>
+         {/* Fixed Bottom Navbar always visible */}
+          <BottomNavbar />
         </ConversationProvider>
       </UserProvider>
     </BrowserRouter>

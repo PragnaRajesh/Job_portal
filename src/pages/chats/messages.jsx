@@ -80,24 +80,6 @@ const Messages = () => {
         ))}
       </div>
 
-      {/* Bottom Navigation */}
-      <div className="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around py-3 sm:py-4 border-t border-gray-200 bg-white/95 backdrop-blur-sm pb-safe">
-        <button onClick={() => navigate("/home")}>
-          <HomeIcon className="w-6 h-6 sm:w-7 sm:h-7 text-gray-400 hover:text-blue-600 transition-colors" />
-        </button>
-        <button onClick={() => navigate("/jobs/joblist")}>
-          <Briefcase className="w-6 h-6 sm:w-7 sm:h-7 text-gray-400 hover:text-blue-600 transition-colors" />
-        </button>
-        <div className="w-12 h-12 sm:w-14 sm:h-14 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
-          <Plus className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
-        </div>
-        <button onClick={() => navigate("/applications/application")}>
-          <FileText className="w-6 h-6 sm:w-7 sm:h-7 text-gray-400 hover:text-blue-600 transition-colors" />
-        </button>
-        <button onClick={() => navigate("/myprofilesection/myprofile")}>
-          <User className="w-6 h-6 sm:w-7 sm:h-7 text-blue-600" />
-        </button>
-      </div>
     </div>
 
       {/* New Chat Modal */}

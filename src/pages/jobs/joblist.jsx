@@ -379,7 +379,7 @@ const JobList = () => {
         </div>
       </div>
 
-    {/* ✅ Fixed Bottom Navigation */}
+    {/* ✅ Fixed Bottom Navigation
           <div className="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around py-1 sm:py-1 border-t border-gray-200 bg-white/95 backdrop-blur-sm pb-safe">
             <button onClick={() => navigate("/home")}>
               <HomeIcon className="w-6 h-6 sm:w-7 sm:h-7 mt-2 text-gray-400" />
@@ -387,8 +387,8 @@ const JobList = () => {
             <button onClick={() => navigate("/joblist")}>
               <Briefcase className="w-6 h-6 sm:w-7 sm:h-7 mt-2 text-blue-600" />
             </button>
-    
-            {/* Plus Icon with Popup */}
+
+            {/* Plus Icon with Popup
                               <div className="relative">
                                 <button
                                   onClick={() => setShowPopup(!showPopup)}
@@ -407,7 +407,7 @@ const JobList = () => {
                       
                           <div className="flex flex-col gap-4 w-4/5 sm:w-3/5 md:w-2/5">
                       
-                        {/* Resume Button */}
+                        {/* Resume Button
                         <button
                           onClick={() => {
                             setShowPopup(false);
@@ -423,7 +423,7 @@ const JobList = () => {
                         </button>
                         
                       
-                        {/* Chats Button */}
+                        {/* Chats Button 
                         <button
                           onClick={() => {
                             setShowPopup(false);
@@ -434,7 +434,7 @@ const JobList = () => {
                       Chats
                         </button>
                       
-                        {/* AI Job Prep Button */}
+                        {/* AI Job Prep Button 
                         <button
                           onClick={() => {
                             setShowPopup(false);
@@ -459,7 +459,7 @@ const JobList = () => {
             <button onClick={() => navigate("/myprofilesection/myprofile")}>
               <User className="w-6 h-6 sm:w-7 sm:h-7 mt-2 text-gray-400" />
             </button>
-          </div>
+          </div> */}
     
     
 
